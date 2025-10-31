@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
+import 'package:wbw_locale/wbw_locale.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 import '../../data_models/data_models.dart';
-import '../../localization/localization.dart';
 import '../../mechanics/mechanics.dart';
 
 part './tutorial_listener.dart';
@@ -18,35 +18,31 @@ part 'tutorial_states.dart';
 
 class TutorialBlocDiDto {
   TutorialBlocDiDto.use(final BuildContext context)
-      : mechanics = context.read();
+    : mechanics = context.read();
   final MechanicsCollection mechanics;
 }
 
 class TutorialBloc extends Cubit<TutorialBlocState> {
   TutorialBloc(final BuildContext context)
-      : diDto = TutorialBlocDiDto.use(context),
-        super(const TutorialBlocStateEmpty()) {
+    : diDto = TutorialBlocDiDto.use(context),
+      super(const TutorialBlocStateEmpty()) {
     notifier = TutorialStateNotifier.listen(bloc: this);
   }
   @override
-  Future<void> close() {
-    notifier.dispose();
+  Future<void> close() async {
+    await notifier.dispose();
     return super.close();
   }
 
   final TutorialBlocDiDto diDto;
   late final TutorialStateNotifier notifier;
 
-  void onLoadTutorialsProgress(
-    final LoadTutorialsProgressEvent event,
-  ) {
+  void onLoadTutorialsProgress(final LoadTutorialsProgressEvent event) {
     final newState = TutorialBlocStatePending(progress: event.progress);
     emit(newState);
   }
 
-  Future<void> onStartTutorial(
-    final StartTutorialEvent event,
-  ) async {
+  Future<void> onStartTutorial(final StartTutorialEvent event) async {
     TutorialCollectionsProgressModel progress = getLiveProgress();
     if (event.shouldStartFromBeginning) {
       progress = diDto.mechanics.tutorial.resetProgress(
@@ -76,9 +72,7 @@ class TutorialBloc extends Cubit<TutorialBlocState> {
     }
   }
 
-  void onCompleteTutorial(
-    final CompleteTutorialEvent event,
-  ) {
+  void onCompleteTutorial(final CompleteTutorialEvent event) {
     final effectiveState = state;
     if (effectiveState is! TutorialBlocStateLive) return;
     unawaited(
@@ -88,9 +82,7 @@ class TutorialBloc extends Cubit<TutorialBlocState> {
     );
   }
 
-  Future<void> onNextTutorial(
-    final NextTutorialEvent event,
-  ) async {
+  Future<void> onNextTutorial(final NextTutorialEvent event) async {
     TutorialBlocStateLive liveState = getLiveState();
     TutorialEventsCollectionModel tutorial = liveState.tutorial;
     TutorialEventModel? tutorialEvent = tutorial.currentEvent;
@@ -111,7 +103,8 @@ class TutorialBloc extends Cubit<TutorialBlocState> {
     } else {
       if (tutorialEvent == null) return;
       if (!tutorialEvent.isCompleted &&
-          event.action != NextTutorialEventType.complete) return;
+          event.action != NextTutorialEventType.complete)
+        return;
 
       await notifier.notifyGamePostEffects(tutorial);
       if (state is TutorialBlocStatePending) {
@@ -141,9 +134,7 @@ class TutorialBloc extends Cubit<TutorialBlocState> {
           nextIndex = tutorial.events.length;
       }
 
-      final updatedTutorial = tutorial.copyWith(
-        currentIndex: nextIndex,
-      );
+      final updatedTutorial = tutorial.copyWith(currentIndex: nextIndex);
       final newLiveState = TutorialBlocStateLive(
         tutorial: updatedTutorial,
         progress: liveState.progress,
@@ -159,9 +150,7 @@ class TutorialBloc extends Cubit<TutorialBlocState> {
     }
   }
 
-  void onTutorialUiAction(
-    final TutorialUiActionEvent event,
-  ) {
+  void onTutorialUiAction(final TutorialUiActionEvent event) {
     final effectiveState = state;
     if (effectiveState is! TutorialBlocStateLive) return;
     final tutorial = effectiveState.tutorial;
@@ -171,13 +160,11 @@ class TutorialBloc extends Cubit<TutorialBlocState> {
       tutorialEvent: currentEvent,
       uiEvent: event,
     );
-    final updatedEvents = [...tutorial.events]..[tutorial.currentIndex] =
-        updatedEvent;
+    final updatedEvents = [...tutorial.events]
+      ..[tutorial.currentIndex] = updatedEvent;
     emit(
       effectiveState.copyWith(
-        tutorial: tutorial.copyWith(
-          events: updatedEvents,
-        ),
+        tutorial: tutorial.copyWith(events: updatedEvents),
       ),
     );
     if (updatedEvent.isCompleted) {
@@ -204,8 +191,8 @@ class TutorialBloc extends Cubit<TutorialBlocState> {
   TutorialEventsCollectionModel getTutorial() => getLiveState().tutorial;
 
   TutorialBlocStateLive getLiveState() => switch (state) {
-        // TODO(arenukvern): as is wrong - fix this
-        TutorialBlocStateLive() => state as TutorialBlocStateLive,
-        _ => throw ArgumentError.value('$state'),
-      };
+    // TODO(arenukvern): as is wrong - fix this
+    TutorialBlocStateLive() => state as TutorialBlocStateLive,
+    _ => throw ArgumentError.value('$state'),
+  };
 }

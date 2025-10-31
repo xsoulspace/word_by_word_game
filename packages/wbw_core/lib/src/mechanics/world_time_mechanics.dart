@@ -2,6 +2,7 @@ import 'dart:async' as lib_async;
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 import '../../wbw_core.dart';
 
@@ -71,9 +72,7 @@ class WorldTimeMechanics implements Loadable {
   }
 
   /// Run this method when the player should initialize the
-  void onInitLevel({
-    required final WorldDateTimeModel worldDateTime,
-  }) {
+  void onInitLevel({required final WorldDateTimeModel worldDateTime}) {
     useDateTime(worldDateTime);
     resume();
   }

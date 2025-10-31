@@ -1,47 +1,50 @@
-import 'dart:async';
-
-import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.dart';
 
-const kKeyboardWidth = 320.0;
+extension ChangeNotifierX on ChangeNotifier {
+  void setState(final VoidCallback callback) {
+    callback();
+    // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
+    notifyListeners();
+  }
+}
 
-class UiKeyboardController extends Cubit<UiKeyboardControllerState> {
+const kKeyboardWidth = 360.0;
+
+class UiKeyboardController with ChangeNotifier {
   // ignore: avoid_unused_constructor_parameters
-  UiKeyboardController(final BuildContext context)
-      : super(const UiKeyboardControllerState());
+  UiKeyboardController(final BuildContext context) : super();
+
+  var _isVisible = false;
+  var _language = englishKeyboard;
+  bool get isVisible => _isVisible;
+  KeyboardLanguage get language => _language;
 
   final _controller = StreamController<UiKeyboardEvent>.broadcast();
   Stream<UiKeyboardEvent> get keyEventsStream => _controller.stream;
 
   void onChangeLanguage(final KeyboardLanguage language) {
-    emit(state.copyWith(language: language));
+    setState(() => _language = language);
   }
 
   void onDeleteCharacter() =>
       _controller.add(const UiKeyboardEvent.removeCharacter());
-  void onAddCharacter(final String character) => _controller.add(
-        UiKeyboardEvent.addCharacter(character: character),
-      );
+  void onAddCharacter(final String character) =>
+      _controller.add(UiKeyboardEvent.addCharacter(character: character));
 
   void showKeyboard() {
-    emit(state.copyWith(isVisible: true));
+    setState(() => _isVisible = true);
   }
 
   void hideKeyboard() {
-    emit(state.copyWith(isVisible: false));
+    setState(() => _isVisible = false);
   }
 
   @override
-  Future<void> close() async {
-    await _controller.close();
-    return super.close();
+  void dispose() {
+    unawaited(_controller.close());
+    super.dispose();
   }
 }
 
@@ -64,53 +67,47 @@ class InputKeyboardListener extends StatelessWidget {
   final VoidCallback? onComplete;
   final bool autofocus;
   final int caretIndex;
-  final void Function(
-    int, {
-    KeyboardDirection direction,
-  }) onCaretIndexChanged;
+  final void Function(int, {KeyboardDirection direction}) onCaretIndexChanged;
   final ValueSetter<String> onCharacter;
   final VoidCallback onDelete;
 
   @override
   Widget build(final BuildContext context) => Focus(
-        autofocus: autofocus,
-        onKeyEvent: (final node, final event) {
-          if (event is KeyUpEvent) return KeyEventResult.handled;
+    autofocus: autofocus,
+    onKeyEvent: (final node, final event) {
+      if (event is KeyUpEvent) return KeyEventResult.handled;
 
-          switch (event.logicalKey) {
-            case LogicalKeyboardKey.arrowLeft:
-              onCaretIndexChanged(
-                caretIndex - 1,
-                direction: KeyboardDirection.left,
-              );
-              return KeyEventResult.handled;
-            case LogicalKeyboardKey.arrowRight:
-              onCaretIndexChanged(
-                caretIndex + 1,
-                direction: KeyboardDirection.right,
-              );
-              return KeyEventResult.handled;
-            case LogicalKeyboardKey.delete || LogicalKeyboardKey.backspace:
-              onDelete();
-              return KeyEventResult.handled;
-            case LogicalKeyboardKey.enter:
-              onComplete?.call();
-              return KeyEventResult.handled;
-            case LogicalKeyboardKey.space:
-              return KeyEventResult.handled;
-          }
-          final character = event.character;
-          if (character != null && character.isNotEmpty) {
-            onCharacter(character);
-          }
+      switch (event.logicalKey) {
+        case LogicalKeyboardKey.arrowLeft:
+          onCaretIndexChanged(
+            caretIndex - 1,
+            direction: KeyboardDirection.left,
+          );
           return KeyEventResult.handled;
-        },
-        focusNode: focusNode,
-        child: GestureDetector(
-          onTap: focusNode.requestFocus,
-          child: child,
-        ),
-      );
+        case LogicalKeyboardKey.arrowRight:
+          onCaretIndexChanged(
+            caretIndex + 1,
+            direction: KeyboardDirection.right,
+          );
+          return KeyEventResult.handled;
+        case LogicalKeyboardKey.delete || LogicalKeyboardKey.backspace:
+          onDelete();
+          return KeyEventResult.handled;
+        case LogicalKeyboardKey.enter:
+          onComplete?.call();
+          return KeyEventResult.handled;
+        case LogicalKeyboardKey.space:
+          return KeyEventResult.handled;
+      }
+      final character = event.character;
+      if (character != null && character.isNotEmpty) {
+        onCharacter(character);
+      }
+      return KeyEventResult.handled;
+    },
+    focusNode: focusNode,
+    child: GestureDetector(onTap: focusNode.requestFocus, child: child),
+  );
 }
 
 class UiKeyboard extends StatelessWidget {
@@ -120,7 +117,7 @@ class UiKeyboard extends StatelessWidget {
   Widget build(final BuildContext context) {
     final controller = context.read<UiKeyboardController>();
     final language = context.select<UiKeyboardController, KeyboardLanguage>(
-      (final cubit) => cubit.state.language,
+      (final cubit) => cubit.language,
     );
     return KeyboardLetters(
       language: language,
@@ -161,14 +158,10 @@ class KeyboardLetters extends StatelessWidget {
               .map(
                 (final e) => Flexible(
                   child: ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      maxWidth: maxLetterWidth,
-                    ),
+                    constraints: const BoxConstraints(maxWidth: maxLetterWidth),
                     child: LetterCard(
                       lettersCount: lettersCount,
-                      letter: LetterModel(
-                        title: e,
-                      ),
+                      letter: LetterModel(title: e),
                       onPressed: () => onLetterPressed(e),
                     ),
                   ),
@@ -183,14 +176,10 @@ class KeyboardLetters extends StatelessWidget {
             for (final e in rows[1])
               Flexible(
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxWidth: maxLetterWidth,
-                  ),
+                  constraints: const BoxConstraints(maxWidth: maxLetterWidth),
                   child: LetterCard(
                     lettersCount: lettersCount,
-                    letter: LetterModel(
-                      title: e,
-                    ),
+                    letter: LetterModel(title: e),
                     onPressed: () => onLetterPressed(e),
                   ),
                 ),
@@ -246,32 +235,29 @@ class InputCaret extends StatelessWidget {
   const InputCaret({super.key});
 
   @override
-  Widget build(final BuildContext context) => Container(
-        width: 14,
-        color: Colors.transparent,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context)
-                .colorScheme
-                .onPrimaryContainer
-                .withOpacity(0.8),
-            borderRadius: const BorderRadius.all(
-              Radius.elliptical(4, 4),
+  Widget build(final BuildContext context) {
+    final focusNode = Focus.of(context);
+    final color = Theme.of(context).colorScheme.onPrimaryContainer;
+    final isFocused = focusNode.hasFocus || focusNode.hasPrimaryFocus;
+
+    return AnimatedContainer(
+          duration: 250.milliseconds,
+          width: isFocused ? 14 : 1,
+          color: Colors.transparent,
+          child: Container(
+            decoration: BoxDecoration(
+              color: isFocused ? color.withOpacity(0.8) : Colors.transparent,
+              borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
             ),
+            height: double.maxFinite,
+            margin: const EdgeInsets.symmetric(horizontal: 4),
+            width: isFocused ? 4 : 1,
           ),
-          height: double.maxFinite,
-          margin: const EdgeInsets.symmetric(horizontal: 4),
-          width: 4,
-        ),
-      )
-          .animate(
-            onPlay: (final controller) => controller.repeat(),
-          )
-          .fadeIn(duration: 300.milliseconds)
-          .fadeOut(
-            delay: 700.milliseconds,
-            duration: 300.milliseconds,
-          );
+        )
+        .animate(onPlay: (final controller) => controller.repeat())
+        .fadeIn(duration: 300.milliseconds)
+        .fadeOut(delay: 700.milliseconds, duration: 300.milliseconds);
+  }
 }
 
 class KeyboardLanguageSwitcher extends StatelessWidget {
@@ -286,23 +272,23 @@ class KeyboardLanguageSwitcher extends StatelessWidget {
   final int lettersCount;
   @override
   Widget build(final BuildContext context) => MenuAnchor(
-        builder: (final context, final controller, final child) =>
-            OutlinedKeyboardElement(
+    builder: (final context, final controller, final child) =>
+        OutlinedKeyboardElement(
           lettersCount: lettersCount,
           onLongPress: controller.open,
           onPressed: () => onChanged(value.next()),
           padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 2),
           title: const Icon(CupertinoIcons.globe),
         ),
-        menuChildren: KeyboardLanguage.values
-            .map(
-              (final e) => MenuItemButton(
-                child: Text(e.name),
-                onPressed: () => onChanged(e),
-              ),
-            )
-            .toList(),
-      );
+    menuChildren: KeyboardLanguage.values
+        .map(
+          (final e) => MenuItemButton(
+            child: Text(e.code),
+            onPressed: () => onChanged(e),
+          ),
+        )
+        .toList(),
+  );
 }
 
 class DeleteLetterButton extends StatefulWidget {
@@ -318,33 +304,33 @@ class DeleteLetterButton extends StatefulWidget {
 }
 
 class _DeleteLetterButtonState extends State<DeleteLetterButton> {
-  bool _isLongPressed = false;
+  var _isLongPressed = false;
   @override
   Widget build(final BuildContext context) => GestureDetector(
-        onLongPress: () async {
-          await Future.delayed(200.milliseconds);
-          while (_isLongPressed) {
-            await Future.delayed(100.milliseconds);
-            if (!_isLongPressed) break;
-            widget.onDelete();
-          }
-        },
-        onLongPressStart: (final _) async {
-          _isLongPressed = true;
-        },
-        onLongPressEnd: (final _) {
-          _isLongPressed = false;
-        },
-        onLongPressCancel: () {
-          _isLongPressed = false;
-        },
-        child: OutlinedKeyboardElement(
-          onPressed: widget.onDelete,
-          padding: const EdgeInsets.symmetric(vertical: 6),
-          lettersCount: widget.lettersCount,
-          title: const Icon(CupertinoIcons.delete_left),
-        ),
-      );
+    onLongPress: () async {
+      await Future.delayed(200.milliseconds);
+      while (_isLongPressed) {
+        await Future.delayed(100.milliseconds);
+        if (!_isLongPressed) break;
+        widget.onDelete();
+      }
+    },
+    onLongPressStart: (final _) async {
+      _isLongPressed = true;
+    },
+    onLongPressEnd: (final _) {
+      _isLongPressed = false;
+    },
+    onLongPressCancel: () {
+      _isLongPressed = false;
+    },
+    child: OutlinedKeyboardElement(
+      onPressed: widget.onDelete,
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      lettersCount: widget.lettersCount,
+      title: const Icon(CupertinoIcons.delete_left),
+    ),
+  );
 }
 
 class OutlinedKeyboardElement extends StatelessWidget {
@@ -363,15 +349,15 @@ class OutlinedKeyboardElement extends StatelessWidget {
   final EdgeInsets padding;
   @override
   Widget build(final BuildContext context) => Padding(
-        /// margin
-        padding: const EdgeInsets.symmetric(horizontal: 2),
-        child: UiElevatedButton(
-          onPressed: onPressed,
-          onLongPress: onLongPress,
-          padding: padding,
-          child: title,
-        ),
-      );
+    /// margin
+    padding: const EdgeInsets.symmetric(horizontal: 2),
+    child: UiElevatedButton(
+      onPressed: onPressed,
+      onLongPress: onLongPress,
+      padding: padding,
+      child: title,
+    ),
+  );
 }
 
 class LetterCard extends StatelessWidget {
@@ -386,10 +372,10 @@ class LetterCard extends StatelessWidget {
   final int lettersCount;
   @override
   Widget build(final BuildContext context) => FilledKeyboardElement(
-        lettersCount: lettersCount,
-        title: Text(letter.title),
-        onPressed: onPressed,
-      );
+    lettersCount: lettersCount,
+    title: Text(letter.title),
+    onPressed: onPressed,
+  );
 }
 
 class FilledKeyboardElement extends StatelessWidget {
@@ -404,13 +390,13 @@ class FilledKeyboardElement extends StatelessWidget {
   final int lettersCount;
   @override
   Widget build(final BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2),
-        child: UiFilledButton(
-          onPressed: onPressed,
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 1),
-          child: title,
-        ),
-      );
+    padding: const EdgeInsets.symmetric(horizontal: 2),
+    child: UiFilledButton(
+      onPressed: onPressed,
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 1),
+      child: title,
+    ),
+  );
 }
 
 class UiElevatedButton extends StatelessWidget {
@@ -428,30 +414,28 @@ class UiElevatedButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => UiBaseButton(
-        onPressed: onPressed,
-        onLongPress: onLongPress,
-        child: Container(
-          decoration: ShapeDecoration(
-            color: Theme.of(context).dialogBackgroundColor.withOpacity(0.8),
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
-            ),
-          ),
-          alignment: Alignment.center,
-          padding: padding,
-          child: IconTheme(
-            data: IconThemeData(
-              color: Theme.of(context).colorScheme.primary,
-            ),
-            child: DefaultTextStyle.merge(
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                  ),
-              child: child,
-            ),
-          ),
+    onPressed: onPressed,
+    onLongPress: onLongPress,
+    builder: (final context, final focused, final onlyFocused) => Container(
+      decoration: ShapeDecoration(
+        color: Theme.of(context).dialogBackgroundColor.withOpacity(0.8),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
         ),
-      );
+      ),
+      alignment: Alignment.center,
+      padding: padding,
+      child: IconTheme(
+        data: IconThemeData(color: Theme.of(context).colorScheme.primary),
+        child: DefaultTextStyle.merge(
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          child: child,
+        ),
+      ),
+    ),
+  );
 }
 
 class UiFilledButton extends StatelessWidget {
@@ -466,20 +450,19 @@ class UiFilledButton extends StatelessWidget {
   final VoidCallback? onPressed;
   @override
   Widget build(final BuildContext context) => UiBaseButton(
-        onPressed: onPressed,
-        child: Container(
-          decoration: ShapeDecoration(
-            color: Theme.of(context)
-                .colorScheme
-                .secondaryContainer
-                .withOpacity(0.85),
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
-            ),
-          ),
-          alignment: Alignment.center,
-          padding: padding,
-          child: child,
+    onPressed: onPressed,
+    builder: (final context, final focused, final onlyFocused) => Container(
+      decoration: ShapeDecoration(
+        color: Theme.of(
+          context,
+        ).colorScheme.secondaryContainer.withOpacity(0.85),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
         ),
-      );
+      ),
+      alignment: Alignment.center,
+      padding: padding,
+      child: child,
+    ),
+  );
 }

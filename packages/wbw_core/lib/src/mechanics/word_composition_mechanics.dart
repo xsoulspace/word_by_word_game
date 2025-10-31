@@ -27,8 +27,7 @@ class WordCompositionMechanics {
   CurrentWordModel unblockInactiveIndex({
     required final int index,
     required final CurrentWordModel currentWord,
-  }) =>
-      currentWord.copyWith(
-        inactiveIndexes: [...currentWord.inactiveIndexes]..remove(index),
-      );
+  }) => currentWord.copyWith(
+    inactiveIndexes: [...currentWord.inactiveIndexes]..remove(index),
+  );
 }

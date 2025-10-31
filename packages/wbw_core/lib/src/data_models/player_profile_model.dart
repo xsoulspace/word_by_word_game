@@ -9,7 +9,7 @@ typedef PlayerProfileModelId = String;
 /// For game entity model see [PlayerCharacterModel]
 @immutable
 @freezed
-class PlayerProfileModel with _$PlayerProfileModel {
+abstract class PlayerProfileModel with _$PlayerProfileModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerProfileModel({
     required final PlayerProfileModelId id,
@@ -29,38 +29,36 @@ class PlayerProfileModel with _$PlayerProfileModel {
   factory PlayerProfileModel.create({
     required final String name,
     required final int colorValue,
-  }) =>
-      PlayerProfileModel(
-        colorValue: colorValue,
-        id: IdCreator.create(),
-        name: name,
-      );
+  }) => PlayerProfileModel(
+    colorValue: colorValue,
+    id: IdCreator.create(),
+    name: name,
+  );
+  static const emptyPlayerId = '0';
   static const empty = PlayerProfileModel(
     colorValue: 0xFFFF9000,
-    id: '0',
+    id: emptyPlayerId,
     name: '',
   );
   Color get color => Color(colorValue);
 
   static Map<CanvasDataModelId, PlayerLevelHighscoreModel> _highscoreFromJson(
     final Map<String, dynamic> json,
-  ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          CanvasDataModelId.fromJson(key),
-          PlayerLevelHighscoreModel.fromJson(value),
-        ),
-      );
+  ) => json.map(
+    (final key, final value) => MapEntry(
+      CanvasDataModelId.fromJson(key),
+      PlayerLevelHighscoreModel.fromJson(value),
+    ),
+  );
 
   static Map<String, dynamic> _highscoreToJson(
     final Map<CanvasDataModelId, PlayerLevelHighscoreModel> map,
-  ) =>
-      map.map((final key, final value) => MapEntry(key.value, value.toJson()));
+  ) => map.map((final key, final value) => MapEntry(key.value, value.toJson()));
 }
 
 @immutable
 @freezed
-class PlayerHighscoreModel with _$PlayerHighscoreModel {
+abstract class PlayerHighscoreModel with _$PlayerHighscoreModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerHighscoreModel({
     @Default(0) final int maxWordsCount,
@@ -81,7 +79,7 @@ class PlayerHighscoreModel with _$PlayerHighscoreModel {
 
 @immutable
 @freezed
-class PlayerLevelHighscoreModel with _$PlayerLevelHighscoreModel {
+abstract class PlayerLevelHighscoreModel with _$PlayerLevelHighscoreModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerLevelHighscoreModel({
     required final CanvasDataModelId levelId,

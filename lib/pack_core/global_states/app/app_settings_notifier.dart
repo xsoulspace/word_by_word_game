@@ -1,29 +1,18 @@
-import 'dart:async';
-
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/pack_core/global_states/app/locale_logic.dart';
-
-class UiLocaleNotifier extends ValueNotifier<Locale> {
-  UiLocaleNotifier(super.value);
-}
-
-final uiLocaleNotifier = UiLocaleNotifier(Locales.en);
+import 'package:word_by_word_game/common_imports.dart';
+import 'package:word_by_word_game/pack_core/di/dependency_injector.dart';
 
 class AppSettingsCubitDto {
-  AppSettingsCubitDto({
-    required final BuildContext context,
-  }) : appSettingsRepository = context.read();
+  AppSettingsCubitDto({required final BuildContext context})
+    : appSettingsRepository = context.read();
   final AppSettingsRepository appSettingsRepository;
 }
 
-class AppSettingsNotifier extends ValueNotifier<AppSettingsModel> {
+class AppSettingsNotifier extends ValueNotifier<AppSettingsModel>
+    with HasResources {
   AppSettingsNotifier(final BuildContext context)
-      : dto = AppSettingsCubitDto(context: context),
-        super(AppSettingsModel.empty);
+    : dto = AppSettingsCubitDto(context: context),
+      super(AppSettingsModel.empty);
   final AppSettingsCubitDto dto;
 
   Future<void> _updateSettings(final AppSettingsModel value) async {
@@ -37,28 +26,18 @@ class AppSettingsNotifier extends ValueNotifier<AppSettingsModel> {
     await updateLocale(value.locale);
   }
 
-  ValueListenable<Locale> get locale => uiLocaleNotifier;
-  Languages get language => locale.value.language;
+  ValueListenable<Locale> get locale => uiLocaleResource;
+  UiLanguage get language => locale.value.language;
   Future<void> updateLocale(final Locale? locale) async {
-    final result = await LocaleLogic().updateLocale(
+    final result = await const LocaleLogic().updateLocale(
       newLocale: locale,
       oldLocale: value.locale,
-      uiLocale: uiLocaleNotifier.value,
+      uiLocale: uiLocaleResource.value,
     );
     if (result == null) return;
-    uiLocaleNotifier.value = result.uiLocale;
+    uiLocaleResource.value = result.uiLocale;
     notifyListeners();
     if (value.locale == result.updatedLocale) return;
     await _updateSettings(value.copyWith(locale: result.updatedLocale));
   }
-}
-
-Locale useLocale(
-  final BuildContext context, {
-  final bool listen = true,
-}) =>
-    Provider.of<UiLocaleNotifier>(context, listen: listen).value;
-
-extension LocaleX on Locale {
-  Languages get language => Languages.byLanguageCode(languageCode);
 }

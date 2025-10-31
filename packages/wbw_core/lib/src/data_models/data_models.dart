@@ -4,10 +4,10 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:map_editor/state/models/models.dart';
+import 'package:wbw_locale/wbw_locale.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
-import '../localization/localization.dart';
 import '../mechanics/mechanics.dart';
-import '../utils/utils.dart';
 import 'tutorial_types.dart';
 
 export 'tutorial_types.dart';
@@ -24,6 +24,7 @@ part 'level_players_model.dart';
 part 'player_character_model.dart';
 part 'player_profile_model.dart';
 part 'score_model.dart';
+part 'technology_levels_collection.dart';
 part 'technology_model.dart';
 part 'tutorial_models.dart';
 part 'world_time.dart';

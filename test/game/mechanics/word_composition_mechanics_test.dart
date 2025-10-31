@@ -21,15 +21,15 @@ void main() {
       const word = CurrentWordModel(fullWord: fullword);
 
       expect(
-        () => wordCompoisitionMechanics.createNextCurrentWord(
-          word: word,
-        ),
+        () => wordCompoisitionMechanics.createNextCurrentWord(word: word),
         throwsArgumentError,
       );
     });
     test('applyDecreaseMiddlePartType - can unblock any index', () {
-      const currentWord =
-          CurrentWordModel(inactiveIndexes: [0, 1, 2], fullWord: 'dic');
+      const currentWord = CurrentWordModel(
+        inactiveIndexes: [0, 1, 2],
+        fullWord: 'dic',
+      );
       final result = wordCompoisitionMechanics.unblockInactiveIndex(
         currentWord: currentWord,
         index: 1,

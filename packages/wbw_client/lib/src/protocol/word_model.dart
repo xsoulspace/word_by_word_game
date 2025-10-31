@@ -1,17 +1,18 @@
 /* AUTOMATICALLY GENERATED CODE DO NOT MODIFY */
 /*   To generate run: "serverpod generate"    */
 
-// ignore_for_file: library_private_types_in_public_api
-// ignore_for_file: public_member_api_docs
 // ignore_for_file: implementation_imports
-// ignore_for_file: use_super_parameters
+// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: public_member_api_docs
 // ignore_for_file: type_literal_in_constant_pattern
+// ignore_for_file: use_super_parameters
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'protocol.dart' as _i2;
+import 'word_language.dart' as _i2;
 
-abstract class WordModel extends _i1.SerializableEntity {
+abstract class WordModel implements _i1.SerializableModel {
   WordModel._({
     this.id,
     required this.language,
@@ -26,17 +27,13 @@ abstract class WordModel extends _i1.SerializableEntity {
     required String meaning,
   }) = _WordModelImpl;
 
-  factory WordModel.fromJson(
-    Map<String, dynamic> jsonSerialization,
-    _i1.SerializationManager serializationManager,
-  ) {
+  factory WordModel.fromJson(Map<String, dynamic> jsonSerialization) {
     return WordModel(
-      id: serializationManager.deserialize<int?>(jsonSerialization['id']),
-      language: serializationManager
-          .deserialize<_i2.WordLanguage>(jsonSerialization['language']),
-      word: serializationManager.deserialize<String>(jsonSerialization['word']),
-      meaning: serializationManager
-          .deserialize<String>(jsonSerialization['meaning']),
+      id: jsonSerialization['id'] as int?,
+      language:
+          _i2.WordLanguage.fromJson((jsonSerialization['language'] as String)),
+      word: jsonSerialization['word'] as String,
+      meaning: jsonSerialization['meaning'] as String,
     );
   }
 
@@ -51,6 +48,9 @@ abstract class WordModel extends _i1.SerializableEntity {
 
   String meaning;
 
+  /// Returns a shallow copy of this [WordModel]
+  /// with some or all fields replaced by the given arguments.
+  @_i1.useResult
   WordModel copyWith({
     int? id,
     _i2.WordLanguage? language,
@@ -65,6 +65,11 @@ abstract class WordModel extends _i1.SerializableEntity {
       'word': word,
       'meaning': meaning,
     };
+  }
+
+  @override
+  String toString() {
+    return _i1.SerializationManager.encode(this);
   }
 }
 
@@ -83,6 +88,9 @@ class _WordModelImpl extends WordModel {
           meaning: meaning,
         );
 
+  /// Returns a shallow copy of this [WordModel]
+  /// with some or all fields replaced by the given arguments.
+  @_i1.useResult
   @override
   WordModel copyWith({
     Object? id = _Undefined,

@@ -4,12 +4,15 @@ part of 'level_players_bloc.dart';
 
 @immutable
 @freezed
-class LevelPlayersBlocState with _$LevelPlayersBlocState {
+abstract class LevelPlayersBlocState with _$LevelPlayersBlocState {
   const factory LevelPlayersBlocState({
     @Default([]) final List<PlayerProfileModel> players,
     @Default('') final PlayerProfileModelId currentPlayerId,
     @Default(PlayerCharacterModel.empty)
     final PlayerCharacterModel playerCharacter,
+
+    /// {@macro focusedObjectId}
+    @Default(Gid.empty) final Gid focusedObjectGid,
   }) = _LevelPlayersBlocState;
   const LevelPlayersBlocState._();
   static const empty = LevelPlayersBlocState();
@@ -17,12 +20,12 @@ class LevelPlayersBlocState with _$LevelPlayersBlocState {
   static LevelPlayersBlocState fromModel({
     required final LevelPlayersModel levelPlayersModel,
     required final LevelCharactersModel levelCharactersModel,
-  }) =>
-      LevelPlayersBlocState(
-        currentPlayerId: levelPlayersModel.currentPlayerId,
-        players: levelPlayersModel.players,
-        playerCharacter: levelCharactersModel.playerCharacter,
-      );
+  }) => LevelPlayersBlocState(
+    currentPlayerId: levelPlayersModel.currentPlayerId,
+    players: levelPlayersModel.players,
+    playerCharacter: levelCharactersModel.playerCharacter,
+    focusedObjectGid: levelCharactersModel.focusedObjectGid,
+  );
   bool get isEmpty => currentPlayerId.isEmpty;
   bool get isNotEmpty => currentPlayerId.isNotEmpty;
 }

@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:english_words/english_words.dart' as english_words;
 import 'package:russian_words/russian_words.dart' as russian_words;
 import 'package:wbw_dictionaries/wbw_dictionaries.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 
 import '../../wbw_core.dart';
 
@@ -14,8 +15,7 @@ class DictionaryMechanics {
   bool checkIsWordIsWritten({
     required final CurrentWordModel word,
     required final Map<FullWordString, PlayerProfileModelId> words,
-  }) =>
-      words.containsKey(word.fullWord);
+  }) => words.containsKey(word.fullWord);
   final _shuffledEnglishWords = english_words.all.toList()..shuffle();
   final _shuffledRussianWords = russian_words.allWords.toList()..shuffle();
 
@@ -24,7 +24,7 @@ class DictionaryMechanics {
   String getWordSuggestion({
     required final String characters,
     required final Iterable<String> exceptions,
-    required final Languages wordsLanguage,
+    required final UiLanguage wordsLanguage,
     final int maxSuggestions = 30,
   }) {
     List<String> words = [];
@@ -37,7 +37,7 @@ class DictionaryMechanics {
         shouldReturnIfNotFound: true,
       );
     } else {
-      for (final lang in wordsLanguages) {
+      for (final lang in wordsLanguages.all) {
         words = searchWords(
           dictionaryWords: _getDictionary(lang),
           exceptions: exceptions,
@@ -54,12 +54,16 @@ class DictionaryMechanics {
   }
 
   // TODO(arenukvern): add wbw dictionary implementation
-  List<String> _getDictionary(final Languages wordsLanguage) =>
-      switch (wordsLanguage) {
-        Languages.en => _shuffledEnglishWords,
-        Languages.ru => _shuffledRussianWords,
-        Languages.it => throw UnimplementedError(),
-      };
+  List<String> _getDictionary(final UiLanguage wordsLanguage) {
+    if (wordsLanguage == uiLanguages.en) {
+      return _shuffledEnglishWords;
+    } else if (wordsLanguage == uiLanguages.ru) {
+      return _shuffledRussianWords;
+    } else if (wordsLanguage == uiLanguages.it) {
+      throw UnimplementedError();
+    }
+    throw UnimplementedError();
+  }
 
   /// return maxSuggestions words
   /// even if letters are empty

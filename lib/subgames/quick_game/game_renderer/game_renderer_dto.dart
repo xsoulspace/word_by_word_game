@@ -5,21 +5,26 @@ class GameRendererDiDto {
     required final BuildContext context,
     required this.theme,
     required this.dialogController,
-  })  : levelBloc = context.read(),
-        levelPlayersBloc = context.read(),
-        globalGameBloc = context.read(),
-        mechanics = context.read(),
-        canvasCubit = context.read(),
-        debugCubit = context.read(),
-        statesStatusesCubit = context.read(),
-        gameConstantsCubit = context.read(),
-        weatherCubit = context.read();
+  }) : levelBloc = context.read(),
+       levelPlayersBloc = context.read(),
+       globalGameBloc = context.read(),
+       mechanics = context.read(),
+       canvasCubit = context.read(),
+       debugCubit = context.read(),
+       statesStatusesCubit = context.read(),
+       gameConstantsCubit = context.read(),
+       buildingCubit = context.read(),
+       guiFocusableObjectsNotifier = context.read(),
+       wordCompositionCubit = context.read(),
+       weatherCubit = context.read();
 
   /// ********************************************
   /// *      Ephemeral
   /// ********************************************
   final LevelBloc levelBloc;
   final DebugCubit debugCubit;
+  final GuiBuildingNotifier buildingCubit;
+  final GuiFocusableObjectsNotifier guiFocusableObjectsNotifier;
   final LevelPlayersBloc levelPlayersBloc;
   final StatesStatusesCubit statesStatusesCubit;
   final GameConstantsCubit gameConstantsCubit;
@@ -27,6 +32,7 @@ class GameRendererDiDto {
   final CanvasCubit canvasCubit;
   final WeatherCubit weatherCubit;
   final MechanicsCollection mechanics;
+  final GuiWordCompositionCubit wordCompositionCubit;
   final ThemeData theme;
   final DialogController dialogController;
 
@@ -50,9 +56,6 @@ class GameRendererDiDto {
       ),
     ];
 
-    return FlameMultiBlocProvider(
-      providers: providers,
-      children: children,
-    );
+    return FlameMultiBlocProvider(providers: providers, children: children);
   }
 }

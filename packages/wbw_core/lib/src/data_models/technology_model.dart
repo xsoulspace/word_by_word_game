@@ -2,22 +2,28 @@
 part of 'data_models.dart';
 
 extension type const TechnologyModelId(TechnologyType value) {
-  factory TechnologyModelId.fromJson(final value) {
-    final String val;
+  // ignore: avoid_annotating_with_dynamic
+  factory TechnologyModelId.fromJson(final dynamic value) {
+    String val = '';
     if (value case {'value': final String value}) {
       val = value;
     } else if (value case final String value) {
       val = value;
-    } else {
-      throw UnsupportedError(value);
     }
-    return TechnologyModelId(TechnologyType.values.byName(val));
+    TechnologyType type;
+    try {
+      type = TechnologyType.values.byName(val);
+      // ignore: avoid_catches_without_on_clauses
+    } catch (e) {
+      type = TechnologyType.unknown;
+    }
+    return TechnologyModelId(type);
   }
   dynamic toJson() => value.name;
 }
 
 @freezed
-class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
+abstract class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
   @JsonSerializable(explicitToJson: true)
   const factory TechnologyTreeProgressModel({
     @JsonKey(
@@ -26,36 +32,33 @@ class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
     )
     @Default({})
     final Map<TechnologyModelId, TechnologyProgressModel> technologies,
-    final TechnologyModelId? researchingTechnologyId,
+    @Default(ScoreModel.zero) final ScoreModel investedResearchScore,
   }) = _TechnologyTreeProgressModel;
   factory TechnologyTreeProgressModel.fromJson(
     final Map<String, dynamic> json,
-  ) =>
-      _$TechnologyTreeProgressModelFromJson(json);
+  ) => _$TechnologyTreeProgressModelFromJson(json);
   const TechnologyTreeProgressModel._();
   static const empty = TechnologyTreeProgressModel();
   static Map<TechnologyModelId, TechnologyProgressModel> _technologiesFromJson(
     final Map<String, dynamic> json,
-  ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          TechnologyModelId.fromJson(jsonDecode(key)),
-          TechnologyProgressModel.fromJson(value),
-        ),
-      );
+  ) => json.map(
+    (final key, final value) => MapEntry(
+      TechnologyModelId.fromJson(jsonDecode(key)),
+      TechnologyProgressModel.fromJson(value),
+    ),
+  );
   static Map<String, dynamic> _technologiesToJson(
     final Map<TechnologyModelId, TechnologyProgressModel> json,
-  ) =>
-      json.map(
-        (final key, final value) =>
-            MapEntry(jsonEncode(key.toJson()), value.toJson()),
-      );
+  ) => json.map(
+    (final key, final value) =>
+        MapEntry(jsonEncode(key.toJson()), value.toJson()),
+  );
 }
 
 /// Should be short version of [TechnologyModel]
 /// and only to store progress.
 @freezed
-class TechnologyProgressModel with _$TechnologyProgressModel {
+abstract class TechnologyProgressModel with _$TechnologyProgressModel {
   @JsonSerializable(explicitToJson: true)
   const factory TechnologyProgressModel({
     required final TechnologyModelId id,
@@ -71,16 +74,15 @@ class TechnologyProgressModel with _$TechnologyProgressModel {
 ///
 /// To save changes for [unlockCondition] use [TechnologyProgressModel]
 @freezed
-class TechnologyModel with _$TechnologyModel {
+abstract class TechnologyModel with _$TechnologyModel {
   @JsonSerializable(explicitToJson: true)
   const factory TechnologyModel({
     required final TechnologyModelId id,
-    required final LocalizedMap title,
+    @JsonKey(fromJson: LocalizedMap.fromJson) required final LocalizedMap title,
     // TODO(antmalofeev): add icon?
     /// use [TechnologyProgressModel] to store/retrieve actual progress
     required final TechnologyUnlockConditionModel unlockCondition,
     @Default(0) final int index,
-    final TechnologyModelId? parentTechnologyId,
   }) = _TechnologyModel;
   factory TechnologyModel.fromJson(final Map<String, dynamic> json) =>
       _$TechnologyModelFromJson(json);
@@ -89,13 +91,15 @@ class TechnologyModel with _$TechnologyModel {
 }
 
 @freezed
-class TechnologyUnlockConditionModel with _$TechnologyUnlockConditionModel {
+abstract class TechnologyUnlockConditionModel
+    with _$TechnologyUnlockConditionModel {
   @JsonSerializable(explicitToJson: true)
   const factory TechnologyUnlockConditionModel({
     /// Principle: if several words for one language in [languageWords] are used
     /// then [TechnologyModel] is unlocked
     /// for that certain language.
-    required final Map<Languages, List<UsefulWordModel>> languageWords,
+    @JsonKey(fromJson: languageWordsMapFromJson, toJson: languageWordsMapToJson)
+    required final Map<UiLanguage, List<UsefulWordModel>> languageWords,
 
     /// one idea is to have minimum words to unlock the technology
     @Default(0) final int wordsUnlockThreshold,
@@ -106,13 +110,28 @@ class TechnologyUnlockConditionModel with _$TechnologyUnlockConditionModel {
   }) = _TechnologyUnlockConditionModel;
   factory TechnologyUnlockConditionModel.fromJson(
     final Map<String, dynamic> json,
-  ) =>
-      _$TechnologyUnlockConditionModelFromJson(json);
+  ) => _$TechnologyUnlockConditionModelFromJson(json);
   const TechnologyUnlockConditionModel._();
 }
 
+Map<UiLanguage, List<UsefulWordModel>> languageWordsMapFromJson(
+  final Map<String, dynamic> json,
+) => json.map(
+  (final key, final value) => MapEntry(
+    uiLanguageFromJson(key),
+    (value as List).map((final e) => UsefulWordModel.fromJson(e)).toList(),
+  ),
+);
+
+Map<String, dynamic> languageWordsMapToJson(
+  final Map<UiLanguage, List<UsefulWordModel>> map,
+) => map.map(
+  (final key, final value) =>
+      MapEntry(key.code, value.map((final e) => e.toJson()).toList()),
+);
+
 @freezed
-class UsefulWordModel with _$UsefulWordModel {
+abstract class UsefulWordModel with _$UsefulWordModel {
   @JsonSerializable(explicitToJson: true)
   const factory UsefulWordModel({
     required final FullWordString word,
@@ -124,14 +143,24 @@ class UsefulWordModel with _$UsefulWordModel {
 }
 
 enum TechnologyType {
+  // use for all unknown technologies
+  unknown,
+  // not used
   safeLanding,
+  // not used
   emergencyLanding,
   ascending,
-  descending;
+  poweringEngine,
+  descending,
+  buildingTent,
+  buildingWindWaterTower;
 
   static const Set<TechnologyType> _active = {
-    TechnologyType.ascending,
-    TechnologyType.descending,
+    ascending,
+    descending,
+    buildingTent,
+    buildingWindWaterTower,
+    poweringEngine,
   };
   static bool checkIsActive(final TechnologyType type) =>
       _active.contains(type);

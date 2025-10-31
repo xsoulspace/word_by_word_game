@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,151 +9,266 @@ part of 'player_profile_creator.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$PlayerProfileCreatorState {
-  String get nameErrorMessage => throw _privateConstructorUsedError;
-  Color get color => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
-  $PlayerProfileCreatorStateCopyWith<PlayerProfileCreatorState> get copyWith =>
-      throw _privateConstructorUsedError;
+ String get nameErrorMessage; Color get color;
+/// Create a copy of PlayerProfileCreatorState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PlayerProfileCreatorStateCopyWith<PlayerProfileCreatorState> get copyWith => _$PlayerProfileCreatorStateCopyWithImpl<PlayerProfileCreatorState>(this as PlayerProfileCreatorState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PlayerProfileCreatorState&&(identical(other.nameErrorMessage, nameErrorMessage) || other.nameErrorMessage == nameErrorMessage)&&(identical(other.color, color) || other.color == color));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,nameErrorMessage,color);
+
+@override
+String toString() {
+  return 'PlayerProfileCreatorState(nameErrorMessage: $nameErrorMessage, color: $color)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $PlayerProfileCreatorStateCopyWith<$Res> {
-  factory $PlayerProfileCreatorStateCopyWith(PlayerProfileCreatorState value,
-          $Res Function(PlayerProfileCreatorState) then) =
-      _$PlayerProfileCreatorStateCopyWithImpl<$Res, PlayerProfileCreatorState>;
-  @useResult
-  $Res call({String nameErrorMessage, Color color});
-}
+abstract mixin class $PlayerProfileCreatorStateCopyWith<$Res>  {
+  factory $PlayerProfileCreatorStateCopyWith(PlayerProfileCreatorState value, $Res Function(PlayerProfileCreatorState) _then) = _$PlayerProfileCreatorStateCopyWithImpl;
+@useResult
+$Res call({
+ String nameErrorMessage, Color color
+});
 
+
+
+
+}
 /// @nodoc
-class _$PlayerProfileCreatorStateCopyWithImpl<$Res,
-        $Val extends PlayerProfileCreatorState>
+class _$PlayerProfileCreatorStateCopyWithImpl<$Res>
     implements $PlayerProfileCreatorStateCopyWith<$Res> {
-  _$PlayerProfileCreatorStateCopyWithImpl(this._value, this._then);
+  _$PlayerProfileCreatorStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final PlayerProfileCreatorState _self;
+  final $Res Function(PlayerProfileCreatorState) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? nameErrorMessage = null,
-    Object? color = null,
-  }) {
-    return _then(_value.copyWith(
-      nameErrorMessage: null == nameErrorMessage
-          ? _value.nameErrorMessage
-          : nameErrorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as Color,
-    ) as $Val);
-  }
+/// Create a copy of PlayerProfileCreatorState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? nameErrorMessage = null,Object? color = null,}) {
+  return _then(_self.copyWith(
+nameErrorMessage: null == nameErrorMessage ? _self.nameErrorMessage : nameErrorMessage // ignore: cast_nullable_to_non_nullable
+as String,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as Color,
+  ));
+}
+
+}
+
+
+/// Adds pattern-matching-related methods to [PlayerProfileCreatorState].
+extension PlayerProfileCreatorStatePatterns on PlayerProfileCreatorState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PlayerProfileCreatorState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _PlayerProfileCreatorState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PlayerProfileCreatorState value)  $default,){
+final _that = this;
+switch (_that) {
+case _PlayerProfileCreatorState():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PlayerProfileCreatorState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _PlayerProfileCreatorState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String nameErrorMessage,  Color color)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _PlayerProfileCreatorState() when $default != null:
+return $default(_that.nameErrorMessage,_that.color);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String nameErrorMessage,  Color color)  $default,) {final _that = this;
+switch (_that) {
+case _PlayerProfileCreatorState():
+return $default(_that.nameErrorMessage,_that.color);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String nameErrorMessage,  Color color)?  $default,) {final _that = this;
+switch (_that) {
+case _PlayerProfileCreatorState() when $default != null:
+return $default(_that.nameErrorMessage,_that.color);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$PlayerProfileCreatorStateImplCopyWith<$Res>
-    implements $PlayerProfileCreatorStateCopyWith<$Res> {
-  factory _$$PlayerProfileCreatorStateImplCopyWith(
-          _$PlayerProfileCreatorStateImpl value,
-          $Res Function(_$PlayerProfileCreatorStateImpl) then) =
-      __$$PlayerProfileCreatorStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String nameErrorMessage, Color color});
+
+
+class _PlayerProfileCreatorState implements PlayerProfileCreatorState {
+  const _PlayerProfileCreatorState({this.nameErrorMessage = '', this.color = Colors.teal});
+  
+
+@override@JsonKey() final  String nameErrorMessage;
+@override@JsonKey() final  Color color;
+
+/// Create a copy of PlayerProfileCreatorState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PlayerProfileCreatorStateCopyWith<_PlayerProfileCreatorState> get copyWith => __$PlayerProfileCreatorStateCopyWithImpl<_PlayerProfileCreatorState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PlayerProfileCreatorState&&(identical(other.nameErrorMessage, nameErrorMessage) || other.nameErrorMessage == nameErrorMessage)&&(identical(other.color, color) || other.color == color));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,nameErrorMessage,color);
+
+@override
+String toString() {
+  return 'PlayerProfileCreatorState(nameErrorMessage: $nameErrorMessage, color: $color)';
+}
+
+
 }
 
 /// @nodoc
-class __$$PlayerProfileCreatorStateImplCopyWithImpl<$Res>
-    extends _$PlayerProfileCreatorStateCopyWithImpl<$Res,
-        _$PlayerProfileCreatorStateImpl>
-    implements _$$PlayerProfileCreatorStateImplCopyWith<$Res> {
-  __$$PlayerProfileCreatorStateImplCopyWithImpl(
-      _$PlayerProfileCreatorStateImpl _value,
-      $Res Function(_$PlayerProfileCreatorStateImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$PlayerProfileCreatorStateCopyWith<$Res> implements $PlayerProfileCreatorStateCopyWith<$Res> {
+  factory _$PlayerProfileCreatorStateCopyWith(_PlayerProfileCreatorState value, $Res Function(_PlayerProfileCreatorState) _then) = __$PlayerProfileCreatorStateCopyWithImpl;
+@override @useResult
+$Res call({
+ String nameErrorMessage, Color color
+});
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? nameErrorMessage = null,
-    Object? color = null,
-  }) {
-    return _then(_$PlayerProfileCreatorStateImpl(
-      nameErrorMessage: null == nameErrorMessage
-          ? _value.nameErrorMessage
-          : nameErrorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as Color,
-    ));
-  }
+
+
+
 }
-
 /// @nodoc
+class __$PlayerProfileCreatorStateCopyWithImpl<$Res>
+    implements _$PlayerProfileCreatorStateCopyWith<$Res> {
+  __$PlayerProfileCreatorStateCopyWithImpl(this._self, this._then);
 
-class _$PlayerProfileCreatorStateImpl implements _PlayerProfileCreatorState {
-  const _$PlayerProfileCreatorStateImpl(
-      {this.nameErrorMessage = '', this.color = Colors.teal});
+  final _PlayerProfileCreatorState _self;
+  final $Res Function(_PlayerProfileCreatorState) _then;
 
-  @override
-  @JsonKey()
-  final String nameErrorMessage;
-  @override
-  @JsonKey()
-  final Color color;
-
-  @override
-  String toString() {
-    return 'PlayerProfileCreatorState(nameErrorMessage: $nameErrorMessage, color: $color)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PlayerProfileCreatorStateImpl &&
-            (identical(other.nameErrorMessage, nameErrorMessage) ||
-                other.nameErrorMessage == nameErrorMessage) &&
-            (identical(other.color, color) || other.color == color));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, nameErrorMessage, color);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PlayerProfileCreatorStateImplCopyWith<_$PlayerProfileCreatorStateImpl>
-      get copyWith => __$$PlayerProfileCreatorStateImplCopyWithImpl<
-          _$PlayerProfileCreatorStateImpl>(this, _$identity);
+/// Create a copy of PlayerProfileCreatorState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? nameErrorMessage = null,Object? color = null,}) {
+  return _then(_PlayerProfileCreatorState(
+nameErrorMessage: null == nameErrorMessage ? _self.nameErrorMessage : nameErrorMessage // ignore: cast_nullable_to_non_nullable
+as String,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as Color,
+  ));
 }
 
-abstract class _PlayerProfileCreatorState implements PlayerProfileCreatorState {
-  const factory _PlayerProfileCreatorState(
-      {final String nameErrorMessage,
-      final Color color}) = _$PlayerProfileCreatorStateImpl;
 
-  @override
-  String get nameErrorMessage;
-  @override
-  Color get color;
-  @override
-  @JsonKey(ignore: true)
-  _$$PlayerProfileCreatorStateImplCopyWith<_$PlayerProfileCreatorStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
+
+// dart format on

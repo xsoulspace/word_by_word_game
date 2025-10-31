@@ -27,10 +27,7 @@ sealed class TutorialBlocState with _$TutorialBlocState {
     );
     if (tutorial == null) return null;
 
-    return TutorialBlocStateLive(
-      tutorial: tutorial,
-      progress: progress,
-    );
+    return TutorialBlocStateLive(tutorial: tutorial, progress: progress);
   }
 }
 

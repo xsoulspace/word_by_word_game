@@ -5,7 +5,7 @@ import '../data_sources/data_sources.dart';
 
 class LevelsRepository {
   LevelsRepository(final BuildContext context)
-      : localAssets = LevelsLocalDataSourceAssetsImpl(localDb: context.read());
+    : localAssets = LevelsLocalDataSourceAssetsImpl(localDb: context.read());
   final LevelsLocalDataSource localAssets;
 
   late final getDefaultTemplateLevels = localAssets.getDefaultTemplateLevels;

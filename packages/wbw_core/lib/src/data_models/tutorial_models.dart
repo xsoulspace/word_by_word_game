@@ -5,9 +5,10 @@ part of 'data_models.dart';
 
 @immutable
 @freezed
-class TutorialEventModel with _$TutorialEventModel {
+abstract class TutorialEventModel with _$TutorialEventModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialEventModel({
+    @JsonKey(fromJson: LocalizedMap.fromJson)
     required final LocalizedMap localizedMap,
 
     /// what will switch this event to the next
@@ -40,7 +41,7 @@ class TutorialEventModel with _$TutorialEventModel {
 
 @immutable
 @freezed
-class TutorialGameEffectModel with _$TutorialGameEffectModel {
+abstract class TutorialGameEffectModel with _$TutorialGameEffectModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialGameEffectModel({
     required final TutorialGameEffectName name,
@@ -48,9 +49,7 @@ class TutorialGameEffectModel with _$TutorialGameEffectModel {
 
   const TutorialGameEffectModel._();
 
-  factory TutorialGameEffectModel.fromJson(
-    final Map<String, dynamic> json,
-  ) =>
+  factory TutorialGameEffectModel.fromJson(final Map<String, dynamic> json) =>
       _$TutorialGameEffectModelFromJson(json);
 }
 
@@ -70,7 +69,7 @@ extension BooleanExtension on bool {
 
 @immutable
 @freezed
-class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
+abstract class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialUiActionEventModel({
     /// If [uiItem] is set null and the action
@@ -88,8 +87,7 @@ class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
 
   factory TutorialUiActionEventModel.fromJson(
     final Map<String, dynamic> json,
-  ) =>
-      _$TutorialUiActionEventModelFromJson(json);
+  ) => _$TutorialUiActionEventModelFromJson(json);
   static const tutorialOkDialog = TutorialUiActionEventModel(
     action: TutorialCompleteAction.onClick,
     uiItem: TutorialUiItem.tutorialOkDialog,
@@ -105,7 +103,8 @@ class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
 
 @immutable
 @freezed
-class TutorialEventsCollectionModel with _$TutorialEventsCollectionModel {
+abstract class TutorialEventsCollectionModel
+    with _$TutorialEventsCollectionModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialEventsCollectionModel({
     required final List<TutorialEventModel> events,
@@ -117,17 +116,14 @@ class TutorialEventsCollectionModel with _$TutorialEventsCollectionModel {
 
   factory TutorialEventsCollectionModel.fromJson(
     final Map<String, dynamic> json,
-  ) =>
-      _$TutorialEventsCollectionModelFromJson(json);
+  ) => _$TutorialEventsCollectionModelFromJson(json);
 
   TutorialCollectionsProgressModel saveProgress({
     required final TutorialCollectionsProgressModel progress,
   }) {
     final updatedIndexes = {...progress.indexes}..[name] = currentIndex;
 
-    return progress.copyWith(
-      indexes: updatedIndexes,
-    );
+    return progress.copyWith(indexes: updatedIndexes);
   }
 
   static TutorialEventsCollectionModel? fromData({
@@ -162,7 +158,8 @@ class TutorialEventsCollectionModel with _$TutorialEventsCollectionModel {
 /// use [TutorialEventsCollectionModel.fromData]
 @immutable
 @freezed
-class TutorialCollectionsProgressModel with _$TutorialCollectionsProgressModel {
+abstract class TutorialCollectionsProgressModel
+    with _$TutorialCollectionsProgressModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialCollectionsProgressModel({
     /// Key - [TutorialCollectionsName]
@@ -174,31 +171,25 @@ class TutorialCollectionsProgressModel with _$TutorialCollectionsProgressModel {
 
   factory TutorialCollectionsProgressModel.fromJson(
     final Map<String, dynamic> json,
-  ) =>
-      _$TutorialCollectionsProgressModelFromJson(json);
-  static const empty = TutorialCollectionsProgressModel(
-    indexes: {},
-  );
+  ) => _$TutorialCollectionsProgressModelFromJson(json);
+  static const empty = TutorialCollectionsProgressModel(indexes: {});
 }
 
 /// Actual tutorial events
 @immutable
 @freezed
-class TutorialCollectionsDataModel with _$TutorialCollectionsDataModel {
+abstract class TutorialCollectionsDataModel
+    with _$TutorialCollectionsDataModel {
   const factory TutorialCollectionsDataModel({
     required final Map<TutorialCollectionsName, List<TutorialEventModel>>
-        events,
+    events,
   }) = _TutorialCollectionsDataModel;
 
   const TutorialCollectionsDataModel._();
 
   factory TutorialCollectionsDataModel.fromJson(
     final Map<String, dynamic> json,
-  ) =>
-      _$TutorialCollectionsDataModelFromJson(json);
+  ) => _$TutorialCollectionsDataModelFromJson(json);
 }
 
-enum TutorialCollectionsName {
-  levelIntroduction,
-  archive,
-}
+enum TutorialCollectionsName { levelIntroduction, archive }

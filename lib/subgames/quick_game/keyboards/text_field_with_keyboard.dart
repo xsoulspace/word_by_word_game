@@ -90,13 +90,13 @@ class _TextFieldWithKeyboardState extends State<TextFieldWithKeyboard> {
         .read<UiKeyboardController>()
         .keyEventsStream
         .listen((final event) {
-      switch (event) {
-        case UiKeyboardEventAddCharacter(:final character):
-          _onLetterPressed(character);
-        case UiKeyboardEventRemoveCharacter():
-          _onDelete();
-      }
-    });
+          switch (event) {
+            case UiKeyboardEventAddCharacter(:final character):
+              _onLetterPressed(character);
+            case UiKeyboardEventRemoveCharacter():
+              _onDelete();
+          }
+        });
   }
 
   @override
@@ -118,9 +118,7 @@ class _TextFieldWithKeyboardState extends State<TextFieldWithKeyboard> {
       onCharacter: _onLetterPressed,
       onDelete: _onDelete,
       child: Container(
-        constraints: const BoxConstraints(
-          maxWidth: kKeyboardWidth,
-        ),
+        constraints: const BoxConstraints(maxWidth: kKeyboardWidth),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -144,10 +142,7 @@ class _TextFieldWithKeyboardState extends State<TextFieldWithKeyboard> {
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   alignment: Alignment.topCenter,
                   child: errorMessage.isNotEmpty
-                      ? Text(
-                          errorMessage,
-                          style: textStyle,
-                        )
+                      ? Text(errorMessage, style: textStyle)
                       : const SizedBox(),
                 );
               },
@@ -193,10 +188,9 @@ class UiEditableText extends StatelessWidget {
                   child: Text(
                     hintText,
                     style: TextStyle(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .secondary
-                          .withOpacity(0.4),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.secondary.withOpacity(0.4),
                     ),
                   ),
                 ),

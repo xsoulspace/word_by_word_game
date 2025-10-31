@@ -2,16 +2,17 @@ part of 'level_bloc.dart';
 
 enum EnergyApplicationType {
   refueling,
+  buildingBuilt,
   researchingTechnology,
   crystalMove,
+  restAndPrepareBalloon,
   noop,
 }
 
 @freezed
 class LevelBlocEvent with _$LevelBlocEvent {
-  const factory LevelBlocEvent.init({
-    required final LevelModel levelModel,
-  }) = LevelBlocEventInit;
+  const factory LevelBlocEvent.init({required final LevelModel levelModel}) =
+      LevelBlocEventInit;
   const factory LevelBlocEvent.consumeTick({
     /// How many seconds was from the last tick
     required final int timeDeltaInSeconds,

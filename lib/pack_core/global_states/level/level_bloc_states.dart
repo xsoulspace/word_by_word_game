@@ -1,10 +1,10 @@
-// ignore_for_file: invalid_annotation_target
+// ignore_for_file: invalid_annotation_target, avoid_classes_with_only_static_members
 
 part of 'level_bloc.dart';
 
 @immutable
 @freezed
-class LevelBlocState with _$LevelBlocState {
+abstract class LevelBlocState with _$LevelBlocState {
   const factory LevelBlocState({
     @Default(CanvasDataModelId.empty) final CanvasDataModelId id,
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
@@ -20,7 +20,7 @@ class LevelBlocState with _$LevelBlocState {
     @Default(WordWarning.none) final WordWarning wordWarning,
     @Default(LevelFeaturesSettingsModel.empty)
     final LevelFeaturesSettingsModel featuresSettings,
-    @Default(Languages.en) final Languages wordsLanguage,
+    @Default(defaultLanguage) final UiLanguage wordsLanguage,
   }) = _LevelBlocState;
   // ignore: prefer_constructors_over_static_methods
   static LevelBlocState liveFromModel(final LevelModel levelModel) =>
@@ -36,8 +36,4 @@ class LevelBlocState with _$LevelBlocState {
       );
 }
 
-enum WordWarning {
-  none,
-  isWritten,
-  isNotCorrect,
-}
+enum WordWarning { none, isWritten, isNotCorrect }

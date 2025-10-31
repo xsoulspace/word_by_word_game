@@ -1,10 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:provider/provider.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
-import 'package:wbw_locale/wbw_locale.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/widgets/player_profile_creator.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboards.dart';
 
@@ -18,7 +12,6 @@ class CreatePlayerScreen extends HookWidget {
   final ValueChanged<PlayerProfileModel> onPlayerCreated;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
     final globalGameBloc = context.watch<GlobalGameBloc>();
     final liveState = globalGameBloc.state;
     final isPlayersEmpty = liveState.playersCollection.isEmpty;
@@ -34,7 +27,7 @@ class CreatePlayerScreen extends HookWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        uiTheme.verticalBoxes.medium,
+        UiGaps.medium,
         Text(
           isPlayersEmpty
               ? S.of(context).createNewFirstPlayerTitle
@@ -42,7 +35,7 @@ class CreatePlayerScreen extends HookWidget {
           style: theme.textTheme.bodyLarge,
           textAlign: TextAlign.center,
         ),
-        uiTheme.verticalBoxes.small,
+        UiGaps.small,
         Text(
           S.of(context).createNewPlayerBody,
           style: theme.textTheme.bodySmall,
@@ -73,16 +66,14 @@ class CreatePlayerScreen extends HookWidget {
               isLongButton: true,
               mainAlignment: MainAxisAlignment.center,
               onPressed: () async {
-                final profile = await notifier.onCreateProfile(
-                  locale: locale,
-                );
+                final profile = await notifier.onCreateProfile(locale: locale);
                 if (profile == null) return;
                 onPlayerCreated(profile);
               },
             ),
           ],
         ),
-        uiTheme.verticalBoxes.medium,
+        UiGaps.medium,
       ],
     );
   }

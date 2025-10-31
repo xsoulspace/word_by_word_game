@@ -59,32 +59,22 @@ void main() {
       );
     });
     test('checkPlayerAbilityToDecrease - has no ability', () {
-      final isAbleToDecrease =
-          scoreMechanics.checkPlayerAbilityToDecreaseLetters(
-        player: player,
-      );
+      final isAbleToDecrease = scoreMechanics
+          .checkPlayerAbilityToDecreaseLetters(player: player);
 
-      expect(
-        isAbleToDecrease,
-        isFalse,
-      );
+      expect(isAbleToDecrease, isFalse);
     });
     test('checkPlayerAbilityToDecrease - has ability', () {
-      final isAbleToDecrease =
-          scoreMechanics.checkPlayerAbilityToDecreaseLetters(
-        player: player.copyWith(
-          highscore: player.highscore.copyWith(
-            score: ScoreModel(
-              value: kLetterDecreaseCost,
+      final isAbleToDecrease = scoreMechanics
+          .checkPlayerAbilityToDecreaseLetters(
+            player: player.copyWith(
+              highscore: player.highscore.copyWith(
+                score: ScoreModel(value: kLetterDecreaseCost),
+              ),
             ),
-          ),
-        ),
-      );
+          );
 
-      expect(
-        isAbleToDecrease,
-        isTrue,
-      );
+      expect(isAbleToDecrease, isTrue);
     });
     test('countPlayerLevelHighscore - when level is finished', () {
       final updatedPlayer = scoreMechanics.countPlayerLevelHighscore(
@@ -93,10 +83,7 @@ void main() {
         levelId: CanvasDataModelId.fromJson('1'),
         maxDistance: 200,
       );
-      expect(
-        updatedPlayer.levelsHighscores.isNotEmpty,
-        isTrue,
-      );
+      expect(updatedPlayer.levelsHighscores.isNotEmpty, isTrue);
       expect(updatedPlayer.levelsHighscores, {
         '1': PlayerLevelHighscoreModel(
           levelId: CanvasDataModelId.fromJson('1'),
@@ -113,10 +100,7 @@ void main() {
         levelId: CanvasDataModelId.fromJson('1'),
         maxDistance: 200,
       );
-      expect(
-        updatedPlayer.levelsHighscores.isNotEmpty,
-        isTrue,
-      );
+      expect(updatedPlayer.levelsHighscores.isNotEmpty, isTrue);
       expect(updatedPlayer.levelsHighscores, {
         '1': PlayerLevelHighscoreModel(
           levelId: CanvasDataModelId.fromJson('1'),

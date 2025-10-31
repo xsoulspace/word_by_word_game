@@ -32,33 +32,31 @@ class YandexAdEventNotifyCall {
   static YandexAdEventNotifyCall decode(Object message) {
     final Map<Object?, Object?> pigeonMap = message as Map<Object?, Object?>;
     return YandexAdEventNotifyCall(
-      type: YandexAdEventNotifyType.values[pigeonMap['type']! as int]
-,
+      type: YandexAdEventNotifyType.values[pigeonMap['type']! as int],
     );
   }
 }
 
-class _YandexAdEventHandlerCodec extends StandardMessageCodec{
+class _YandexAdEventHandlerCodec extends StandardMessageCodec {
   const _YandexAdEventHandlerCodec();
   @override
   void writeValue(WriteBuffer buffer, Object? value) {
     if (value is YandexAdEventNotifyCall) {
       buffer.putUint8(128);
       writeValue(buffer, value.encode());
-    } else 
-{
+    } else {
       super.writeValue(buffer, value);
     }
   }
+
   @override
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
-      case 128:       
+      case 128:
         return YandexAdEventNotifyCall.decode(readValue(buffer)!);
-      
-      default:      
+
+      default:
         return super.readValueOfType(type, buffer);
-      
     }
   }
 }
@@ -68,14 +66,16 @@ class YandexAdEventHandler {
   /// Constructor for [YandexAdEventHandler].  The [binaryMessenger] named argument is
   /// available for dependency injection.  If it is left null, the default
   /// BinaryMessenger will be used which routes to the host platform.
-  YandexAdEventHandler({BinaryMessenger? binaryMessenger}) : _binaryMessenger = binaryMessenger;
+  YandexAdEventHandler({BinaryMessenger? binaryMessenger})
+      : _binaryMessenger = binaryMessenger;
   final BinaryMessenger? _binaryMessenger;
 
   static const MessageCodec<Object?> codec = _YandexAdEventHandlerCodec();
 
   Future<void> notifyListeners(YandexAdEventNotifyCall arg_notifyCall) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'dev.flutter.pigeon.YandexAdEventHandler.notifyListeners', codec, binaryMessenger: _binaryMessenger);
+        'dev.flutter.pigeon.YandexAdEventHandler.notifyListeners', codec,
+        binaryMessenger: _binaryMessenger);
     final Map<Object?, Object?>? replyMap =
         await channel.send(<Object?>[arg_notifyCall]) as Map<Object?, Object?>?;
     if (replyMap == null) {
@@ -84,7 +84,8 @@ class YandexAdEventHandler {
         message: 'Unable to establish connection on channel.',
       );
     } else if (replyMap['error'] != null) {
-      final Map<Object?, Object?> error = (replyMap['error'] as Map<Object?, Object?>?)!;
+      final Map<Object?, Object?> error =
+          (replyMap['error'] as Map<Object?, Object?>?)!;
       throw PlatformException(
         code: (error['code'] as String?)!,
         message: error['message'] as String?,

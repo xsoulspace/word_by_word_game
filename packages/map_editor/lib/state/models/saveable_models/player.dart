@@ -3,7 +3,7 @@
 part of 'saveable_models.dart';
 
 @freezed
-class PlayerModel with _$PlayerModel {
+abstract class PlayerModel with _$PlayerModel {
   const factory PlayerModel({
     /// to get access to [RenderObjectModel]
     /// just use [CanvasDataModel.player] with gid verification

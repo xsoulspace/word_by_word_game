@@ -6,7 +6,8 @@ import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:provider/provider.dart';
-import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_locale/wbw_locale.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 class EditorStateInitializer implements StateInitializer {
   @override
@@ -18,45 +19,32 @@ class EditorStateInitializer implements StateInitializer {
 }
 
 class StateDiProvider extends StatelessWidget {
-  const StateDiProvider({
-    required this.builder,
-    super.key,
-  });
+  const StateDiProvider({required this.builder, super.key});
   final WidgetBuilder builder;
   @override
   Widget build(final BuildContext context) => MultiProvider(
-        providers: [
-          Provider<LocalDbDataSource>(
-            create: SharedPreferencesDbDataSourceImpl.new,
-          ),
-          Provider(create: EditorMechanicsCollection.v1),
-        ],
-        builder: (final context, final child) => MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (final context) => WorldBloc(
-                read: context.read,
-              ),
+    providers: [
+      Provider<LocalDbI>(create: (final c) => PrefsDb()),
+      Provider(create: EditorMechanicsCollection.v1),
+      Provider(create: (final context) => Locales.fallback),
+    ],
+    builder: (final context, final child) => MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (final context) => WorldBloc(read: context.read)),
+        BlocProvider(
+          create: (final context) => EditorDrawerCubit(
+            resourcesLoader: ResourcesLoader(
+              tilesetAssets: AssetsCache(prefix: 'assets/images/'),
             ),
-            BlocProvider(
-              create: (final context) => EditorDrawerCubit(
-                resourcesLoader: ResourcesLoader(
-                  tilesetAssets: AssetsCache(
-                    prefix: 'assets/images/',
-                  ),
-                ),
-                dto: DrawerCubitDto.use(context: context),
-              ),
-            ),
-            BlocProvider(
-              create: (final context) => MapEditorCubit(
-                dto: MapEditorCubitDto.use(context),
-              ),
-            ),
-          ],
-          child: Builder(
-            builder: builder,
+            dto: DrawerCubitDto.use(context: context),
           ),
         ),
-      );
+        BlocProvider(
+          create: (final context) =>
+              MapEditorCubit(dto: MapEditorCubitDto.use(context)),
+        ),
+      ],
+      child: Builder(builder: builder),
+    ),
+  );
 }

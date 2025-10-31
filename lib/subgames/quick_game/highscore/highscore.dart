@@ -1,1 +1,1 @@
-export './highscore_screen.dart';
+export 'players_and_highscore_view.dart';

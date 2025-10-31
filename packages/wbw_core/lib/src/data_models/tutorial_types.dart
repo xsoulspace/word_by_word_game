@@ -92,15 +92,10 @@ enum TutorialUiItem {
   /// dialog wihout buttons
   /// Use this dialog if you expect other action
   anchoredIdleDialog,
-  anchoredOkDialog
+  anchoredOkDialog,
 }
 
-enum TutorialCompleteAction {
-  onClick,
-  onEdit,
-  idle,
-  onBoolOptionSelected,
-}
+enum TutorialCompleteAction { onClick, onEdit, idle, onBoolOptionSelected }
 
 enum TutorialGameEffectName {
   pauseGame,

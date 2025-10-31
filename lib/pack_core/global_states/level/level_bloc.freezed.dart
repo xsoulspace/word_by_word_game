@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,1451 +9,872 @@ part of 'level_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
-
 /// @nodoc
 mixin _$LevelBlocEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(LevelModel levelModel) init,
-    required TResult Function(int timeDeltaInSeconds) consumeTick,
-    required TResult Function() hideWarning,
-    required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function(EnergyMultiplierType multiplier)
-        selectActionMultiplier,
-    required TResult Function() addNewWordToDictionary,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelModel levelModel)? init,
-    TResult? Function(int timeDeltaInSeconds)? consumeTick,
-    TResult? Function()? hideWarning,
-    TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult? Function()? addNewWordToDictionary,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelModel levelModel)? init,
-    TResult Function(int timeDeltaInSeconds)? consumeTick,
-    TResult Function()? hideWarning,
-    TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult Function()? addNewWordToDictionary,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LevelBlocEventInit value) init,
-    required TResult Function(LevelBlocEventConsumeTick value) consumeTick,
-    required TResult Function(LevelBlocEventHideWarning value) hideWarning,
-    required TResult Function(LevelBlocEventChangeCurrentWord value)
-        changeCurrentWord,
-    required TResult Function(LevelBlocEventSelectActionMultiplier value)
-        selectActionMultiplier,
-    required TResult Function(LevelBlocEventAddNewWordToDictionary value)
-        addNewWordToDictionary,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LevelBlocEventInit value)? init,
-    TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LevelBlocEventInit value)? init,
-    TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LevelBlocEvent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'LevelBlocEvent()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $LevelBlocEventCopyWith<$Res> {
-  factory $LevelBlocEventCopyWith(
-          LevelBlocEvent value, $Res Function(LevelBlocEvent) then) =
-      _$LevelBlocEventCopyWithImpl<$Res, LevelBlocEvent>;
+class $LevelBlocEventCopyWith<$Res>  {
+$LevelBlocEventCopyWith(LevelBlocEvent _, $Res Function(LevelBlocEvent) __);
 }
 
-/// @nodoc
-class _$LevelBlocEventCopyWithImpl<$Res, $Val extends LevelBlocEvent>
-    implements $LevelBlocEventCopyWith<$Res> {
-  _$LevelBlocEventCopyWithImpl(this._value, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+/// Adds pattern-matching-related methods to [LevelBlocEvent].
+extension LevelBlocEventPatterns on LevelBlocEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( LevelBlocEventInit value)?  init,TResult Function( LevelBlocEventConsumeTick value)?  consumeTick,TResult Function( LevelBlocEventHideWarning value)?  hideWarning,TResult Function( LevelBlocEventChangeCurrentWord value)?  changeCurrentWord,TResult Function( LevelBlocEventSelectActionMultiplier value)?  selectActionMultiplier,TResult Function( LevelBlocEventAddNewWordToDictionary value)?  addNewWordToDictionary,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case LevelBlocEventInit() when init != null:
+return init(_that);case LevelBlocEventConsumeTick() when consumeTick != null:
+return consumeTick(_that);case LevelBlocEventHideWarning() when hideWarning != null:
+return hideWarning(_that);case LevelBlocEventChangeCurrentWord() when changeCurrentWord != null:
+return changeCurrentWord(_that);case LevelBlocEventSelectActionMultiplier() when selectActionMultiplier != null:
+return selectActionMultiplier(_that);case LevelBlocEventAddNewWordToDictionary() when addNewWordToDictionary != null:
+return addNewWordToDictionary(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( LevelBlocEventInit value)  init,required TResult Function( LevelBlocEventConsumeTick value)  consumeTick,required TResult Function( LevelBlocEventHideWarning value)  hideWarning,required TResult Function( LevelBlocEventChangeCurrentWord value)  changeCurrentWord,required TResult Function( LevelBlocEventSelectActionMultiplier value)  selectActionMultiplier,required TResult Function( LevelBlocEventAddNewWordToDictionary value)  addNewWordToDictionary,}){
+final _that = this;
+switch (_that) {
+case LevelBlocEventInit():
+return init(_that);case LevelBlocEventConsumeTick():
+return consumeTick(_that);case LevelBlocEventHideWarning():
+return hideWarning(_that);case LevelBlocEventChangeCurrentWord():
+return changeCurrentWord(_that);case LevelBlocEventSelectActionMultiplier():
+return selectActionMultiplier(_that);case LevelBlocEventAddNewWordToDictionary():
+return addNewWordToDictionary(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( LevelBlocEventInit value)?  init,TResult? Function( LevelBlocEventConsumeTick value)?  consumeTick,TResult? Function( LevelBlocEventHideWarning value)?  hideWarning,TResult? Function( LevelBlocEventChangeCurrentWord value)?  changeCurrentWord,TResult? Function( LevelBlocEventSelectActionMultiplier value)?  selectActionMultiplier,TResult? Function( LevelBlocEventAddNewWordToDictionary value)?  addNewWordToDictionary,}){
+final _that = this;
+switch (_that) {
+case LevelBlocEventInit() when init != null:
+return init(_that);case LevelBlocEventConsumeTick() when consumeTick != null:
+return consumeTick(_that);case LevelBlocEventHideWarning() when hideWarning != null:
+return hideWarning(_that);case LevelBlocEventChangeCurrentWord() when changeCurrentWord != null:
+return changeCurrentWord(_that);case LevelBlocEventSelectActionMultiplier() when selectActionMultiplier != null:
+return selectActionMultiplier(_that);case LevelBlocEventAddNewWordToDictionary() when addNewWordToDictionary != null:
+return addNewWordToDictionary(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( LevelModel levelModel)?  init,TResult Function( int timeDeltaInSeconds)?  consumeTick,TResult Function()?  hideWarning,TResult Function( CurrentWordModel word)?  changeCurrentWord,TResult Function( EnergyMultiplierType multiplier)?  selectActionMultiplier,TResult Function()?  addNewWordToDictionary,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case LevelBlocEventInit() when init != null:
+return init(_that.levelModel);case LevelBlocEventConsumeTick() when consumeTick != null:
+return consumeTick(_that.timeDeltaInSeconds);case LevelBlocEventHideWarning() when hideWarning != null:
+return hideWarning();case LevelBlocEventChangeCurrentWord() when changeCurrentWord != null:
+return changeCurrentWord(_that.word);case LevelBlocEventSelectActionMultiplier() when selectActionMultiplier != null:
+return selectActionMultiplier(_that.multiplier);case LevelBlocEventAddNewWordToDictionary() when addNewWordToDictionary != null:
+return addNewWordToDictionary();case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( LevelModel levelModel)  init,required TResult Function( int timeDeltaInSeconds)  consumeTick,required TResult Function()  hideWarning,required TResult Function( CurrentWordModel word)  changeCurrentWord,required TResult Function( EnergyMultiplierType multiplier)  selectActionMultiplier,required TResult Function()  addNewWordToDictionary,}) {final _that = this;
+switch (_that) {
+case LevelBlocEventInit():
+return init(_that.levelModel);case LevelBlocEventConsumeTick():
+return consumeTick(_that.timeDeltaInSeconds);case LevelBlocEventHideWarning():
+return hideWarning();case LevelBlocEventChangeCurrentWord():
+return changeCurrentWord(_that.word);case LevelBlocEventSelectActionMultiplier():
+return selectActionMultiplier(_that.multiplier);case LevelBlocEventAddNewWordToDictionary():
+return addNewWordToDictionary();case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( LevelModel levelModel)?  init,TResult? Function( int timeDeltaInSeconds)?  consumeTick,TResult? Function()?  hideWarning,TResult? Function( CurrentWordModel word)?  changeCurrentWord,TResult? Function( EnergyMultiplierType multiplier)?  selectActionMultiplier,TResult? Function()?  addNewWordToDictionary,}) {final _that = this;
+switch (_that) {
+case LevelBlocEventInit() when init != null:
+return init(_that.levelModel);case LevelBlocEventConsumeTick() when consumeTick != null:
+return consumeTick(_that.timeDeltaInSeconds);case LevelBlocEventHideWarning() when hideWarning != null:
+return hideWarning();case LevelBlocEventChangeCurrentWord() when changeCurrentWord != null:
+return changeCurrentWord(_that.word);case LevelBlocEventSelectActionMultiplier() when selectActionMultiplier != null:
+return selectActionMultiplier(_that.multiplier);case LevelBlocEventAddNewWordToDictionary() when addNewWordToDictionary != null:
+return addNewWordToDictionary();case _:
+  return null;
+
+}
 }
 
-/// @nodoc
-abstract class _$$LevelBlocEventInitImplCopyWith<$Res> {
-  factory _$$LevelBlocEventInitImplCopyWith(_$LevelBlocEventInitImpl value,
-          $Res Function(_$LevelBlocEventInitImpl) then) =
-      __$$LevelBlocEventInitImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({LevelModel levelModel});
-
-  $LevelModelCopyWith<$Res> get levelModel;
-}
-
-/// @nodoc
-class __$$LevelBlocEventInitImplCopyWithImpl<$Res>
-    extends _$LevelBlocEventCopyWithImpl<$Res, _$LevelBlocEventInitImpl>
-    implements _$$LevelBlocEventInitImplCopyWith<$Res> {
-  __$$LevelBlocEventInitImplCopyWithImpl(_$LevelBlocEventInitImpl _value,
-      $Res Function(_$LevelBlocEventInitImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? levelModel = null,
-  }) {
-    return _then(_$LevelBlocEventInitImpl(
-      levelModel: null == levelModel
-          ? _value.levelModel
-          : levelModel // ignore: cast_nullable_to_non_nullable
-              as LevelModel,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $LevelModelCopyWith<$Res> get levelModel {
-    return $LevelModelCopyWith<$Res>(_value.levelModel, (value) {
-      return _then(_value.copyWith(levelModel: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$LevelBlocEventInitImpl implements LevelBlocEventInit {
-  const _$LevelBlocEventInitImpl({required this.levelModel});
-
-  @override
-  final LevelModel levelModel;
-
-  @override
-  String toString() {
-    return 'LevelBlocEvent.init(levelModel: $levelModel)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LevelBlocEventInitImpl &&
-            (identical(other.levelModel, levelModel) ||
-                other.levelModel == levelModel));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, levelModel);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LevelBlocEventInitImplCopyWith<_$LevelBlocEventInitImpl> get copyWith =>
-      __$$LevelBlocEventInitImplCopyWithImpl<_$LevelBlocEventInitImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(LevelModel levelModel) init,
-    required TResult Function(int timeDeltaInSeconds) consumeTick,
-    required TResult Function() hideWarning,
-    required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function(EnergyMultiplierType multiplier)
-        selectActionMultiplier,
-    required TResult Function() addNewWordToDictionary,
-  }) {
-    return init(levelModel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelModel levelModel)? init,
-    TResult? Function(int timeDeltaInSeconds)? consumeTick,
-    TResult? Function()? hideWarning,
-    TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult? Function()? addNewWordToDictionary,
-  }) {
-    return init?.call(levelModel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelModel levelModel)? init,
-    TResult Function(int timeDeltaInSeconds)? consumeTick,
-    TResult Function()? hideWarning,
-    TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult Function()? addNewWordToDictionary,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init(levelModel);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LevelBlocEventInit value) init,
-    required TResult Function(LevelBlocEventConsumeTick value) consumeTick,
-    required TResult Function(LevelBlocEventHideWarning value) hideWarning,
-    required TResult Function(LevelBlocEventChangeCurrentWord value)
-        changeCurrentWord,
-    required TResult Function(LevelBlocEventSelectActionMultiplier value)
-        selectActionMultiplier,
-    required TResult Function(LevelBlocEventAddNewWordToDictionary value)
-        addNewWordToDictionary,
-  }) {
-    return init(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LevelBlocEventInit value)? init,
-    TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-  }) {
-    return init?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LevelBlocEventInit value)? init,
-    TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LevelBlocEventInit implements LevelBlocEvent {
-  const factory LevelBlocEventInit({required final LevelModel levelModel}) =
-      _$LevelBlocEventInitImpl;
-
-  LevelModel get levelModel;
-  @JsonKey(ignore: true)
-  _$$LevelBlocEventInitImplCopyWith<_$LevelBlocEventInitImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$LevelBlocEventConsumeTickImplCopyWith<$Res> {
-  factory _$$LevelBlocEventConsumeTickImplCopyWith(
-          _$LevelBlocEventConsumeTickImpl value,
-          $Res Function(_$LevelBlocEventConsumeTickImpl) then) =
-      __$$LevelBlocEventConsumeTickImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int timeDeltaInSeconds});
-}
-
-/// @nodoc
-class __$$LevelBlocEventConsumeTickImplCopyWithImpl<$Res>
-    extends _$LevelBlocEventCopyWithImpl<$Res, _$LevelBlocEventConsumeTickImpl>
-    implements _$$LevelBlocEventConsumeTickImplCopyWith<$Res> {
-  __$$LevelBlocEventConsumeTickImplCopyWithImpl(
-      _$LevelBlocEventConsumeTickImpl _value,
-      $Res Function(_$LevelBlocEventConsumeTickImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? timeDeltaInSeconds = null,
-  }) {
-    return _then(_$LevelBlocEventConsumeTickImpl(
-      timeDeltaInSeconds: null == timeDeltaInSeconds
-          ? _value.timeDeltaInSeconds
-          : timeDeltaInSeconds // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$LevelBlocEventConsumeTickImpl implements LevelBlocEventConsumeTick {
-  const _$LevelBlocEventConsumeTickImpl({required this.timeDeltaInSeconds});
 
-  /// How many seconds was from the last tick
-  @override
-  final int timeDeltaInSeconds;
+class LevelBlocEventInit implements LevelBlocEvent {
+  const LevelBlocEventInit({required this.levelModel});
+  
 
-  @override
-  String toString() {
-    return 'LevelBlocEvent.consumeTick(timeDeltaInSeconds: $timeDeltaInSeconds)';
-  }
+ final  LevelModel levelModel;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LevelBlocEventConsumeTickImpl &&
-            (identical(other.timeDeltaInSeconds, timeDeltaInSeconds) ||
-                other.timeDeltaInSeconds == timeDeltaInSeconds));
-  }
+/// Create a copy of LevelBlocEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LevelBlocEventInitCopyWith<LevelBlocEventInit> get copyWith => _$LevelBlocEventInitCopyWithImpl<LevelBlocEventInit>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, timeDeltaInSeconds);
 
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LevelBlocEventConsumeTickImplCopyWith<_$LevelBlocEventConsumeTickImpl>
-      get copyWith => __$$LevelBlocEventConsumeTickImplCopyWithImpl<
-          _$LevelBlocEventConsumeTickImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(LevelModel levelModel) init,
-    required TResult Function(int timeDeltaInSeconds) consumeTick,
-    required TResult Function() hideWarning,
-    required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function(EnergyMultiplierType multiplier)
-        selectActionMultiplier,
-    required TResult Function() addNewWordToDictionary,
-  }) {
-    return consumeTick(timeDeltaInSeconds);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelModel levelModel)? init,
-    TResult? Function(int timeDeltaInSeconds)? consumeTick,
-    TResult? Function()? hideWarning,
-    TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult? Function()? addNewWordToDictionary,
-  }) {
-    return consumeTick?.call(timeDeltaInSeconds);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelModel levelModel)? init,
-    TResult Function(int timeDeltaInSeconds)? consumeTick,
-    TResult Function()? hideWarning,
-    TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult Function()? addNewWordToDictionary,
-    required TResult orElse(),
-  }) {
-    if (consumeTick != null) {
-      return consumeTick(timeDeltaInSeconds);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LevelBlocEventInit value) init,
-    required TResult Function(LevelBlocEventConsumeTick value) consumeTick,
-    required TResult Function(LevelBlocEventHideWarning value) hideWarning,
-    required TResult Function(LevelBlocEventChangeCurrentWord value)
-        changeCurrentWord,
-    required TResult Function(LevelBlocEventSelectActionMultiplier value)
-        selectActionMultiplier,
-    required TResult Function(LevelBlocEventAddNewWordToDictionary value)
-        addNewWordToDictionary,
-  }) {
-    return consumeTick(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LevelBlocEventInit value)? init,
-    TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-  }) {
-    return consumeTick?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LevelBlocEventInit value)? init,
-    TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-    required TResult orElse(),
-  }) {
-    if (consumeTick != null) {
-      return consumeTick(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LevelBlocEventInit&&(identical(other.levelModel, levelModel) || other.levelModel == levelModel));
 }
 
-abstract class LevelBlocEventConsumeTick implements LevelBlocEvent {
-  const factory LevelBlocEventConsumeTick(
-          {required final int timeDeltaInSeconds}) =
-      _$LevelBlocEventConsumeTickImpl;
 
-  /// How many seconds was from the last tick
-  int get timeDeltaInSeconds;
-  @JsonKey(ignore: true)
-  _$$LevelBlocEventConsumeTickImplCopyWith<_$LevelBlocEventConsumeTickImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+int get hashCode => Object.hash(runtimeType,levelModel);
+
+@override
+String toString() {
+  return 'LevelBlocEvent.init(levelModel: $levelModel)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$LevelBlocEventHideWarningImplCopyWith<$Res> {
-  factory _$$LevelBlocEventHideWarningImplCopyWith(
-          _$LevelBlocEventHideWarningImpl value,
-          $Res Function(_$LevelBlocEventHideWarningImpl) then) =
-      __$$LevelBlocEventHideWarningImplCopyWithImpl<$Res>;
+abstract mixin class $LevelBlocEventInitCopyWith<$Res> implements $LevelBlocEventCopyWith<$Res> {
+  factory $LevelBlocEventInitCopyWith(LevelBlocEventInit value, $Res Function(LevelBlocEventInit) _then) = _$LevelBlocEventInitCopyWithImpl;
+@useResult
+$Res call({
+ LevelModel levelModel
+});
+
+
+$LevelModelCopyWith<$Res> get levelModel;
+
+}
+/// @nodoc
+class _$LevelBlocEventInitCopyWithImpl<$Res>
+    implements $LevelBlocEventInitCopyWith<$Res> {
+  _$LevelBlocEventInitCopyWithImpl(this._self, this._then);
+
+  final LevelBlocEventInit _self;
+  final $Res Function(LevelBlocEventInit) _then;
+
+/// Create a copy of LevelBlocEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? levelModel = null,}) {
+  return _then(LevelBlocEventInit(
+levelModel: null == levelModel ? _self.levelModel : levelModel // ignore: cast_nullable_to_non_nullable
+as LevelModel,
+  ));
 }
 
-/// @nodoc
-class __$$LevelBlocEventHideWarningImplCopyWithImpl<$Res>
-    extends _$LevelBlocEventCopyWithImpl<$Res, _$LevelBlocEventHideWarningImpl>
-    implements _$$LevelBlocEventHideWarningImplCopyWith<$Res> {
-  __$$LevelBlocEventHideWarningImplCopyWithImpl(
-      _$LevelBlocEventHideWarningImpl _value,
-      $Res Function(_$LevelBlocEventHideWarningImpl) _then)
-      : super(_value, _then);
+/// Create a copy of LevelBlocEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LevelModelCopyWith<$Res> get levelModel {
+  
+  return $LevelModelCopyWith<$Res>(_self.levelModel, (value) {
+    return _then(_self.copyWith(levelModel: value));
+  });
+}
 }
 
 /// @nodoc
 
-class _$LevelBlocEventHideWarningImpl implements LevelBlocEventHideWarning {
-  const _$LevelBlocEventHideWarningImpl();
 
-  @override
-  String toString() {
-    return 'LevelBlocEvent.hideWarning()';
-  }
+class LevelBlocEventConsumeTick implements LevelBlocEvent {
+  const LevelBlocEventConsumeTick({required this.timeDeltaInSeconds});
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LevelBlocEventHideWarningImpl);
-  }
+/// How many seconds was from the last tick
+ final  int timeDeltaInSeconds;
 
-  @override
-  int get hashCode => runtimeType.hashCode;
+/// Create a copy of LevelBlocEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LevelBlocEventConsumeTickCopyWith<LevelBlocEventConsumeTick> get copyWith => _$LevelBlocEventConsumeTickCopyWithImpl<LevelBlocEventConsumeTick>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(LevelModel levelModel) init,
-    required TResult Function(int timeDeltaInSeconds) consumeTick,
-    required TResult Function() hideWarning,
-    required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function(EnergyMultiplierType multiplier)
-        selectActionMultiplier,
-    required TResult Function() addNewWordToDictionary,
-  }) {
-    return hideWarning();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelModel levelModel)? init,
-    TResult? Function(int timeDeltaInSeconds)? consumeTick,
-    TResult? Function()? hideWarning,
-    TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult? Function()? addNewWordToDictionary,
-  }) {
-    return hideWarning?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelModel levelModel)? init,
-    TResult Function(int timeDeltaInSeconds)? consumeTick,
-    TResult Function()? hideWarning,
-    TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult Function()? addNewWordToDictionary,
-    required TResult orElse(),
-  }) {
-    if (hideWarning != null) {
-      return hideWarning();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LevelBlocEventInit value) init,
-    required TResult Function(LevelBlocEventConsumeTick value) consumeTick,
-    required TResult Function(LevelBlocEventHideWarning value) hideWarning,
-    required TResult Function(LevelBlocEventChangeCurrentWord value)
-        changeCurrentWord,
-    required TResult Function(LevelBlocEventSelectActionMultiplier value)
-        selectActionMultiplier,
-    required TResult Function(LevelBlocEventAddNewWordToDictionary value)
-        addNewWordToDictionary,
-  }) {
-    return hideWarning(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LevelBlocEventInit value)? init,
-    TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-  }) {
-    return hideWarning?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LevelBlocEventInit value)? init,
-    TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-    required TResult orElse(),
-  }) {
-    if (hideWarning != null) {
-      return hideWarning(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LevelBlocEventConsumeTick&&(identical(other.timeDeltaInSeconds, timeDeltaInSeconds) || other.timeDeltaInSeconds == timeDeltaInSeconds));
 }
 
-abstract class LevelBlocEventHideWarning implements LevelBlocEvent {
-  const factory LevelBlocEventHideWarning() = _$LevelBlocEventHideWarningImpl;
+
+@override
+int get hashCode => Object.hash(runtimeType,timeDeltaInSeconds);
+
+@override
+String toString() {
+  return 'LevelBlocEvent.consumeTick(timeDeltaInSeconds: $timeDeltaInSeconds)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$LevelBlocEventChangeCurrentWordImplCopyWith<$Res> {
-  factory _$$LevelBlocEventChangeCurrentWordImplCopyWith(
-          _$LevelBlocEventChangeCurrentWordImpl value,
-          $Res Function(_$LevelBlocEventChangeCurrentWordImpl) then) =
-      __$$LevelBlocEventChangeCurrentWordImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({CurrentWordModel word});
+abstract mixin class $LevelBlocEventConsumeTickCopyWith<$Res> implements $LevelBlocEventCopyWith<$Res> {
+  factory $LevelBlocEventConsumeTickCopyWith(LevelBlocEventConsumeTick value, $Res Function(LevelBlocEventConsumeTick) _then) = _$LevelBlocEventConsumeTickCopyWithImpl;
+@useResult
+$Res call({
+ int timeDeltaInSeconds
+});
 
-  $CurrentWordModelCopyWith<$Res> get word;
+
+
+
+}
+/// @nodoc
+class _$LevelBlocEventConsumeTickCopyWithImpl<$Res>
+    implements $LevelBlocEventConsumeTickCopyWith<$Res> {
+  _$LevelBlocEventConsumeTickCopyWithImpl(this._self, this._then);
+
+  final LevelBlocEventConsumeTick _self;
+  final $Res Function(LevelBlocEventConsumeTick) _then;
+
+/// Create a copy of LevelBlocEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? timeDeltaInSeconds = null,}) {
+  return _then(LevelBlocEventConsumeTick(
+timeDeltaInSeconds: null == timeDeltaInSeconds ? _self.timeDeltaInSeconds : timeDeltaInSeconds // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
 }
 
-/// @nodoc
-class __$$LevelBlocEventChangeCurrentWordImplCopyWithImpl<$Res>
-    extends _$LevelBlocEventCopyWithImpl<$Res,
-        _$LevelBlocEventChangeCurrentWordImpl>
-    implements _$$LevelBlocEventChangeCurrentWordImplCopyWith<$Res> {
-  __$$LevelBlocEventChangeCurrentWordImplCopyWithImpl(
-      _$LevelBlocEventChangeCurrentWordImpl _value,
-      $Res Function(_$LevelBlocEventChangeCurrentWordImpl) _then)
-      : super(_value, _then);
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? word = null,
-  }) {
-    return _then(_$LevelBlocEventChangeCurrentWordImpl(
-      word: null == word
-          ? _value.word
-          : word // ignore: cast_nullable_to_non_nullable
-              as CurrentWordModel,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CurrentWordModelCopyWith<$Res> get word {
-    return $CurrentWordModelCopyWith<$Res>(_value.word, (value) {
-      return _then(_value.copyWith(word: value));
-    });
-  }
 }
 
 /// @nodoc
 
-class _$LevelBlocEventChangeCurrentWordImpl
-    implements LevelBlocEventChangeCurrentWord {
-  const _$LevelBlocEventChangeCurrentWordImpl({required this.word});
 
-  @override
-  final CurrentWordModel word;
+class LevelBlocEventHideWarning implements LevelBlocEvent {
+  const LevelBlocEventHideWarning();
+  
 
-  @override
-  String toString() {
-    return 'LevelBlocEvent.changeCurrentWord(word: $word)';
-  }
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LevelBlocEventChangeCurrentWordImpl &&
-            (identical(other.word, word) || other.word == word));
-  }
 
-  @override
-  int get hashCode => Object.hash(runtimeType, word);
 
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LevelBlocEventChangeCurrentWordImplCopyWith<
-          _$LevelBlocEventChangeCurrentWordImpl>
-      get copyWith => __$$LevelBlocEventChangeCurrentWordImplCopyWithImpl<
-          _$LevelBlocEventChangeCurrentWordImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(LevelModel levelModel) init,
-    required TResult Function(int timeDeltaInSeconds) consumeTick,
-    required TResult Function() hideWarning,
-    required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function(EnergyMultiplierType multiplier)
-        selectActionMultiplier,
-    required TResult Function() addNewWordToDictionary,
-  }) {
-    return changeCurrentWord(word);
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelModel levelModel)? init,
-    TResult? Function(int timeDeltaInSeconds)? consumeTick,
-    TResult? Function()? hideWarning,
-    TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult? Function()? addNewWordToDictionary,
-  }) {
-    return changeCurrentWord?.call(word);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelModel levelModel)? init,
-    TResult Function(int timeDeltaInSeconds)? consumeTick,
-    TResult Function()? hideWarning,
-    TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult Function()? addNewWordToDictionary,
-    required TResult orElse(),
-  }) {
-    if (changeCurrentWord != null) {
-      return changeCurrentWord(word);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LevelBlocEventInit value) init,
-    required TResult Function(LevelBlocEventConsumeTick value) consumeTick,
-    required TResult Function(LevelBlocEventHideWarning value) hideWarning,
-    required TResult Function(LevelBlocEventChangeCurrentWord value)
-        changeCurrentWord,
-    required TResult Function(LevelBlocEventSelectActionMultiplier value)
-        selectActionMultiplier,
-    required TResult Function(LevelBlocEventAddNewWordToDictionary value)
-        addNewWordToDictionary,
-  }) {
-    return changeCurrentWord(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LevelBlocEventInit value)? init,
-    TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-  }) {
-    return changeCurrentWord?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LevelBlocEventInit value)? init,
-    TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-    required TResult orElse(),
-  }) {
-    if (changeCurrentWord != null) {
-      return changeCurrentWord(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LevelBlocEventHideWarning);
 }
 
-abstract class LevelBlocEventChangeCurrentWord implements LevelBlocEvent {
-  const factory LevelBlocEventChangeCurrentWord(
-          {required final CurrentWordModel word}) =
-      _$LevelBlocEventChangeCurrentWordImpl;
 
-  CurrentWordModel get word;
-  @JsonKey(ignore: true)
-  _$$LevelBlocEventChangeCurrentWordImplCopyWith<
-          _$LevelBlocEventChangeCurrentWordImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'LevelBlocEvent.hideWarning()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class LevelBlocEventChangeCurrentWord implements LevelBlocEvent {
+  const LevelBlocEventChangeCurrentWord({required this.word});
+  
+
+ final  CurrentWordModel word;
+
+/// Create a copy of LevelBlocEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LevelBlocEventChangeCurrentWordCopyWith<LevelBlocEventChangeCurrentWord> get copyWith => _$LevelBlocEventChangeCurrentWordCopyWithImpl<LevelBlocEventChangeCurrentWord>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LevelBlocEventChangeCurrentWord&&(identical(other.word, word) || other.word == word));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,word);
+
+@override
+String toString() {
+  return 'LevelBlocEvent.changeCurrentWord(word: $word)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$LevelBlocEventSelectActionMultiplierImplCopyWith<$Res> {
-  factory _$$LevelBlocEventSelectActionMultiplierImplCopyWith(
-          _$LevelBlocEventSelectActionMultiplierImpl value,
-          $Res Function(_$LevelBlocEventSelectActionMultiplierImpl) then) =
-      __$$LevelBlocEventSelectActionMultiplierImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({EnergyMultiplierType multiplier});
+abstract mixin class $LevelBlocEventChangeCurrentWordCopyWith<$Res> implements $LevelBlocEventCopyWith<$Res> {
+  factory $LevelBlocEventChangeCurrentWordCopyWith(LevelBlocEventChangeCurrentWord value, $Res Function(LevelBlocEventChangeCurrentWord) _then) = _$LevelBlocEventChangeCurrentWordCopyWithImpl;
+@useResult
+$Res call({
+ CurrentWordModel word
+});
+
+
+$CurrentWordModelCopyWith<$Res> get word;
+
+}
+/// @nodoc
+class _$LevelBlocEventChangeCurrentWordCopyWithImpl<$Res>
+    implements $LevelBlocEventChangeCurrentWordCopyWith<$Res> {
+  _$LevelBlocEventChangeCurrentWordCopyWithImpl(this._self, this._then);
+
+  final LevelBlocEventChangeCurrentWord _self;
+  final $Res Function(LevelBlocEventChangeCurrentWord) _then;
+
+/// Create a copy of LevelBlocEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? word = null,}) {
+  return _then(LevelBlocEventChangeCurrentWord(
+word: null == word ? _self.word : word // ignore: cast_nullable_to_non_nullable
+as CurrentWordModel,
+  ));
 }
 
-/// @nodoc
-class __$$LevelBlocEventSelectActionMultiplierImplCopyWithImpl<$Res>
-    extends _$LevelBlocEventCopyWithImpl<$Res,
-        _$LevelBlocEventSelectActionMultiplierImpl>
-    implements _$$LevelBlocEventSelectActionMultiplierImplCopyWith<$Res> {
-  __$$LevelBlocEventSelectActionMultiplierImplCopyWithImpl(
-      _$LevelBlocEventSelectActionMultiplierImpl _value,
-      $Res Function(_$LevelBlocEventSelectActionMultiplierImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? multiplier = null,
-  }) {
-    return _then(_$LevelBlocEventSelectActionMultiplierImpl(
-      multiplier: null == multiplier
-          ? _value.multiplier
-          : multiplier // ignore: cast_nullable_to_non_nullable
-              as EnergyMultiplierType,
-    ));
-  }
+/// Create a copy of LevelBlocEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CurrentWordModelCopyWith<$Res> get word {
+  
+  return $CurrentWordModelCopyWith<$Res>(_self.word, (value) {
+    return _then(_self.copyWith(word: value));
+  });
+}
 }
 
 /// @nodoc
 
-class _$LevelBlocEventSelectActionMultiplierImpl
-    implements LevelBlocEventSelectActionMultiplier {
-  const _$LevelBlocEventSelectActionMultiplierImpl({required this.multiplier});
 
-  @override
-  final EnergyMultiplierType multiplier;
+class LevelBlocEventSelectActionMultiplier implements LevelBlocEvent {
+  const LevelBlocEventSelectActionMultiplier({required this.multiplier});
+  
 
-  @override
-  String toString() {
-    return 'LevelBlocEvent.selectActionMultiplier(multiplier: $multiplier)';
-  }
+ final  EnergyMultiplierType multiplier;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LevelBlocEventSelectActionMultiplierImpl &&
-            (identical(other.multiplier, multiplier) ||
-                other.multiplier == multiplier));
-  }
+/// Create a copy of LevelBlocEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LevelBlocEventSelectActionMultiplierCopyWith<LevelBlocEventSelectActionMultiplier> get copyWith => _$LevelBlocEventSelectActionMultiplierCopyWithImpl<LevelBlocEventSelectActionMultiplier>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, multiplier);
 
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LevelBlocEventSelectActionMultiplierImplCopyWith<
-          _$LevelBlocEventSelectActionMultiplierImpl>
-      get copyWith => __$$LevelBlocEventSelectActionMultiplierImplCopyWithImpl<
-          _$LevelBlocEventSelectActionMultiplierImpl>(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(LevelModel levelModel) init,
-    required TResult Function(int timeDeltaInSeconds) consumeTick,
-    required TResult Function() hideWarning,
-    required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function(EnergyMultiplierType multiplier)
-        selectActionMultiplier,
-    required TResult Function() addNewWordToDictionary,
-  }) {
-    return selectActionMultiplier(multiplier);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelModel levelModel)? init,
-    TResult? Function(int timeDeltaInSeconds)? consumeTick,
-    TResult? Function()? hideWarning,
-    TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult? Function()? addNewWordToDictionary,
-  }) {
-    return selectActionMultiplier?.call(multiplier);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelModel levelModel)? init,
-    TResult Function(int timeDeltaInSeconds)? consumeTick,
-    TResult Function()? hideWarning,
-    TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult Function()? addNewWordToDictionary,
-    required TResult orElse(),
-  }) {
-    if (selectActionMultiplier != null) {
-      return selectActionMultiplier(multiplier);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LevelBlocEventInit value) init,
-    required TResult Function(LevelBlocEventConsumeTick value) consumeTick,
-    required TResult Function(LevelBlocEventHideWarning value) hideWarning,
-    required TResult Function(LevelBlocEventChangeCurrentWord value)
-        changeCurrentWord,
-    required TResult Function(LevelBlocEventSelectActionMultiplier value)
-        selectActionMultiplier,
-    required TResult Function(LevelBlocEventAddNewWordToDictionary value)
-        addNewWordToDictionary,
-  }) {
-    return selectActionMultiplier(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LevelBlocEventInit value)? init,
-    TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-  }) {
-    return selectActionMultiplier?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LevelBlocEventInit value)? init,
-    TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-    required TResult orElse(),
-  }) {
-    if (selectActionMultiplier != null) {
-      return selectActionMultiplier(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LevelBlocEventSelectActionMultiplier&&(identical(other.multiplier, multiplier) || other.multiplier == multiplier));
 }
 
-abstract class LevelBlocEventSelectActionMultiplier implements LevelBlocEvent {
-  const factory LevelBlocEventSelectActionMultiplier(
-          {required final EnergyMultiplierType multiplier}) =
-      _$LevelBlocEventSelectActionMultiplierImpl;
 
-  EnergyMultiplierType get multiplier;
-  @JsonKey(ignore: true)
-  _$$LevelBlocEventSelectActionMultiplierImplCopyWith<
-          _$LevelBlocEventSelectActionMultiplierImpl>
-      get copyWith => throw _privateConstructorUsedError;
+@override
+int get hashCode => Object.hash(runtimeType,multiplier);
+
+@override
+String toString() {
+  return 'LevelBlocEvent.selectActionMultiplier(multiplier: $multiplier)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$LevelBlocEventAddNewWordToDictionaryImplCopyWith<$Res> {
-  factory _$$LevelBlocEventAddNewWordToDictionaryImplCopyWith(
-          _$LevelBlocEventAddNewWordToDictionaryImpl value,
-          $Res Function(_$LevelBlocEventAddNewWordToDictionaryImpl) then) =
-      __$$LevelBlocEventAddNewWordToDictionaryImplCopyWithImpl<$Res>;
+abstract mixin class $LevelBlocEventSelectActionMultiplierCopyWith<$Res> implements $LevelBlocEventCopyWith<$Res> {
+  factory $LevelBlocEventSelectActionMultiplierCopyWith(LevelBlocEventSelectActionMultiplier value, $Res Function(LevelBlocEventSelectActionMultiplier) _then) = _$LevelBlocEventSelectActionMultiplierCopyWithImpl;
+@useResult
+$Res call({
+ EnergyMultiplierType multiplier
+});
+
+
+
+
+}
+/// @nodoc
+class _$LevelBlocEventSelectActionMultiplierCopyWithImpl<$Res>
+    implements $LevelBlocEventSelectActionMultiplierCopyWith<$Res> {
+  _$LevelBlocEventSelectActionMultiplierCopyWithImpl(this._self, this._then);
+
+  final LevelBlocEventSelectActionMultiplier _self;
+  final $Res Function(LevelBlocEventSelectActionMultiplier) _then;
+
+/// Create a copy of LevelBlocEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? multiplier = null,}) {
+  return _then(LevelBlocEventSelectActionMultiplier(
+multiplier: null == multiplier ? _self.multiplier : multiplier // ignore: cast_nullable_to_non_nullable
+as EnergyMultiplierType,
+  ));
 }
 
-/// @nodoc
-class __$$LevelBlocEventAddNewWordToDictionaryImplCopyWithImpl<$Res>
-    extends _$LevelBlocEventCopyWithImpl<$Res,
-        _$LevelBlocEventAddNewWordToDictionaryImpl>
-    implements _$$LevelBlocEventAddNewWordToDictionaryImplCopyWith<$Res> {
-  __$$LevelBlocEventAddNewWordToDictionaryImplCopyWithImpl(
-      _$LevelBlocEventAddNewWordToDictionaryImpl _value,
-      $Res Function(_$LevelBlocEventAddNewWordToDictionaryImpl) _then)
-      : super(_value, _then);
+
 }
 
 /// @nodoc
 
-class _$LevelBlocEventAddNewWordToDictionaryImpl
-    implements LevelBlocEventAddNewWordToDictionary {
-  const _$LevelBlocEventAddNewWordToDictionaryImpl();
 
-  @override
-  String toString() {
-    return 'LevelBlocEvent.addNewWordToDictionary()';
-  }
+class LevelBlocEventAddNewWordToDictionary implements LevelBlocEvent {
+  const LevelBlocEventAddNewWordToDictionary();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LevelBlocEventAddNewWordToDictionaryImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(LevelModel levelModel) init,
-    required TResult Function(int timeDeltaInSeconds) consumeTick,
-    required TResult Function() hideWarning,
-    required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function(EnergyMultiplierType multiplier)
-        selectActionMultiplier,
-    required TResult Function() addNewWordToDictionary,
-  }) {
-    return addNewWordToDictionary();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelModel levelModel)? init,
-    TResult? Function(int timeDeltaInSeconds)? consumeTick,
-    TResult? Function()? hideWarning,
-    TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult? Function()? addNewWordToDictionary,
-  }) {
-    return addNewWordToDictionary?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelModel levelModel)? init,
-    TResult Function(int timeDeltaInSeconds)? consumeTick,
-    TResult Function()? hideWarning,
-    TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult Function()? addNewWordToDictionary,
-    required TResult orElse(),
-  }) {
-    if (addNewWordToDictionary != null) {
-      return addNewWordToDictionary();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LevelBlocEventInit value) init,
-    required TResult Function(LevelBlocEventConsumeTick value) consumeTick,
-    required TResult Function(LevelBlocEventHideWarning value) hideWarning,
-    required TResult Function(LevelBlocEventChangeCurrentWord value)
-        changeCurrentWord,
-    required TResult Function(LevelBlocEventSelectActionMultiplier value)
-        selectActionMultiplier,
-    required TResult Function(LevelBlocEventAddNewWordToDictionary value)
-        addNewWordToDictionary,
-  }) {
-    return addNewWordToDictionary(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LevelBlocEventInit value)? init,
-    TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-  }) {
-    return addNewWordToDictionary?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LevelBlocEventInit value)? init,
-    TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-    required TResult orElse(),
-  }) {
-    if (addNewWordToDictionary != null) {
-      return addNewWordToDictionary(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LevelBlocEventAddNewWordToDictionary);
 }
 
-abstract class LevelBlocEventAddNewWordToDictionary implements LevelBlocEvent {
-  const factory LevelBlocEventAddNewWordToDictionary() =
-      _$LevelBlocEventAddNewWordToDictionaryImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'LevelBlocEvent.addNewWordToDictionary()';
 }
+
+
+}
+
+
+
 
 /// @nodoc
 mixin _$LevelBlocState {
-  CanvasDataModelId get id => throw _privateConstructorUsedError;
-  CurrentWordModel get currentWord => throw _privateConstructorUsedError;
-  Map<String, String> get words => throw _privateConstructorUsedError;
-  String get latestWord => throw _privateConstructorUsedError;
-  GamePhaseType get phaseType => throw _privateConstructorUsedError;
-  EnergyMultiplierType get energyMultiplier =>
-      throw _privateConstructorUsedError;
 
-  /// ********************************************
-  /// *      NON PERSISTENT
-  /// ********************************************
-  WordWarning get wordWarning => throw _privateConstructorUsedError;
-  LevelFeaturesSettingsModel get featuresSettings =>
-      throw _privateConstructorUsedError;
-  Languages get wordsLanguage => throw _privateConstructorUsedError;
+ CanvasDataModelId get id; CurrentWordModel get currentWord; Map<FullWordString, PlayerProfileModelId> get words; String get latestWord; GamePhaseType get phaseType; EnergyMultiplierType get energyMultiplier;/// ********************************************
+/// *      NON PERSISTENT
+/// ********************************************
+ WordWarning get wordWarning; LevelFeaturesSettingsModel get featuresSettings; UiLanguage get wordsLanguage;
+/// Create a copy of LevelBlocState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LevelBlocStateCopyWith<LevelBlocState> get copyWith => _$LevelBlocStateCopyWithImpl<LevelBlocState>(this as LevelBlocState, _$identity);
 
-  @JsonKey(ignore: true)
-  $LevelBlocStateCopyWith<LevelBlocState> get copyWith =>
-      throw _privateConstructorUsedError;
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LevelBlocState&&(identical(other.id, id) || other.id == id)&&(identical(other.currentWord, currentWord) || other.currentWord == currentWord)&&const DeepCollectionEquality().equals(other.words, words)&&(identical(other.latestWord, latestWord) || other.latestWord == latestWord)&&(identical(other.phaseType, phaseType) || other.phaseType == phaseType)&&(identical(other.energyMultiplier, energyMultiplier) || other.energyMultiplier == energyMultiplier)&&(identical(other.wordWarning, wordWarning) || other.wordWarning == wordWarning)&&(identical(other.featuresSettings, featuresSettings) || other.featuresSettings == featuresSettings)&&(identical(other.wordsLanguage, wordsLanguage) || other.wordsLanguage == wordsLanguage));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,id,currentWord,const DeepCollectionEquality().hash(words),latestWord,phaseType,energyMultiplier,wordWarning,featuresSettings,wordsLanguage);
+
+@override
+String toString() {
+  return 'LevelBlocState(id: $id, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, energyMultiplier: $energyMultiplier, wordWarning: $wordWarning, featuresSettings: $featuresSettings, wordsLanguage: $wordsLanguage)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $LevelBlocStateCopyWith<$Res> {
-  factory $LevelBlocStateCopyWith(
-          LevelBlocState value, $Res Function(LevelBlocState) then) =
-      _$LevelBlocStateCopyWithImpl<$Res, LevelBlocState>;
-  @useResult
-  $Res call(
-      {CanvasDataModelId id,
-      CurrentWordModel currentWord,
-      Map<String, String> words,
-      String latestWord,
-      GamePhaseType phaseType,
-      EnergyMultiplierType energyMultiplier,
-      WordWarning wordWarning,
-      LevelFeaturesSettingsModel featuresSettings,
-      Languages wordsLanguage});
+abstract mixin class $LevelBlocStateCopyWith<$Res>  {
+  factory $LevelBlocStateCopyWith(LevelBlocState value, $Res Function(LevelBlocState) _then) = _$LevelBlocStateCopyWithImpl;
+@useResult
+$Res call({
+ CanvasDataModelId id, CurrentWordModel currentWord, Map<FullWordString, PlayerProfileModelId> words, String latestWord, GamePhaseType phaseType, EnergyMultiplierType energyMultiplier, WordWarning wordWarning, LevelFeaturesSettingsModel featuresSettings, UiLanguage wordsLanguage
+});
 
-  $CanvasDataModelIdCopyWith<$Res> get id;
-  $CurrentWordModelCopyWith<$Res> get currentWord;
-  $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
+
+$CurrentWordModelCopyWith<$Res> get currentWord;$LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
+
 }
-
 /// @nodoc
-class _$LevelBlocStateCopyWithImpl<$Res, $Val extends LevelBlocState>
+class _$LevelBlocStateCopyWithImpl<$Res>
     implements $LevelBlocStateCopyWith<$Res> {
-  _$LevelBlocStateCopyWithImpl(this._value, this._then);
+  _$LevelBlocStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final LevelBlocState _self;
+  final $Res Function(LevelBlocState) _then;
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? currentWord = null,
-    Object? words = null,
-    Object? latestWord = null,
-    Object? phaseType = null,
-    Object? energyMultiplier = null,
-    Object? wordWarning = null,
-    Object? featuresSettings = null,
-    Object? wordsLanguage = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as CanvasDataModelId,
-      currentWord: null == currentWord
-          ? _value.currentWord
-          : currentWord // ignore: cast_nullable_to_non_nullable
-              as CurrentWordModel,
-      words: null == words
-          ? _value.words
-          : words // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
-      latestWord: null == latestWord
-          ? _value.latestWord
-          : latestWord // ignore: cast_nullable_to_non_nullable
-              as String,
-      phaseType: null == phaseType
-          ? _value.phaseType
-          : phaseType // ignore: cast_nullable_to_non_nullable
-              as GamePhaseType,
-      energyMultiplier: null == energyMultiplier
-          ? _value.energyMultiplier
-          : energyMultiplier // ignore: cast_nullable_to_non_nullable
-              as EnergyMultiplierType,
-      wordWarning: null == wordWarning
-          ? _value.wordWarning
-          : wordWarning // ignore: cast_nullable_to_non_nullable
-              as WordWarning,
-      featuresSettings: null == featuresSettings
-          ? _value.featuresSettings
-          : featuresSettings // ignore: cast_nullable_to_non_nullable
-              as LevelFeaturesSettingsModel,
-      wordsLanguage: null == wordsLanguage
-          ? _value.wordsLanguage
-          : wordsLanguage // ignore: cast_nullable_to_non_nullable
-              as Languages,
-    ) as $Val);
-  }
+/// Create a copy of LevelBlocState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? currentWord = null,Object? words = null,Object? latestWord = null,Object? phaseType = null,Object? energyMultiplier = null,Object? wordWarning = null,Object? featuresSettings = null,Object? wordsLanguage = null,}) {
+  return _then(_self.copyWith(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as CanvasDataModelId,currentWord: null == currentWord ? _self.currentWord : currentWord // ignore: cast_nullable_to_non_nullable
+as CurrentWordModel,words: null == words ? _self.words : words // ignore: cast_nullable_to_non_nullable
+as Map<FullWordString, PlayerProfileModelId>,latestWord: null == latestWord ? _self.latestWord : latestWord // ignore: cast_nullable_to_non_nullable
+as String,phaseType: null == phaseType ? _self.phaseType : phaseType // ignore: cast_nullable_to_non_nullable
+as GamePhaseType,energyMultiplier: null == energyMultiplier ? _self.energyMultiplier : energyMultiplier // ignore: cast_nullable_to_non_nullable
+as EnergyMultiplierType,wordWarning: null == wordWarning ? _self.wordWarning : wordWarning // ignore: cast_nullable_to_non_nullable
+as WordWarning,featuresSettings: null == featuresSettings ? _self.featuresSettings : featuresSettings // ignore: cast_nullable_to_non_nullable
+as LevelFeaturesSettingsModel,wordsLanguage: null == wordsLanguage ? _self.wordsLanguage : wordsLanguage // ignore: cast_nullable_to_non_nullable
+as UiLanguage,
+  ));
+}
+/// Create a copy of LevelBlocState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CurrentWordModelCopyWith<$Res> get currentWord {
+  
+  return $CurrentWordModelCopyWith<$Res>(_self.currentWord, (value) {
+    return _then(_self.copyWith(currentWord: value));
+  });
+}/// Create a copy of LevelBlocState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings {
+  
+  return $LevelFeaturesSettingsModelCopyWith<$Res>(_self.featuresSettings, (value) {
+    return _then(_self.copyWith(featuresSettings: value));
+  });
+}
+}
 
-  @override
-  @pragma('vm:prefer-inline')
-  $CanvasDataModelIdCopyWith<$Res> get id {
-    return $CanvasDataModelIdCopyWith<$Res>(_value.id, (value) {
-      return _then(_value.copyWith(id: value) as $Val);
-    });
-  }
 
-  @override
-  @pragma('vm:prefer-inline')
-  $CurrentWordModelCopyWith<$Res> get currentWord {
-    return $CurrentWordModelCopyWith<$Res>(_value.currentWord, (value) {
-      return _then(_value.copyWith(currentWord: value) as $Val);
-    });
-  }
+/// Adds pattern-matching-related methods to [LevelBlocState].
+extension LevelBlocStatePatterns on LevelBlocState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
 
-  @override
-  @pragma('vm:prefer-inline')
-  $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings {
-    return $LevelFeaturesSettingsModelCopyWith<$Res>(_value.featuresSettings,
-        (value) {
-      return _then(_value.copyWith(featuresSettings: value) as $Val);
-    });
-  }
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LevelBlocState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _LevelBlocState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LevelBlocState value)  $default,){
+final _that = this;
+switch (_that) {
+case _LevelBlocState():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LevelBlocState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _LevelBlocState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( CanvasDataModelId id,  CurrentWordModel currentWord,  Map<FullWordString, PlayerProfileModelId> words,  String latestWord,  GamePhaseType phaseType,  EnergyMultiplierType energyMultiplier,  WordWarning wordWarning,  LevelFeaturesSettingsModel featuresSettings,  UiLanguage wordsLanguage)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _LevelBlocState() when $default != null:
+return $default(_that.id,_that.currentWord,_that.words,_that.latestWord,_that.phaseType,_that.energyMultiplier,_that.wordWarning,_that.featuresSettings,_that.wordsLanguage);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( CanvasDataModelId id,  CurrentWordModel currentWord,  Map<FullWordString, PlayerProfileModelId> words,  String latestWord,  GamePhaseType phaseType,  EnergyMultiplierType energyMultiplier,  WordWarning wordWarning,  LevelFeaturesSettingsModel featuresSettings,  UiLanguage wordsLanguage)  $default,) {final _that = this;
+switch (_that) {
+case _LevelBlocState():
+return $default(_that.id,_that.currentWord,_that.words,_that.latestWord,_that.phaseType,_that.energyMultiplier,_that.wordWarning,_that.featuresSettings,_that.wordsLanguage);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( CanvasDataModelId id,  CurrentWordModel currentWord,  Map<FullWordString, PlayerProfileModelId> words,  String latestWord,  GamePhaseType phaseType,  EnergyMultiplierType energyMultiplier,  WordWarning wordWarning,  LevelFeaturesSettingsModel featuresSettings,  UiLanguage wordsLanguage)?  $default,) {final _that = this;
+switch (_that) {
+case _LevelBlocState() when $default != null:
+return $default(_that.id,_that.currentWord,_that.words,_that.latestWord,_that.phaseType,_that.energyMultiplier,_that.wordWarning,_that.featuresSettings,_that.wordsLanguage);case _:
+  return null;
+
+}
+}
+
 }
 
 /// @nodoc
-abstract class _$$LevelBlocStateImplCopyWith<$Res>
-    implements $LevelBlocStateCopyWith<$Res> {
-  factory _$$LevelBlocStateImplCopyWith(_$LevelBlocStateImpl value,
-          $Res Function(_$LevelBlocStateImpl) then) =
-      __$$LevelBlocStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {CanvasDataModelId id,
-      CurrentWordModel currentWord,
-      Map<String, String> words,
-      String latestWord,
-      GamePhaseType phaseType,
-      EnergyMultiplierType energyMultiplier,
-      WordWarning wordWarning,
-      LevelFeaturesSettingsModel featuresSettings,
-      Languages wordsLanguage});
 
-  @override
-  $CanvasDataModelIdCopyWith<$Res> get id;
-  @override
-  $CurrentWordModelCopyWith<$Res> get currentWord;
-  @override
-  $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
+
+class _LevelBlocState implements LevelBlocState {
+  const _LevelBlocState({this.id = CanvasDataModelId.empty, this.currentWord = const CurrentWordModel(), final  Map<FullWordString, PlayerProfileModelId> words = const {}, this.latestWord = '', this.phaseType = GamePhaseType.entryWord, this.energyMultiplier = EnergyMultiplierType.m1, this.wordWarning = WordWarning.none, this.featuresSettings = LevelFeaturesSettingsModel.empty, this.wordsLanguage = defaultLanguage}): _words = words;
+  
+
+@override@JsonKey() final  CanvasDataModelId id;
+@override@JsonKey() final  CurrentWordModel currentWord;
+ final  Map<FullWordString, PlayerProfileModelId> _words;
+@override@JsonKey() Map<FullWordString, PlayerProfileModelId> get words {
+  if (_words is EqualUnmodifiableMapView) return _words;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_words);
+}
+
+@override@JsonKey() final  String latestWord;
+@override@JsonKey() final  GamePhaseType phaseType;
+@override@JsonKey() final  EnergyMultiplierType energyMultiplier;
+/// ********************************************
+/// *      NON PERSISTENT
+/// ********************************************
+@override@JsonKey() final  WordWarning wordWarning;
+@override@JsonKey() final  LevelFeaturesSettingsModel featuresSettings;
+@override@JsonKey() final  UiLanguage wordsLanguage;
+
+/// Create a copy of LevelBlocState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LevelBlocStateCopyWith<_LevelBlocState> get copyWith => __$LevelBlocStateCopyWithImpl<_LevelBlocState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LevelBlocState&&(identical(other.id, id) || other.id == id)&&(identical(other.currentWord, currentWord) || other.currentWord == currentWord)&&const DeepCollectionEquality().equals(other._words, _words)&&(identical(other.latestWord, latestWord) || other.latestWord == latestWord)&&(identical(other.phaseType, phaseType) || other.phaseType == phaseType)&&(identical(other.energyMultiplier, energyMultiplier) || other.energyMultiplier == energyMultiplier)&&(identical(other.wordWarning, wordWarning) || other.wordWarning == wordWarning)&&(identical(other.featuresSettings, featuresSettings) || other.featuresSettings == featuresSettings)&&(identical(other.wordsLanguage, wordsLanguage) || other.wordsLanguage == wordsLanguage));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,id,currentWord,const DeepCollectionEquality().hash(_words),latestWord,phaseType,energyMultiplier,wordWarning,featuresSettings,wordsLanguage);
+
+@override
+String toString() {
+  return 'LevelBlocState(id: $id, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, energyMultiplier: $energyMultiplier, wordWarning: $wordWarning, featuresSettings: $featuresSettings, wordsLanguage: $wordsLanguage)';
+}
+
+
 }
 
 /// @nodoc
-class __$$LevelBlocStateImplCopyWithImpl<$Res>
-    extends _$LevelBlocStateCopyWithImpl<$Res, _$LevelBlocStateImpl>
-    implements _$$LevelBlocStateImplCopyWith<$Res> {
-  __$$LevelBlocStateImplCopyWithImpl(
-      _$LevelBlocStateImpl _value, $Res Function(_$LevelBlocStateImpl) _then)
-      : super(_value, _then);
+abstract mixin class _$LevelBlocStateCopyWith<$Res> implements $LevelBlocStateCopyWith<$Res> {
+  factory _$LevelBlocStateCopyWith(_LevelBlocState value, $Res Function(_LevelBlocState) _then) = __$LevelBlocStateCopyWithImpl;
+@override @useResult
+$Res call({
+ CanvasDataModelId id, CurrentWordModel currentWord, Map<FullWordString, PlayerProfileModelId> words, String latestWord, GamePhaseType phaseType, EnergyMultiplierType energyMultiplier, WordWarning wordWarning, LevelFeaturesSettingsModel featuresSettings, UiLanguage wordsLanguage
+});
 
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? currentWord = null,
-    Object? words = null,
-    Object? latestWord = null,
-    Object? phaseType = null,
-    Object? energyMultiplier = null,
-    Object? wordWarning = null,
-    Object? featuresSettings = null,
-    Object? wordsLanguage = null,
-  }) {
-    return _then(_$LevelBlocStateImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as CanvasDataModelId,
-      currentWord: null == currentWord
-          ? _value.currentWord
-          : currentWord // ignore: cast_nullable_to_non_nullable
-              as CurrentWordModel,
-      words: null == words
-          ? _value._words
-          : words // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
-      latestWord: null == latestWord
-          ? _value.latestWord
-          : latestWord // ignore: cast_nullable_to_non_nullable
-              as String,
-      phaseType: null == phaseType
-          ? _value.phaseType
-          : phaseType // ignore: cast_nullable_to_non_nullable
-              as GamePhaseType,
-      energyMultiplier: null == energyMultiplier
-          ? _value.energyMultiplier
-          : energyMultiplier // ignore: cast_nullable_to_non_nullable
-              as EnergyMultiplierType,
-      wordWarning: null == wordWarning
-          ? _value.wordWarning
-          : wordWarning // ignore: cast_nullable_to_non_nullable
-              as WordWarning,
-      featuresSettings: null == featuresSettings
-          ? _value.featuresSettings
-          : featuresSettings // ignore: cast_nullable_to_non_nullable
-              as LevelFeaturesSettingsModel,
-      wordsLanguage: null == wordsLanguage
-          ? _value.wordsLanguage
-          : wordsLanguage // ignore: cast_nullable_to_non_nullable
-              as Languages,
-    ));
-  }
+
+@override $CurrentWordModelCopyWith<$Res> get currentWord;@override $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
+
 }
-
 /// @nodoc
+class __$LevelBlocStateCopyWithImpl<$Res>
+    implements _$LevelBlocStateCopyWith<$Res> {
+  __$LevelBlocStateCopyWithImpl(this._self, this._then);
 
-class _$LevelBlocStateImpl implements _LevelBlocState {
-  const _$LevelBlocStateImpl(
-      {this.id = CanvasDataModelId.empty,
-      this.currentWord = const CurrentWordModel(),
-      final Map<String, String> words = const {},
-      this.latestWord = '',
-      this.phaseType = GamePhaseType.entryWord,
-      this.energyMultiplier = EnergyMultiplierType.m1,
-      this.wordWarning = WordWarning.none,
-      this.featuresSettings = LevelFeaturesSettingsModel.empty,
-      this.wordsLanguage = Languages.en})
-      : _words = words;
+  final _LevelBlocState _self;
+  final $Res Function(_LevelBlocState) _then;
 
-  @override
-  @JsonKey()
-  final CanvasDataModelId id;
-  @override
-  @JsonKey()
-  final CurrentWordModel currentWord;
-  final Map<String, String> _words;
-  @override
-  @JsonKey()
-  Map<String, String> get words {
-    if (_words is EqualUnmodifiableMapView) return _words;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_words);
-  }
-
-  @override
-  @JsonKey()
-  final String latestWord;
-  @override
-  @JsonKey()
-  final GamePhaseType phaseType;
-  @override
-  @JsonKey()
-  final EnergyMultiplierType energyMultiplier;
-
-  /// ********************************************
-  /// *      NON PERSISTENT
-  /// ********************************************
-  @override
-  @JsonKey()
-  final WordWarning wordWarning;
-  @override
-  @JsonKey()
-  final LevelFeaturesSettingsModel featuresSettings;
-  @override
-  @JsonKey()
-  final Languages wordsLanguage;
-
-  @override
-  String toString() {
-    return 'LevelBlocState(id: $id, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, energyMultiplier: $energyMultiplier, wordWarning: $wordWarning, featuresSettings: $featuresSettings, wordsLanguage: $wordsLanguage)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LevelBlocStateImpl &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.currentWord, currentWord) ||
-                other.currentWord == currentWord) &&
-            const DeepCollectionEquality().equals(other._words, _words) &&
-            (identical(other.latestWord, latestWord) ||
-                other.latestWord == latestWord) &&
-            (identical(other.phaseType, phaseType) ||
-                other.phaseType == phaseType) &&
-            (identical(other.energyMultiplier, energyMultiplier) ||
-                other.energyMultiplier == energyMultiplier) &&
-            (identical(other.wordWarning, wordWarning) ||
-                other.wordWarning == wordWarning) &&
-            (identical(other.featuresSettings, featuresSettings) ||
-                other.featuresSettings == featuresSettings) &&
-            (identical(other.wordsLanguage, wordsLanguage) ||
-                other.wordsLanguage == wordsLanguage));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      currentWord,
-      const DeepCollectionEquality().hash(_words),
-      latestWord,
-      phaseType,
-      energyMultiplier,
-      wordWarning,
-      featuresSettings,
-      wordsLanguage);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LevelBlocStateImplCopyWith<_$LevelBlocStateImpl> get copyWith =>
-      __$$LevelBlocStateImplCopyWithImpl<_$LevelBlocStateImpl>(
-          this, _$identity);
+/// Create a copy of LevelBlocState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? currentWord = null,Object? words = null,Object? latestWord = null,Object? phaseType = null,Object? energyMultiplier = null,Object? wordWarning = null,Object? featuresSettings = null,Object? wordsLanguage = null,}) {
+  return _then(_LevelBlocState(
+id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as CanvasDataModelId,currentWord: null == currentWord ? _self.currentWord : currentWord // ignore: cast_nullable_to_non_nullable
+as CurrentWordModel,words: null == words ? _self._words : words // ignore: cast_nullable_to_non_nullable
+as Map<FullWordString, PlayerProfileModelId>,latestWord: null == latestWord ? _self.latestWord : latestWord // ignore: cast_nullable_to_non_nullable
+as String,phaseType: null == phaseType ? _self.phaseType : phaseType // ignore: cast_nullable_to_non_nullable
+as GamePhaseType,energyMultiplier: null == energyMultiplier ? _self.energyMultiplier : energyMultiplier // ignore: cast_nullable_to_non_nullable
+as EnergyMultiplierType,wordWarning: null == wordWarning ? _self.wordWarning : wordWarning // ignore: cast_nullable_to_non_nullable
+as WordWarning,featuresSettings: null == featuresSettings ? _self.featuresSettings : featuresSettings // ignore: cast_nullable_to_non_nullable
+as LevelFeaturesSettingsModel,wordsLanguage: null == wordsLanguage ? _self.wordsLanguage : wordsLanguage // ignore: cast_nullable_to_non_nullable
+as UiLanguage,
+  ));
 }
 
-abstract class _LevelBlocState implements LevelBlocState {
-  const factory _LevelBlocState(
-      {final CanvasDataModelId id,
-      final CurrentWordModel currentWord,
-      final Map<String, String> words,
-      final String latestWord,
-      final GamePhaseType phaseType,
-      final EnergyMultiplierType energyMultiplier,
-      final WordWarning wordWarning,
-      final LevelFeaturesSettingsModel featuresSettings,
-      final Languages wordsLanguage}) = _$LevelBlocStateImpl;
-
-  @override
-  CanvasDataModelId get id;
-  @override
-  CurrentWordModel get currentWord;
-  @override
-  Map<String, String> get words;
-  @override
-  String get latestWord;
-  @override
-  GamePhaseType get phaseType;
-  @override
-  EnergyMultiplierType get energyMultiplier;
-  @override
-
-  /// ********************************************
-  /// *      NON PERSISTENT
-  /// ********************************************
-  WordWarning get wordWarning;
-  @override
-  LevelFeaturesSettingsModel get featuresSettings;
-  @override
-  Languages get wordsLanguage;
-  @override
-  @JsonKey(ignore: true)
-  _$$LevelBlocStateImplCopyWith<_$LevelBlocStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+/// Create a copy of LevelBlocState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$CurrentWordModelCopyWith<$Res> get currentWord {
+  
+  return $CurrentWordModelCopyWith<$Res>(_self.currentWord, (value) {
+    return _then(_self.copyWith(currentWord: value));
+  });
+}/// Create a copy of LevelBlocState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings {
+  
+  return $LevelFeaturesSettingsModelCopyWith<$Res>(_self.featuresSettings, (value) {
+    return _then(_self.copyWith(featuresSettings: value));
+  });
 }
+}
+
+// dart format on

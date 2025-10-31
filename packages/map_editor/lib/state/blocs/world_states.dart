@@ -2,7 +2,7 @@ part of '../state.dart';
 
 @immutable
 @freezed
-class WorldState with _$WorldState {
+abstract class WorldState with _$WorldState {
   const factory WorldState({
     @Default(WorldDateTimeModel.zero) final WorldDateTimeModel dateTime,
     @Default(WorldDateTimeModel.zero) final WorldDateTimeModel lastDateTime,

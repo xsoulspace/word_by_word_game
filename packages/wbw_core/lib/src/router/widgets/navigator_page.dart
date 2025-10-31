@@ -7,9 +7,6 @@ class NavigatorPage extends MaterialPage<void> {
     final RouterPopper popper = const RouterPopper(),
     super.fullscreenDialog,
   }) : super(
-          child: RouterPopScope(
-            popper: popper,
-            child: child,
-          ),
-        );
+         child: RouterPopScope(popper: popper, child: child),
+       );
 }

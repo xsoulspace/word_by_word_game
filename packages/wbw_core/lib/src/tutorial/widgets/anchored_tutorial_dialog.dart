@@ -2,14 +2,11 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 
 import '../../../wbw_core.dart';
 
-enum AnchoredTutorialDialogType {
-  idle,
-  ok,
-}
+enum AnchoredTutorialDialogType { idle, ok }
 
 extension _TutorialEventModelExtension on TutorialEventModel {
   AnchoredTutorialDialogType? getDialogType() {
@@ -33,8 +30,9 @@ class MobileTutorialDialog extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final persistentFormFactors = UiPersistentFormFactors.of(context);
-    final highlighted =
-        context.select<TutorialBloc, bool>((final tutorialBloc) {
+    final highlighted = context.select<TutorialBloc, bool>((
+      final tutorialBloc,
+    ) {
       // return true;
       if (tutorialBloc.state is! TutorialBlocStateLive) return false;
       final tutorialEvent = tutorialBloc.getTutorialEvent();
@@ -54,12 +52,12 @@ class MobileAnchoredTutorialDialog extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final tutorialEvent = context.select<TutorialBloc, TutorialEventModel?>(
-      (final bloc) {
-        if (bloc.state is! TutorialBlocStateLive) return null;
-        return bloc.getTutorialEvent();
-      },
-    );
+    final tutorialEvent = context.select<TutorialBloc, TutorialEventModel?>((
+      final bloc,
+    ) {
+      if (bloc.state is! TutorialBlocStateLive) return null;
+      return bloc.getTutorialEvent();
+    });
     if (tutorialEvent == null) return const SizedBox();
     Widget child;
     final dialogType = tutorialEvent.getDialogType();
@@ -85,12 +83,12 @@ class DesktopAnchoredTutorialDialog extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final tutorialEvent = context.select<TutorialBloc, TutorialEventModel?>(
-      (final bloc) {
-        if (bloc.state is! TutorialBlocStateLive) return null;
-        return bloc.getTutorialEvent();
-      },
-    );
+    final tutorialEvent = context.select<TutorialBloc, TutorialEventModel?>((
+      final bloc,
+    ) {
+      if (bloc.state is! TutorialBlocStateLive) return null;
+      return bloc.getTutorialEvent();
+    });
     if (tutorialEvent == null) return const SizedBox();
     Widget child;
     final dialogType = tutorialEvent.getDialogType();
@@ -103,7 +101,8 @@ class DesktopAnchoredTutorialDialog extends StatelessWidget {
         child = const SizedBox();
     }
     return Transform.translate(
-      offset: highlightPosition == Alignment.centerRight ||
+      offset:
+          highlightPosition == Alignment.centerRight ||
               highlightPosition == Alignment.bottomRight
           ? const Offset(40, -40)
           : const Offset(0, -40),
@@ -113,64 +112,53 @@ class DesktopAnchoredTutorialDialog extends StatelessWidget {
 }
 
 class _AnchoredTutorialIdleDialog extends StatelessWidget {
-  const _AnchoredTutorialIdleDialog({
-    required this.tutorialEvent,
-  });
+  const _AnchoredTutorialIdleDialog({required this.tutorialEvent});
   final TutorialEventModel tutorialEvent;
 
   @override
   Widget build(final BuildContext context) => AnchoredTutorialDialogScaffold(
-        children: [
-          Text(tutorialEvent.localizedMap.getValueByLanguage()),
-        ],
-      );
+    children: [Text(tutorialEvent.localizedMap.getValueByLanguage())],
+  );
 }
 
 class _AnchoredTutorialOkDialog extends StatelessWidget {
-  const _AnchoredTutorialOkDialog({
-    required this.tutorialEvent,
-  });
+  const _AnchoredTutorialOkDialog({required this.tutorialEvent});
   final TutorialEventModel tutorialEvent;
   @override
   Widget build(final BuildContext context) => AnchoredTutorialDialogScaffold(
+    children: [
+      Text(tutorialEvent.localizedMap.getValueByLanguage()),
+      Row(
         children: [
-          Text(tutorialEvent.localizedMap.getValueByLanguage()),
-          Row(
-            children: [
-              Expanded(
-                child: TextButton(
-                  onPressed: () {
-                    context.read<TutorialBloc>().onTutorialUiAction(
-                          const TutorialUiActionEvent(
-                            action: TutorialCompleteAction.onClick,
-                            key: TutorialUiItem.anchoredOkDialog,
-                          ),
-                        );
-                  },
-                  child: const Text('Ok'),
-                ),
-              ),
-            ],
+          Expanded(
+            child: TextButton(
+              onPressed: () {
+                context.read<TutorialBloc>().onTutorialUiAction(
+                  const TutorialUiActionEvent(
+                    action: TutorialCompleteAction.onClick,
+                    key: TutorialUiItem.anchoredOkDialog,
+                  ),
+                );
+              },
+              child: const Text('Ok'),
+            ),
           ),
         ],
-      );
+      ),
+    ],
+  );
 }
 
 class AnchoredTutorialDialogScaffold extends StatelessWidget {
-  const AnchoredTutorialDialogScaffold({
-    this.children,
-    this.builder,
-    super.key,
-  }) : assert(
-          children != null || builder != null,
-          'Children or builder should be provided',
-        );
+  const AnchoredTutorialDialogScaffold({this.children, this.builder, super.key})
+    : assert(
+        children != null || builder != null,
+        'Children or builder should be provided',
+      );
   final List<Widget>? children;
   final WidgetBuilder? builder;
   @override
   Widget build(final BuildContext context) {
-    // final theme = Theme.of(context);
-    final uiTheme = context.uiTheme;
     final screenSize = MediaQuery.sizeOf(context);
     Widget child;
     if (builder != null) {
@@ -178,7 +166,7 @@ class AnchoredTutorialDialogScaffold extends StatelessWidget {
     } else {
       child = ListView(
         shrinkWrap: true,
-        padding: EdgeInsets.all(uiTheme.spacing.medium),
+        padding: const EdgeInsets.all(24),
         children: children!,
       );
     }
@@ -186,9 +174,7 @@ class AnchoredTutorialDialogScaffold extends StatelessWidget {
       constraints: BoxConstraints(
         maxWidth: math.min(screenSize.width * 0.8, 300),
       ),
-      child: Card(
-        child: child,
-      ),
+      child: Card(child: child),
     );
   }
 }

@@ -4,53 +4,38 @@ part of 'pause_screen.dart';
 
 class _PauseScreenStateDiDto {
   _PauseScreenStateDiDto.use(final BuildContext context)
-      : mechanics = context.read(),
-        globalGameBloc = context.read();
+    : mechanics = context.read(),
+      globalGameBloc = context.read();
   final GlobalGameBloc globalGameBloc;
   final MechanicsCollection mechanics;
 }
 
-PauseScreenState _usePauseScreenState({
-  required final BuildContext context,
-}) =>
-    use(
-      ContextfulLifeHook(
-        debugLabel: '_PauseScreenState',
-        state: PauseScreenState(
-          diDto: _PauseScreenStateDiDto.use(context),
-        ),
-      ),
-    );
-
-class PauseScreenState extends ContextfulLifeState {
+class PauseScreenState extends ValueNotifier<void> {
   PauseScreenState({
-    required this.diDto,
-  });
-  final _PauseScreenStateDiDto diDto;
+    required final BuildContext context,
+    required this.uxState,
+    required this.uiState,
+  }) : dto = _PauseScreenStateDiDto.use(context),
+       super(null);
+  final LevelStartDialogUxNotifier uxState;
+  final LevelStartDialogUiState uiState;
+  final _PauseScreenStateDiDto dto;
   // @override
   // void initState() {
   //   super.initState();
   //   if (Platform.isAndroid) unawaited(YandexAdsSdk().onLoad());
   // }
 
-  Future<void> onContinue({
-    required final CanvasDataModelId id,
+  Future<void> onShowStartDialog({
     required final BuildContext context,
+    required final CanvasDataModelId canvasDataId,
   }) async {
-    final pathsController = AppPathsController.of(context);
-    await diDto.globalGameBloc.onStartPlayingLevel(
-      const StartPlayingLevelEvent(shouldRestartTutorial: false),
-    );
-    pathsController.toPlayableLevel(id: id);
+    uxState.canvasDataId = canvasDataId;
+    uiState.onSwitchDialogVisiblity();
   }
 
-  void onToPlayersAndHighscore(final BuildContext context) {
-    AppPathsController.of(context).toPlayersAndHighscore();
-  }
-
-  void onToSettings(final BuildContext context) {
-    AppPathsController.of(context).toSettings();
-  }
+  late final onContinueFromSamePlace = uxState.onContinueFromSamePlace;
+  late final onDeleteLevel = uxState.onDeleteLevel;
 
   Future<void> onPrivacyPolicy() async {
     // launchUrlString('https://xsoulspace.dev/game/wbw/privacy');
@@ -60,31 +45,22 @@ class PauseScreenState extends ContextfulLifeState {
     );
   }
 
-  Future<void> onShowAbout() async {
-    final context = getContext();
+  Future<void> onShowAbout(final BuildContext context) async {
     final locale = useLocale(context, listen: false);
     final theme = Theme.of(context);
-    final uiTheme = context.uiTheme;
     final s = S.of(context);
-    final madeWith = '${const LocalizedMap(
-      value: {
-        Languages.en: 'Made with',
-        Languages.ru: 'Сделано с помощью',
-        Languages.it: 'Fatto con',
-      },
-    ).getValue(locale)} Flame Engine, Flutter & Dart.';
+    final madeWith =
+        '${LocalizedMap({uiLanguages.en: 'Made with', uiLanguages.ru: 'Сделано с помощью', uiLanguages.it: 'Fatto con'}).getValue(locale)} Flame Engine, Flutter & Dart.';
     final List<Widget> aboutBoxChildren = <Widget>[
       ConstrainedBox(
-        constraints: const BoxConstraints(
-          maxWidth: 200,
-        ),
+        constraints: const BoxConstraints(maxWidth: 200),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            uiTheme.verticalBoxes.medium,
+            UiGaps.medium,
             Text(s.creatingGame),
-            uiTheme.verticalBoxes.medium,
+            UiGaps.medium,
             Visibility(
               visible: Envs.isLinksAllowed,
               child: TextButton(
@@ -92,12 +68,11 @@ class PauseScreenState extends ContextfulLifeState {
                   padding: const EdgeInsets.all(8),
                   child: Text(s.sendFeedback),
                 ),
-                onPressed: () => launchUrlString(
-                  'https://discord.com/invite/y54DpJwmAn',
-                ),
+                onPressed: () =>
+                    launchUrlString('https://discord.com/invite/y54DpJwmAn'),
               ),
             ),
-            uiTheme.verticalBoxes.small,
+            UiGaps.small,
             Visibility(
               visible: Envs.isLinksAllowed,
               child: TextButton(
@@ -109,82 +84,47 @@ class PauseScreenState extends ContextfulLifeState {
                 ),
               ),
             ),
-            uiTheme.verticalBoxes.large,
+            UiGaps.large,
             Text(S.of(context).graphicsCreditsThanks),
-            uiTheme.verticalBoxes.medium,
+            UiGaps.medium,
             Visibility(
               visible: Envs.isLinksAllowed,
               child: TextButton(
                 onPressed: () => launchUrlString('https://sonnenstein.itch.io'),
                 child: const Padding(
                   padding: EdgeInsets.all(8),
-                  child: Text('Sonnenstein'),
+                  child: Text('Sonnenstein - Evening Tileset'),
                 ),
               ),
             ),
-            Visibility(
-              visible: Envs.isLinksAllowed,
-              child: TextButton(
-                onPressed: () =>
-                    launchUrlString('https://pixelfrog-assets.itch.io'),
-                child: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text(
-                    'Pixel Frog (${const LocalizedMap(
-                      value: {
-                        Languages.en: 'Used this pack during v3 development',
-                        Languages.ru:
-                            'Использовал пакет графики для разработки 3 версии',
-                        Languages.it:
-                            // ignore: lines_longer_than_80_chars
-                            'Utilizzato questo pacchetto durante lo sviluppo della v3',
-                      },
-                    ).getValue(locale)})',
-                  ),
-                ),
-              ),
-            ),
-            uiTheme.verticalBoxes.medium,
+            UiGaps.medium,
             Text(madeWith),
-            uiTheme.verticalBoxes.large,
+            UiGaps.large,
             Text(s.thankYou),
           ],
         ),
       ),
     ];
     final applicationLegalese =
-        '\u{a9} 2020-${DateTime.now().year} ${const LocalizedMap(
-      value: {
-        Languages.en: 'Game by Anton Malofeev, Irina Veter',
-        Languages.ru: 'Создатели игры: Антон Малофеев, Ирина Ветер',
-        Languages.it: 'Gioco di Anton Malofeev, Irina Veter',
-      },
-    ).getValue(locale)}';
+        '\u{a9} 2020-${DateTime.now().year} ${LocalizedMap({uiLanguages.en: 'Game by Anton Malofeev, Irina Veter', uiLanguages.ru: 'Создатели игры: Антон Малофеев, Ирина Ветер', uiLanguages.it: 'Gioco di Anton Malofeev, Irina Veter'}).getValue(locale)}';
 
     final packageInfo = await PackageInfo.fromPlatform();
     final applicationVersion =
         '${packageInfo.version}+${packageInfo.buildNumber}';
     final icon = Container(
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: Image.asset(
-            'assets/icon.png',
-          ).image,
-        ),
+        image: DecorationImage(image: Image.asset('assets/icon.png').image),
         borderRadius: const BorderRadius.all(Radius.elliptical(12, 12)),
       ),
       width: 64,
       height: 64,
     );
-    if (!mounted) return;
     final applicationName = Envs.store.isYandexGames
-        ? const LocalizedMap(
-            value: {
-              Languages.en: 'Word By Word Adventure',
-              Languages.ru: 'Слово после слова Приключение',
-              Languages.it: 'Parola dopo parola Avventura',
-            },
-          ).getValue(locale)
+        ? LocalizedMap({
+            uiLanguages.en: 'Word By Word Adventure',
+            uiLanguages.ru: 'Слово после слова Приключение',
+            uiLanguages.it: 'Parola dopo parola Avventura',
+          }).getValue(locale)
         : 'Word By Word: Adventure';
     if (Envs.isLinksAllowed) {
       showAboutDialog(
@@ -215,7 +155,7 @@ class PauseScreenState extends ContextfulLifeState {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(applicationLegalese),
-                          uiTheme.verticalBoxes.small,
+                          UiGaps.small,
                           Text(
                             applicationVersion,
                             style: theme.textTheme.labelSmall,
@@ -226,20 +166,20 @@ class PauseScreenState extends ContextfulLifeState {
                   ),
                 ],
               ),
-              uiTheme.verticalBoxes.medium,
+              UiGaps.medium,
               Text(s.creatingGame),
-              uiTheme.verticalBoxes.large,
+              UiGaps.large,
               Text(
                 S.of(context).graphicsCreditsThanks,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
-              uiTheme.verticalBoxes.medium,
-              const Text('Sonnenstein, Pixel Frog'),
-              uiTheme.verticalBoxes.large,
+              UiGaps.medium,
+              const Text('Sonnenstein - Evening Tileset'),
+              UiGaps.large,
               Text(madeWith),
-              uiTheme.verticalBoxes.large,
+              UiGaps.large,
               TextButton(
                 onPressed: () => Navigator.maybePop(context),
                 child: Text(S.of(context).ok),

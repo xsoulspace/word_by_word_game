@@ -15,10 +15,7 @@ class ScoreMechanics {
   ScoreModel getScoreFromWord({
     required final String word,
     final int scoreModifier = kIncreaseScoreModifier,
-  }) =>
-      ScoreModel(
-        value: (word.length * scoreModifier).toDouble(),
-      );
+  }) => ScoreModel(value: (word.length * scoreModifier).toDouble());
 
   ScoreModel getRevealScore({
     required final String word,
@@ -51,19 +48,16 @@ class ScoreMechanics {
   ScoreModel getDecreaseScore({
     required final int lettersCount,
     final int scoreModifier = kDecreaseScoreModifier,
-  }) =>
-      ScoreModel(value: lettersCount * scoreModifier * -1);
+  }) => ScoreModel(value: lettersCount * scoreModifier * -1);
 
   bool checkPlayerAbilityToDecreaseLetters({
     required final PlayerProfileModel player,
-  }) =>
-      player.highscore.score.value >= kLetterDecreaseCost;
+  }) => player.highscore.score.value >= kLetterDecreaseCost;
 
   bool checkPlayerAbilityToUseScore({
     required final PlayerProfileModel player,
     required final int score,
-  }) =>
-      player.highscore.score >= score;
+  }) => player.highscore.score >= score;
 
   /// Use this method to inscrease score
   /// when the new word is added to the stack
@@ -109,12 +103,10 @@ class ScoreMechanics {
   }) {
     final levelsHighscores = {...player.levelsHighscores};
 
-    PlayerLevelHighscoreModel levelHighscore = levelsHighscores[levelId] ??
+    PlayerLevelHighscoreModel levelHighscore =
+        levelsHighscores[levelId] ??
         PlayerLevelHighscoreModel(levelId: levelId);
-    final newMaxDistance = math.max(
-      maxDistance,
-      levelHighscore.maxDistance,
-    );
+    final newMaxDistance = math.max(maxDistance, levelHighscore.maxDistance);
     levelHighscore = levelHighscore.copyWith(
       // TODO(arenukvern): add a way to count flight time
       // flightTime: ,
@@ -127,9 +119,7 @@ class ScoreMechanics {
 
     levelsHighscores[levelId] = levelHighscore;
 
-    return player.copyWith(
-      levelsHighscores: levelsHighscores,
-    );
+    return player.copyWith(levelsHighscores: levelsHighscores);
   }
 
   /// level profile can have a score zero
@@ -143,10 +133,7 @@ class ScoreMechanics {
       gScore.maxLettersCount,
       lScore.maxLettersCount,
     );
-    final maxWordsCount = math.max(
-      gScore.maxWordsCount,
-      lScore.maxWordsCount,
-    );
+    final maxWordsCount = math.max(gScore.maxWordsCount, lScore.maxWordsCount);
 
     return globalProfile.copyWith(
       highscore: gScore.copyWith(

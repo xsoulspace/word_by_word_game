@@ -1,0 +1,151 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+# UI Design System & UI Kit Creation Guide for AI Agents
+
+## Core Principles for Building a Design System
+
+### 1. Establish Foundational Design Tokens
+
+- **Base Unit System**: Define a consistent spatial grid (typically 4px or 8px) as foundation for all measurements
+- **Spacing Hierarchy**: Create a progressive scale for:
+
+  - Micro-spacing (smallest interactions)
+  - Element spacing (between components)
+  - Section padding (container boundaries)
+  - Nested indentation (hierarchical relationships)
+
+- **Typography System**:
+
+  - Define a primary font family with fallbacks
+  - Create a comprehensive type scale with clear hierarchy:
+    - Primary text (main content)
+    - Secondary text (supporting content)
+    - Tertiary text (metadata, captions)
+    - Micro text (legal, timestamps)
+    - Headers (section titles, emphasis)
+    - Code text (if applicable)
+  - Specify for each: size, line height, weight, letter spacing, and case treatment
+
+- **Color System**:
+  - Define semantic color roles rather than specific values:
+    - Background (base, surface)
+    - Text (primary, secondary)
+    - Accent (primary, secondary)
+    - Feedback (success, warning, error, info)
+  - Ensure all color combinations meet accessibility standards (WCAG AA minimum)
+  - Create relationships between colors that maintain harmony
+
+### 2. Component Architecture
+
+- **Atomic Design Structure**:
+
+  - **Atoms**: Basic building blocks (buttons, inputs, text styles)
+  - **Molecules**: Combinations of atoms (form fields, cards)
+  - **Organisms**: Complex UI sections composed of molecules
+  - **Templates**: Page layouts with placeholder content
+  - **Pages**: Specific implementations of templates
+
+- **Component Properties**:
+  - Define consistent dimensions (height, width, radius)
+  - Establish depth system (elevation, shadows, borders)
+  - Create variants (primary/secondary, sizes, states)
+  - Document component anatomy and spacing
+
+### 3. Interaction & State System
+
+- **State Definitions**:
+
+  - Default
+  - Hover
+  - Pressed/Active
+  - Focus
+  - Disabled
+  - Selected/Checked
+  - Error
+
+- **Animation & Transitions**:
+  - Define duration categories (micro, state, complex)
+  - Establish consistent timing curves
+  - Create animation principles (natural, purposeful, informative)
+
+### 4. Theme Adaptability
+
+- **Theme Structure**:
+
+  - Create theme extension mechanism
+  - Define light and dark mode variants
+  - Support high contrast mode
+  - Allow for brand theming
+
+- **Visual Techniques**:
+  - Shadow system (light/dark relationships)
+  - Border treatments
+  - Surface treatments (texture, noise)
+  - Depth perception techniques
+
+### 5. Accessibility Framework
+
+- **Contrast Requirements**:
+
+  - Minimum contrast ratios for text and UI elements
+  - Enhanced contrast options
+
+- **Interaction Support**:
+
+  - Focus indicators
+  - Touch target sizes
+  - Keyboard navigation
+  - Screen reader support
+
+- **Adaptability**:
+  - Motion reduction options
+  - Text scaling support
+  - Color blindness considerations
+
+## Implementation Guide for AI Agents
+
+1. **Start with Semantic Intent**:
+
+   - Define the purpose and meaning of each design element
+   - Document design decisions and rationale
+   - Create a semantic token system before implementation
+
+2. **Build Token System First**:
+
+   - Implement design tokens as constants or theme variables
+   - Create a token reference system for consistency
+   - Establish naming conventions that reflect purpose
+
+3. **Component Development Process**:
+
+   - Begin with atomic components
+   - Document component API and variants
+   - Implement theme-aware styling
+   - Add accessibility attributes
+   - Test across themes and states
+
+4. **Theme Implementation**:
+
+   - Create theme extension mechanism
+   - Implement light and dark themes
+   - Test color relationships and contrast
+   - Verify smooth theme transitions
+
+5. **Documentation Requirements**:
+
+   - Component usage guidelines
+   - Visual examples of states and variants
+   - Accessibility considerations
+   - Theme adaptations
+
+6. **Testing Checklist**:
+   - Visual consistency across themes
+   - Proper state handling
+   - Accessibility compliance
+   - Responsive behavior
+   - Animation performance
+
+Follow these principles to create a cohesive, accessible, and maintainable design system that can serve as a foundation for any application or game interface.

@@ -1,17 +1,19 @@
 /* AUTOMATICALLY GENERATED CODE DO NOT MODIFY */
 /*   To generate run: "serverpod generate"    */
 
-// ignore_for_file: library_private_types_in_public_api
-// ignore_for_file: public_member_api_docs
 // ignore_for_file: implementation_imports
-// ignore_for_file: use_super_parameters
+// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: public_member_api_docs
 // ignore_for_file: type_literal_in_constant_pattern
+// ignore_for_file: use_super_parameters
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-import 'protocol.dart' as _i2;
+import 'word_language.dart' as _i2;
 
-abstract class WordRequest extends _i1.SerializableEntity {
+abstract class WordRequest
+    implements _i1.SerializableModel, _i1.ProtocolSerialization {
   WordRequest._({
     required this.language,
     required this.word,
@@ -22,14 +24,11 @@ abstract class WordRequest extends _i1.SerializableEntity {
     required String word,
   }) = _WordRequestImpl;
 
-  factory WordRequest.fromJson(
-    Map<String, dynamic> jsonSerialization,
-    _i1.SerializationManager serializationManager,
-  ) {
+  factory WordRequest.fromJson(Map<String, dynamic> jsonSerialization) {
     return WordRequest(
-      language: serializationManager
-          .deserialize<_i2.WordLanguage>(jsonSerialization['language']),
-      word: serializationManager.deserialize<String>(jsonSerialization['word']),
+      language:
+          _i2.WordLanguage.fromJson((jsonSerialization['language'] as String)),
+      word: jsonSerialization['word'] as String,
     );
   }
 
@@ -37,6 +36,9 @@ abstract class WordRequest extends _i1.SerializableEntity {
 
   String word;
 
+  /// Returns a shallow copy of this [WordRequest]
+  /// with some or all fields replaced by the given arguments.
+  @_i1.useResult
   WordRequest copyWith({
     _i2.WordLanguage? language,
     String? word,
@@ -50,11 +52,16 @@ abstract class WordRequest extends _i1.SerializableEntity {
   }
 
   @override
-  Map<String, dynamic> allToJson() {
+  Map<String, dynamic> toJsonForProtocol() {
     return {
       'language': language.toJson(),
       'word': word,
     };
+  }
+
+  @override
+  String toString() {
+    return _i1.SerializationManager.encode(this);
   }
 }
 
@@ -67,6 +74,9 @@ class _WordRequestImpl extends WordRequest {
           word: word,
         );
 
+  /// Returns a shallow copy of this [WordRequest]
+  /// with some or all fields replaced by the given arguments.
+  @_i1.useResult
   @override
   WordRequest copyWith({
     _i2.WordLanguage? language,

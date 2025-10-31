@@ -18,6 +18,9 @@ class $AssetsArchivesGen {
   String get ruDicTar =>
       'packages/wbw_dictionaries/assets/archives/ru_dic.tar.gz';
 
+  /// Directory path: packages/wbw_dictionaries/assets/archives
+  String get path => 'packages/wbw_dictionaries/assets/archives';
+
   /// List of all assets
   List<String> get values => [engDicTar, ruDicTar];
 }
@@ -34,12 +37,15 @@ class $AssetsSrcGen {
   /// File path: assets/src/ru_dic.csv
   String get ruDic => 'packages/wbw_dictionaries/assets/src/ru_dic.csv';
 
+  /// Directory path: packages/wbw_dictionaries/assets/src
+  String get path => 'packages/wbw_dictionaries/assets/src';
+
   /// List of all assets
   List<String> get values => [readme, engDic, ruDic];
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const String package = 'wbw_dictionaries';
 

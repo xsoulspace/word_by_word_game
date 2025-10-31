@@ -8,7 +8,7 @@ part of 'preset_resources.dart';
 typedef SpriteCode = String;
 
 @freezed
-class PresetTileResource with _$PresetTileResource {
+abstract class PresetTileResource with _$PresetTileResource {
   const factory PresetTileResource({
     required final PresetTileModel tile,
     @Default({})
@@ -25,11 +25,11 @@ class PresetTileResource with _$PresetTileResource {
       tile: tile,
       tilesetConfig: tilesetConfig,
     );
-    final directionalPaths =
-        resourcesLoader.getPathsForPresetDirectionalGraphics(
-      tile: tile,
-      tilesetConfig: tilesetConfig,
-    );
+    final directionalPaths = resourcesLoader
+        .getPathsForPresetDirectionalGraphics(
+          tile: tile,
+          tilesetConfig: tilesetConfig,
+        );
     return PresetTileResource(
       tile: tile,
       behaviourPaths: behaviourPaths,

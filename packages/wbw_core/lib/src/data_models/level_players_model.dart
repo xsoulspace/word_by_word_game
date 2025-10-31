@@ -4,7 +4,7 @@ part of 'data_models.dart';
 
 @immutable
 @freezed
-class LevelPlayersModel with _$LevelPlayersModel {
+abstract class LevelPlayersModel with _$LevelPlayersModel {
   @JsonSerializable(explicitToJson: true)
   const factory LevelPlayersModel({
     required final List<PlayerProfileModel> players,

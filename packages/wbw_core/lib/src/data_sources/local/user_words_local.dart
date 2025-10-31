@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 import '../../data_models/data_models.dart';
 import '../../gen/assets.gen.dart';
@@ -13,7 +14,7 @@ class UserWordsLocalDataSourceImpl implements UserWordsLocalDataSource {
     required this.assetBundle,
   });
 
-  final LocalDbDataSource localDb;
+  final LocalDbI localDb;
   final AssetBundle assetBundle;
   static const _persistenceKey = 'localdictionary';
   @override
@@ -56,13 +57,10 @@ class UserWordsLocalDataSourceImpl implements UserWordsLocalDataSource {
   Future<void> preloadProfanities() async {
     final values = await assetBundle.loadStructuredData<Set<String>>(
       Assets.dictionaries.wrongWords,
-      (final value) async => compute(
-        (final v) {
-          final list = List.castFrom<dynamic, String>(jsonDecode(v));
-          return list.toSet();
-        },
-        value,
-      ),
+      (final value) async => compute((final v) {
+        final list = List.castFrom<dynamic, String>(jsonDecode(v));
+        return list.toSet();
+      }, value),
     );
     _profanities = values;
   }

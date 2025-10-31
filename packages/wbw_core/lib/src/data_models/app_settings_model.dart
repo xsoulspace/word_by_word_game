@@ -4,15 +4,10 @@ part of 'data_models.dart';
 
 @immutable
 @Freezed()
-class AppSettingsModel with _$AppSettingsModel {
-  @JsonSerializable(
-    explicitToJson: true,
-  )
+abstract class AppSettingsModel with _$AppSettingsModel {
+  @JsonSerializable(explicitToJson: true)
   const factory AppSettingsModel({
-    @JsonKey(
-      fromJson: localeFromString,
-      toJson: localeToString,
-    )
+    @JsonKey(fromJson: localeFromString, toJson: localeToString)
     final Locale? locale,
     @Default(BrightnessMode.system) final BrightnessMode brightnessMode,
   }) = _AppSettingsModel;

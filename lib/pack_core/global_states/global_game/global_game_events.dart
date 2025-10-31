@@ -3,13 +3,16 @@ part of 'global_game_bloc.dart';
 @immutable
 @freezed
 sealed class GameEvent with _$GameEvent {
-  const factory GameEvent.startPlayingLevel({
-    @Default(true) final bool shouldRestartTutorial,
-  }) = StartPlayingLevelEvent;
   const factory GameEvent.initGlobalGameLevel({
     required final LevelModel levelModel,
     @Default(true) final bool isNewStart,
+    @Default(PlayerStartPointType.fromSpawnPoint)
+    final PlayerStartPointType playerStartPoint,
+    @Default(WindDirection.defaultDirection) final WindDirection windDirection,
   }) = InitGlobalGameLevelEvent;
+  const factory GameEvent.startPlayingLevel({
+    @Default(true) final bool shouldRestartTutorial,
+  }) = StartPlayingLevelEvent;
   const factory GameEvent.deletePlayerProfile({
     required final PlayerProfileModel profile,
   }) = DeletePlayerProfileEvent;

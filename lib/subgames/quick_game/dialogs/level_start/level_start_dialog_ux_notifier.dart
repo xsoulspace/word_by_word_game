@@ -2,30 +2,36 @@ part of 'level_start_dialog.dart';
 
 class _LevelStartDialogUxStateDiDto {
   _LevelStartDialogUxStateDiDto.use(final BuildContext context)
-      : globalGameBloc = context.read(),
-        mechanics = context.read(),
-        appSettingsNotifier = context.read(),
-        onlineStatusService = context.read(),
-        wbwDictionary = context.read(),
-        tutorialBloc = context.read();
+    : globalGameBloc = context.read(),
+      mechanics = context.read(),
+      appSettingsNotifier = context.read(),
+      onlineStatusService = context.read(),
+      wbwDictionary = context.read(),
+      statesStatusesCubit = context.read(),
+      tutorialBloc = context.read();
   final GlobalGameBloc globalGameBloc;
   final TutorialBloc tutorialBloc;
   final AppSettingsNotifier appSettingsNotifier;
   final MechanicsCollection mechanics;
   final OnlineStatusService onlineStatusService;
   final WbwDictionary wbwDictionary;
+  final StatesStatusesCubit statesStatusesCubit;
 }
 
 class LevelStartDialogUxNotifier extends ValueNotifier<String> {
-  LevelStartDialogUxNotifier({
-    required final BuildContext context,
-    required this.canvasData,
-  })  : dto = _LevelStartDialogUxStateDiDto.use(context),
-        super('') {
+  LevelStartDialogUxNotifier({required final BuildContext context})
+    : dto = _LevelStartDialogUxStateDiDto.use(context),
+      super('') {
     onLoad();
   }
-  final CanvasDataModel canvasData;
+
   final _LevelStartDialogUxStateDiDto dto;
+
+  /// Temporary variable to access in dialog
+  /// Never use it inside functions.
+  CanvasDataModelId? canvasDataId;
+  bool get isQuickGame => canvasDataId?.isQuickGame ?? false;
+
   void onLoad() {
     final liveState = dto.globalGameBloc.state;
     character = liveState.playersCharacters.first;
@@ -61,8 +67,9 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
 
   void onPlayerProfileCreated(final PlayerProfileModel profile) {
     unawaited(
-      dto.globalGameBloc
-          .onCreatePlayerProfile(CreatePlayerProfileEvent(profile: profile)),
+      dto.globalGameBloc.onCreatePlayerProfile(
+        CreatePlayerProfileEvent(profile: profile),
+      ),
     );
     onPlayerSelected(profile);
   }
@@ -74,13 +81,11 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
     notifyListeners();
   }
 
-  LevelFeaturesSettingsModel featuresSettings =
-      LevelFeaturesSettingsModel.empty.copyWith(
-    isTechnologiesEnabled: kDebugMode,
-  );
+  LevelFeaturesSettingsModel featuresSettings = LevelFeaturesSettingsModel.empty
+      .copyWith(isTechnologiesEnabled: kDebugMode);
   void changeFeaturesSettings(
     final LevelFeaturesSettingsModel Function(LevelFeaturesSettingsModel old)
-        update,
+    update,
   ) {
     featuresSettings = update(featuresSettings);
     notifyListeners();
@@ -88,30 +93,83 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
 
   /// target language is used to show associated words in that language
   /// for example in technologies
-  late Languages wordsLanguage = dto.appSettingsNotifier.language;
-  void changeWordsLanguage(final Languages lang) {
+  late UiLanguage wordsLanguage = dto.appSettingsNotifier.language;
+  void changeWordsLanguage(final UiLanguage lang) {
     wordsLanguage = lang;
     notifyListeners();
   }
 
-  Future<void> onPlay(final BuildContext context) async {
+  /// !imporant:
+  /// this function will always start completely new game
+  Future<void> onStartNewGame({
+    required final BuildContext context,
+    required final CanvasDataModelId canvasId,
+  }) async {
+    if (dto.statesStatusesCubit.isLoading) return;
+    dto.statesStatusesCubit.onChangeLevelStateStatus(
+      status: LevelStateStatus.loading,
+    );
     final pathsController = AppPathsController.of(context);
-    if (featuresSettings.isTechnologiesEnabled) {
-      await onLoadDictionaries();
-    }
+
+    await Future.wait([
+      onDeleteLevel(canvasId),
+      if (featuresSettings.isAdvancedGame) onLoadDictionaries(),
+    ]);
+
     final level = dto.globalGameBloc.createLevel(
-      canvasDataId: canvasData.id,
+      canvasDataId: canvasId,
       playersIds: playersIds,
       wordsLanguage: wordsLanguage,
       characterId: character!.id,
       featuresSettings: featuresSettings,
     );
-    await dto.globalGameBloc
-        .onInitGlobalGameLevel(InitGlobalGameLevelEvent(levelModel: level));
+    await dto.globalGameBloc.onInitGlobalGameLevel(
+      InitGlobalGameLevelEvent(levelModel: level),
+    );
     await dto.globalGameBloc.onStartPlayingLevel(
       StartPlayingLevelEvent(shouldRestartTutorial: shouldStartTutorial),
     );
     pathsController.toPlayableLevel(id: level.id);
+  }
+
+  Future<void> onDeleteLevel(final CanvasDataModelId id) async {
+    await dto.globalGameBloc.onRemoveLevelSave(id);
+  }
+
+  Future<void> onContinueFromSamePlace({
+    required final CanvasDataModelId id,
+    required final BuildContext context,
+  }) async {
+    if (dto.statesStatusesCubit.isLoading) return;
+    dto.statesStatusesCubit.onChangeLevelStateStatus(
+      status: LevelStateStatus.loading,
+    );
+    final pathsController = AppPathsController.of(context);
+    final LevelModel level;
+
+    if (dto.globalGameBloc.state.currentLevelId == id) {
+      level = dto.globalGameBloc.state.currentLevelModel!;
+    } else {
+      level = dto.globalGameBloc.state.savedLevels[id]!;
+    }
+    if (level.featuresSettings.isAdvancedGame) {
+      await onLoadDictionaries();
+    }
+    await dto.globalGameBloc.onInitGlobalGameLevel(
+      InitGlobalGameLevelEvent(
+        levelModel: level,
+        isNewStart: false,
+        playerStartPoint: PlayerStartPointType.fromSamePlace,
+        windDirection:
+            level.weathers.firstOrNull?.windDirection ??
+            WindDirection.defaultDirection,
+      ),
+    );
+
+    await dto.globalGameBloc.onStartPlayingLevel(
+      const StartPlayingLevelEvent(shouldRestartTutorial: false),
+    );
+    pathsController.toPlayableLevel(id: id);
   }
 
   void onReturnToLevels(final BuildContext context) {

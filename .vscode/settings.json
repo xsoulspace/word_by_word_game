@@ -6,14 +6,20 @@
     "editor.formatOnType": true,
     "editor.rulers": [80]
   },
-  "dart.flutterSdkPath": ".fvm/versions/3.22.0",
-  "search.exclude": {
-    "**/.fvm": true
-  },
-  "files.watcherExclude": {
-    "**/.fvm": true
-  },
+  // "dart.flutterSdkPath": ".fvm/versions/3.24.3",
+  // "search.exclude": {
+  //   "**/.fvm": true
+  // },
+  // "files.watcherExclude": {
+  //   "**/.fvm": true
+  // },
   "dart.runPubGetOnPubspecChanges": "never",
+  "editor.formatOnSave": true,
+  "diffEditor.experimental.showMoves": true,
+  "dart.showTodos": true,
+  "dart.insertArgumentPlaceholders": true,
+  "dart.flutterOutline": true,
   "IDX.aI.enableInlineCompletion": true,
-  "IDX.aI.enableCodebaseIndexing": true
+  "IDX.aI.enableCodebaseIndexing": true,
+  "python.analysis.autoImportCompletions": true
 }
