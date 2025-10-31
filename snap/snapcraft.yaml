@@ -43,7 +43,7 @@ slots:
 apps:
   word-by-word-game:
     command: word_by_word_game
-    extensions: [flutter] # Flutter extension for stable channel
+    extensions: [gnome] # gnome includes the libraries required by flutter
     plugs:
       - home
       - network
