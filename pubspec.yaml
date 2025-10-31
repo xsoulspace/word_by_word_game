@@ -58,7 +58,7 @@ dependencies:
   flutter_portal: ^1.1.4
   flutter_shaders:
     git:
-      url: git@github.com:jonahwilliams/flutter_shaders.git
+      url: https://github.com/jonahwilliams/flutter_shaders.git
       ref: main
   flutter_svg: ^2.2.1
   form_builder_validators: ^11.2.0

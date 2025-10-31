@@ -43,7 +43,7 @@ slots:
 apps:
   word-by-word-game:
     command: word_by_word_game
-    extensions: [flutter] # Flutter extension for stable channel
+    extensions: [gnome] # gnome includes the libraries required by flutter
     plugs:
       - home
       - network
@@ -61,5 +61,4 @@ parts:
   word-by-word-game:
     source: .
     plugin: flutter
-    flutter-channel: stable # Specify Flutter channel here
     flutter-target: lib/main.dart # The main entry-point file of the application
