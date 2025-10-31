@@ -52,7 +52,7 @@ class UiTriangle extends StatelessWidget {
     child: CustomPaint(
       painter: UiTrianglePainter(
         size: size,
-        color: color ?? UiColors.mediumLight.withOpacity(0.5),
+        color: color ?? UiColors.mediumLight.withValues(alpha: 0.5),
       ),
       size: Size(size * 2, size),
     ),

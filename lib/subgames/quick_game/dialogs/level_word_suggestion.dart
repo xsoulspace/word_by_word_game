@@ -93,7 +93,9 @@ class LevelWordSuggestionDialog extends HookWidget {
     final currentWord = context.select<LevelBloc, CurrentWordModel>(
       (final c) => c.state.currentWord,
     );
-    final fadeColor = context.colorScheme.onPrimaryContainer.withOpacity(0.6);
+    final fadeColor = context.colorScheme.onPrimaryContainer.withValues(
+      alpha: 0.6,
+    );
     final wordMeaning = AnimatedSize(
       duration: 350.milliseconds,
       child: Column(
@@ -346,7 +348,9 @@ class _UsePointsButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final wordCost = costOfWord ~/ kScoreFactor;
-    final fadeColor = context.colorScheme.onPrimaryContainer.withOpacity(0.6);
+    final fadeColor = context.colorScheme.onPrimaryContainer.withValues(
+      alpha: 0.6,
+    );
     final locale = useLocale(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -368,7 +372,7 @@ class _UsePointsButton extends StatelessWidget {
           style: context.textTheme.headlineMedium?.copyWith(
             color: isUsageAvailable
                 ? context.colorScheme.primary
-                : context.colorScheme.error.withOpacity(0.8),
+                : context.colorScheme.error.withValues(alpha: 0.8),
           ),
         ).animate(key: ValueKey(word), autoPlay: !isUsageAvailable).shake(),
         const Gap(12),

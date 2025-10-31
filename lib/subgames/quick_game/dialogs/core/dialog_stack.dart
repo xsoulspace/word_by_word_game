@@ -76,7 +76,7 @@ class _Dialog extends PopupRoute {
   final VoidCallback onDismiss;
 
   @override
-  Color? get barrierColor => UiColors.offWhite.withOpacity(0.8);
+  Color? get barrierColor => UiColors.offWhite.withValues(alpha: 0.8);
 
   // This allows the popup to be dismissed by tapping the scrim or by pressing
   // the escape key on the keyboard.
@@ -124,11 +124,25 @@ class _DialogBody extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final state = context.watch<DialogController>();
-    void popAndClose() {
-      state.closeDialogAndResume();
+    void pop() {
       WidgetsBinding.instance.addPostFrameCallback((final _) {
         if (context.mounted) unawaited(Navigator.maybeOf(context)?.maybePop());
       });
+    }
+
+    void popAndClose() {
+      state.closeDialogAndResume();
+      pop();
+    }
+
+    Future<void> onExitLevel() async {
+      await state.onExitLevel();
+      pop();
+    }
+
+    Future<void> onRestartContinueLevel() async {
+      state.onRestartContinueLevel();
+      pop();
     }
 
     return PopScope(
@@ -151,14 +165,14 @@ class _DialogBody extends HookWidget {
         ),
         GameDialogType.gameLevelLost => Center(
           child: LevelLostDialog(
-            onRestart: state.onRestartContinueLevel,
-            onToLevels: state.onExitLevel,
+            onRestart: onRestartContinueLevel,
+            onToLevels: onExitLevel,
           ),
         ),
         GameDialogType.gameLevelWin => Center(
           child: LevelWinDialog(
-            onContinue: state.onRestartContinueLevel,
-            onToLevels: state.onExitLevel,
+            onContinue: onRestartContinueLevel,
+            onToLevels: onExitLevel,
           ),
         ),
         GameDialogType.gameLevelWordSuggestion => Center(

@@ -125,12 +125,17 @@ class _MainMenuView extends StatelessWidget {
         buttonStatuses.pauseScreenState.onShowStartDialog(
           canvasDataId: kQuickGameMapId,
           context: context,
+          featuresSettings: LevelFeaturesSettingsModel.allDisabled,
         ),
       );
     }
 
-    Future<void> onRestartQuick() => buttonStatuses.pauseScreenState
-        .onShowStartDialog(canvasDataId: kQuickGameMapId, context: context);
+    Future<void> onRestartQuick() =>
+        buttonStatuses.pauseScreenState.onShowStartDialog(
+          canvasDataId: kQuickGameMapId,
+          context: context,
+          featuresSettings: LevelFeaturesSettingsModel.allDisabled,
+        );
     final tuple = (
       onContinueQuick: onContinueQuick,
       onNewQuick: onRestartQuick,

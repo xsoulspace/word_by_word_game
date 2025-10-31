@@ -44,8 +44,8 @@ class TechProgressBar extends StatelessWidget {
           },
           icon: const Icon(CupertinoIcons.lab_flask, color: Colors.black),
           text: isMaxLevel ? 'Max' : lastLevelIndex.index.toString(),
-          backgroundColor: context.colorScheme.primary.withOpacity(0.1),
-          filledColor: context.colorScheme.primary.withOpacity(0.4),
+          backgroundColor: context.colorScheme.primary.withValues(alpha: 0.1),
+          filledColor: context.colorScheme.primary.withValues(alpha: 0.4),
           textColor: context.colorScheme.onPrimary,
           borderColor: context.colorScheme.primary,
           width: width,
@@ -70,7 +70,7 @@ class TechProgressBar extends StatelessWidget {
           UiTextCounter(
             value: scoreLeftForNextLevel.value.formattedScore,
             style: context.textTheme.labelLarge?.copyWith(
-              color: context.colorScheme.primary.withOpacity(0.6),
+              color: context.colorScheme.primary.withValues(alpha: 0.6),
             ),
             delay: percentageDelay,
           )
@@ -81,14 +81,14 @@ class TechProgressBar extends StatelessWidget {
               UiTextCounter(
                 value: nextScore - scoreLeftForNextLevel.value.formattedScore,
                 style: context.textTheme.labelLarge?.copyWith(
-                  color: context.colorScheme.primary.withOpacity(0.6),
+                  color: context.colorScheme.primary.withValues(alpha: 0.6),
                 ),
                 delay: percentageDelay,
               ),
               Text(
                 '/$nextScore',
                 style: context.textTheme.labelSmall?.copyWith(
-                  color: context.colorScheme.onSurface.withOpacity(0.6),
+                  color: context.colorScheme.onSurface.withValues(alpha: 0.6),
                 ),
               ),
             ],

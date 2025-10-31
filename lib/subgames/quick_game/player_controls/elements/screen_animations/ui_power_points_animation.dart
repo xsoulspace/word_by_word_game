@@ -138,7 +138,9 @@ class _UiTechPointIcon extends HookWidget {
     final icon = Icon(
       Icons.circle,
       size: 8,
-      color: context.colorScheme.error.withOpacity(tuple.fadeAnimation.value),
+      color: context.colorScheme.error.withValues(
+        alpha: tuple.fadeAnimation.value,
+      ),
     );
     useListenable(tuple.controller);
     final bottom = lerpDouble(

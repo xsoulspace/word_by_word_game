@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/overlays/overlays.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
@@ -38,7 +36,7 @@ class UILevelCenterBar extends StatelessWidget {
               ),
             ],
           ),
-          Divider(color: context.colorScheme.tertiary.withOpacity(0.2)),
+          Divider(color: context.colorScheme.tertiary.withValues(alpha: 0.2)),
           ...switch (phaseType) {
             GamePhaseType.entryWord => [
               const UiWordCompositionBar(

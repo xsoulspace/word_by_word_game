@@ -45,7 +45,9 @@ class _TechnologyTile extends StatelessWidget {
         mechanics.technology.checkIsUnlockedInSomeLanguages(
           unlockCondition: unlockCondition,
         );
-    final textColor = context.colorScheme.onPrimaryContainer.withOpacity(0.4);
+    final textColor = context.colorScheme.onPrimaryContainer.withValues(
+      alpha: 0.4,
+    );
     void onTechnologyPressed() =>
         onHover((technology: value, uiWord: null, languageWord: null));
     return FocusableActionDetector(
@@ -110,7 +112,7 @@ class _TechnologyTile extends StatelessWidget {
                       (isUnlocked
                               ? context.colorScheme.surfaceTint
                               : context.colorScheme.secondary)
-                          .withOpacity(0.5),
+                          .withValues(alpha: 0.5),
                 ),
               ),
             ],
@@ -151,7 +153,9 @@ class _TechnologyTile extends StatelessWidget {
               }).toList(),
             ),
           ),
-          Divider(color: context.colorScheme.surfaceTint.withOpacity(0.1)),
+          Divider(
+            color: context.colorScheme.surfaceTint.withValues(alpha: 0.1),
+          ),
         ],
       ),
     );

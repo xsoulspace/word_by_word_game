@@ -1269,7 +1269,7 @@ $Res call({
 });
 
 
-$LevelPlayersModelCopyWith<$Res> get players;$LevelCharactersModelCopyWith<$Res> get characters;$WindModelCopyWith<$Res> get wind;$CurrentWordModelCopyWith<$Res> get currentWord;$WorldDateTimeModelCopyWith<$Res> get dateTime;$WorldDateTimeModelCopyWith<$Res> get lastDateTime;$TechnologyTreeProgressModelCopyWith<$Res> get technologyTreeProgress;$LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
+$LevelPlayersModelCopyWith<$Res> get players;$LevelCharactersModelCopyWith<$Res> get characters;$WindModelCopyWith<$Res> get wind;$CurrentWordModelCopyWith<$Res> get currentWord;$WorldDateTimeModelCopyWith<$Res> get dateTime;$WorldDateTimeModelCopyWith<$Res> get lastDateTime;$TechnologyTreeProgressModelCopyWith<$Res> get technologyTreeProgress;
 
 }
 /// @nodoc
@@ -1369,15 +1369,6 @@ $TechnologyTreeProgressModelCopyWith<$Res> get technologyTreeProgress {
   
   return $TechnologyTreeProgressModelCopyWith<$Res>(_self.technologyTreeProgress, (value) {
     return _then(_self.copyWith(technologyTreeProgress: value));
-  });
-}/// Create a copy of LevelModel
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings {
-  
-  return $LevelFeaturesSettingsModelCopyWith<$Res>(_self.featuresSettings, (value) {
-    return _then(_self.copyWith(featuresSettings: value));
   });
 }
 }
@@ -1517,7 +1508,7 @@ return $default(_that.players,_that.characters,_that.updatedAt,_that.tilesetType
 
 @JsonSerializable(explicitToJson: true)
 class _LevelModel extends LevelModel {
-  const _LevelModel({required this.players, required this.characters, this.updatedAt, this.tilesetType = TilesetType.whiteBlack, final  List<WeatherModel> weathers = const [], this.wind = WindModel.zero, this.canvasDataId = CanvasDataModelId.empty, this.currentWord = const CurrentWordModel(), final  Map<FullWordString, PlayerProfileModelId> words = const {}, this.latestWord = '', this.phaseType = GamePhaseType.entryWord, this.actionMultiplier = EnergyMultiplierType.m1, this.dateTime = WorldDateTimeModel.zero, this.lastDateTime = WorldDateTimeModel.zero, this.technologyTreeProgress = TechnologyTreeProgressModel.empty, this.featuresSettings = LevelFeaturesSettingsModel.empty, @JsonKey(fromJson: uiLanguageFromJson, toJson: uiLanguageToJson) this.wordsLanguage = defaultLanguage, this.playerStartPoint = PlayerStartPointType.fromSpawnPoint, @JsonKey(fromJson: CanvasDataModel.objectsFromJson, toJson: CanvasDataModel.objectsToJson) final  Map<Gid, RenderObjectModel> canvasObjects = const {}, final  List<LayerModel> canvasLayers = const []}): _weathers = weathers,_words = words,_canvasObjects = canvasObjects,_canvasLayers = canvasLayers,super._();
+  const _LevelModel({required this.players, required this.characters, this.updatedAt, this.tilesetType = TilesetType.whiteBlack, final  List<WeatherModel> weathers = const [], this.wind = WindModel.zero, this.canvasDataId = CanvasDataModelId.empty, this.currentWord = const CurrentWordModel(), final  Map<FullWordString, PlayerProfileModelId> words = const {}, this.latestWord = '', this.phaseType = GamePhaseType.entryWord, this.actionMultiplier = EnergyMultiplierType.m1, this.dateTime = WorldDateTimeModel.zero, this.lastDateTime = WorldDateTimeModel.zero, this.technologyTreeProgress = TechnologyTreeProgressModel.empty, this.featuresSettings = LevelFeaturesSettingsModel.allDisabled, @JsonKey(fromJson: uiLanguageFromJson, toJson: uiLanguageToJson) this.wordsLanguage = defaultLanguage, this.playerStartPoint = PlayerStartPointType.fromSpawnPoint, @JsonKey(fromJson: CanvasDataModel.objectsFromJson, toJson: CanvasDataModel.objectsToJson) final  Map<Gid, RenderObjectModel> canvasObjects = const {}, final  List<LayerModel> canvasLayers = const []}): _weathers = weathers,_words = words,_canvasObjects = canvasObjects,_canvasLayers = canvasLayers,super._();
   factory _LevelModel.fromJson(Map<String, dynamic> json) => _$LevelModelFromJson(json);
 
 @override final  LevelPlayersModel players;
@@ -1609,7 +1600,7 @@ $Res call({
 });
 
 
-@override $LevelPlayersModelCopyWith<$Res> get players;@override $LevelCharactersModelCopyWith<$Res> get characters;@override $WindModelCopyWith<$Res> get wind;@override $CurrentWordModelCopyWith<$Res> get currentWord;@override $WorldDateTimeModelCopyWith<$Res> get dateTime;@override $WorldDateTimeModelCopyWith<$Res> get lastDateTime;@override $TechnologyTreeProgressModelCopyWith<$Res> get technologyTreeProgress;@override $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
+@override $LevelPlayersModelCopyWith<$Res> get players;@override $LevelCharactersModelCopyWith<$Res> get characters;@override $WindModelCopyWith<$Res> get wind;@override $CurrentWordModelCopyWith<$Res> get currentWord;@override $WorldDateTimeModelCopyWith<$Res> get dateTime;@override $WorldDateTimeModelCopyWith<$Res> get lastDateTime;@override $TechnologyTreeProgressModelCopyWith<$Res> get technologyTreeProgress;
 
 }
 /// @nodoc
@@ -1711,294 +1702,7 @@ $TechnologyTreeProgressModelCopyWith<$Res> get technologyTreeProgress {
   return $TechnologyTreeProgressModelCopyWith<$Res>(_self.technologyTreeProgress, (value) {
     return _then(_self.copyWith(technologyTreeProgress: value));
   });
-}/// Create a copy of LevelModel
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings {
-  
-  return $LevelFeaturesSettingsModelCopyWith<$Res>(_self.featuresSettings, (value) {
-    return _then(_self.copyWith(featuresSettings: value));
-  });
 }
-}
-
-
-/// @nodoc
-mixin _$LevelFeaturesSettingsModel {
-
- bool get isTechnologiesEnabled;/// if enabled, then wind can be changed in both directions
-/// left, or right during the flight
-///
-/// In the same time, if this feature enabled,
-/// then there is no win scenario, since
-/// it makes no sense.
- bool get isWindDirectionChangeEnabled;
-/// Create a copy of LevelFeaturesSettingsModel
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$LevelFeaturesSettingsModelCopyWith<LevelFeaturesSettingsModel> get copyWith => _$LevelFeaturesSettingsModelCopyWithImpl<LevelFeaturesSettingsModel>(this as LevelFeaturesSettingsModel, _$identity);
-
-  /// Serializes this LevelFeaturesSettingsModel to a JSON map.
-  Map<String, dynamic> toJson();
-
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LevelFeaturesSettingsModel&&(identical(other.isTechnologiesEnabled, isTechnologiesEnabled) || other.isTechnologiesEnabled == isTechnologiesEnabled)&&(identical(other.isWindDirectionChangeEnabled, isWindDirectionChangeEnabled) || other.isWindDirectionChangeEnabled == isWindDirectionChangeEnabled));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,isTechnologiesEnabled,isWindDirectionChangeEnabled);
-
-@override
-String toString() {
-  return 'LevelFeaturesSettingsModel(isTechnologiesEnabled: $isTechnologiesEnabled, isWindDirectionChangeEnabled: $isWindDirectionChangeEnabled)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class $LevelFeaturesSettingsModelCopyWith<$Res>  {
-  factory $LevelFeaturesSettingsModelCopyWith(LevelFeaturesSettingsModel value, $Res Function(LevelFeaturesSettingsModel) _then) = _$LevelFeaturesSettingsModelCopyWithImpl;
-@useResult
-$Res call({
- bool isTechnologiesEnabled, bool isWindDirectionChangeEnabled
-});
-
-
-
-
-}
-/// @nodoc
-class _$LevelFeaturesSettingsModelCopyWithImpl<$Res>
-    implements $LevelFeaturesSettingsModelCopyWith<$Res> {
-  _$LevelFeaturesSettingsModelCopyWithImpl(this._self, this._then);
-
-  final LevelFeaturesSettingsModel _self;
-  final $Res Function(LevelFeaturesSettingsModel) _then;
-
-/// Create a copy of LevelFeaturesSettingsModel
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isTechnologiesEnabled = null,Object? isWindDirectionChangeEnabled = null,}) {
-  return _then(_self.copyWith(
-isTechnologiesEnabled: null == isTechnologiesEnabled ? _self.isTechnologiesEnabled : isTechnologiesEnabled // ignore: cast_nullable_to_non_nullable
-as bool,isWindDirectionChangeEnabled: null == isWindDirectionChangeEnabled ? _self.isWindDirectionChangeEnabled : isWindDirectionChangeEnabled // ignore: cast_nullable_to_non_nullable
-as bool,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [LevelFeaturesSettingsModel].
-extension LevelFeaturesSettingsModelPatterns on LevelFeaturesSettingsModel {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LevelFeaturesSettingsModel value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _LevelFeaturesSettingsModel() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LevelFeaturesSettingsModel value)  $default,){
-final _that = this;
-switch (_that) {
-case _LevelFeaturesSettingsModel():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LevelFeaturesSettingsModel value)?  $default,){
-final _that = this;
-switch (_that) {
-case _LevelFeaturesSettingsModel() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool isTechnologiesEnabled,  bool isWindDirectionChangeEnabled)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _LevelFeaturesSettingsModel() when $default != null:
-return $default(_that.isTechnologiesEnabled,_that.isWindDirectionChangeEnabled);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool isTechnologiesEnabled,  bool isWindDirectionChangeEnabled)  $default,) {final _that = this;
-switch (_that) {
-case _LevelFeaturesSettingsModel():
-return $default(_that.isTechnologiesEnabled,_that.isWindDirectionChangeEnabled);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool isTechnologiesEnabled,  bool isWindDirectionChangeEnabled)?  $default,) {final _that = this;
-switch (_that) {
-case _LevelFeaturesSettingsModel() when $default != null:
-return $default(_that.isTechnologiesEnabled,_that.isWindDirectionChangeEnabled);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-@JsonSerializable()
-
-class _LevelFeaturesSettingsModel extends LevelFeaturesSettingsModel {
-  const _LevelFeaturesSettingsModel({this.isTechnologiesEnabled = false, this.isWindDirectionChangeEnabled = false}): super._();
-  factory _LevelFeaturesSettingsModel.fromJson(Map<String, dynamic> json) => _$LevelFeaturesSettingsModelFromJson(json);
-
-@override@JsonKey() final  bool isTechnologiesEnabled;
-/// if enabled, then wind can be changed in both directions
-/// left, or right during the flight
-///
-/// In the same time, if this feature enabled,
-/// then there is no win scenario, since
-/// it makes no sense.
-@override@JsonKey() final  bool isWindDirectionChangeEnabled;
-
-/// Create a copy of LevelFeaturesSettingsModel
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$LevelFeaturesSettingsModelCopyWith<_LevelFeaturesSettingsModel> get copyWith => __$LevelFeaturesSettingsModelCopyWithImpl<_LevelFeaturesSettingsModel>(this, _$identity);
-
-@override
-Map<String, dynamic> toJson() {
-  return _$LevelFeaturesSettingsModelToJson(this, );
-}
-
-@override
-bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LevelFeaturesSettingsModel&&(identical(other.isTechnologiesEnabled, isTechnologiesEnabled) || other.isTechnologiesEnabled == isTechnologiesEnabled)&&(identical(other.isWindDirectionChangeEnabled, isWindDirectionChangeEnabled) || other.isWindDirectionChangeEnabled == isWindDirectionChangeEnabled));
-}
-
-@JsonKey(includeFromJson: false, includeToJson: false)
-@override
-int get hashCode => Object.hash(runtimeType,isTechnologiesEnabled,isWindDirectionChangeEnabled);
-
-@override
-String toString() {
-  return 'LevelFeaturesSettingsModel(isTechnologiesEnabled: $isTechnologiesEnabled, isWindDirectionChangeEnabled: $isWindDirectionChangeEnabled)';
-}
-
-
-}
-
-/// @nodoc
-abstract mixin class _$LevelFeaturesSettingsModelCopyWith<$Res> implements $LevelFeaturesSettingsModelCopyWith<$Res> {
-  factory _$LevelFeaturesSettingsModelCopyWith(_LevelFeaturesSettingsModel value, $Res Function(_LevelFeaturesSettingsModel) _then) = __$LevelFeaturesSettingsModelCopyWithImpl;
-@override @useResult
-$Res call({
- bool isTechnologiesEnabled, bool isWindDirectionChangeEnabled
-});
-
-
-
-
-}
-/// @nodoc
-class __$LevelFeaturesSettingsModelCopyWithImpl<$Res>
-    implements _$LevelFeaturesSettingsModelCopyWith<$Res> {
-  __$LevelFeaturesSettingsModelCopyWithImpl(this._self, this._then);
-
-  final _LevelFeaturesSettingsModel _self;
-  final $Res Function(_LevelFeaturesSettingsModel) _then;
-
-/// Create a copy of LevelFeaturesSettingsModel
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? isTechnologiesEnabled = null,Object? isWindDirectionChangeEnabled = null,}) {
-  return _then(_LevelFeaturesSettingsModel(
-isTechnologiesEnabled: null == isTechnologiesEnabled ? _self.isTechnologiesEnabled : isTechnologiesEnabled // ignore: cast_nullable_to_non_nullable
-as bool,isWindDirectionChangeEnabled: null == isWindDirectionChangeEnabled ? _self.isWindDirectionChangeEnabled : isWindDirectionChangeEnabled // ignore: cast_nullable_to_non_nullable
-as bool,
-  ));
-}
-
-
 }
 
 

@@ -19,7 +19,7 @@ class LevelOptionsScreen extends HookWidget {
     final unblockerNotifier = useState(0);
     useListenable(uxState.isDictionariesLoading);
     final statusCubit = context.watch<StatesStatusesCubit>();
-    final isQuickGame = uxState.isQuickGame;
+    final isAdvancedGame = uxState.featuresSettings.isAdvancedGame;
 
     return UiScrollbarBuilder(
       builder: (final context, final scrollController) => SingleChildScrollView(
@@ -50,7 +50,7 @@ class LevelOptionsScreen extends HookWidget {
               title: Text(S.of(context).enableTutorial),
             ),
             UiGaps.medium,
-            if (!isQuickGame)
+            if (isAdvancedGame)
               _ExperimentsListView(unblockerNotifier: unblockerNotifier),
             UiGaps.medium,
             Row(

@@ -48,7 +48,7 @@ class UiStyledButton extends StatelessWidget {
       onPressed: onPressed,
       builder: (final context, final focused, final onlyFocused) {
         final textColor = (focused ? UiColors.dark : UiColors.mediumDark)
-            .withOpacity(0.9);
+            .withValues(alpha: 0.9);
         final buttonBorderColor = borderColor ?? textColor;
         final buttonRadius = radius ?? 30.0;
         final showFocusIcon = focusIcon != null;

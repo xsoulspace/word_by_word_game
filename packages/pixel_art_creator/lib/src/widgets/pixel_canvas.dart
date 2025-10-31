@@ -103,7 +103,7 @@ class PixelPainter extends CustomPainter {
         pixelProvider.currentHover != null) {
       final previewPixels = pixelProvider.getPreviewLine();
       final previewPaint = Paint()
-        ..color = Colors.black.withOpacity(0.5)
+        ..color = Colors.black.withValues(alpha: 0.5)
         ..style = PaintingStyle.fill;
       for (final pixel in previewPixels) {
         canvas.drawRect(

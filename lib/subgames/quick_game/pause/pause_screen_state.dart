@@ -29,8 +29,11 @@ class PauseScreenState extends ValueNotifier<void> {
   Future<void> onShowStartDialog({
     required final BuildContext context,
     required final CanvasDataModelId canvasDataId,
+    required final LevelFeaturesSettingsModel featuresSettings,
   }) async {
-    uxState.canvasDataId = canvasDataId;
+    uxState
+      ..changeFeaturesSettings((final _) => featuresSettings)
+      ..canvasDataId = canvasDataId;
     uiState.onSwitchDialogVisiblity();
   }
 

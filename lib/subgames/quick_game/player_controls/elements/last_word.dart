@@ -63,7 +63,7 @@ class _LastWordTextState extends State<LastWordText> {
           bottomRight: radius,
         ),
         border: Border.all(
-          color: colorScheme.tertiaryContainer.withOpacity(0.4),
+          color: colorScheme.tertiaryContainer.withValues(alpha: 0.4),
         ),
       ),
       padding: const EdgeInsets.only(left: 4, right: 4, top: 2, bottom: 2),
@@ -73,7 +73,7 @@ class _LastWordTextState extends State<LastWordText> {
           Text(
             S.of(context).previousWord,
             style: textStyle?.copyWith(
-              color: colorScheme.onSurface.withOpacity(0.8),
+              color: colorScheme.onSurface.withValues(alpha: 0.8),
             ),
           ),
           UiGaps.small,
@@ -85,7 +85,7 @@ class _LastWordTextState extends State<LastWordText> {
               right: 8,
             ),
             decoration: BoxDecoration(
-              color: colorScheme.tertiaryContainer.withOpacity(0.3),
+              color: colorScheme.tertiaryContainer.withValues(alpha: 0.3),
               borderRadius: const BorderRadius.all(radius),
             ),
             child: Text(_lastWord, style: textStyle)

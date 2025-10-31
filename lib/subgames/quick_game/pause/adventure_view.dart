@@ -3,7 +3,6 @@ import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/gen/assets.gen.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_word_suggestion.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/pause_screen.dart';
-import 'package:word_by_word_game/subgames/quick_game/pause/widgets/widgets.dart';
 
 class AdventureView extends HookWidget {
   const AdventureView({required this.onBack, super.key});
@@ -81,18 +80,20 @@ class AdventureView extends HookWidget {
                       isCurrent: currentLevelId == canvasId,
                       isSelected: selectedLevelId == canvasId,
                       onSelect: () => selectedLevelIdNotifier.value = canvasId,
-                      onContinue: () async => state.onContinueFromSamePlace(
+                      onContinue: () => state.onContinueFromSamePlace(
                         context: context,
                         id: canvasId,
                       ),
-                      onDelete: () async => state.onDeleteLevel(canvasId),
-                      onStart: () async => state.onShowStartDialog(
+                      onDelete: () => state.onDeleteLevel(canvasId),
+                      onStart: () => state.onShowStartDialog(
                         context: context,
                         canvasDataId: canvasId,
+                        featuresSettings: LevelFeaturesSettingsModel.allEnabled,
                       ),
-                      onRestart: () async => state.onShowStartDialog(
+                      onRestart: () => state.onShowStartDialog(
                         context: context,
                         canvasDataId: canvasId,
+                        featuresSettings: LevelFeaturesSettingsModel.allEnabled,
                       ),
                     );
                   },
@@ -181,7 +182,7 @@ class _LevelCard extends StatelessWidget {
               BorderSide(
                 color: isSelected
                     ? UiColors.mediumLight
-                    : UiColors.light.withOpacity(0.5),
+                    : UiColors.light.withValues(alpha: 0.5),
               ),
             ),
             borderRadius: BorderRadius.circular(12),

@@ -235,8 +235,8 @@ class _HeatEngineViewBodyState extends State<HeatEngineViewBody> {
                     ),
                     const Gap(8),
                     AnimatedProgressBar(
-                      backgroundColor: context.colorScheme.error.withOpacity(
-                        .3,
+                      backgroundColor: context.colorScheme.error.withValues(
+                        alpha: .3,
                       ),
                       color: context.colorScheme.error,
                       value:
@@ -504,9 +504,18 @@ class UiTechnologyCircle extends StatelessWidget {
               style: context.textTheme.labelMedium!.copyWith(
                 color: textColor,
                 shadows: [
-                  Shadow(blurRadius: 1, color: borderColor.withOpacity(1)),
-                  Shadow(blurRadius: 1, color: borderColor.withOpacity(1)),
-                  Shadow(blurRadius: 1, color: borderColor.withOpacity(1)),
+                  Shadow(
+                    blurRadius: 1,
+                    color: borderColor.withValues(alpha: 1),
+                  ),
+                  Shadow(
+                    blurRadius: 1,
+                    color: borderColor.withValues(alpha: 1),
+                  ),
+                  Shadow(
+                    blurRadius: 1,
+                    color: borderColor.withValues(alpha: 1),
+                  ),
                 ],
               ),
             ),

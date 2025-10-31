@@ -32,7 +32,7 @@ class UIPowerBar extends StatelessWidget with TechLevelMixin {
     );
     final powerRatio = power / maxPower;
     final borderSide = BorderSide(
-      color: context.colorScheme.error.withOpacity(0.3),
+      color: context.colorScheme.error.withValues(alpha: 0.3),
     );
     final focusedObject = context.watch<LevelPlayersBloc>().focusedObject;
     const isUsingPoints = true;
@@ -74,10 +74,10 @@ class UIPowerBar extends StatelessWidget with TechLevelMixin {
               bottomLeft: Radius.elliptical(8, 8),
               bottomRight: Radius.elliptical(8, 8),
             ),
-            backgroundColor: context.colorScheme.error.withOpacity(0.3),
+            backgroundColor: context.colorScheme.error.withValues(alpha: 0.3),
             borderColor: context.colorScheme.error,
-            filledColor: context.colorScheme.error.withOpacity(0.6),
-            textColor: context.colorScheme.surface.withOpacity(0.9),
+            filledColor: context.colorScheme.error.withValues(alpha: 0.6),
+            textColor: context.colorScheme.surface.withValues(alpha: 0.9),
             percentage: powerRatio,
             icon: GestureDetector(
               onTap: () => context.read<DebugCubit>().tryOpenDebugPane(),
@@ -94,7 +94,7 @@ class UIPowerBar extends StatelessWidget with TechLevelMixin {
           AnimatedContainer(
             duration: 350.milliseconds,
             decoration: BoxDecoration(
-              color: context.colorScheme.surface.withOpacity(0.4),
+              color: context.colorScheme.surface.withValues(alpha: 0.4),
               border: Border(
                 bottom: borderSide,
                 left: borderSide,

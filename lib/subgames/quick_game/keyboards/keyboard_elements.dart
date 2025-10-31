@@ -246,7 +246,9 @@ class InputCaret extends StatelessWidget {
           color: Colors.transparent,
           child: Container(
             decoration: BoxDecoration(
-              color: isFocused ? color.withOpacity(0.8) : Colors.transparent,
+              color: isFocused
+                  ? color.withValues(alpha: 0.8)
+                  : Colors.transparent,
               borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
             ),
             height: double.maxFinite,
@@ -418,7 +420,7 @@ class UiElevatedButton extends StatelessWidget {
     onLongPress: onLongPress,
     builder: (final context, final focused, final onlyFocused) => Container(
       decoration: ShapeDecoration(
-        color: Theme.of(context).dialogBackgroundColor.withOpacity(0.8),
+        color: Theme.of(context).dialogBackgroundColor.withValues(alpha: 0.8),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
         ),
@@ -455,7 +457,7 @@ class UiFilledButton extends StatelessWidget {
       decoration: ShapeDecoration(
         color: Theme.of(
           context,
-        ).colorScheme.secondaryContainer.withOpacity(0.85),
+        ).colorScheme.secondaryContainer.withValues(alpha: 0.85),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
         ),

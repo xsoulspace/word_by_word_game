@@ -102,7 +102,7 @@ class _UiMainMenuList extends StatelessWidget {
               textStyle: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
-                color: UiColors.mediumLight.withOpacity(0.9),
+                color: UiColors.mediumLight.withValues(alpha: 0.9),
               ),
             ),
           ],
@@ -130,7 +130,7 @@ class _UiMainMenuList extends StatelessWidget {
                 textStyle: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: UiColors.mediumLight.withOpacity(0.9),
+                  color: UiColors.mediumLight.withValues(alpha: 0.9),
                 ),
               ),
             ],
@@ -262,7 +262,9 @@ class KeyboardBindingsTips extends HookWidget {
       child: AnimatedContainer(
         duration: 300.milliseconds,
         decoration: BoxDecoration(
-          color: UiColors.mediumDark.withOpacity(hovered.value ? 0.9 : 0.5),
+          color: UiColors.mediumDark.withValues(
+            alpha: hovered.value ? 0.9 : 0.5,
+          ),
           borderRadius: BorderRadius.circular(UiDecorators.radiusSmall),
         ),
         child:

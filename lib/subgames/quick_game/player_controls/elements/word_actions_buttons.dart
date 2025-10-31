@@ -123,7 +123,7 @@ class UiConfirmWordButton extends StatelessWidget {
             tooltip: S.of(context).confirm,
             elevation: 1,
             backgroundColor: Theme.of(context).colorScheme.tertiaryContainer
-                .withOpacity(isPressable ? 0.8 : 0.1),
+                .withValues(alpha: isPressable ? 0.8 : 0.1),
             hoverElevation: 3,
             onPressed: isPressable ? onPressed : null,
             // child: Container(
