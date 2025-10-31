@@ -39,7 +39,7 @@ class CardFrostedBackground extends StatelessWidget {
                 livePlayerColor,
                 Colors.white,
                 30,
-              ).withOpacity(0.1),
+              ).withValues(alpha: 0.1),
               borderRadius: const BorderRadius.all(radius),
             ),
             child: child,

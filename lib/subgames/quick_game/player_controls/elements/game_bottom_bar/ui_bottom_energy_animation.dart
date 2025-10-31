@@ -153,8 +153,8 @@ class _UiEnergyIcon extends HookWidget {
   Widget build(final BuildContext context) {
     final icon = Icon(
       Icons.circle,
-      color: context.colorScheme.tertiary.withOpacity(
-        tuple.fadeAnimation.value,
+      color: context.colorScheme.tertiary.withValues(
+        alpha: tuple.fadeAnimation.value,
       ),
       size: 8,
     );

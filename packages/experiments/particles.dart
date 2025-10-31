@@ -33,7 +33,7 @@ class ParticlesExample extends FlameGame {
       acceleration: Vector2(0, 1),
       child: CircleParticle(
         radius: 1 + rnd.nextDouble() * 2,
-        paint: Paint()..color = Colors.white.withOpacity(0.7),
+        paint: Paint()..color = Colors.white.withValues(alpha: 0.7),
       ),
     ),
   );

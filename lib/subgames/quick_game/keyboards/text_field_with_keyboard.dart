@@ -190,7 +190,7 @@ class UiEditableText extends StatelessWidget {
                     style: TextStyle(
                       color: Theme.of(
                         context,
-                      ).colorScheme.secondary.withOpacity(0.4),
+                      ).colorScheme.secondary.withValues(alpha: 0.4),
                     ),
                   ),
                 ),

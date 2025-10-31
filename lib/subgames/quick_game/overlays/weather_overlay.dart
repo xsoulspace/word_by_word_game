@@ -94,7 +94,7 @@ class _WeatherOverlayBodyState extends State<_WeatherOverlayBody> {
       1,
       20,
       17,
-    ).withOpacity(_maxTargetOpacity);
+    ).withValues(alpha: _maxTargetOpacity);
     return const IgnorePointer(
       child: Stack(
         fit: StackFit.expand,
@@ -103,7 +103,7 @@ class _WeatherOverlayBodyState extends State<_WeatherOverlayBody> {
           // AnimatedContainer(
           //   duration: 1800.milliseconds,
           //   decoration: BoxDecoration(
-          //     color: Colors.amber[200]!.withOpacity(0.1),
+          //     color: Colors.amber[200]!.withValues(alpha:0.1),
           //   ),
           // ),
           // AnimatedContainer(

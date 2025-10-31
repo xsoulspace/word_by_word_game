@@ -79,7 +79,7 @@ class DialogController extends ChangeNotifier {
   }
 
   /// used to stop game from running and show levels list
-  void onExitLevel() {
+  Future<void> onExitLevel() async {
     unawaited(
       dto.globalGameBloc.onLevelEnd(event: endLevelEvent, isPaused: true),
     );

@@ -589,7 +589,7 @@ $Res call({
 });
 
 
-$CurrentWordModelCopyWith<$Res> get currentWord;$LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
+$CurrentWordModelCopyWith<$Res> get currentWord;
 
 }
 /// @nodoc
@@ -624,15 +624,6 @@ $CurrentWordModelCopyWith<$Res> get currentWord {
   
   return $CurrentWordModelCopyWith<$Res>(_self.currentWord, (value) {
     return _then(_self.copyWith(currentWord: value));
-  });
-}/// Create a copy of LevelBlocState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings {
-  
-  return $LevelFeaturesSettingsModelCopyWith<$Res>(_self.featuresSettings, (value) {
-    return _then(_self.copyWith(featuresSettings: value));
   });
 }
 }
@@ -772,7 +763,7 @@ return $default(_that.id,_that.currentWord,_that.words,_that.latestWord,_that.ph
 
 
 class _LevelBlocState implements LevelBlocState {
-  const _LevelBlocState({this.id = CanvasDataModelId.empty, this.currentWord = const CurrentWordModel(), final  Map<FullWordString, PlayerProfileModelId> words = const {}, this.latestWord = '', this.phaseType = GamePhaseType.entryWord, this.energyMultiplier = EnergyMultiplierType.m1, this.wordWarning = WordWarning.none, this.featuresSettings = LevelFeaturesSettingsModel.empty, this.wordsLanguage = defaultLanguage}): _words = words;
+  const _LevelBlocState({this.id = CanvasDataModelId.empty, this.currentWord = const CurrentWordModel(), final  Map<FullWordString, PlayerProfileModelId> words = const {}, this.latestWord = '', this.phaseType = GamePhaseType.entryWord, this.energyMultiplier = EnergyMultiplierType.m1, this.wordWarning = WordWarning.none, this.featuresSettings = LevelFeaturesSettingsModel.allDisabled, this.wordsLanguage = defaultLanguage}): _words = words;
   
 
 @override@JsonKey() final  CanvasDataModelId id;
@@ -828,7 +819,7 @@ $Res call({
 });
 
 
-@override $CurrentWordModelCopyWith<$Res> get currentWord;@override $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
+@override $CurrentWordModelCopyWith<$Res> get currentWord;
 
 }
 /// @nodoc
@@ -864,15 +855,6 @@ $CurrentWordModelCopyWith<$Res> get currentWord {
   
   return $CurrentWordModelCopyWith<$Res>(_self.currentWord, (value) {
     return _then(_self.copyWith(currentWord: value));
-  });
-}/// Create a copy of LevelBlocState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings {
-  
-  return $LevelFeaturesSettingsModelCopyWith<$Res>(_self.featuresSettings, (value) {
-    return _then(_self.copyWith(featuresSettings: value));
   });
 }
 }

@@ -25,7 +25,7 @@ class UiColors {
   static const dark = Color(0xFF1F1F1F);
 
   /// A semi-transparent version of the dark color.
-  static final darkO50 = dark.withOpacity(0.5);
+  static final darkO50 = dark.withValues(alpha: 0.5);
 
   /// A medium dark color used for secondary text.
   static const mediumDark = Color(0xFF6B6B6B);

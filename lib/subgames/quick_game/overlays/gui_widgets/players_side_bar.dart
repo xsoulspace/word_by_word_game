@@ -135,8 +135,8 @@ class UiPlayerAndScoreTile extends StatelessWidget {
         ? theme.textTheme.labelLarge
         : theme.textTheme.labelMedium;
     final backgroundColor = isCurrent
-        ? colorScheme.tertiaryContainer.withOpacity(0.7)
-        : colorScheme.scrim.withOpacity(0.2);
+        ? colorScheme.tertiaryContainer.withValues(alpha: 0.7)
+        : colorScheme.scrim.withValues(alpha: 0.2);
     const radius = Radius.elliptical(UiSpace.medium, UiSpace.medium);
 
     return AnimatedContainer(
@@ -150,7 +150,7 @@ class UiPlayerAndScoreTile extends StatelessWidget {
         color: backgroundColor,
         gradient: LinearGradient(
           colors: [
-            colorScheme.tertiaryContainer.withOpacity(0.6),
+            colorScheme.tertiaryContainer.withValues(alpha: 0.6),
             const Color(0x00FFFFFF),
           ],
           stops: const [0.4, 1],
@@ -180,7 +180,7 @@ class UiPlayerAndScoreTile extends StatelessWidget {
               style: theme.textTheme.labelMedium?.copyWith(
                 color: isCurrent
                     ? null
-                    : colorScheme.onSurface.withOpacity(0.6),
+                    : colorScheme.onSurface.withValues(alpha: 0.6),
               ),
             ),
           ),
@@ -240,8 +240,8 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
       duration: 50.milliseconds,
       decoration: BoxDecoration(
         color: selected
-            ? widget.player.color.withOpacity(0.8)
-            : colorScheme.scrim.withOpacity(0.05),
+            ? widget.player.color.withValues(alpha: 0.8)
+            : colorScheme.scrim.withValues(alpha: 0.05),
         borderRadius: const BorderRadius.only(
           topRight: radius,
           bottomRight: radius,
@@ -258,8 +258,8 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
         children: [
           UiPlayerScoreIcon(
             color: selected
-                ? colorScheme.onPrimary.withOpacity(0.6)
-                : colorScheme.onSurface.withOpacity(0.3),
+                ? colorScheme.onPrimary.withValues(alpha: 0.6)
+                : colorScheme.onSurface.withValues(alpha: 0.3),
             size: 8,
           ),
           Animate(
@@ -273,7 +273,7 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
                       style: theme.textTheme.labelMedium?.copyWith(
                         color: selected
                             ? colorScheme.onPrimary
-                            : colorScheme.onSurface.withOpacity(0.6),
+                            : colorScheme.onSurface.withValues(alpha: 0.6),
                       ),
                     )
                     .animate(

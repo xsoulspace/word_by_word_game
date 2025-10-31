@@ -18,7 +18,7 @@ abstract class LevelBlocState with _$LevelBlocState {
     /// *      NON PERSISTENT
     /// ********************************************
     @Default(WordWarning.none) final WordWarning wordWarning,
-    @Default(LevelFeaturesSettingsModel.empty)
+    @Default(LevelFeaturesSettingsModel.allDisabled)
     final LevelFeaturesSettingsModel featuresSettings,
     @Default(defaultLanguage) final UiLanguage wordsLanguage,
   }) = _LevelBlocState;

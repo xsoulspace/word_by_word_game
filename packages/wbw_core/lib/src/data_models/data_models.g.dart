@@ -172,10 +172,8 @@ _LevelModel _$LevelModelFromJson(Map<String, dynamic> json) => _LevelModel(
           json['technologyTreeProgress'] as Map<String, dynamic>,
         ),
   featuresSettings: json['featuresSettings'] == null
-      ? LevelFeaturesSettingsModel.empty
-      : LevelFeaturesSettingsModel.fromJson(
-          json['featuresSettings'] as Map<String, dynamic>,
-        ),
+      ? LevelFeaturesSettingsModel.allDisabled
+      : LevelFeaturesSettingsModel.fromJson(json['featuresSettings']),
   wordsLanguage: json['wordsLanguage'] == null
       ? defaultLanguage
       : uiLanguageFromJson(json['wordsLanguage'] as String),
@@ -242,21 +240,6 @@ const _$PlayerStartPointTypeEnumMap = {
   PlayerStartPointType.fromSamePlace: 'fromSamePlace',
   PlayerStartPointType.fromSavePoint: 'fromSavePoint',
   PlayerStartPointType.fromSpawnPoint: 'fromSpawnPoint',
-};
-
-_LevelFeaturesSettingsModel _$LevelFeaturesSettingsModelFromJson(
-  Map<String, dynamic> json,
-) => _LevelFeaturesSettingsModel(
-  isTechnologiesEnabled: json['isTechnologiesEnabled'] as bool? ?? false,
-  isWindDirectionChangeEnabled:
-      json['isWindDirectionChangeEnabled'] as bool? ?? false,
-);
-
-Map<String, dynamic> _$LevelFeaturesSettingsModelToJson(
-  _LevelFeaturesSettingsModel instance,
-) => <String, dynamic>{
-  'isTechnologiesEnabled': instance.isTechnologiesEnabled,
-  'isWindDirectionChangeEnabled': instance.isWindDirectionChangeEnabled,
 };
 
 _LevelPlayersModel _$LevelPlayersModelFromJson(Map<String, dynamic> json) =>

@@ -1,4 +1,4 @@
-// ignore_for_file: invalid_annotation_target
+// ignore_for_file: invalid_annotation_target, avoid_annotating_with_dynamic
 
 // part of 'data_models.dart';
 part of 'data_models.dart';
@@ -57,7 +57,7 @@ abstract class LevelModel with _$LevelModel {
     @Default(WorldDateTimeModel.zero) final WorldDateTimeModel lastDateTime,
     @Default(TechnologyTreeProgressModel.empty)
     final TechnologyTreeProgressModel technologyTreeProgress,
-    @Default(LevelFeaturesSettingsModel.empty)
+    @Default(LevelFeaturesSettingsModel.allDisabled)
     final LevelFeaturesSettingsModel featuresSettings,
     @JsonKey(fromJson: uiLanguageFromJson, toJson: uiLanguageToJson)
     @Default(defaultLanguage)
@@ -80,31 +80,4 @@ abstract class LevelModel with _$LevelModel {
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>
       _$LevelModelFromJson(json);
   CanvasDataModelId get id => canvasDataId;
-}
-
-/// Ensures that when user is starting a game
-/// he can start simple game, without
-/// any "adventure" features, as technologies, etc
-@freezed
-abstract class LevelFeaturesSettingsModel with _$LevelFeaturesSettingsModel {
-  const factory LevelFeaturesSettingsModel({
-    @Default(false) final bool isTechnologiesEnabled,
-
-    /// if enabled, then wind can be changed in both directions
-    /// left, or right during the flight
-    ///
-    /// In the same time, if this feature enabled,
-    /// then there is no win scenario, since
-    /// it makes no sense.
-    @Default(false) final bool isWindDirectionChangeEnabled,
-  }) = _LevelFeaturesSettingsModel;
-  const LevelFeaturesSettingsModel._();
-  factory LevelFeaturesSettingsModel.fromJson(
-    final Map<String, dynamic> json,
-  ) => _$LevelFeaturesSettingsModelFromJson(json);
-  static const empty = LevelFeaturesSettingsModel();
-  static const allEnabled = LevelFeaturesSettingsModel(
-    isTechnologiesEnabled: true,
-  );
-  bool get isAdvancedGame => isTechnologiesEnabled;
 }

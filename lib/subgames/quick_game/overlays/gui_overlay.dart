@@ -99,7 +99,7 @@ class UiPhaseText extends StatelessWidget {
         GamePhaseType.selectAction => 'Select Action',
       }}",
       style: context.textTheme.labelMedium!.copyWith(
-        color: context.colorScheme.tertiary.withOpacity(0.65),
+        color: context.colorScheme.tertiary.withValues(alpha: 0.65),
         fontStyle: FontStyle.italic,
       ),
     ).animate(key: ValueKey(phaseType)).fadeIn(duration: 450.milliseconds);

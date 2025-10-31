@@ -52,7 +52,7 @@ class TechLevelsDialog extends StatelessWidget {
         Builder(
           builder: (final context) {
             final isMaxLevel = lastLevelIndex == TechnologyLevelIndex.maxLevel;
-            final color = context.colorScheme.onSurface.withOpacity(0.7);
+            final color = context.colorScheme.onSurface.withValues(alpha: 0.7);
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -213,7 +213,7 @@ class _TechLevel extends StatelessWidget {
     final isUnblocked = (index + 1) <= lastLevelIndex.index;
     final color = isUnblocked
         ? null
-        : context.colorScheme.onSurface.withOpacity(0.4);
+        : context.colorScheme.onSurface.withValues(alpha: 0.4);
     return DefaultTextStyle.merge(
       style: TextStyle(color: color),
       child: Stack(

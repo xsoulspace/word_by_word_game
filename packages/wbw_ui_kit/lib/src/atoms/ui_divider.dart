@@ -141,7 +141,7 @@ class _HorizontalDividerPainter extends CustomPainter {
   @override
   void paint(final Canvas canvas, final Size size) {
     final paint = Paint()
-      ..color = UiColors.mediumLight.withOpacity(0.5)
+      ..color = UiColors.mediumLight.withValues(alpha: 0.5)
       ..strokeWidth = 1
       ..style = PaintingStyle.stroke;
 
@@ -224,7 +224,7 @@ class _VerticalDividerPainter extends CustomPainter {
   @override
   void paint(final Canvas canvas, final Size size) {
     final paint = Paint()
-      ..color = UiColors.mediumLight.withOpacity(0.5)
+      ..color = UiColors.mediumLight.withValues(alpha: 0.5)
       ..strokeWidth = 1
       ..style = PaintingStyle.stroke;
 

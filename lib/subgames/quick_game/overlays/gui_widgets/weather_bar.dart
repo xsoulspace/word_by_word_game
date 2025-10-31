@@ -69,13 +69,13 @@ class UIWeatherBar extends StatelessWidget with TechLevelMixin {
     final state = context.watch<WeatherCubit>().state;
     final currentWeather = state.weather;
     final currentWind = state.wind;
-    final borderColor = context.colorScheme.onSurface.withOpacity(0.2);
+    final borderColor = context.colorScheme.onSurface.withValues(alpha: 0.2);
     final borderSide = BorderSide(color: borderColor);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
         decoration: BoxDecoration(
-          color: context.colorScheme.surface.withOpacity(0.7),
+          color: context.colorScheme.surface.withValues(alpha: 0.7),
           border: Border.fromBorderSide(borderSide),
           borderRadius: const BorderRadius.only(
             bottomRight: Radius.elliptical(8, 8),

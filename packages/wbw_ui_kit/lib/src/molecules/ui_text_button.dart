@@ -70,7 +70,7 @@ class UiTextButton extends HookWidget {
             foregroundDecoration: isEnabled
                 ? null
                 : BoxDecoration(
-                    color: theme.colorScheme.shadow.withOpacity(0.2),
+                    color: theme.colorScheme.shadow.withValues(alpha: 0.2),
                   ),
             child: Container(
               height: height - 1,

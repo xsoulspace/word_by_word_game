@@ -65,7 +65,7 @@ class _ResizablePaneState extends State<ResizablePane> {
                 width: 10,
                 height:
                     widget.resizeAxis == Axis.horizontal ? double.infinity : 10,
-                color: Colors.grey.withOpacity(0.5),
+                color: Colors.grey.withValues(alpha: 0.5),
               ),
             ),
           ),

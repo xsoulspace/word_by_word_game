@@ -39,7 +39,7 @@ class LoadingScreen extends StatelessWidget {
                       // TODO(arenukvern): add gifs - tips
                       'Tip: You can delete letters by clicking them if you have enough points.',
                       style: TextStyle(
-                        color: UiColors.dark.withOpacity(0.8),
+                        color: UiColors.dark.withValues(alpha: 0.8),
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic,

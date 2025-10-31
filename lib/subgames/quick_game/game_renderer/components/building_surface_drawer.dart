@@ -162,7 +162,7 @@ class _PlacingSurfaceComponent extends PositionComponent
 
   final _borderPaint = material.Paint()
     ..style = material.PaintingStyle.stroke
-    ..color = Palette.blue.color.withOpacity(0.3)
+    ..color = Palette.blue.color.withValues(alpha: 0.3)
     ..strokeWidth = 0.5;
   late final _selectedBorderPaint = material.Paint()
     ..style = material.PaintingStyle.stroke

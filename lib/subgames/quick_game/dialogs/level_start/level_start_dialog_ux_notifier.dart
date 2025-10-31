@@ -30,7 +30,6 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
   /// Temporary variable to access in dialog
   /// Never use it inside functions.
   CanvasDataModelId? canvasDataId;
-  bool get isQuickGame => canvasDataId?.isQuickGame ?? false;
 
   void onLoad() {
     final liveState = dto.globalGameBloc.state;
@@ -81,7 +80,8 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
     notifyListeners();
   }
 
-  LevelFeaturesSettingsModel featuresSettings = LevelFeaturesSettingsModel.empty
+  LevelFeaturesSettingsModel featuresSettings = LevelFeaturesSettingsModel
+      .allDisabled
       .copyWith(isTechnologiesEnabled: kDebugMode);
   void changeFeaturesSettings(
     final LevelFeaturesSettingsModel Function(LevelFeaturesSettingsModel old)
