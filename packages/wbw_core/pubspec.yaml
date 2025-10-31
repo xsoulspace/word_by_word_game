@@ -71,7 +71,7 @@ flutter_gen:
   integrations:
     image: true
     flutter_svg: true
-    rive: true
+    rive: false
 
   fonts:
     enabled: true
