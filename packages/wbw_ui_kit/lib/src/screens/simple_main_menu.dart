@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -21,6 +20,7 @@ typedef SimpleMainMenuTuple = ({
   VoidCallback onChooseAdventure,
   VoidCallback onPrivacyPolicy,
   bool isAdventureSaveExists,
+  bool isAdventureModeEnabled,
   bool isQuickSaveExists,
 });
 
@@ -98,7 +98,8 @@ class _UiMainMenuList extends StatelessWidget {
           children: [
             const Gap(leadingGapWithIcon),
             UiAnimatedText(
-              label: 'QUICK PLAY',
+              // label: 'QUICK PLAY',
+              label: 'JUST FLYING',
               textStyle: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -120,13 +121,14 @@ class _UiMainMenuList extends StatelessWidget {
           focusIcon: Icons.timer_outlined,
         ),
         divider,
-        if (kDebugMode) ...[
+        if (tuple.isAdventureModeEnabled) ...[
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               const Gap(leadingGapWithIcon),
               UiAnimatedText(
-                label: 'ADVENTURE',
+                label: 'BUILD & FLY',
+                // label: 'ADVENTURE',
                 textStyle: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,

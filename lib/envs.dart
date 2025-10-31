@@ -1,5 +1,7 @@
 // ignore_for_file: do_not_use_environment
 
+import 'package:flutter/foundation.dart';
+
 class Envs {
   Envs._();
 
@@ -37,6 +39,10 @@ class Envs {
   );
   static const wiredashProjectSecret = String.fromEnvironment(
     'WIREDASH_PROJECT_SECRET',
+  );
+  static const isAdventureModeEnabled = bool.fromEnvironment(
+    'IS_ADVENTURE_ENABLED',
+    defaultValue: kDebugMode,
   );
   static const serverUrl = String.fromEnvironment('SERVER_URL');
 }

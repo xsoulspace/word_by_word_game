@@ -139,6 +139,7 @@ class _MainMenuView extends StatelessWidget {
     final tuple = (
       onContinueQuick: onContinueQuick,
       onNewQuick: onRestartQuick,
+      isAdventureModeEnabled: Envs.isAdventureModeEnabled,
       onContinueAdventure: onContinueAdventure,
       onChooseAdventure: () => onChangeRoute(PauseScreenRoute.adventure),
       onPlayersAndHighscore: dialogController.openPlayersAndHighscore,
