@@ -79,13 +79,14 @@ class _DialogState extends ValueNotifier<bool> {
 }
 
 class LevelWordSuggestionDialog extends HookWidget {
-  const LevelWordSuggestionDialog({super.key});
+  const LevelWordSuggestionDialog({required this.onClose, super.key});
+
+  final VoidCallback onClose;
 
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
     final locale = useLocale(context);
-    final dialogController = context.read<DialogController>();
     final state = useStateBuilder(
       () => _DialogState(dto: _DialogStateDiDto.use(context.read)),
     );
@@ -296,7 +297,7 @@ class LevelWordSuggestionDialog extends HookWidget {
         );
       },
       bottomButton: UiCircleCloseButton(
-        onPressed: dialogController.closeDialogAndResume,
+        onPressed: onClose,
         icon: state._isWordRevealed ? Icons.done : null,
       ),
     );

@@ -81,12 +81,7 @@ class _Dialog extends PopupRoute {
   // This allows the popup to be dismissed by tapping the scrim or by pressing
   // the escape key on the keyboard.
   @override
-  bool get barrierDismissible => switch (dialogType) {
-    GameDialogType.menuSettings ||
-    GameDialogType.menuPlayersAndHighscore => true,
-    GameDialogType.none => true,
-    _ => false,
-  };
+  bool get barrierDismissible => true;
 
   @override
   String? get barrierLabel => 'Game Dialog';
@@ -129,50 +124,59 @@ class _DialogBody extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final state = context.watch<DialogController>();
+    void popAndClose() {
+      state.closeDialogAndResume();
+      WidgetsBinding.instance.addPostFrameCallback((final _) {
+        if (context.mounted) unawaited(Navigator.maybeOf(context)?.maybePop());
+      });
+    }
 
-    useEffect(() {
-      if (state.dialogType case GameDialogType.none when context.mounted) {
-        final navigator = Navigator.maybeOf(context);
-        unawaited(navigator?.maybePop());
-      }
-      return null;
-    }, [state._dialogType]);
-
-    return switch (state.dialogType) {
-      GameDialogType.none => const SizedBox(),
-      GameDialogType.gameTechnologiesTree => Center(
-        child: TechLevelsDialog(onClose: state.closeDialogAndResume),
-      ),
-      GameDialogType.gameTechLevelAchieved => Center(
-        child: TechLevelAchievedDialog(onClose: state.closeDialogAndResume),
-      ),
-      GameDialogType.gameLevelLost => Center(
-        child: LevelLostDialog(
-          onRestart: state.onRestartContinueLevel,
-          onToLevels: state.onExitLevel,
+    return PopScope(
+      canPop: switch (state.dialogType) {
+        GameDialogType.menuSettings ||
+        GameDialogType.menuPlayersAndHighscore => true,
+        GameDialogType.none => true,
+        _ => false,
+      },
+      child: switch (state.dialogType) {
+        GameDialogType.none => GestureDetector(
+          onTap: popAndClose,
+          child: Container(color: Colors.white.withValues(alpha: 0)),
         ),
-      ),
-      GameDialogType.gameLevelWin => Center(
-        child: LevelWinDialog(
-          onContinue: state.onRestartContinueLevel,
-          onToLevels: state.onExitLevel,
+        GameDialogType.gameTechnologiesTree => Center(
+          child: TechLevelsDialog(onClose: popAndClose),
         ),
-      ),
-      GameDialogType.gameLevelWordSuggestion => const Center(
-        child: LevelWordSuggestionDialog(),
-      ),
-      GameDialogType.gameTutorialBool => const TutorialBoolDialog(),
-      GameDialogType.gameTutorialOk => const TutorialOkDialog(),
-      GameDialogType.menuSettings => const Center(child: SettingsView()),
-      GameDialogType.menuPlayersAndHighscore => const Center(
-        child: PlayersAndHighscoreView(),
-      ),
+        GameDialogType.gameTechLevelAchieved => Center(
+          child: TechLevelAchievedDialog(onClose: popAndClose),
+        ),
+        GameDialogType.gameLevelLost => Center(
+          child: LevelLostDialog(
+            onRestart: state.onRestartContinueLevel,
+            onToLevels: state.onExitLevel,
+          ),
+        ),
+        GameDialogType.gameLevelWin => Center(
+          child: LevelWinDialog(
+            onContinue: state.onRestartContinueLevel,
+            onToLevels: state.onExitLevel,
+          ),
+        ),
+        GameDialogType.gameLevelWordSuggestion => Center(
+          child: LevelWordSuggestionDialog(onClose: popAndClose),
+        ),
+        GameDialogType.gameTutorialBool => const TutorialBoolDialog(),
+        GameDialogType.gameTutorialOk => const TutorialOkDialog(),
+        GameDialogType.menuSettings => const Center(child: SettingsView()),
+        GameDialogType.menuPlayersAndHighscore => const Center(
+          child: PlayersAndHighscoreView(),
+        ),
 
-      // GameDialogType.menuCredits => ,
-      // GameDialogType.menuAdventure => AdventureView(
-      //     onBack: dialogController.closeDialog,
-      //   ),
-      // GameDialogType.menuQuickGame => const MenuQuickGameDialog(),
-    };
+        // GameDialogType.menuCredits => ,
+        // GameDialogType.menuAdventure => AdventureView(
+        //     onBack: dialogController.closeDialog,
+        //   ),
+        // GameDialogType.menuQuickGame => const MenuQuickGameDialog(),
+      },
+    );
   }
 }
