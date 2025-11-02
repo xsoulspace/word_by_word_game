@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="Word by Word"
+        android:label="World by Word Adventure"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

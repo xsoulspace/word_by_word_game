@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:word_by_word_game/common_imports.dart';
 
@@ -42,8 +43,11 @@ extension LanguagesX on UiLanguage {
   KeyboardLanguage toKeyboardLanguage() => KeyboardLanguage.fromLanguage(this);
 }
 
-class LetterModel {
+class LetterModel with EquatableMixin {
   LetterModel({required this.title}) : id = IdCreator.create();
   final String id;
   final String title;
+
+  @override
+  List<Object?> get props => [id];
 }
