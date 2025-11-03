@@ -92,7 +92,7 @@ class _MainMenuView extends StatelessWidget {
       final savedLevels =
           [
             ...context.read<GlobalGameBloc>().state.savedLevels.values.where(
-              (final e) => e.id != kQuickGameMapId,
+              (final e) => e.featuresSettings.isAdvancedGame,
             ),
           ]..sort((final a, final b) {
             // 1 - later, -1 - earlier
@@ -108,17 +108,18 @@ class _MainMenuView extends StatelessWidget {
         adventureLevelId = savedLevels.first.id;
       }
 
-      return buttonStatuses.pauseScreenState.onContinueFromSamePlace(
+      await buttonStatuses.pauseScreenState.onContinueFromSamePlace(
         context: context,
         id: adventureLevelId,
       );
     }
 
     Future<void> onContinueQuick() async {
-      if (buttonStatuses.isQuickSaveExists) {
+      final quickGameSave = buttonStatuses.quickGameSave;
+      if (quickGameSave != null) {
         return buttonStatuses.pauseScreenState.onContinueFromSamePlace(
           context: context,
-          id: kQuickGameMapId,
+          id: quickGameSave.id,
         );
       }
       unawaited(
@@ -147,8 +148,8 @@ class _MainMenuView extends StatelessWidget {
       onCredits: () => buttonStatuses.pauseScreenState.onShowAbout(context),
       onSettings: dialogController.openSettings,
       onExit: SystemNavigator.pop,
-      isAdventureSaveExists: buttonStatuses.isAdventureSaveExists,
-      isQuickSaveExists: buttonStatuses.isQuickSaveExists,
+      adventureGameSave: buttonStatuses.adventureGameSave,
+      quickGameSave: buttonStatuses.quickGameSave,
       onPrivacyPolicy: buttonStatuses.pauseScreenState.onPrivacyPolicy,
     );
 
