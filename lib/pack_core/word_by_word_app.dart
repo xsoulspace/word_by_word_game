@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:window_manager/window_manager.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_services_initializer.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states_provider.dart';
@@ -18,7 +19,7 @@ class AppScaffoldBuilder extends StatelessWidget {
   const AppScaffoldBuilder({super.key});
   @override
   Widget build(final BuildContext context) {
-    final locale = context.select<AppSettingsNotifier, Locale>(
+    final locale = context.select<AppSettingsResource, Locale>(
       (final c) => c.locale.value,
     );
     // final settingsNotifier = context.watch<AppSettingsNotifier>();
@@ -79,7 +80,9 @@ class WindowControlsScaffold extends HookWidget {
                   children: [
                     IconButton(
                       padding: EdgeInsets.zero,
-                      onPressed: () {},
+                      onPressed: () async {
+                        await windowManager.close();
+                      },
                       icon: isHovered
                           ? const Icon(CupertinoIcons.clear_circled_solid)
                           : const Icon(CupertinoIcons.circle_filled),
@@ -101,6 +104,7 @@ class WindowControlsScaffold extends HookWidget {
                         // } else {
                         //   await windowManager.minimize();
                         // }
+                        await windowManager.minimize();
                       },
                       color: Colors.amber,
                       icon: isHovered
@@ -129,6 +133,11 @@ class WindowControlsScaffold extends HookWidget {
                         // } else {
                         //   await windowManager.maximize();
                         // }
+                        if (await windowManager.isMaximized()) {
+                          await windowManager.unmaximize();
+                        } else {
+                          await windowManager.maximize();
+                        }
                       },
                       icon: Stack(
                         children: [

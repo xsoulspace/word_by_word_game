@@ -2,9 +2,10 @@ import 'package:flutter/foundation.dart';
 import 'package:universal_io/io.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
+import 'package:word_by_word_game/pack_core/di/dependency_injector.dart';
 import 'package:word_by_word_game/router.dart';
 
-class GlobalStatesInitializer implements StateInitializer {
+class GlobalStatesInitializer with HasResources implements StateInitializer {
   GlobalStatesInitializer();
   @override
   Future<void> onLoad(final BuildContext context) async {
@@ -18,7 +19,7 @@ class GlobalStatesInitializer implements StateInitializer {
     final services = read<ServicesCollection>();
     final analyticsService = read<AnalyticsService>();
     final canvasCubit = read<CanvasCubit>();
-    final appSettingsNotifier = read<AppSettingsNotifier>();
+    final appSettingsNotifier = read<AppSettingsResource>();
     final onlineStatusService = read<OnlineStatusService>();
     final localDb = read<LocalDbI>();
     await localDb.init();
@@ -26,6 +27,9 @@ class GlobalStatesInitializer implements StateInitializer {
       onlineStatusService.onLoad(),
       appSettingsNotifier.onLoad(),
     ]);
+    await InitWindowManagerCmd(
+      appSettingsResource: appSettingsResource,
+    ).execute();
 
     final wordsType = await services.userWordsRepository.loadUserWords();
     await dictionariesBloc.onLoad(wordsType: wordsType);

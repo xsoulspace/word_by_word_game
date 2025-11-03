@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 import '../data_models/data_models.dart';
 import '../data_sources/data_sources.dart';
@@ -7,8 +7,8 @@ import 'base_repository.dart';
 
 final class AppSettingsRepository
     extends BaseLocalRepository<AppSettingsLocalDataSource> {
-  AppSettingsRepository(final BuildContext context)
-    : super(local: AppSettingsLocalDataSourceImpl(localDb: context.read()));
+  AppSettingsRepository({required final LocalDbI localDb})
+    : super(local: AppSettingsLocalDataSourceImpl(localDb: localDb));
 
   Future<BrightnessMode> getBrightness() => local.getBrightness();
   Future<void> setBrightness(final BrightnessMode brightness) =>

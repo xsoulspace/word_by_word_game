@@ -176,7 +176,7 @@ class _TechnologyPanelViewState extends State<_TechnologyPanelView> {
   UsefulWordModel? _languageWord;
 
   late final _wbwDictionary = context.read<WbwDictionary>();
-  late final _appSettingsNotifier = context.read<AppSettingsNotifier>();
+  late final _appSettingsNotifier = context.read<AppSettingsResource>();
   Future<void> _updateWordMeaning(final TechnologyWordInfoTuple word) async {
     final uiWord = word.uiWord;
     final languageWord = word.languageWord;

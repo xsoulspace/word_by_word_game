@@ -1,6 +1,7 @@
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/adventure_view.dart';
 import 'package:word_by_word_game/subgames/quick_game/settings/locale_switcher_button.dart';
+import 'package:word_by_word_game/subgames/quick_game/settings/window_size_selector.dart';
 
 class SettingsView extends HookWidget {
   const SettingsView({super.key});
@@ -51,6 +52,7 @@ class SettingsView extends HookWidget {
           ),
         ),
         UiGaps.extraLarge,
+        if (Envs.isDebugMode) const WindowSizeSelector(),
         UiGaps.extraLarge,
       ],
     );

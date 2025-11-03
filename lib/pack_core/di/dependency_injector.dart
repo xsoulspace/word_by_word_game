@@ -50,6 +50,10 @@ Future<void> _init() async {
   // rl<WbwDictionary>(() => WbwDictionary(simpleLocal: _g(), repository: ...), dispose: d);
 
   // Repositories will be registered after LocalDbI is available
+  rl(() => LevelsRepository(localDb: _g()));
+  rl(() => GameRespository(localDb: _g()));
+  // rl(() => WordsRespository(localDb: _g()));
+  rl(() => AppSettingsRepository(localDb: _g()));
 
   /// ********************************************
   /// *      Layer 3: Runtime Resources (No Dependencies)
@@ -62,12 +66,19 @@ Future<void> _init() async {
   /// ********************************************
   /// *      RESOURCES
   /// ********************************************
+  final localeResource = UiLocaleResource(Locales.fallback);
+  r(localeResource, dispose: d);
+  rl(
+    () => AppSettingsResource(
+      appSettingsRepository: _g(),
+      uiLocaleResource: _g(),
+    ),
+    dispose: d,
+  );
 
   /// ********************************************
   /// *      Notifiers
   /// ********************************************
-  final localeNotifier = UiLocaleResource(Locales.fallback);
-  r(localeNotifier, dispose: d);
 }
 
 mixin HasLocalApis {
@@ -79,16 +90,17 @@ mixin HasLocalApis {
 /// for ui access.
 mixin HasResources {
   UiLocaleResource get uiLocaleResource => _g();
+  AppSettingsResource get appSettingsResource => _g();
 }
 
 /// These states should not be used in each other,
-/// but they can access Distributors via [HasResources]
+/// but they can access Resources via [HasResources]
 ///
 /// States can and should have business logic, but should minimize
 /// state usage to make ui management more effective.
 mixin HasNotifiers {
   UiLocaleResource get localeNotifier => _g();
-  AppSettingsNotifier get appSettingsNotifier => _g();
+  AppSettingsResource get appSettingsResource => _g();
 }
 
 mixin HasAnalytics {

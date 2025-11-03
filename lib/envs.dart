@@ -8,6 +8,10 @@ class Envs {
   /// ********************************************
   /// *      ADS START
   /// ********************************************
+  static const isDebugMode = bool.fromEnvironment(
+    'IS_DEBUG_MODE',
+    defaultValue: kDebugMode,
+  );
 
   static const yandexFlexibleMobile = String.fromEnvironment(
     'YANDEX_FLEXIBLE_MOBILE',

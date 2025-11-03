@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 import '../data_sources/data_sources.dart';
 
 class LevelsRepository {
-  LevelsRepository(final BuildContext context)
-    : localAssets = LevelsLocalDataSourceAssetsImpl(localDb: context.read());
+  LevelsRepository({required final LocalDbI localDb})
+    : localAssets = LevelsLocalDataSourceAssetsImpl(localDb: localDb);
   final LevelsLocalDataSource localAssets;
 
   late final getDefaultTemplateLevels = localAssets.getDefaultTemplateLevels;

@@ -15,18 +15,34 @@ _AppSettingsModel _$AppSettingsModelFromJson(Map<String, dynamic> json) =>
             json['brightnessMode'],
           ) ??
           BrightnessMode.system,
+      windowSizePreset:
+          $enumDecodeNullable(
+            _$WindowSizePresetEnumMap,
+            json['windowSizePreset'],
+          ) ??
+          WindowSizePreset.auto,
     );
 
 Map<String, dynamic> _$AppSettingsModelToJson(_AppSettingsModel instance) =>
     <String, dynamic>{
       'locale': localeToString(instance.locale),
       'brightnessMode': _$BrightnessModeEnumMap[instance.brightnessMode]!,
+      'windowSizePreset': _$WindowSizePresetEnumMap[instance.windowSizePreset]!,
     };
 
 const _$BrightnessModeEnumMap = {
   BrightnessMode.system: 'system',
   BrightnessMode.light: 'light',
   BrightnessMode.dark: 'dark',
+};
+
+const _$WindowSizePresetEnumMap = {
+  WindowSizePreset.auto: 'auto',
+  WindowSizePreset.w16h9_720p: '16_9_720p',
+  WindowSizePreset.w16h9_1080p: '16_9_1080p',
+  WindowSizePreset.w16h9_1440p: '16_9_1440p',
+  WindowSizePreset.w4h3_800x600: '4_3_800x600',
+  WindowSizePreset.w4h3_1024x768: '4_3_1024x768',
 };
 
 _CurrentWordModel _$CurrentWordModelFromJson(Map<String, dynamic> json) =>
