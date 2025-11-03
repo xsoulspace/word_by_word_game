@@ -23,6 +23,7 @@ class TutorialBoolDialog extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () {
+                Navigator.pop(context);
                 context.read<DialogController>().closeDialog();
                 context.read<TutorialBloc>().onTutorialUiAction(
                   const TutorialUiActionEvent(
@@ -35,6 +36,7 @@ class TutorialBoolDialog extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
+                Navigator.pop(context);
                 context.read<DialogController>().closeDialog();
                 context.read<TutorialBloc>().onTutorialUiAction(
                   const TutorialUiActionEvent(

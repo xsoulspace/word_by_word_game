@@ -48,7 +48,7 @@ class _AnimatedProgressBarState extends State<AnimatedProgressBar> {
     if (widget.valueDelay != Duration.zero) {
       await Future.delayed(widget.valueDelay);
     }
-    setState(() => _currentValue = widget.value);
+    if (mounted) setState(() => _currentValue = widget.value);
   }
 
   @override

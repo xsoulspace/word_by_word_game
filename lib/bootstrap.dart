@@ -44,6 +44,7 @@ Future<void> bootstrap({final FirebaseOptions? firebaseOptions}) async {
     ),
   );
   await Di.init();
+
   // await Flame.device.fullScreen();
 
   final GlobalServicesInitializer initializer = GlobalServicesInitializerImpl(

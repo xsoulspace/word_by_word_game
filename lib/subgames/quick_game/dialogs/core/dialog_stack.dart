@@ -178,8 +178,12 @@ class _DialogBody extends HookWidget {
         GameDialogType.gameLevelWordSuggestion => Center(
           child: LevelWordSuggestionDialog(onClose: popAndClose),
         ),
-        GameDialogType.gameTutorialBool => const TutorialBoolDialog(),
-        GameDialogType.gameTutorialOk => const TutorialOkDialog(),
+        GameDialogType.gameTutorialBool => const Center(
+          child: TutorialBoolDialog(),
+        ),
+        GameDialogType.gameTutorialOk => const Center(
+          child: TutorialOkDialog(),
+        ),
         GameDialogType.menuSettings => const Center(child: SettingsView()),
         GameDialogType.menuPlayersAndHighscore => const Center(
           child: PlayersAndHighscoreView(),

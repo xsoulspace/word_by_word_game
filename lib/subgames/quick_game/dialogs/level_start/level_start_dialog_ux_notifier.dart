@@ -11,7 +11,7 @@ class _LevelStartDialogUxStateDiDto {
       tutorialBloc = context.read();
   final GlobalGameBloc globalGameBloc;
   final TutorialBloc tutorialBloc;
-  final AppSettingsNotifier appSettingsNotifier;
+  final AppSettingsResource appSettingsNotifier;
   final MechanicsCollection mechanics;
   final OnlineStatusService onlineStatusService;
   final WbwDictionary wbwDictionary;

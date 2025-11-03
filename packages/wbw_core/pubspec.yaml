@@ -44,6 +44,7 @@ dependencies:
   wbw_dictionaries:
   wbw_locale:
   web: ^1.1.1
+  window_manager: ^0.4.3
   xsoulspace_foundation: ^0.3.0
   xsoulspace_ui_foundation: ^0.3.1
 

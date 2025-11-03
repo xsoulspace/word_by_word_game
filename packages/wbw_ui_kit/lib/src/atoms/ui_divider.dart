@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../theme/theme.dart';
 
-const _kDefaultSize = Size(60, 20);
+const _kDefaultHorizontalSize = Size(60, 20);
+const _kDefaultVerticalSize = Size(20, 60);
 
 /// A customizable divider widget with a triangle in the middle.
 ///
@@ -45,12 +46,13 @@ class UiDivider extends StatelessWidget {
   /// vertical divider.
   ///
   /// @ai Use this constructor for horizontal dividers in layouts.
-  const UiDivider({super.key, this.size = _kDefaultSize}) : horizontal = true;
+  const UiDivider({super.key, this.size = _kDefaultHorizontalSize})
+    : horizontal = true;
 
   /// Creates a vertical [UiDivider].
   ///
   /// @ai Use this constructor for vertical dividers in layouts.
-  const UiDivider.vertical({super.key, this.size = _kDefaultSize})
+  const UiDivider.vertical({super.key, this.size = _kDefaultVerticalSize})
     : horizontal = false;
 
   /// Provides a description for AI about the properties of this widget.
@@ -98,7 +100,7 @@ class UiHorizontalDivider extends StatelessWidget {
   /// Creates a [UiHorizontalDivider] widget.
   ///
   /// The [size] parameter determines the width and height of the divider.
-  const UiHorizontalDivider({super.key, this.size = _kDefaultSize});
+  const UiHorizontalDivider({super.key, this.size = _kDefaultHorizontalSize});
 
   /// {@template ui_divider.ai_description}
   /// Provides a description for AI about the properties of this widget.
@@ -198,7 +200,7 @@ class UiVerticalDivider extends StatelessWidget {
   const UiVerticalDivider({
     super.key,
     this.includeTriangle = true,
-    this.size = _kDefaultSize,
+    this.size = _kDefaultVerticalSize,
   });
 
   /// Whether to include the triangle shape in the middle of the divider.

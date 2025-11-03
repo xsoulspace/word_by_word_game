@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$AppSettingsModel {
 
-@JsonKey(fromJson: localeFromString, toJson: localeToString) Locale? get locale; BrightnessMode get brightnessMode;
+@JsonKey(fromJson: localeFromString, toJson: localeToString) Locale? get locale; BrightnessMode get brightnessMode; WindowSizePreset get windowSizePreset;
 /// Create a copy of AppSettingsModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -28,16 +28,16 @@ $AppSettingsModelCopyWith<AppSettingsModel> get copyWith => _$AppSettingsModelCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppSettingsModel&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.brightnessMode, brightnessMode) || other.brightnessMode == brightnessMode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AppSettingsModel&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.brightnessMode, brightnessMode) || other.brightnessMode == brightnessMode)&&(identical(other.windowSizePreset, windowSizePreset) || other.windowSizePreset == windowSizePreset));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,locale,brightnessMode);
+int get hashCode => Object.hash(runtimeType,locale,brightnessMode,windowSizePreset);
 
 @override
 String toString() {
-  return 'AppSettingsModel(locale: $locale, brightnessMode: $brightnessMode)';
+  return 'AppSettingsModel(locale: $locale, brightnessMode: $brightnessMode, windowSizePreset: $windowSizePreset)';
 }
 
 
@@ -48,7 +48,7 @@ abstract mixin class $AppSettingsModelCopyWith<$Res>  {
   factory $AppSettingsModelCopyWith(AppSettingsModel value, $Res Function(AppSettingsModel) _then) = _$AppSettingsModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(fromJson: localeFromString, toJson: localeToString) Locale? locale, BrightnessMode brightnessMode
+@JsonKey(fromJson: localeFromString, toJson: localeToString) Locale? locale, BrightnessMode brightnessMode, WindowSizePreset windowSizePreset
 });
 
 
@@ -65,11 +65,12 @@ class _$AppSettingsModelCopyWithImpl<$Res>
 
 /// Create a copy of AppSettingsModel
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? locale = freezed,Object? brightnessMode = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? locale = freezed,Object? brightnessMode = null,Object? windowSizePreset = null,}) {
   return _then(_self.copyWith(
 locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
 as Locale?,brightnessMode: null == brightnessMode ? _self.brightnessMode : brightnessMode // ignore: cast_nullable_to_non_nullable
-as BrightnessMode,
+as BrightnessMode,windowSizePreset: null == windowSizePreset ? _self.windowSizePreset : windowSizePreset // ignore: cast_nullable_to_non_nullable
+as WindowSizePreset,
   ));
 }
 
@@ -154,10 +155,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(fromJson: localeFromString, toJson: localeToString)  Locale? locale,  BrightnessMode brightnessMode)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(fromJson: localeFromString, toJson: localeToString)  Locale? locale,  BrightnessMode brightnessMode,  WindowSizePreset windowSizePreset)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _AppSettingsModel() when $default != null:
-return $default(_that.locale,_that.brightnessMode);case _:
+return $default(_that.locale,_that.brightnessMode,_that.windowSizePreset);case _:
   return orElse();
 
 }
@@ -175,10 +176,10 @@ return $default(_that.locale,_that.brightnessMode);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(fromJson: localeFromString, toJson: localeToString)  Locale? locale,  BrightnessMode brightnessMode)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(fromJson: localeFromString, toJson: localeToString)  Locale? locale,  BrightnessMode brightnessMode,  WindowSizePreset windowSizePreset)  $default,) {final _that = this;
 switch (_that) {
 case _AppSettingsModel():
-return $default(_that.locale,_that.brightnessMode);case _:
+return $default(_that.locale,_that.brightnessMode,_that.windowSizePreset);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +196,10 @@ return $default(_that.locale,_that.brightnessMode);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(fromJson: localeFromString, toJson: localeToString)  Locale? locale,  BrightnessMode brightnessMode)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(fromJson: localeFromString, toJson: localeToString)  Locale? locale,  BrightnessMode brightnessMode,  WindowSizePreset windowSizePreset)?  $default,) {final _that = this;
 switch (_that) {
 case _AppSettingsModel() when $default != null:
-return $default(_that.locale,_that.brightnessMode);case _:
+return $default(_that.locale,_that.brightnessMode,_that.windowSizePreset);case _:
   return null;
 
 }
@@ -210,11 +211,12 @@ return $default(_that.locale,_that.brightnessMode);case _:
 
 @JsonSerializable(explicitToJson: true)
 class _AppSettingsModel extends AppSettingsModel {
-  const _AppSettingsModel({@JsonKey(fromJson: localeFromString, toJson: localeToString) this.locale, this.brightnessMode = BrightnessMode.system}): super._();
+  const _AppSettingsModel({@JsonKey(fromJson: localeFromString, toJson: localeToString) this.locale, this.brightnessMode = BrightnessMode.system, this.windowSizePreset = WindowSizePreset.auto}): super._();
   factory _AppSettingsModel.fromJson(Map<String, dynamic> json) => _$AppSettingsModelFromJson(json);
 
 @override@JsonKey(fromJson: localeFromString, toJson: localeToString) final  Locale? locale;
 @override@JsonKey() final  BrightnessMode brightnessMode;
+@override@JsonKey() final  WindowSizePreset windowSizePreset;
 
 /// Create a copy of AppSettingsModel
 /// with the given fields replaced by the non-null parameter values.
@@ -229,16 +231,16 @@ Map<String, dynamic> toJson() {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppSettingsModel&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.brightnessMode, brightnessMode) || other.brightnessMode == brightnessMode));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AppSettingsModel&&(identical(other.locale, locale) || other.locale == locale)&&(identical(other.brightnessMode, brightnessMode) || other.brightnessMode == brightnessMode)&&(identical(other.windowSizePreset, windowSizePreset) || other.windowSizePreset == windowSizePreset));
 }
 
 @JsonKey(includeFromJson: false, includeToJson: false)
 @override
-int get hashCode => Object.hash(runtimeType,locale,brightnessMode);
+int get hashCode => Object.hash(runtimeType,locale,brightnessMode,windowSizePreset);
 
 @override
 String toString() {
-  return 'AppSettingsModel(locale: $locale, brightnessMode: $brightnessMode)';
+  return 'AppSettingsModel(locale: $locale, brightnessMode: $brightnessMode, windowSizePreset: $windowSizePreset)';
 }
 
 
@@ -249,7 +251,7 @@ abstract mixin class _$AppSettingsModelCopyWith<$Res> implements $AppSettingsMod
   factory _$AppSettingsModelCopyWith(_AppSettingsModel value, $Res Function(_AppSettingsModel) _then) = __$AppSettingsModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(fromJson: localeFromString, toJson: localeToString) Locale? locale, BrightnessMode brightnessMode
+@JsonKey(fromJson: localeFromString, toJson: localeToString) Locale? locale, BrightnessMode brightnessMode, WindowSizePreset windowSizePreset
 });
 
 
@@ -266,11 +268,12 @@ class __$AppSettingsModelCopyWithImpl<$Res>
 
 /// Create a copy of AppSettingsModel
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? locale = freezed,Object? brightnessMode = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? locale = freezed,Object? brightnessMode = null,Object? windowSizePreset = null,}) {
   return _then(_AppSettingsModel(
 locale: freezed == locale ? _self.locale : locale // ignore: cast_nullable_to_non_nullable
 as Locale?,brightnessMode: null == brightnessMode ? _self.brightnessMode : brightnessMode // ignore: cast_nullable_to_non_nullable
-as BrightnessMode,
+as BrightnessMode,windowSizePreset: null == windowSizePreset ? _self.windowSizePreset : windowSizePreset // ignore: cast_nullable_to_non_nullable
+as WindowSizePreset,
   ));
 }
 

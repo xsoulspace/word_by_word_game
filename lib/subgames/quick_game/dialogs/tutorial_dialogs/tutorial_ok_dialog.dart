@@ -24,6 +24,7 @@ class TutorialOkDialog extends StatelessWidget {
             Expanded(
               child: TextButton(
                 onPressed: () {
+                  Navigator.pop(context);
                   context.read<DialogController>().closeDialog();
                   context.read<TutorialBloc>().onTutorialUiAction(
                     const TutorialUiActionEvent(

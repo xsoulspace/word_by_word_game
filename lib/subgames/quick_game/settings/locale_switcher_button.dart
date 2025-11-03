@@ -8,7 +8,7 @@ class LocaleSwitcherButton extends StatelessWidget {
     final UiLanguage newLanguage,
   ) async {
     final uiKeyboardController = context.read<UiKeyboardController>();
-    final userNotifier = context.read<AppSettingsNotifier>();
+    final userNotifier = context.read<AppSettingsResource>();
     final locale = namedLocalesMap[newLanguage];
     await userNotifier.updateLocale(locale?.locale);
     uiKeyboardController.onChangeLanguage(

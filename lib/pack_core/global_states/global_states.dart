@@ -1,5 +1,4 @@
 export './game_providers.dart';
-export 'app/app.dart';
 export 'app_notifier.dart';
 export 'canvas_cubit.dart';
 export 'dictionaries/dictionaries_bloc.dart';

@@ -113,11 +113,12 @@ class UiGameBottomBarCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const Spacer(),
-                    const UiCurrentPlayerCard().animate().fadeIn(),
-                    const Spacer(),
-                    const SizedBox(width: 80),
-                    const Gap(20),
+                    Expanded(
+                      child: Center(
+                        child: const UiCurrentPlayerCard().animate().fadeIn(),
+                      ),
+                    ),
+                    const Gap(80),
                   ],
                 )
               else

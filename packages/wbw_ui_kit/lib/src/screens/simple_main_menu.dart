@@ -19,9 +19,9 @@ typedef SimpleMainMenuTuple = ({
   VoidCallback onContinueAdventure,
   VoidCallback onChooseAdventure,
   VoidCallback onPrivacyPolicy,
-  bool isAdventureSaveExists,
+  LevelModel? adventureGameSave,
+  LevelModel? quickGameSave,
   bool isAdventureModeEnabled,
-  bool isQuickSaveExists,
 });
 
 class SimpleMainMenu extends StatelessWidget {
@@ -88,6 +88,10 @@ class _UiMainMenuList extends StatelessWidget {
         children: [Gap(leadingGapWithIcon), UiHorizontalDivider()],
       ),
     );
+    final quickGameSave = tuple.quickGameSave;
+    final adventureGameSave = tuple.adventureGameSave;
+    final isQuickSaveExists = quickGameSave != null;
+    final isAdventureSaveExists = adventureGameSave != null;
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -109,7 +113,7 @@ class _UiMainMenuList extends StatelessWidget {
           ],
         ),
         const Gap(3),
-        if (tuple.isQuickSaveExists)
+        if (isQuickSaveExists)
           UiStyledButton(
             onPressed: tuple.onContinueQuick,
             label: 'continue',
@@ -117,7 +121,7 @@ class _UiMainMenuList extends StatelessWidget {
           ),
         UiStyledButton(
           onPressed: tuple.onNewQuick,
-          label: tuple.isQuickSaveExists ? 'restart' : 'new',
+          label: isQuickSaveExists ? 'restart' : 'new',
           focusIcon: Icons.timer_outlined,
         ),
         divider,
@@ -138,7 +142,7 @@ class _UiMainMenuList extends StatelessWidget {
             ],
           ),
           const Gap(3),
-          if (tuple.isAdventureSaveExists)
+          if (isAdventureSaveExists)
             UiStyledButton(
               onPressed: tuple.onContinueAdventure,
               label: 'continue',
