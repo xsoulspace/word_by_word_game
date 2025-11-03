@@ -37,7 +37,7 @@ class _EasyInState extends State<EasyIn> with SingleTickerProviderStateMixin {
           await controller.reverse();
         } else if (status == AnimationStatus.dismissed) {
           await Future.delayed(const Duration(milliseconds: 170));
-          await controller.forward();
+          if (mounted && !controller.isDismissed) await controller.forward();
         }
       });
 
