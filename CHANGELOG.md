@@ -8,6 +8,11 @@
 
 ## Next
 
+## Novemeber 3th 2025 (3.3.3+60)
+
+Fixed tutorial and a banch of bugs.
+with 3.3 - significant portion of game was released - but only with quick game mode.
+
 ## 1 August 2023
 
 - Fixed: player reloading, level reloading
