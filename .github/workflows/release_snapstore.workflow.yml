@@ -12,6 +12,7 @@ jobs:
       matrix:
         platform:
           - amd64
+          # try https://forum.snapcraft.io/t/build-on-multiple-architectures-with-github-actions/39161/3
           - arm64
     # env:
     #   WIREDASH_PROJECT_ID: ${{ secrets.WIREDASH_PROJECT_ID }}
