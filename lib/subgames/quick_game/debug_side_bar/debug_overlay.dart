@@ -6,12 +6,6 @@ class DebugOverlay extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => const Stack(
-        children: [
-          Positioned(
-            top: 20,
-            right: 0,
-            child: UiDebugSideBar(),
-          ),
-        ],
-      );
+    children: [Positioned(top: 20, right: 0, child: UiDebugSideBar())],
+  );
 }

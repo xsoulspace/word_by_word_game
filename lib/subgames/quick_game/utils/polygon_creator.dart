@@ -55,9 +55,10 @@ class PolygonCreator {
             gid: gid,
             rows: [
               [topLeft, topRight].map((final e) => e..add(mapVector)).toList(),
-              [bottomLeft, bottomRight]
-                  .map((final e) => e..add(mapVector))
-                  .toList(),
+              [
+                bottomLeft,
+                bottomRight,
+              ].map((final e) => e..add(mapVector)).toList(),
             ],
           );
           rowPoints.add(tilePoints);
@@ -83,9 +84,11 @@ class PolygonCreator {
 
           /// start from last to first
 
-          for (int columnIndex = row.length - 1;
-              columnIndex >= 0;
-              columnIndex--) {
+          for (
+            int columnIndex = row.length - 1;
+            columnIndex >= 0;
+            columnIndex--
+          ) {
             final tilePoints = row[columnIndex];
             if (tilePoints == null) {
               row.removeLast();
@@ -122,10 +125,7 @@ class PolygonCreator {
 }
 
 class TilePoints {
-  TilePoints({
-    required this.rows,
-    required this.gid,
-  });
+  TilePoints({required this.rows, required this.gid});
   final Gid gid;
   final List<List<Vector2>> rows;
   List<Vector2> get leftSide {

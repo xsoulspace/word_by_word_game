@@ -1,0 +1,33 @@
+import 'package:xsoulspace_locale/xsoulspace_locale.dart';
+
+const defaultLanguage = UiLanguage('en', 'English');
+const uiLanguages = (
+  en: defaultLanguage,
+  ru: UiLanguage('ru', 'Russian'),
+  it: UiLanguage('it', 'Italian'),
+);
+
+typedef UiLanguages = ({UiLanguage en, UiLanguage ru, UiLanguage it});
+
+extension UiLanguagesX on UiLanguages {
+  List<UiLanguage> get all => [en, ru, it];
+}
+
+final englishKeyboard = KeyboardLanguage.fromLanguage(uiLanguages.en);
+final russianKeyboard = KeyboardLanguage.fromLanguage(uiLanguages.ru);
+final allKeyboardLanguages = KeyboardLanguage.values;
+
+final defaultKeyboard = KeyboardLanguage.defaultKeyboardLanguage;
+
+typedef WordsLanguages = ({UiLanguage en, UiLanguage ru});
+
+const wordsLanguages = (en: defaultLanguage, ru: UiLanguage('ru', 'Russian'));
+
+extension WordsLanguagesX on WordsLanguages {
+  List<UiLanguage> get all => [en, ru];
+}
+
+UiLanguage uiLanguageFromJson(final String json) =>
+    UiLanguage.byCode(json) ?? defaultLanguage;
+
+String uiLanguageToJson(final UiLanguage language) => language.code;

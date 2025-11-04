@@ -9,16 +9,17 @@ import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 // ignore: implementation_imports
 import 'package:flame_bloc/flame_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:map_editor/generated/assets.gen.dart';
-import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor/tileset_constants.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:xsoulspace_ui_foundation/xsoulspace_ui_foundation.dart';
 
 part 'debug_surface.dart';
 part 'editor_canvas_object.dart';
@@ -42,13 +43,13 @@ class EditorRendererComponent extends Component
   final cursor = CursorRenderer();
   final tilesDrawer = TilesDrawer();
   final tilesRenderer = TilesRenderer();
-  Vector2 _dragOffset = Vector2.zero();
+  var _dragOffset = Vector2.zero();
   final animationUpdater = AnimationUpdater();
   final canvasObjectsDrawer = EditorCanvasObjectsDrawer();
 
   @override
-  FutureOr<void> onLoad() {
-    addAll([
+  FutureOr<void> onLoad() async {
+    await addAll([
       // RENDER
       tilesRenderer,
       debugSurface,
@@ -74,30 +75,22 @@ class EditorRendererComponent extends Component
     event.continuePropagation = true;
     super.onDragUpdate(event);
     if (!game.diDto.mapEditorBloc.state.isEditing) {
-      final eventPosition = event.canvasPosition;
+      final eventPosition = event.canvasStartPosition;
       origin = eventPosition - _dragOffset;
       canvasObjectsDrawer.onOriginUpdate();
     }
-    mousePosition = event.canvasPosition;
+    mousePosition = event.canvasStartPosition;
   }
 
   material.Paint get _redPaint => Palette.red.paint();
   material.Paint get _greenPaint => Palette.green.paint();
 
   void _renderOrigin(final material.Canvas canvas) {
-    canvas.drawCircle(
-      origin.toOffset(),
-      15,
-      _redPaint,
-    );
+    canvas.drawCircle(origin.toOffset(), 15, _redPaint);
   }
 
   void _renderOffsetOrigin(final material.Canvas canvas) {
-    canvas.drawCircle(
-      getOffsetOrigin().toOffset(),
-      15,
-      _greenPaint,
-    );
+    canvas.drawCircle(getOffsetOrigin().toOffset(), 15, _greenPaint);
   }
 
   /// For cursor rendering
@@ -125,6 +118,7 @@ mixin HasEditorRef on Component, HasGameRef<EditorRendererGame> {
   EditorRendererComponent get editor => _editor ??= game.editor;
   EditorDrawerCubit get drawerCubit => game.diDto.drawerCubit;
   Vector2 get origin => editor.origin;
+  GameOrigins get origins => GameOrigins(origin, getOffsetOrigin());
   @useResult
   Vector2 getOffsetOrigin() => editor.getOffsetOrigin();
   set origin(final Vector2 value) => editor.origin = value;
@@ -135,9 +129,7 @@ mixin HasEditorRef on Component, HasGameRef<EditorRendererGame> {
   Map<CellPointModel, CellTileModel> get layerTiles =>
       drawerCubit.drawLayer.tiles;
   set layerTiles(final Map<CellPointModel, CellTileModel> value) =>
-      drawerCubit.drawLayer = drawerCubit.drawLayer.copyWith(
-        tiles: value,
-      );
+      drawerCubit.drawLayer = drawerCubit.drawLayer.copyWith(tiles: value);
   CanvasDataModel get canvasData => drawerCubit.canvasData;
   set canvasData(final CanvasDataModel value) => drawerCubit.canvasData = value;
   TilesetPresetResources get presetResources =>
@@ -148,12 +140,12 @@ mixin HasEditorRef on Component, HasGameRef<EditorRendererGame> {
   ///
   /// in future change it to different tiles calls
   Map<TileId, PresetTileResource> get allTiles => {
-        ...presetResources.tiles,
-        ...presetResources.objects,
-        ...presetResources.npcs,
-        ...presetResources.players,
-        ...presetResources.other,
-      };
+    ...presetResources.tiles,
+    ...presetResources.objects,
+    ...presetResources.npcs,
+    ...presetResources.players,
+    ...presetResources.other,
+  };
 }
 
 class CursorRenderer extends Component

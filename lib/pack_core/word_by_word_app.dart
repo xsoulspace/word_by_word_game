@@ -1,13 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:life_hooks/life_hooks.dart';
-import 'package:provider/provider.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
-import 'package:wbw_locale/wbw_locale.dart';
+import 'package:window_manager/window_manager.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_services_initializer.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states_provider.dart';
 import 'package:word_by_word_game/router.dart';
 
@@ -16,21 +10,25 @@ class WordByWordApp extends StatelessWidget {
   final GlobalServicesInitializer initializer;
   @override
   Widget build(final BuildContext context) => GlobalStatesProvider(
-        initializer: initializer,
-        builder: (final context) => const AppScaffoldBuilder(),
-      );
+    initializer: initializer,
+    builder: (final context) => const AppScaffoldBuilder(),
+  );
 }
 
 class AppScaffoldBuilder extends StatelessWidget {
   const AppScaffoldBuilder({super.key});
   @override
   Widget build(final BuildContext context) {
-    final locale = context.select<AppSettingsNotifier, Locale>(
+    final locale = context.select<AppSettingsResource, Locale>(
       (final c) => c.locale.value,
     );
     // final settingsNotifier = context.watch<AppSettingsNotifier>();
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
+      shortcuts: {
+        ...WidgetsApp.defaultShortcuts,
+        const SingleActivator(LogicalKeyboardKey.keyX): const DismissIntent(),
+      },
 
       /// Providing a restorationScopeId allows the Navigator built by
       /// the MaterialApp to restore the navigation stack when a user
@@ -50,10 +48,7 @@ class AppScaffoldBuilder extends StatelessWidget {
 /// Used to create toolbar instead of native, but resizing
 /// doesn't work on ubuntu.
 class WindowControlsScaffold extends HookWidget {
-  const WindowControlsScaffold({
-    required this.child,
-    super.key,
-  });
+  const WindowControlsScaffold({required this.child, super.key});
   final Widget child;
   @override
   Widget build(final BuildContext context) {
@@ -85,7 +80,9 @@ class WindowControlsScaffold extends HookWidget {
                   children: [
                     IconButton(
                       padding: EdgeInsets.zero,
-                      onPressed: () {},
+                      onPressed: () async {
+                        await windowManager.close();
+                      },
                       icon: isHovered
                           ? const Icon(CupertinoIcons.clear_circled_solid)
                           : const Icon(CupertinoIcons.circle_filled),
@@ -107,6 +104,7 @@ class WindowControlsScaffold extends HookWidget {
                         // } else {
                         //   await windowManager.minimize();
                         // }
+                        await windowManager.minimize();
                       },
                       color: Colors.amber,
                       icon: isHovered
@@ -135,12 +133,15 @@ class WindowControlsScaffold extends HookWidget {
                         // } else {
                         //   await windowManager.maximize();
                         // }
+                        if (await windowManager.isMaximized()) {
+                          await windowManager.unmaximize();
+                        } else {
+                          await windowManager.maximize();
+                        }
                       },
                       icon: Stack(
                         children: [
-                          const Icon(
-                            CupertinoIcons.circle_filled,
-                          ),
+                          const Icon(CupertinoIcons.circle_filled),
                           if (isHovered)
                             const Center(
                               child: Icon(

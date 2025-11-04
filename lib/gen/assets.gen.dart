@@ -1,3 +1,5 @@
+// dart format width=80
+
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  FlutterGen
@@ -5,7 +7,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
+// ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
 
 import 'package:flutter/widgets.dart';
 
@@ -61,30 +63,46 @@ class $GoogleFontsGen {
 
   /// List of all assets
   List<String> get values => [
-        ofl,
-        openSansBold,
-        openSansBoldItalic,
-        openSansExtraBold,
-        openSansExtraBoldItalic,
-        openSansItalic,
-        openSansLight,
-        openSansLightItalic,
-        openSansMedium,
-        openSansMediumItalic,
-        openSansRegular,
-        openSansSemiBold,
-        openSansSemiBoldItalic,
-        rEADMEMd,
-        rEADMETxt
-      ];
+    ofl,
+    openSansBold,
+    openSansBoldItalic,
+    openSansExtraBold,
+    openSansExtraBoldItalic,
+    openSansItalic,
+    openSansLight,
+    openSansLightItalic,
+    openSansMedium,
+    openSansMediumItalic,
+    openSansRegular,
+    openSansSemiBold,
+    openSansSemiBoldItalic,
+    rEADMEMd,
+    rEADMETxt,
+  ];
 }
 
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// Directory path: assets/images/buttons
   $AssetsImagesButtonsGen get buttons => const $AssetsImagesButtonsGen();
+
+  /// Directory path: assets/images/icons
   $AssetsImagesIconsGen get icons => const $AssetsImagesIconsGen();
+
+  /// Directory path: assets/images/ui_frames
   $AssetsImagesUiFramesGen get uiFrames => const $AssetsImagesUiFramesGen();
+}
+
+class $AssetsShadersAssetsGen {
+  const $AssetsShadersAssetsGen();
+
+  /// File path: assets/shaders_assets/sample.png
+  AssetGenImage get sample =>
+      const AssetGenImage('assets/shaders_assets/sample.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [sample];
 }
 
 class $AssetsImagesButtonsGen {
@@ -96,7 +114,8 @@ class $AssetsImagesButtonsGen {
 
   /// File path: assets/images/buttons/icon_button_pressed_highres.png
   AssetGenImage get iconButtonPressedHighres => const AssetGenImage(
-      'assets/images/buttons/icon_button_pressed_highres.png');
+    'assets/images/buttons/icon_button_pressed_highres.png',
+  );
 
   /// File path: assets/images/buttons/long_button_highres.png
   AssetGenImage get longButtonHighres =>
@@ -104,15 +123,16 @@ class $AssetsImagesButtonsGen {
 
   /// File path: assets/images/buttons/long_button_pressed_highres.png
   AssetGenImage get longButtonPressedHighres => const AssetGenImage(
-      'assets/images/buttons/long_button_pressed_highres.png');
+    'assets/images/buttons/long_button_pressed_highres.png',
+  );
 
   /// List of all assets
   List<AssetGenImage> get values => [
-        iconButtonHighres,
-        iconButtonPressedHighres,
-        longButtonHighres,
-        longButtonPressedHighres
-      ];
+    iconButtonHighres,
+    iconButtonPressedHighres,
+    longButtonHighres,
+    longButtonPressedHighres,
+  ];
 }
 
 class $AssetsImagesIconsGen {
@@ -120,11 +140,13 @@ class $AssetsImagesIconsGen {
 
   /// File path: assets/images/icons/icon_action_collect_highres.png
   AssetGenImage get iconActionCollectHighres => const AssetGenImage(
-      'assets/images/icons/icon_action_collect_highres.png');
+    'assets/images/icons/icon_action_collect_highres.png',
+  );
 
   /// File path: assets/images/icons/icon_action_dictionary_add_highres.png
   AssetGenImage get iconActionDictionaryAddHighres => const AssetGenImage(
-      'assets/images/icons/icon_action_dictionary_add_highres.png');
+    'assets/images/icons/icon_action_dictionary_add_highres.png',
+  );
 
   /// File path: assets/images/icons/icon_action_fire_highres.png
   AssetGenImage get iconActionFireHighres =>
@@ -144,13 +166,13 @@ class $AssetsImagesIconsGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
-        iconActionCollectHighres,
-        iconActionDictionaryAddHighres,
-        iconActionFireHighres,
-        iconActionIdeaHighres,
-        iconActionMinusHighres,
-        iconActionPauseHighres
-      ];
+    iconActionCollectHighres,
+    iconActionDictionaryAddHighres,
+    iconActionFireHighres,
+    iconActionIdeaHighres,
+    iconActionMinusHighres,
+    iconActionPauseHighres,
+  ];
 }
 
 class $AssetsImagesUiFramesGen {
@@ -166,18 +188,24 @@ class $AssetsImagesUiFramesGen {
 
   /// File path: assets/images/ui_frames/text_field_frame_highres.png
   AssetGenImage get textFieldFrameHighres => const AssetGenImage(
-      'assets/images/ui_frames/text_field_frame_highres.png');
+    'assets/images/ui_frames/text_field_frame_highres.png',
+  );
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [actionsFrameHighres, centerFrameHighres, textFieldFrameHighres];
+  List<AssetGenImage> get values => [
+    actionsFrameHighres,
+    centerFrameHighres,
+    textFieldFrameHighres,
+  ];
 }
 
 class Assets {
-  Assets._();
+  const Assets._();
 
   static const AssetGenImage icon = AssetGenImage('assets/icon.png');
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsShadersAssetsGen shadersAssets =
+      $AssetsShadersAssetsGen();
   static const $GoogleFontsGen googleFonts = $GoogleFontsGen();
 
   /// List of all assets
@@ -185,9 +213,18 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName);
+  const AssetGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+    this.animation,
+  });
 
   final String _assetName;
+
+  final Size? size;
+  final Set<String> flavors;
+  final AssetGenImageAnimation? animation;
 
   Image image({
     Key? key,
@@ -207,10 +244,10 @@ class AssetGenImage {
     ImageRepeat repeat = ImageRepeat.noRepeat,
     Rect? centerSlice,
     bool matchTextDirection = false,
-    bool gaplessPlayback = false,
+    bool gaplessPlayback = true,
     bool isAntiAlias = false,
     String? package,
-    FilterQuality filterQuality = FilterQuality.low,
+    FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
   }) {
@@ -242,18 +279,23 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({
-    AssetBundle? bundle,
-    String? package,
-  }) {
-    return AssetImage(
-      _assetName,
-      bundle: bundle,
-      package: package,
-    );
+  ImageProvider provider({AssetBundle? bundle, String? package}) {
+    return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;
 
   String get keyName => _assetName;
+}
+
+class AssetGenImageAnimation {
+  const AssetGenImageAnimation({
+    required this.isAnimation,
+    required this.duration,
+    required this.frames,
+  });
+
+  final bool isAnimation;
+  final Duration duration;
+  final int frames;
 }

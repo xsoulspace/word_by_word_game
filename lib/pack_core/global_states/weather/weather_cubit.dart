@@ -8,7 +8,7 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 part 'weather_cubit.freezed.dart';
 
 @freezed
-class WeatherCubitState with _$WeatherCubitState {
+abstract class WeatherCubitState with _$WeatherCubitState {
   const factory WeatherCubitState({
     /// idea that current weather always first.
     /// With weather completed, [weathers] first element should be removed
@@ -16,23 +16,24 @@ class WeatherCubitState with _$WeatherCubitState {
     @Default(WindModel.zero) final WindModel wind,
   }) = _WeatherCubitState;
   const WeatherCubitState._();
-  WeatherModel get weather =>
-      weathers.isEmpty ? WeatherModel.initial : weathers.first;
+  WeatherModel get weather => weathers.firstOrNull ?? WeatherModel.initial;
 }
 
 class WeatherCubitDto {
   WeatherCubitDto(final BuildContext context)
-      : mechanics = context.read(),
-        statesStatusesCubit = context.read();
+    : mechanics = context.read(),
+      levelFeaturesNotifier = context.read(),
+      statesStatusesCubit = context.read();
   final StatesStatusesCubit statesStatusesCubit;
+  final LevelFeaturesNotifier levelFeaturesNotifier;
   final MechanicsCollection mechanics;
 }
 
 class WeatherCubit extends Cubit<WeatherCubitState>
     implements WorldTickConsumable {
   WeatherCubit(final BuildContext context)
-      : dto = WeatherCubitDto(context),
-        super(const WeatherCubitState());
+    : dto = WeatherCubitDto(context),
+      super(const WeatherCubitState());
   final WeatherCubitDto dto;
   WeatherMechanics get mechanics => dto.mechanics.weather;
   @override
@@ -54,8 +55,8 @@ class WeatherCubit extends Cubit<WeatherCubitState>
 
   /// use to switch weather forcefully
   void nextWeather() {
-    if (state.weathers.length == 2) {
-      _generateWeather();
+    if (state.weathers.length <= 2) {
+      _generateWeather(oldWeathers: state.weathers);
       _generateWindForce();
     } else {
       final updatedWeathers = [...state.weathers]..removeAt(0);
@@ -65,8 +66,8 @@ class WeatherCubit extends Cubit<WeatherCubitState>
     }
   }
 
-  void regenerateWeather() {
-    _generateWeather();
+  void regenerateWeather({final WindDirection? windDirection}) {
+    _generateWeather(oldWeathers: [], forcedWindDirection: windDirection);
     if (kDebugMode) print({'weathers generated': state.weathers});
   }
 
@@ -75,26 +76,34 @@ class WeatherCubit extends Cubit<WeatherCubitState>
     final WindModel wind = WindModel.zero,
   }) {
     if (weathers.isEmpty) {
-      _generateWeather();
+      _generateWeather(oldWeathers: []);
     } else {
       emit(state.copyWith(weathers: weathers, wind: wind));
     }
     if (kDebugMode) print({'weathers loaded': state.weathers});
   }
 
-  void _generateWeather() {
-    final newWeathers = mechanics.generateWeather();
+  void _generateWeather({
+    required final List<WeatherModel> oldWeathers,
+    final WindDirection? forcedWindDirection,
+  }) {
+    final newWeathers = mechanics.generateWeather(
+      isWindDirectionChangeEnabled:
+          dto.levelFeaturesNotifier.features.isWindDirectionChangeEnabled,
+      oldWindDirection:
+          forcedWindDirection ??
+          (oldWeathers.isEmpty ? state.weather : oldWeathers.last)
+              .windDirection,
+    );
     emit(state.copyWith(weathers: newWeathers));
     _generateWindForce();
     if (kDebugMode) print({'weathers generated': state.weathers});
   }
 
-  int _previousHeightInTiles = 0;
+  var _previousHeightInTiles = 0;
   Offset? _currentWindOffsetCache;
 
-  Offset generateWindForce({
-    required final int heightInTiles,
-  }) {
+  Offset generateWindForce({required final int heightInTiles}) {
     int heightDelta = _previousHeightInTiles - heightInTiles;
     if (heightDelta < 0) heightDelta *= -1;
 

@@ -2,9 +2,7 @@ import 'dart:ui';
 
 import 'package:blur/blur.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/sandbox/level_layers_dialog.dart';
@@ -13,35 +11,32 @@ import 'package:map_editor/ui/sandbox/tileset_direction_generator.dart';
 import 'package:provider/provider.dart';
 import 'package:recase/recase.dart';
 import 'package:universal_io/io.dart' as io;
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 
 class SandboxUiOverlay extends StatelessWidget {
-  const SandboxUiOverlay({
-    super.key,
-  });
+  const SandboxUiOverlay({super.key});
   @override
   Widget build(final BuildContext context) => Stack(
-        fit: StackFit.passthrough,
-        children: [
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: SizedBox(
-              height: 128 + 16,
-              child: Stack(
-                children: [
-                  Positioned.fill(
-                    child: Container().blurred(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                  const TileButtons(),
-                ],
+    fit: StackFit.passthrough,
+    children: [
+      Align(
+        alignment: Alignment.bottomCenter,
+        child: SizedBox(
+          height: 128 + 16,
+          child: Stack(
+            children: [
+              Positioned.fill(
+                child: Container().blurred(
+                  borderRadius: BorderRadius.circular(16),
+                ),
               ),
-            ),
+              const TileButtons(),
+            ],
           ),
-        ],
-      );
+        ),
+      ),
+    ],
+  );
 }
 
 class TileButtons extends StatelessWidget {
@@ -54,9 +49,10 @@ class TileButtons extends StatelessWidget {
     final tilesResources = drawerCubit.tilesPresetResources;
     // final locale = useLocale(context);
 
-    return CupertinoScrollbar(
+    return UiScrollbarBuilder(
       thumbVisibility: true,
-      child: ListView(
+      builder: (final context, final scrollController) => ListView(
+        controller: scrollController,
         primary: true,
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
@@ -70,9 +66,7 @@ class TileButtons extends StatelessWidget {
                   contentPadding: EdgeInsets.zero,
                   value: mapEditorBloc.state.isEditing,
                   onChanged: (final isEditing) async {
-                    await mapEditorBloc.onChangeIsEditing(
-                      isEditing,
-                    );
+                    await mapEditorBloc.onChangeIsEditing(isEditing);
                   },
                   title: const Text('Is Editing'),
                 ),
@@ -91,31 +85,31 @@ class TileButtons extends StatelessWidget {
                               .map(
                                 (final canvasData) => MenuItemButton(
                                   child: Text(
-                                    canvasData.name.getValue(Locales.en),
+                                    canvasData.name.getValue(context.read()),
                                   ),
                                   onPressed: () async => drawerCubit
                                       .changeCurrentLevelMap(canvasData),
                                 ),
                               )
                               .toList(),
-                          builder: (
-                            final context,
-                            final controller,
-                            final child,
-                          ) =>
-                              TextButton(
-                            onPressed: () {
-                              if (controller.isOpen) {
-                                controller.close();
-                              } else {
-                                controller.open();
-                              }
-                            },
-                            child: Text(
-                              // ignore: lines_longer_than_80_chars
-                              'Map: ${name.value.isEmpty ? 'noname' : name.getValue(Locales.en)}',
-                            ),
-                          ),
+                          builder:
+                              (
+                                final context,
+                                final controller,
+                                final child,
+                              ) => TextButton(
+                                onPressed: () {
+                                  if (controller.isOpen) {
+                                    controller.close();
+                                  } else {
+                                    controller.open();
+                                  }
+                                },
+                                child: Text(
+                                  // ignore: lines_longer_than_80_chars
+                                  'Map: ${name.value.isEmpty ? 'noname' : name.getValue(context.read())}',
+                                ),
+                              ),
                         );
                       },
                     ),
@@ -158,17 +152,17 @@ class TileButtons extends StatelessWidget {
                     .toList(),
                 builder: (final context, final controller, final child) =>
                     TextButton(
-                  onPressed: () {
-                    if (controller.isOpen) {
-                      controller.close();
-                    } else {
-                      controller.open();
-                    }
-                  },
-                  child: Text(
-                    'Tileset: ${drawerCubit.state.canvasData.tilesetType.name}',
-                  ),
-                ),
+                      onPressed: () {
+                        if (controller.isOpen) {
+                          controller.close();
+                        } else {
+                          controller.open();
+                        }
+                      },
+                      child: Text(
+                        'Tileset: ${drawerCubit.state.canvasData.tilesetType.name}',
+                      ),
+                    ),
               ),
               TextButton(
                 onPressed: () async =>
@@ -185,17 +179,19 @@ class TileButtons extends StatelessWidget {
             ),
             children: [
               ...tilesResources.tiles.values.toList().reversed.map(
-                    (final e) => TileSpriteButton(tileResource: e),
-                  ),
+                (final e) => TileSpriteButton(tileResource: e),
+              ),
               ...tilesResources.objects.values
                   .where(
-                    (final e) => e.tile.category == DataCategoryType.plants,
+                    (final e) => switch (e.tile.category) {
+                      DataCategoryType.plants ||
+                      DataCategoryType.buildings => true,
+                      _ => false,
+                    },
                   )
                   .toList()
                   .reversed
-                  .map(
-                    (final e) => TileSpriteButton(tileResource: e),
-                  ),
+                  .map((final e) => TileSpriteButton(tileResource: e)),
             ],
           ),
           ConstrainedBox(
@@ -261,15 +257,13 @@ class TileButtons extends StatelessWidget {
                   consts.images!.prefix = '';
                   for (final presetTile in tiles) {
                     final tile = presetTile.tile;
-                    Future<void> saveFile(
-                      final String tileName,
-                    ) async {
+                    Future<void> saveFile(final String tileName) async {
                       final filename = '${tile.path}${tileName.snakeCase}';
                       if (consts.images!.containsKey(filename)) {
                         final image = await consts.images!.load(filename);
                         final path = await FilePicker.platform.saveFile(
                           fileName: '$filename.png',
-                          type: FileType.image,
+                          type: FileType.custom,
                           allowedExtensions: ['.png'],
                         );
                         if (path == null) {
@@ -278,9 +272,7 @@ class TileButtons extends StatelessWidget {
                         }
                         final bytes = (await image.toByteData(
                           format: ImageByteFormat.png,
-                        ))!
-                            .buffer
-                            .asUint8List();
+                        ))!.buffer.asUint8List();
                         await io.File(path).writeAsBytes(bytes);
                       }
                     }
@@ -300,9 +292,9 @@ class TileButtons extends StatelessWidget {
                   }
                   consts.images!.prefix = oldPrefix;
                   if (context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Saved!')),
-                    );
+                    ScaffoldMessenger.of(
+                      context,
+                    ).showSnackBar(const SnackBar(content: Text('Saved!')));
                   }
                 },
                 icon: const Icon(Icons.image),
@@ -367,8 +359,9 @@ class TileSpriteButton extends StatelessWidget {
                 ),
               ),
             const Gap(4),
-            Text(
-              tileResource.tile.properties.title,
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(tileResource.tile.properties.title),
             ),
           ],
         ),

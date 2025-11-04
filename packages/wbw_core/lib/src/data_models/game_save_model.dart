@@ -10,10 +10,8 @@ const kLatestGameVersion = GameVersion.$5;
 
 @immutable
 @freezed
-class GameSaveModel with _$GameSaveModel {
-  @JsonSerializable(
-    explicitToJson: true,
-  )
+abstract class GameSaveModel with _$GameSaveModel {
+  @JsonSerializable(explicitToJson: true)
   const factory GameSaveModel({
     required final GameSaveModelId id,
 
@@ -41,13 +39,10 @@ class GameSaveModel with _$GameSaveModel {
       _$GameSaveModelFromJson(json);
   static Map<CanvasDataModelId, LevelModel> _savedLevelsFromJson(
     final Map<String, dynamic> json,
-  ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          CanvasDataModelId.fromJson(key),
-          LevelModel.fromJson(value),
-        ),
-      );
+  ) => json.map(
+    (final key, final value) =>
+        MapEntry(CanvasDataModelId.fromJson(key), LevelModel.fromJson(value)),
+  );
   static Map<String, dynamic> _savedLevelsToJson(
     final Map<CanvasDataModelId, LevelModel> data,
   ) =>

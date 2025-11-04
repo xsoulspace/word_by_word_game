@@ -1,9 +1,7 @@
 part of 'tutorial_bloc.dart';
 
 class TutorialStateNotifier implements Disposable {
-  TutorialStateNotifier.listen({
-    required final TutorialBloc bloc,
-  }) {
+  TutorialStateNotifier.listen({required final TutorialBloc bloc}) {
     _subscription = bloc.stream.distinct().listen(_onStateChange);
   }
   late final StreamSubscription<TutorialBlocState> _subscription;
@@ -33,8 +31,9 @@ class TutorialStateNotifier implements Disposable {
 
     if (event != null && event.gamePreEffects.isNotEmpty == true) {
       await Future.wait(
-        _listeners
-            .map((final listener) async => listener.onEventPreEffects(event)),
+        _listeners.map(
+          (final listener) async => listener.onEventPreEffects(event),
+        ),
       );
     }
   }
@@ -46,8 +45,9 @@ class TutorialStateNotifier implements Disposable {
 
     if (event != null && event.gamePostEffects.isNotEmpty == true) {
       await Future.wait(
-        _listeners
-            .map((final listener) async => listener.onEventPostEffects(event)),
+        _listeners.map(
+          (final listener) async => listener.onEventPostEffects(event),
+        ),
       );
     }
   }

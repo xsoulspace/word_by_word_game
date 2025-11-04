@@ -1,13 +1,35 @@
-part of '../../state.dart';
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:collection/collection.dart';
+import 'package:flame/cache.dart';
+import 'package:flame/extensions.dart';
+// ignore: implementation_imports
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:map_editor/generated/assets.gen.dart';
+import 'package:map_editor/state/models/models.dart';
+import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
+import 'package:map_editor/ui/renderer/renderer.dart';
+import 'package:map_editor/ui/renderer/resources_loader.dart';
+import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_locale/wbw_locale.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
+
+part 'drawer_cubit.freezed.dart';
+part 'drawer_cubit_states.dart';
 
 class DrawerCubitDto {
-  DrawerCubitDto.use({
-    required final BuildContext context,
-  }) : localDbDataSource = context.read();
-  final LocalDbDataSource localDbDataSource;
+  DrawerCubitDto.use({required final BuildContext context})
+    : localDb = context.read();
+  final LocalDbI localDb;
 }
 
 String get _levelsMapsPersistanceKet => 'maps_saves';
+
+const kDrawerBuildingsLayerId = LayerModelId(value: 'buildings');
 
 /// Base class for canvas resources
 abstract base class DrawerCubit extends Cubit<DrawerCubitState> {
@@ -29,21 +51,17 @@ abstract base class DrawerCubit extends Cubit<DrawerCubitState> {
   @mustBeOverridden
   Future<void> loadInitialData();
 
-  Future<void> prepareTilesetForLevel({
-    required final LevelModel level,
-  }) async {
+  Future<void> prepareTilesetForLevel({required final LevelModel level}) async {
     final tilesetConfig = getTilesetConfig(type: level.tilesetType);
     await loadTileset(tilesetConfig);
   }
 
-  TilesetConfigModel getTilesetConfig({
-    required final TilesetType type,
-  }) {
+  TilesetConfigModel getTilesetConfig({required final TilesetType type}) {
     TilesetConfigModel? tilesetConfig = state.tilesetsConfigs.firstWhereOrNull(
       (final config) => config.type == type,
     );
     return tilesetConfig ??= state.tilesetsConfigs.firstWhere(
-      (final e) => e.cleanPath.endsWith(TilesetType.colourful.name),
+      (final e) => e.cleanPath.endsWith(TilesetType.whiteBlack.name),
     );
   }
 
@@ -60,8 +78,9 @@ abstract base class DrawerCubit extends Cubit<DrawerCubitState> {
   }
 
   Future<void> loadTileset(final TilesetConfigModel tilesetConfig) async {
-    final jsonStr =
-        await rootBundle.loadString('$rootPath${tilesetConfig.presetPath}');
+    final jsonStr = await rootBundle.loadString(
+      '$rootPath${tilesetConfig.presetPath}',
+    );
     final json = jsonDecode(jsonStr) as Map<String, dynamic>;
     final tileData = TilesetPresetDataModel.fromJson(json);
     final tilesetResources = TilesetPresetResources.fromModel(
@@ -111,29 +130,23 @@ abstract base class DrawerCubit extends Cubit<DrawerCubitState> {
       emit(state.copyWith(canvasData: value));
 
   Map<Gid, RenderObjectModel> get objects => {
-        ...canvasData.objects,
-        canvasData.playerObject.id: canvasData.playerObject,
-      };
+    ...canvasData.objects,
+    canvasData.playerObject.id: canvasData.playerObject,
+  };
   RenderObjectModel get player => canvasData.playerObject;
 
   set player(final RenderObjectModel value) {
-    canvasData = canvasData.copyWith(
-      playerObject: value,
-    );
+    canvasData = canvasData.copyWith(playerObject: value);
   }
 
   List<LayerModel> get layers => state.canvasData.layers;
   set layers(final List<LayerModel> value) => emit(
-        state.copyWith(
-          canvasData: state.canvasData.copyWith(layers: value),
-        ),
-      );
+    state.copyWith(canvasData: state.canvasData.copyWith(layers: value)),
+  );
   List<TechnologyModel> get techologies => state.canvasData.technologies;
   set techologies(final List<TechnologyModel> values) => emit(
-        state.copyWith(
-          canvasData: state.canvasData.copyWith(technologies: values),
-        ),
-      );
+    state.copyWith(canvasData: state.canvasData.copyWith(technologies: values)),
+  );
 }
 
 /// Class for editing canvas data
@@ -163,9 +176,7 @@ final class EditorDrawerCubit extends DrawerCubit {
 
   /// reloads the canvas data completely, with tileset
   /// resources, layers, players & objects
-  Future<void> changeCurrentLevelMap(
-    final CanvasDataModel canvasData,
-  ) async {
+  Future<void> changeCurrentLevelMap(final CanvasDataModel canvasData) async {
     await saveData();
     await loadCanvasData(canvasData);
   }
@@ -208,8 +219,9 @@ final class EditorDrawerCubit extends DrawerCubit {
     );
     if (shouldProceedToDelete == null || !shouldProceedToDelete) return;
     final canvasDatas = [...levelsMapsNotifier.value];
-    final index =
-        levelsMapsNotifier.value.indexWhere((final e) => e.id == canvasData.id);
+    final index = levelsMapsNotifier.value.indexWhere(
+      (final e) => e.id == canvasData.id,
+    );
     canvasDatas.removeAt(index);
     levelsMapsNotifier.value = canvasDatas;
     final firstCanvasData = canvasDatas.first;
@@ -233,15 +245,15 @@ final class EditorDrawerCubit extends DrawerCubit {
   }
 
   Future<void> loadAllCanvasData() async {
-    final levelsJsons = await dto.localDbDataSource
-        .getMapIterable(key: _levelsMapsPersistanceKet);
-    levelsMapsNotifier.value =
-        levelsJsons.map(CanvasDataModel.fromJson).toList();
+    final levelsJsons = await dto.localDb.getMapIterable(
+      key: _levelsMapsPersistanceKet,
+    );
+    levelsMapsNotifier.value = levelsJsons
+        .map(CanvasDataModel.fromJson)
+        .toList();
   }
 
-  Future<void> loadCanvasData(
-    final CanvasDataModel newCanvasData,
-  ) async {
+  Future<void> loadCanvasData(final CanvasDataModel newCanvasData) async {
     final tilesetConfig = getTilesetConfig(type: newCanvasData.tilesetType);
     await loadTileset(tilesetConfig);
 
@@ -254,9 +266,7 @@ final class EditorDrawerCubit extends DrawerCubit {
     );
   }
 
-  Future<void> copy({
-    required final BuildContext context,
-  }) async {
+  Future<void> copy({required final BuildContext context}) async {
     final messenger = ScaffoldMessenger.of(context);
     final cleanCanvasData = canvasData.copyWith(
       layers: canvasData.layers
@@ -284,9 +294,7 @@ final class EditorDrawerCubit extends DrawerCubit {
     );
   }
 
-  Future<void> paste({
-    required final BuildContext context,
-  }) async {
+  Future<void> paste({required final BuildContext context}) async {
     final messenger = ScaffoldMessenger.of(context);
     final data = await Clipboard.getData('text/plain');
     final text = data?.text ?? '';
@@ -315,7 +323,7 @@ final class EditorDrawerCubit extends DrawerCubit {
       levels[index] = canvasData;
     }
     final eLevels = levels.map((final e) => e.toJson()).toList();
-    await dto.localDbDataSource.setMapList(
+    await dto.localDb.setMapList(
       key: _levelsMapsPersistanceKet,
       value: eLevels,
     );
@@ -323,13 +331,7 @@ final class EditorDrawerCubit extends DrawerCubit {
   }
 
   Future<void> onChangeName(final LocalizedMap name) async {
-    emit(
-      state.copyWith(
-        canvasData: state.canvasData.copyWith(
-          name: name,
-        ),
-      ),
-    );
+    emit(state.copyWith(canvasData: state.canvasData.copyWith(name: name)));
   }
 
   void selectLayer({required final LayerModelId? id}) {
@@ -343,9 +345,7 @@ final class EditorDrawerCubit extends DrawerCubit {
     layers = [...state.canvasData.layers]..[index] = layer;
   }
 
-  void createNewLayer({
-    required final String title,
-  }) {
+  void createNewLayer({required final String title}) {
     final layer = LayerModel(title: title, id: LayerModelId.create());
     if (drawLayer.id.isEmpty) {
       emit(state.copyWith(drawLayerId: layer.id));
@@ -353,9 +353,7 @@ final class EditorDrawerCubit extends DrawerCubit {
     layers = [...state.canvasData.layers, layer];
   }
 
-  void deleteLayer({
-    required final LayerModel layer,
-  }) {
+  void deleteLayer({required final LayerModel layer}) {
     final index = layers.indexWhere((final e) => e.id == layer.id);
     layers = [...state.canvasData.layers]..removeAt(index);
     selectLayer(id: layers.first.id);
@@ -375,8 +373,9 @@ final class EditorDrawerCubit extends DrawerCubit {
       ..[index] = TechnologyModel(
         id: tech.id,
         title: LocalizedMap.fromLanguages(),
-        unlockCondition:
-            const TechnologyUnlockConditionModel(languageWords: {}),
+        unlockCondition: const TechnologyUnlockConditionModel(
+          languageWords: {},
+        ),
       );
   }
 
@@ -394,10 +393,8 @@ final class EditorDrawerCubit extends DrawerCubit {
   void addTile({required final CellPointModel cell}) {
     final resourceTile = state.tileToDraw;
     if (resourceTile == null) return;
-    final updatedTileCell =
-        (drawLayer.tiles[cell] ?? CellTileModel.empty).copyWith(
-      tileId: resourceTile.id,
-    );
+    final updatedTileCell = (drawLayer.tiles[cell] ?? CellTileModel.empty)
+        .copyWith(tileId: resourceTile.id);
     drawLayer = drawLayer.copyWith(
       tiles: {...drawLayer.tiles, cell: updatedTileCell},
     );

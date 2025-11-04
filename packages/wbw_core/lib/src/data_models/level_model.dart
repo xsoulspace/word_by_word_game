@@ -1,4 +1,4 @@
-// ignore_for_file: invalid_annotation_target
+// ignore_for_file: invalid_annotation_target, avoid_annotating_with_dynamic
 
 // part of 'data_models.dart';
 part of 'data_models.dart';
@@ -14,18 +14,33 @@ enum EnergyMultiplierType {
   final String namedPart;
 }
 
+enum PlayerStartPointType {
+  fromSamePlace,
+
+  /// wilderness hut (or other sort of hut),
+  /// technology should be researched, and then
+  /// player can create the new hut, whenever he wants
+  fromSavePoint,
+
+  /// first point, should be presented in level map
+  fromSpawnPoint,
+}
+
 /// maybe rename to world level model
 ///
 /// !Warning: do not make fields required, as the model will not be
 /// compatible with older versions of the app.
 @immutable
 @freezed
-class LevelModel with _$LevelModel {
+abstract class LevelModel with _$LevelModel {
   @JsonSerializable(explicitToJson: true)
   const factory LevelModel({
     required final LevelPlayersModel players,
     required final LevelCharactersModel characters,
-    @Default(TilesetType.colourful) final TilesetType tilesetType,
+
+    /// update this field on every save to get recent save and sort by it
+    final DateTime? updatedAt,
+    @Default(TilesetType.whiteBlack) final TilesetType tilesetType,
     @Default([]) final List<WeatherModel> weathers,
     @Default(WindModel.zero) final WindModel wind,
 
@@ -42,30 +57,27 @@ class LevelModel with _$LevelModel {
     @Default(WorldDateTimeModel.zero) final WorldDateTimeModel lastDateTime,
     @Default(TechnologyTreeProgressModel.empty)
     final TechnologyTreeProgressModel technologyTreeProgress,
-    @Default(LevelFeaturesSettingsModel.empty)
+    @Default(LevelFeaturesSettingsModel.allDisabled)
     final LevelFeaturesSettingsModel featuresSettings,
-    @Default(Languages.en) final Languages wordsLanguage,
+    @JsonKey(fromJson: uiLanguageFromJson, toJson: uiLanguageToJson)
+    @Default(defaultLanguage)
+    final UiLanguage wordsLanguage,
+    @Default(PlayerStartPointType.fromSpawnPoint)
+    final PlayerStartPointType playerStartPoint,
+
+    /// use these objects to save any objectss from any layer
+    @Default({})
+    @JsonKey(
+      fromJson: CanvasDataModel.objectsFromJson,
+      toJson: CanvasDataModel.objectsToJson,
+    )
+    final Map<Gid, RenderObjectModel> canvasObjects,
+
+    /// savable layers
+    @Default([]) final List<LayerModel> canvasLayers,
   }) = _LevelModel;
   const LevelModel._();
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>
       _$LevelModelFromJson(json);
   CanvasDataModelId get id => canvasDataId;
-}
-
-/// Ensures that when user is starting a game
-/// he can start simple game, without
-/// any "adventure" features, as technologies, etc
-@freezed
-class LevelFeaturesSettingsModel with _$LevelFeaturesSettingsModel {
-  const factory LevelFeaturesSettingsModel({
-    @Default(false) final bool isTechnologiesEnabled,
-  }) = _LevelFeaturesSettingsModel;
-  factory LevelFeaturesSettingsModel.fromJson(
-    final Map<String, dynamic> json,
-  ) =>
-      _$LevelFeaturesSettingsModelFromJson(json);
-  static const empty = LevelFeaturesSettingsModel();
-  static const allEnabled = LevelFeaturesSettingsModel(
-    isTechnologiesEnabled: true,
-  );
 }

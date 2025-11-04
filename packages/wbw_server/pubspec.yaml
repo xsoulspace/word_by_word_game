@@ -7,7 +7,7 @@ environment:
 
 dependencies:
   csv: ^6.0.0
-  serverpod: 1.2.6
+  serverpod: ^2.9.1
 
 dev_dependencies:
-  lints: ^3.0.0
+  lints: ^6.0.0

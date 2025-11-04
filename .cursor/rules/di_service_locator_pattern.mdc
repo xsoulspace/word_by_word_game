@@ -1,0 +1,182 @@
+---
+description: Use this rule whenever you need a pragmatic DI setup without adding build-runner or heavy frameworks.
+globs: 
+alwaysApply: false
+---
+# Service-Locator Dependency-Injection Pattern & Creation Guide
+
+> Use this rule when you need a lightweight, code-generation-free DI mechanism that works in **any** Dart / Flutter project or other languages with similar capabilities.
+
+## Core Architecture
+
+1. **Central Service Locator**  
+   Maintain a single global instance (e.g. `GetIt.instance` or similar) that stores factories and singletons.
+2. **Facade Class**  
+   Wrap the locator in a small class (`Di` in examples) that exposes:  
+   • `init()` – boot-straps and registers all objects.  
+   • `dispose()` – tears everything down.  
+   • `get<T>()` – typed lookup helper.
+3. **Registration Order**  
+   Register in clearly separated layers to avoid hidden circular dependencies:  
+   1. Infrastructure / External Services (analytics, databases, platform channels)  
+   2. Data Sources & Repositories  
+   3. Runtime Resources (passive state holders)  
+   4. Notifiers / Controllers (business & presentation logic)
+4. **Lazy vs Eager**  
+   • `registerSingleton` for always-needed, cheap objects.  
+   • `registerLazySingleton` for heavy or optional objects.
+5. **Mixin-based Access**  
+   Provide opt-in mixins (e.g. `mixin HasResources`) that expose typed getters delegating to `Di.get`.  
+   This avoids passing dependencies through long parameter chains while still keeping static typing.
+6. **UI Bridging**  
+   Surface reactive objects (e.g. `ChangeNotifier`s) to the widget tree with a single `MultiProvider`:
+   ```dart
+   MultiProvider(
+     providers: [
+       ChangeNotifierProvider<MyNotifier>.value(value: Di.get()),
+       // …
+     ],
+     child: builder(context),
+   );
+   ```
+7. **Global Initialiser**  
+   Encapsulate asynchronous warm-up logic in a class (`GlobalStateInitializer`) executed from the splash screen. Typical tasks:  
+   • Open local databases  
+   • Load persisted settings / profile  
+   • Pre-fetch remote data  
+   • Navigate to the first real screen when ready
+8. **Automatic Disposal**  
+   When registering, supply a `dispose:` callback that calls `dispose()` on `ChangeNotifier`s or closes database connections.
+
+## Creating a New Service/Notifier
+
+Follow these steps to correctly integrate a new service into the DI framework:
+
+### Step 1: Create the Service Class
+This is a Plain Old Dart Object (PODO) that contains your business logic.
+
+```dart
+class MyNewService {
+  // Business logic methods...
+  void performTask() {
+    // Implementation...
+  }
+}
+
+// For state management, extend ChangeNotifier
+class MyStateNotifier extends ChangeNotifier {
+  String _data = '';
+  String get data => _data;
+  
+  void updateData(String newData) {
+    _data = newData;
+    notifyListeners();
+  }
+  
+  @override
+  void dispose() {
+    // Clean up resources
+    super.dispose();
+  }
+}
+```
+
+### Step 2: Create the `Has<Service>` Mixin
+This step is necessary if other services will need to depend on your service. It standardizes how dependencies are accessed.
+
+```dart
+mixin HasMyNewService {
+  MyNewService get myNewService => Di.get<MyNewService>();
+}
+
+mixin HasMyStateNotifier {
+  MyStateNotifier get myStateNotifier => Di.get<MyStateNotifier>();
+}
+```
+
+### Step 3: Register with DI Container
+Add your service to the registration function in `dependency_injector.dart`:
+
+```dart
+Future<void> _init() async {
+  final r = _getIt.registerSingleton;
+  final rl = _getIt.registerLazySingleton;
+  
+  // For standard services
+  rl(MyNewService.new);
+  
+  // For state notifiers with disposal
+  rl(MyStateNotifier.new, dispose: (instance) => instance.dispose());
+  
+  // For services needing immediate initialization
+  r<MyEagerService>(MyEagerService(), dispose: (instance) => instance.dispose());
+}
+```
+
+### Step 4: Bridge to UI (For ChangeNotifiers)
+Add reactive objects to `GlobalStateProviders`:
+
+```dart
+class GlobalStateProviders extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    const g = Di.get;
+    
+    return MultiProvider(
+      providers: [
+        // Existing providers...
+        ChangeNotifierProvider<MyStateNotifier>.value(value: g()),
+        // ...
+      ],
+      child: builder(context),
+    );
+  }
+}
+```
+
+### Step 5: Use in Other Classes
+Access your service through mixins or direct DI calls:
+
+```dart
+class SomeOtherService with HasMyNewService, HasMyStateNotifier {
+  void doSomething() {
+    myNewService.performTask();
+    myStateNotifier.updateData('new value');
+  }
+}
+
+// Or in widgets
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<MyStateNotifier>(
+      builder: (context, notifier, child) {
+        return Text(notifier.data);
+      },
+    );
+  }
+}
+```
+
+## Suggested File Structure
+
+```
+lib/di/
+  dependency_injector.dart   // locator + facade + mixins + registration
+  global_initializer.dart    // async warm-up before main UI
+  global_state_providers.dart// MultiProvider bridge to widget tree
+```
+
+## Benefits
+
+• Zero code-gen, fast hot-reload.  
+• Strong typing through generics & mixins.  
+• Clear boot sequence & module boundaries.  
+• Testable with easy mock injection.
+
+## Caveats
+
+• Service-locator can hide dependencies; write tests with explicit overrides.  
+• Keep the registration list short by splitting feature modules.  
+• Add assertions (`assert(Di.isRegistered<T>())`) in mixin getters for earlier failure signals.  
+• Always dispose ChangeNotifiers to prevent memory leaks.

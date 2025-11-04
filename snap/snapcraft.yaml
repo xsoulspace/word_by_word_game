@@ -1,5 +1,5 @@
 name: word-by-word-game
-version: 3.2.12+57
+version: 3.3.3+60
 summary: Word Adventure-> write word based on 3 letters of last word & pass Landscape
 description: |
   Please note: the game is in active development.
@@ -31,7 +31,7 @@ description: |
   Have fun and a great time!
 icon: snap/gui/word-by-word-game.png
 confinement: strict
-base: core18
+base: core22
 grade: stable
 
 slots:
@@ -43,8 +43,7 @@ slots:
 apps:
   word-by-word-game:
     command: word_by_word_game
-    extensions: [flutter-stable] # Where "master" defines which Flutter channel to use for the build
-    # using dev as it is the one channel that supports linux
+    extensions: [gnome] # gnome includes the libraries required by flutter
     plugs:
       - home
       - network

@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:universal_io/io.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 import 'package:word_by_word_game/envs.dart';
 import 'package:word_by_word_game/pack_core/ads/models/models.dart';
 import 'package:word_by_word_game/pack_core/ads/widgets/ad_widget.dart';
@@ -41,12 +41,12 @@ class AdLevelEndScreenBanner extends AdWidget {
   @override
   Widget builder(final BuildContext context, final String adUnitId) =>
       const SizedBox()
-      // YandexFlexibleBanner(
-      //   height: 50,
-      //   width: MediaQuery.of(context).size.width,
-      //   adUnitId: adUnitId,
-      // )
-      ;
+  // YandexFlexibleBanner(
+  //   height: 50,
+  //   width: MediaQuery.of(context).size.width,
+  //   adUnitId: adUnitId,
+  // )
+  ;
 }
 
 class AdPauseScreenBanner extends AdWidget {

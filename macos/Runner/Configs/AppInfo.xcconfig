@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = word_by_word_game
+PRODUCT_NAME = World by Word Adventure
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = dev.xsoulspace.wordByWordGame
+PRODUCT_BUNDLE_IDENTIFIER = dev.xsoulspace.worldByWordGame
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2022 dev.xsoulspace. All rights reserved.

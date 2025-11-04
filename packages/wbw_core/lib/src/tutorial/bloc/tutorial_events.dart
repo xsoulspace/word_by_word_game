@@ -22,8 +22,4 @@ class TutorialEvent with _$TutorialEvent {
   }) = TutorialUiActionEvent;
 }
 
-enum NextTutorialEventType {
-  complete,
-  next,
-  previous,
-}
+enum NextTutorialEventType { complete, next, previous }

@@ -50,9 +50,7 @@ class TilesDrawer extends Component
       if (effectiveLayerTiles.containsKey(cell)) {
         effectiveLayerTiles.update(
           cell,
-          (final value) => value.copyWith(
-            tileNeighbours: [],
-          ),
+          (final value) => value.copyWith(tileNeighbours: []),
         );
         for (final MapEntry(key: direction, value: side)
             in tilesNeighbourDirections.entries) {
@@ -80,9 +78,12 @@ class TilesDrawer extends Component
   }
 
   math.Point<int>? _lastSelectedCell;
-  void _onTap(final Vector2 canvasPosition) {
-    final originUtils = OriginVectorUtils.use(origin);
-    final cell = originUtils.getCurrentCellByTap(canvasPosition);
+  void _onTap(final Vector2 screenVector2) {
+    final gameVector2 = GameVector2.fromScreenVector2(
+      screenVector2: screenVector2,
+      origins: origins,
+    );
+    final cell = gameVector2.toMapTileCell();
     final effectiveLayerTiles = {...layerTiles};
     final cellPoint = cell.toCellPoint();
     final tileToDraw = drawerCubit.tileToDraw;
@@ -92,11 +93,8 @@ class TilesDrawer extends Component
       if (effectiveLayerTiles.containsKey(cellPoint)) {
         final updatedValue = effectiveLayerTiles.update(
           cellPoint,
-          (final value) => value.copyWith(
-            tileId: TileId.empty,
-            npcs: [],
-            objects: [],
-          ),
+          (final value) =>
+              value.copyWith(tileId: TileId.empty, npcs: [], objects: []),
         );
         if (updatedValue.isEmpty) effectiveLayerTiles.remove(cellPoint);
       }
@@ -113,7 +111,8 @@ class TilesDrawer extends Component
           final gid = Gid.create();
           final objects = [gid];
           canvasData = canvasData.copyWith(
-            objects: {...canvasData.objects}..[gid] = RenderObjectModel(
+            objects: {...canvasData.objects}
+              ..[gid] = RenderObjectModel(
                 id: gid,
                 animationBehaviour: tileToDraw.behaviourPaths.keys.first,
                 tileId: tileToDraw.id,
@@ -121,12 +120,8 @@ class TilesDrawer extends Component
           );
           effectiveLayerTiles.update(
             cellPoint,
-            (final value) => value.copyWith(
-              objects: objects,
-            ),
-            ifAbsent: () => CellTileModel(
-              objects: objects,
-            ),
+            (final value) => value.copyWith(objects: objects),
+            ifAbsent: () => CellTileModel(objects: objects),
           );
         case TileType.playerObject:
       }
@@ -156,8 +151,8 @@ class TilesRenderer extends Component
         HasEditorRef,
         HasEditorResourcesLoaderRef {
   @override
-  FutureOr<void> onLoad() {
-    add(
+  FutureOr<void> onLoad() async {
+    await add(
       FlameBlocListener<DrawerCubit, DrawerCubitState>(
         onNewState: _onNewDrawerState,
       ),
@@ -167,7 +162,7 @@ class TilesRenderer extends Component
 
   void _onNewDrawerState(final DrawerCubitState state) {}
 
-  final TilesPainterInterface _painter = TilesPainterInterface.getImpl();
+  final _painter = TilesPainterInterface.getImpl();
   @override
   void render(final Canvas canvas) {
     _painter.render(
@@ -207,7 +202,7 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
     required final double windowWidth,
   }) {
     if (canvasData.tilesetType != _tilesetType || _spriteImage == null) {
-      print('render atlas called');
+      if (kDebugMode) print('render atlas called');
       _tilesetType = canvasData.tilesetType;
       _spriteImage = null;
       _runtimeCache.clear();
@@ -216,13 +211,14 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
     final visibleLayers = canvasData.layers.where((final e) => e.isVisible);
     final atlasRects = <Rect>[];
     final atlasRsTransforms = <RSTransform>[];
-
+    // TODO(arenukvern): add debugging rects
+    // final debugObjectsRects = <Rect>[];
     for (final tileLayer in visibleLayers) {
       for (var col = -1; col < tileColumns + 1; col++) {
         for (var row = -1; row < tileRows + 3; row++) {
           final cellPointVector =
               ((offsetOrigin - origin) / kTileDimension.toDouble()) +
-                  Vector2(col.toDouble(), row.toDouble());
+              Vector2(col.toDouble(), row.toDouble());
 
           final cellPoint = CellPointModel(
             cellPointVector.x.toInt(),
@@ -233,11 +229,16 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
           final vectorPosition =
               origin + (cellPoint.toVector2() * kTileDimension.toDouble());
 
-          // / only for debug purposes
+          /// only for debug purposes
+          /// to display empty tiles
           // if (cellTile.tileId.isEmpty) {
           //   canvas.drawRect(
-          //     Rect.fromLTWH(vectorPosition.x, vectorPosition.y,
-          //         kTileDimension.toDouble(), kTileDimension.toDouble()),
+          //     Rect.fromLTWH(
+          //       vectorPosition.x,
+          //       vectorPosition.y,
+          //       kTileDimension.toDouble(),
+          //       kTileDimension.toDouble(),
+          //     ),
           //     Paint()..color = material.Colors.red,
           //   );
           //   continue;
@@ -256,9 +257,7 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
                 tileName: tilename,
               );
               final src = _runtimeCache[spritePath] ??= () {
-                final s = tilesetConstants.getAtlasSpriteByPath(
-                  spritePath,
-                );
+                final s = tilesetConstants.getAtlasSpriteByPath(spritePath);
 
                 _spriteImage ??= s.image;
 
@@ -274,8 +273,9 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
                 _tmpRenderPosition.y - (0 * _tmpRenderSize.y),
               );
 
-              final drawRect =
-                  _tmpRenderPosition.toPositionedRect(_tmpRenderSize);
+              final drawRect = _tmpRenderPosition.toPositionedRect(
+                _tmpRenderSize,
+              );
 
               final rsTransform = RSTransform.fromComponents(
                 rotation: 0,
@@ -289,6 +289,14 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
               // sprite.render(canvas, position: position.toVector2());
               atlasRects.add(src.srcRect);
               atlasRsTransforms.add(rsTransform);
+
+              /// for debug purposes to display tiles
+              // debugObjectsRects.add(
+              //   Rect.fromPoints(
+              //     _tmpRenderPosition.toOffset(),
+              //     _tmpRenderSize.toOffset() + _tmpRenderPosition.toOffset(),
+              //   ),
+              // );
             }
 
             /// Drawing tile
@@ -303,6 +311,7 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
                 renderPath(code);
             }
           }
+
           // TODO(arenukvern): fix objects drawing because they should be drawn
           // on top of tiles, but currently they are behind them
           /// Drawing objects
@@ -333,10 +342,10 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
       }
       final atlasImage = _spriteImage;
       if (atlasImage == null) {
-        print('atlas image is null');
+        if (kDebugMode) print('atlas image is null');
         return;
       } else if (atlasImage.debugDisposed) {
-        print('atlas image disposed');
+        if (kDebugMode) print('atlas image disposed');
         _spriteImage = null;
         return;
       }
@@ -352,6 +361,17 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
       );
       atlasRsTransforms.clear();
       atlasRects.clear();
+
+      /// for debug purposes to display any debug rect
+      // for (final rect in debugObjectsRects) {
+      //   canvas.drawRect(
+      //     rect,
+      //     Paint()
+      //       ..style = material.PaintingStyle.stroke
+      //       ..color = material.Colors.pink,
+      //   );
+      // }
+      // debugObjectsRects.clear();
     }
   }
 
@@ -381,15 +401,16 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
       _tilesetType = canvasData.tilesetType;
       tilesetConstants.resetCache();
     }
-    final visibleLayers =
-        canvasData.layers.where((final e) => e.isVisible).toList();
+    final visibleLayers = canvasData.layers
+        .where((final e) => e.isVisible)
+        .toList();
 
     for (final tileLayer in visibleLayers) {
       for (var col = -1; col < tileColumns + 1; col++) {
         for (var row = -1; row < tileRows + 3; row++) {
           final cellPointVector =
               ((offsetOrigin - origin) / kTileDimension.toDouble()) +
-                  Vector2(col.toDouble(), row.toDouble());
+              Vector2(col.toDouble(), row.toDouble());
 
           final cellPoint = CellPointModel(
             cellPointVector.x.toInt(),
@@ -415,11 +436,7 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
 
               final image = images.fromCache(tilePath);
 
-              canvas.drawImage(
-                image,
-                vectorPosition.toOffset(),
-                _paint,
-              );
+              canvas.drawImage(image, vectorPosition.toOffset(), _paint);
             }
 
             /// Drawing tile

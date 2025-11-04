@@ -1,14 +1,14 @@
 /* AUTOMATICALLY GENERATED CODE DO NOT MODIFY */
 /*   To generate run: "serverpod generate"    */
 
-// ignore_for_file: library_private_types_in_public_api
-// ignore_for_file: public_member_api_docs
 // ignore_for_file: implementation_imports
-// ignore_for_file: use_super_parameters
+// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: public_member_api_docs
 // ignore_for_file: type_literal_in_constant_pattern
+// ignore_for_file: use_super_parameters
 
-library protocol; // ignore_for_file: no_leading_underscores_for_library_prefixes
-
+// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
 import 'package:serverpod/protocol.dart' as _i2;
 import 'word_language.dart' as _i3;
@@ -23,8 +23,6 @@ class Protocol extends _i1.SerializationManagerServer {
 
   factory Protocol() => _instance;
 
-  static final Map<Type, _i1.constructor> customConstructors = {};
-
   static final Protocol _instance = Protocol._();
 
   static final List<_i2.TableDefinition> targetTableDefinitions = [
@@ -36,7 +34,7 @@ class Protocol extends _i1.SerializationManagerServer {
       columns: [
         _i2.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'int?',
           columnDefault: 'nextval(\'words_id_seq\'::regclass)',
@@ -104,35 +102,34 @@ class Protocol extends _i1.SerializationManagerServer {
     Type? t,
   ]) {
     t ??= T;
-    if (customConstructors.containsKey(t)) {
-      return customConstructors[t]!(data, this) as T;
-    }
     if (t == _i3.WordLanguage) {
       return _i3.WordLanguage.fromJson(data) as T;
     }
     if (t == _i4.WordModel) {
-      return _i4.WordModel.fromJson(data, this) as T;
+      return _i4.WordModel.fromJson(data) as T;
     }
     if (t == _i5.WordRequest) {
-      return _i5.WordRequest.fromJson(data, this) as T;
+      return _i5.WordRequest.fromJson(data) as T;
     }
     if (t == _i1.getType<_i3.WordLanguage?>()) {
       return (data != null ? _i3.WordLanguage.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i4.WordModel?>()) {
-      return (data != null ? _i4.WordModel.fromJson(data, this) : null) as T;
+      return (data != null ? _i4.WordModel.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i5.WordRequest?>()) {
-      return (data != null ? _i5.WordRequest.fromJson(data, this) : null) as T;
+      return (data != null ? _i5.WordRequest.fromJson(data) : null) as T;
     }
     try {
       return _i2.Protocol().deserialize<T>(data, t);
-    } catch (_) {}
+    } on _i1.DeserializationTypeNotFoundException catch (_) {}
     return super.deserialize<T>(data, t);
   }
 
   @override
-  String? getClassNameForObject(Object data) {
+  String? getClassNameForObject(Object? data) {
+    String? className = super.getClassNameForObject(data);
+    if (className != null) return className;
     if (data is _i3.WordLanguage) {
       return 'WordLanguage';
     }
@@ -142,19 +139,31 @@ class Protocol extends _i1.SerializationManagerServer {
     if (data is _i5.WordRequest) {
       return 'WordRequest';
     }
-    return super.getClassNameForObject(data);
+    className = _i2.Protocol().getClassNameForObject(data);
+    if (className != null) {
+      return 'serverpod.$className';
+    }
+    return null;
   }
 
   @override
   dynamic deserializeByClassName(Map<String, dynamic> data) {
-    if (data['className'] == 'WordLanguage') {
+    var dataClassName = data['className'];
+    if (dataClassName is! String) {
+      return super.deserializeByClassName(data);
+    }
+    if (dataClassName == 'WordLanguage') {
       return deserialize<_i3.WordLanguage>(data['data']);
     }
-    if (data['className'] == 'WordModel') {
+    if (dataClassName == 'WordModel') {
       return deserialize<_i4.WordModel>(data['data']);
     }
-    if (data['className'] == 'WordRequest') {
+    if (dataClassName == 'WordRequest') {
       return deserialize<_i5.WordRequest>(data['data']);
+    }
+    if (dataClassName.startsWith('serverpod.')) {
+      data['className'] = dataClassName.substring(10);
+      return _i2.Protocol().deserializeByClassName(data);
     }
     return super.deserializeByClassName(data);
   }

@@ -2,36 +2,18 @@ part of 'level_start_dialog.dart';
 
 class _LevelStartDialogUiStateDiDto {
   _LevelStartDialogUiStateDiDto.use(final Locator read)
-      : pauseScreenState = read(),
-        globalGameBloc = read();
-  final PauseScreenState pauseScreenState;
+    : globalGameBloc = read();
   final GlobalGameBloc globalGameBloc;
 }
 
-LevelStartDialogUiState _useLevelStartUiState({
-  required final Locator read,
-  required final LevelStartDialogUxNotifier uxState,
-}) =>
-    use(
-      ContextfulLifeHook(
-        debugLabel: '_LevelStartStateState',
-        state: LevelStartDialogUiState(
-          uxState: uxState,
-          diDto: _LevelStartDialogUiStateDiDto.use(read),
-        ),
-      ),
-    );
+enum LevelStartDialogView { choosePlayers, createPlayer }
 
-enum LevelStartDialogView {
-  choosePlayers,
-  createPlayer,
-}
-
-class LevelStartDialogUiState extends ContextfulLifeState {
+class LevelStartDialogUiState extends ValueNotifier<void> {
   LevelStartDialogUiState({
-    required this.diDto,
+    required final BuildContext context,
     required this.uxState,
-  });
+  }) : diDto = _LevelStartDialogUiStateDiDto.use(context.read),
+       super(null);
   final LevelStartDialogUxNotifier uxState;
   final _LevelStartDialogUiStateDiDto diDto;
 
@@ -44,7 +26,7 @@ class LevelStartDialogUiState extends ContextfulLifeState {
       onChoosePlayers();
     }
     isVisible = !isVisible;
-    setState();
+    notifyListeners();
   }
 
   final currentViewNotifier = ValueNotifier(LevelStartDialogView.choosePlayers);

@@ -1,14 +1,9 @@
-import 'dart:async';
 import 'dart:math' as math;
 
-import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/common_imports.dart';
+import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/gui_widgets.dart';
+import 'package:word_by_word_game/subgames/subgames.dart';
 
 class UiPlayersStateDiDto {
   UiPlayersStateDiDto.use(final Locator read) : levelPlayersBloc = read();
@@ -16,16 +11,14 @@ class UiPlayersStateDiDto {
 }
 
 UiPlayersState useUiPlayersState({required final Locator read}) => use(
-      LifeHook(
-        debugLabel: 'UiPlayersState',
-        state: UiPlayersState(diDto: UiPlayersStateDiDto.use(read)),
-      ),
-    );
+  LifeHook(
+    debugLabel: 'UiPlayersState',
+    state: UiPlayersState(diDto: UiPlayersStateDiDto.use(read)),
+  ),
+);
 
 class UiPlayersState extends LifeState {
-  UiPlayersState({
-    required this.diDto,
-  });
+  UiPlayersState({required this.diDto});
 
   final UiPlayersStateDiDto diDto;
   final players = <PlayerProfileModel>[];
@@ -33,8 +26,9 @@ class UiPlayersState extends LifeState {
   String get currentPlayerId => diDto.levelPlayersBloc.state.currentPlayerId;
   @override
   void initState() {
-    levelPlayersBlocSubscription =
-        diDto.levelPlayersBloc.stream.listen(_onLevelPlayersBlocChange);
+    levelPlayersBlocSubscription = diDto.levelPlayersBloc.stream.listen(
+      _onLevelPlayersBlocChange,
+    );
     super.initState();
   }
 
@@ -134,32 +128,29 @@ class UiPlayerAndScoreTile extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     // final surfaceColorScheme = theme.extension<SurfaceColorScheme>()!;
-    final textStyle =
-        isCurrent ? theme.textTheme.labelLarge : theme.textTheme.labelMedium;
+    final textStyle = isCurrent
+        ? theme.textTheme.labelLarge
+        : theme.textTheme.labelMedium;
     final backgroundColor = isCurrent
-        ? colorScheme.tertiaryContainer.withOpacity(0.7)
-        : colorScheme.scrim.withOpacity(0.2);
-    final radius = uiTheme.circularRadius.medium;
+        ? colorScheme.tertiaryContainer.withValues(alpha: 0.7)
+        : colorScheme.scrim.withValues(alpha: 0.2);
+    const radius = Radius.elliptical(UiSpace.medium, UiSpace.medium);
 
     return AnimatedContainer(
       duration: 350.milliseconds,
-      padding: const EdgeInsets.only(
-        top: 2,
-        bottom: 2,
-      ),
+      padding: const EdgeInsets.only(top: 2, bottom: 2),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topRight: radius,
           bottomRight: radius,
         ),
         color: backgroundColor,
         gradient: LinearGradient(
           colors: [
-            colorScheme.tertiaryContainer.withOpacity(0.6),
+            colorScheme.tertiaryContainer.withValues(alpha: 0.6),
             const Color(0x00FFFFFF),
           ],
           stops: const [0.4, 1],
@@ -168,22 +159,30 @@ class UiPlayerAndScoreTile extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          UiAvatarBookmark(
-            selected: isCurrent,
-            player: player,
-            textStyle: textStyle!,
+          Tooltip(
+            // TODO(arenukvern): l10n
+            message: "${player.name}'s energy",
+            child: UiAvatarBookmark(
+              selected: isCurrent,
+              player: player,
+              textStyle: textStyle!,
+            ),
           ),
           AnimatedContainer(
             duration: 50.milliseconds,
             width: isCurrent ? 6 : 12,
           ),
-          Text(
-            player.name,
-            style: theme.textTheme.labelMedium?.copyWith(
-              color: isCurrent ? null : colorScheme.onSurface.withOpacity(0.6),
+          Tooltip(
+            // TODO(arenukvern): l10n
+            message: isCurrent ? "Current player's name" : '',
+            child: Text(
+              player.name,
+              style: theme.textTheme.labelMedium?.copyWith(
+                color: isCurrent
+                    ? null
+                    : colorScheme.onSurface.withValues(alpha: 0.6),
+              ),
             ),
-
-            /// textStyle,
           ),
         ],
       ),
@@ -219,10 +218,12 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
     if (newScore != _score) {
       _appearanceScoreAnimationController
         ?..reset()
+        // ignore: discarded_futures
         ..forward();
       if (newScore < _score) {
         _decreaseScoreAnimationController
           ?..reset()
+          // ignore: discarded_futures
           ..forward();
       }
       _score = newScore;
@@ -231,8 +232,7 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
 
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
-    final radius = uiTheme.circularRadius;
+    const radius = Radius.elliptical(UiSpace.medium, UiSpace.medium);
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final selected = widget.selected;
@@ -240,11 +240,11 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
       duration: 50.milliseconds,
       decoration: BoxDecoration(
         color: selected
-            ? widget.player.color.withOpacity(0.8)
-            : colorScheme.scrim.withOpacity(0.05),
-        borderRadius: BorderRadius.only(
-          topRight: radius.medium,
-          bottomRight: radius.medium,
+            ? widget.player.color.withValues(alpha: 0.8)
+            : colorScheme.scrim.withValues(alpha: 0.05),
+        borderRadius: const BorderRadius.only(
+          topRight: radius,
+          bottomRight: radius,
         ),
       ),
       padding: EdgeInsets.only(
@@ -256,43 +256,42 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
+          UiPlayerScoreIcon(
+            color: selected
+                ? colorScheme.onPrimary.withValues(alpha: 0.6)
+                : colorScheme.onSurface.withValues(alpha: 0.3),
+            size: 8,
+          ),
           Animate(
             autoPlay: false,
             onInit: (final controller) =>
                 _decreaseScoreAnimationController = controller,
             effects: [ShakeEffect(duration: 1.seconds, hz: 10)],
-            child: Text(
-              '$_score',
-              style: theme.textTheme.labelMedium?.copyWith(
-                color: selected
-                    ? colorScheme.onPrimary
-                    : colorScheme.onSurface.withOpacity(0.6),
-              ),
-
-              // style: widget.textStyle,
-            )
-                .animate(
-                  key: ValueKey(_score),
-                  autoPlay: true,
-                  onInit: (final controller) =>
-                      _appearanceScoreAnimationController = controller,
-                )
-                .fadeIn()
-                .slideY(
-                  begin: -0.1,
-                  end: 0,
-                )
-                .scale(begin: const Offset(1.1, 1.1)),
+            child:
+                UiTextCounter(
+                      value: _score,
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: selected
+                            ? colorScheme.onPrimary
+                            : colorScheme.onSurface.withValues(alpha: 0.6),
+                      ),
+                    )
+                    .animate(
+                      key: ValueKey(_score),
+                      autoPlay: true,
+                      onInit: (final controller) =>
+                          _appearanceScoreAnimationController = controller,
+                    )
+                    .fadeIn()
+                    .slideY(begin: -0.1, end: 0)
+                    .scale(begin: const Offset(1.1, 1.1)),
           ),
           if (selected)
             Icon(
               Icons.arrow_right_outlined,
               size: theme.textTheme.labelMedium?.fontSize,
               color: colorScheme.onPrimary,
-            ).animate().fadeIn().slideX(
-                  begin: -0.1,
-                  end: 0,
-                ),
+            ).animate().fadeIn().slideX(begin: -0.1, end: 0),
         ],
       ),
     );

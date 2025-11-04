@@ -3,16 +3,15 @@ import 'package:wbw_core/wbw_core.dart';
 
 class GameTutorialEventListenerDiDto {
   GameTutorialEventListenerDiDto.use(final Locator read)
-      : mechanics = read(),
-        tutorialBloc = read();
+    : mechanics = read(),
+      tutorialBloc = read();
   final MechanicsCollection mechanics;
   final TutorialBloc tutorialBloc;
 }
 
 class GameTutorialEventListener extends TutorialEventListener {
-  GameTutorialEventListener({
-    required final Locator read,
-  }) : diDto = GameTutorialEventListenerDiDto.use(read);
+  GameTutorialEventListener({required final Locator read})
+    : diDto = GameTutorialEventListenerDiDto.use(read);
   final GameTutorialEventListenerDiDto diDto;
 
   @override

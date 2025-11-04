@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:provider/provider.dart';
-import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/common_imports.dart';
 
 part 'player_profile_creator.freezed.dart';
 
 @freezed
-class PlayerProfileCreatorState with _$PlayerProfileCreatorState {
+abstract class PlayerProfileCreatorState with _$PlayerProfileCreatorState {
   const factory PlayerProfileCreatorState({
     @Default('') final String nameErrorMessage,
     @Default(Colors.teal) final Color color,
@@ -15,7 +13,7 @@ class PlayerProfileCreatorState with _$PlayerProfileCreatorState {
 
 class PlayerProfileCreatorNotifierDto {
   PlayerProfileCreatorNotifierDto(final BuildContext context)
-      : dictionariesRespository = context.read();
+    : dictionariesRespository = context.read();
   final WordsRespository dictionariesRespository;
 }
 
@@ -23,28 +21,28 @@ enum PlayerProfileCreatorError {
   cannotBeEmpty,
   invalidName;
 
-  static const locales = <PlayerProfileCreatorError, Map<Languages, String>>{
+  static final locales = <PlayerProfileCreatorError, Map<UiLanguage, String>>{
     cannotBeEmpty: {
-      Languages.en: 'Name cannot be empty',
-      Languages.ru: 'Имя не может быть пустым',
-      Languages.it: 'Il nome non puè essere vuoto',
+      uiLanguages.en: 'Name cannot be empty',
+      uiLanguages.ru: 'Имя не может быть пустым',
+      uiLanguages.it: 'Il nome non puè essere vuoto',
     },
     invalidName: {
-      Languages.en: 'Try another name',
-      Languages.ru: 'Попробуйте другое имя',
-      Languages.it: 'Prova un altro nome',
+      uiLanguages.en: 'Try another name',
+      uiLanguages.ru: 'Попробуйте другое имя',
+      uiLanguages.it: 'Prova un altro nome',
     },
   };
 
   String getLocalized(final Locale locale) =>
-      LocalizedMap(value: locales[this]!).getValue(locale);
+      LocalizedMap(locales[this]!).getValue(locale);
 }
 
 class PlayerProfileCreatorNotifier
     extends ValueNotifier<PlayerProfileCreatorState> {
   PlayerProfileCreatorNotifier(final BuildContext context)
-      : _dto = PlayerProfileCreatorNotifierDto(context),
-        super(const PlayerProfileCreatorState());
+    : _dto = PlayerProfileCreatorNotifierDto(context),
+      super(const PlayerProfileCreatorState());
   final PlayerProfileCreatorNotifierDto _dto;
   final nameController = TextEditingController();
   Color get color => value.color;
@@ -53,8 +51,9 @@ class PlayerProfileCreatorNotifier
   Future<PlayerProfileCreatorError?> _validateName() async {
     final name = nameController.text;
     if (name.isEmpty) return PlayerProfileCreatorError.cannotBeEmpty;
-    final isValid =
-        await _dto.dictionariesRespository.verifyNonProfanityWord(name);
+    final isValid = await _dto.dictionariesRespository.verifyNonProfanityWord(
+      name,
+    );
     if (isValid) return null;
     return PlayerProfileCreatorError.invalidName;
   }
@@ -64,8 +63,9 @@ class PlayerProfileCreatorNotifier
   }) async {
     final errorMessage = await _validateName();
     if (errorMessage != null) {
-      value =
-          value.copyWith(nameErrorMessage: errorMessage.getLocalized(locale));
+      value = value.copyWith(
+        nameErrorMessage: errorMessage.getLocalized(locale),
+      );
       return null;
     }
     final player = PlayerProfileModel.create(

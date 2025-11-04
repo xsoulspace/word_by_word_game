@@ -4,12 +4,11 @@ part of 'global_game_bloc.dart';
 
 @immutable
 @Freezed(fromJson: false, toJson: false)
-class GlobalGameBlocState with _$GlobalGameBlocState {
+abstract class GlobalGameBlocState with _$GlobalGameBlocState {
   const factory GlobalGameBlocState({
     /// ********************************************
     /// *      RESTORABLE FROM MODEL
     /// ********************************************
-
     @Default('') final GameSaveModelId id,
     @Default(CanvasDataModelId.empty) final CanvasDataModelId currentLevelId,
 
@@ -53,13 +52,12 @@ class GlobalGameBlocState with _$GlobalGameBlocState {
       );
   static Map<CanvasDataModelId, CanvasDataModel> allCanvasDataFromJson(
     final Map<String, dynamic> json,
-  ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          CanvasDataModelId.fromJson(key),
-          CanvasDataModel.fromJson(value),
-        ),
-      );
+  ) => json.map(
+    (final key, final value) => MapEntry(
+      CanvasDataModelId.fromJson(key),
+      CanvasDataModel.fromJson(value),
+    ),
+  );
   static Map<String, dynamic> allCanvasDataToJson(
     final Map<CanvasDataModelId, CanvasDataModel> data,
   ) =>

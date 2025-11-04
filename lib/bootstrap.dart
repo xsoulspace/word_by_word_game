@@ -6,13 +6,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_locale/wbw_locale.dart';
+import 'package:word_by_word_game/pack_core/di/di.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_services_initializer.dart';
 import 'package:word_by_word_game/pack_core/word_by_word_app.dart';
 
 class AppBlocObserver extends BlocObserver {
-  AppBlocObserver({
-    required this.analyticsService,
-  });
+  AppBlocObserver({required this.analyticsService});
   final AnalyticsService analyticsService;
   @override
   // ignore: unnecessary_overrides
@@ -36,29 +36,32 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap({
-  final FirebaseOptions? firebaseOptions,
-}) async {
+Future<void> bootstrap({final FirebaseOptions? firebaseOptions}) async {
+  LocalizationConfig.initialize(
+    LocalizationConfig(
+      supportedLanguages: uiLanguages.all,
+      fallbackLanguage: uiLanguages.en,
+    ),
+  );
+  await Di.init();
+
   // await Flame.device.fullScreen();
 
   final GlobalServicesInitializer initializer = GlobalServicesInitializerImpl(
     firebaseOptions: firebaseOptions,
   );
 
-  await runZonedGuarded(
-    () async {
-      WidgetsFlutterBinding.ensureInitialized();
-      LicenseRegistry.addLicense(() async* {
-        final license = await rootBundle.loadString('google_fonts/OFL.txt');
-        yield LicenseEntryWithLineBreaks(['google_fonts'], license);
-      });
-      unawaited(initializer.onLoad());
+  runZonedGuarded(() {
+    WidgetsFlutterBinding.ensureInitialized();
+    LicenseRegistry.addLicense(() async* {
+      final license = await rootBundle.loadString('google_fonts/OFL.txt');
+      yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+    });
+    unawaited(initializer.onLoad());
 
-      Bloc.observer = AppBlocObserver(
-        analyticsService: initializer.analyticsService,
-      );
-      runApp(WordByWordApp(initializer: initializer));
-    },
-    initializer.analyticsService.recordError,
-  );
+    Bloc.observer = AppBlocObserver(
+      analyticsService: initializer.analyticsService,
+    );
+    runApp(WordByWordApp(initializer: initializer));
+  }, initializer.analyticsService.recordError);
 }

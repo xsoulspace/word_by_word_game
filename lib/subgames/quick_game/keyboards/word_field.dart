@@ -1,22 +1,13 @@
-import 'dart:async';
 import 'dart:collection';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
-import 'package:wbw_locale/wbw_locale.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 class WordFieldController extends ChangeNotifier {
-  WordFieldController({
-    required final CurrentWordModel currentWord,
-  }) {
+  WordFieldController({required final CurrentWordModel currentWord}) {
     split(
       inactiveIndexes: currentWord.inactiveIndexes,
       text: currentWord.fullWord,
@@ -25,15 +16,15 @@ class WordFieldController extends ChangeNotifier {
   int _caretIndex = 0;
   final controller = TextEditingController();
   CurrentWordModel get currentWord => CurrentWordModel(
-        fullWord: controller.text,
-        inactiveIndexes: _inactiveCharacters
-            .map(
-              (final inactiveChar) =>
-                  _items.indexWhere((final char) => char.id == inactiveChar.id),
-            )
-            .where((final i) => i >= 0)
-            .toList(),
-      );
+    fullWord: controller.text,
+    inactiveIndexes: _inactiveCharacters
+        .map(
+          (final inactiveChar) =>
+              _items.indexWhere((final char) => char.id == inactiveChar.id),
+        )
+        .where((final i) => i >= 0)
+        .toList(),
+  );
   set currentWord(final CurrentWordModel currentWord) {
     split(
       inactiveIndexes: currentWord.inactiveIndexes,
@@ -75,9 +66,7 @@ class WordFieldController extends ChangeNotifier {
     return text;
   }
 
-  void changeInactiveIndexes({
-    required final List<int> inactiveIndexes,
-  }) {
+  void changeInactiveIndexes({required final List<int> inactiveIndexes}) {
     final inactiveCharacterIndexes = <int, LetterModel>{};
     for (var i = 0; i < controller.text.length; i++) {
       final letter = _items[i];
@@ -120,13 +109,19 @@ class WordFieldController extends ChangeNotifier {
   }
 }
 
+enum KeyboardSwitcherButtonAlignment { left, right }
+
 /// use for word field only
 class WordField extends StatefulWidget {
   const WordField({
     required this.controller,
+    this.switcherButtonAlignment = KeyboardSwitcherButtonAlignment.right,
+    this.rightSlot,
     super.key,
   });
   final WordFieldController controller;
+  final KeyboardSwitcherButtonAlignment switcherButtonAlignment;
+  final Widget? rightSlot;
   @override
   State<WordField> createState() => _WordFieldState();
 }
@@ -154,8 +149,10 @@ class _WordFieldState extends State<WordField> {
     final int newIndex = eNewIndex;
     if (newIndex > _items.length) return;
     if (newIndex < 0) return;
-    _controller._caretIndex =
-        _protectCaretIndex(direction: direction, newIndex: newIndex);
+    _controller._caretIndex = _protectCaretIndex(
+      direction: direction,
+      newIndex: newIndex,
+    );
 
     setState(() {});
   }
@@ -238,13 +235,13 @@ class _WordFieldState extends State<WordField> {
         .read<UiKeyboardController>()
         .keyEventsStream
         .listen((final event) {
-      switch (event) {
-        case UiKeyboardEventAddCharacter(:final character):
-          _onLetterPressed(character);
-        case UiKeyboardEventRemoveCharacter():
-          _onDelete();
-      }
-    });
+          switch (event) {
+            case UiKeyboardEventAddCharacter(:final character):
+              _onLetterPressed(character);
+            case UiKeyboardEventRemoveCharacter():
+              _onDelete();
+          }
+        });
   }
 
   bool _isKeyboardVisible = DeviceRuntimeType.isMobile;
@@ -258,7 +255,25 @@ class _WordFieldState extends State<WordField> {
 
   @override
   Widget build(final BuildContext context) {
-    final wordCompositionState = context.read<WordCompositionCubit>();
+    final wordCompositionState = context.read<GuiWordCompositionCubit>();
+    final keyboardSwitcherButton = DeviceRuntimeType.isDesktop
+        ? IconButton(
+            tooltip: _isKeyboardVisible
+                ? S.of(context).hideKeyboard
+                : S.of(context).showKeyboard,
+            onPressed: () {
+              _isKeyboardVisible = !_isKeyboardVisible;
+              setState(() {});
+            },
+            icon: AnimatedSwitcher(
+              duration: 250.milliseconds,
+              child: _isKeyboardVisible
+                  ? const Icon(Icons.keyboard_hide)
+                  : const Icon(Icons.keyboard_sharp),
+            ),
+          )
+        : const SizedBox();
+    final rightSlot = widget.rightSlot;
     return InputKeyboardListener(
       focusNode: wordCompositionState.wordFocusNode,
       autofocus: false,
@@ -280,6 +295,9 @@ class _WordFieldState extends State<WordField> {
               padding: const EdgeInsets.symmetric(horizontal: 6),
               child: Row(
                 children: [
+                  if (widget.switcherButtonAlignment
+                      case KeyboardSwitcherButtonAlignment.left)
+                    keyboardSwitcherButton,
                   Expanded(
                     child: CardFrostedBackground(
                       child: GameplayEditableText(
@@ -292,22 +310,10 @@ class _WordFieldState extends State<WordField> {
                       ),
                     ),
                   ),
-                  if (DeviceRuntimeType.isDesktop)
-                    IconButton(
-                      tooltip: _isKeyboardVisible
-                          ? S.of(context).hideKeyboard
-                          : S.of(context).showKeyboard,
-                      onPressed: () {
-                        _isKeyboardVisible = !_isKeyboardVisible;
-                        setState(() {});
-                      },
-                      icon: AnimatedSwitcher(
-                        duration: 250.milliseconds,
-                        child: _isKeyboardVisible
-                            ? const Icon(Icons.keyboard_hide)
-                            : const Icon(Icons.keyboard_sharp),
-                      ),
-                    ),
+                  if (widget.switcherButtonAlignment
+                      case KeyboardSwitcherButtonAlignment.right)
+                    keyboardSwitcherButton,
+                  if (rightSlot != null) rightSlot,
                 ],
               ),
             ),
@@ -321,9 +327,7 @@ class _WordFieldState extends State<WordField> {
                     end: 1,
                     alignment: Alignment.bottomCenter,
                   )
-                  .fadeIn(
-                    curve: Curves.easeIn,
-                  ),
+                  .fadeIn(curve: Curves.easeIn),
           ],
         ),
       ),
@@ -342,11 +346,9 @@ class ReorderableLetterCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => ReorderableDragStartListener(
-        index: index,
-        child: InputLetterCard(
-          letter: letter,
-        ),
-      );
+    index: index,
+    child: InputLetterCard(letter: letter),
+  );
 }
 
 class InputInactiveLetterCard extends StatefulWidget {
@@ -367,10 +369,10 @@ class InputInactiveLetterCard extends StatefulWidget {
 
 class _InputInactiveLetterCardState extends State<InputInactiveLetterCard> {
   final _menuController = MenuController();
-  late final _decreaseScore = context
-          .read<MechanicsCollection>()
-          .score
-          .getDecreaseScore(lettersCount: 1) *
+  late final _decreaseScore =
+      context.read<MechanicsCollection>().score.getDecreaseScore(
+        lettersCount: 1,
+      ) *
       -1;
 
   @override
@@ -379,14 +381,14 @@ class _InputInactiveLetterCardState extends State<InputInactiveLetterCard> {
     return MenuAnchor(
       onClose: () => setState(() {}),
       alignmentOffset: const Offset(0, -110),
-      style: const MenuStyle(
-        alignment: Alignment.topCenter,
-      ),
+      style: const MenuStyle(alignment: Alignment.topCenter),
       controller: _menuController,
       menuChildren: [
         if (isUnlockingAvailable)
           _UnlockPopup(
-            title: S.of(context).unblockCharacterForPoints(
+            title: S
+                .of(context)
+                .unblockCharacterForPoints(
                   _decreaseScore.value ~/ kScoreFactor,
                   widget.letter.title,
                 ),
@@ -403,7 +405,9 @@ class _InputInactiveLetterCardState extends State<InputInactiveLetterCard> {
           )
         else
           _UnlockPopup(
-            title: S.of(context).youDontHaveEnoughPointsToUnlockCharacter(
+            title: S
+                .of(context)
+                .youDontHaveEnoughPointsToUnlockCharacter(
                   _decreaseScore.value ~/ kScoreFactor,
                 ),
             actions: [
@@ -417,23 +421,16 @@ class _InputInactiveLetterCardState extends State<InputInactiveLetterCard> {
       key: ValueKey(widget.letter),
       builder: (final context, final controller, final child) => UiBaseButton(
         onPressed: controller.open,
-        child: Card(
+        builder: (final context, final focused, final onlyFocused) => Card(
           elevation: controller.isOpen ? 3 : 0,
           shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: Theme.of(context).colorScheme.outline,
-            ),
+            side: BorderSide(color: Theme.of(context).colorScheme.outline),
             borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
           ),
-          margin: const EdgeInsets.symmetric(
-            vertical: 4,
-            horizontal: 2,
-          ),
+          margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 2),
           child: SizedBox.square(
             dimension: 24,
-            child: Center(
-              child: Text(widget.letter.title),
-            ),
+            child: Center(child: Text(widget.letter.title)),
           ),
         ),
       ),
@@ -442,62 +439,47 @@ class _InputInactiveLetterCardState extends State<InputInactiveLetterCard> {
 }
 
 class _UnlockPopup extends StatelessWidget {
-  const _UnlockPopup({
-    required this.actions,
-    required this.title,
-  });
+  const _UnlockPopup({required this.actions, required this.title});
   final String title;
   final List<Widget> actions;
   @override
   Widget build(final BuildContext context) => ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 140),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Flexible(
-                    child: Text(title),
-                  ),
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Gap(6),
-                ...actions,
-                const Gap(6),
-              ],
-            ),
-            if (!DeviceRuntimeType.isMobile) const Gap(6),
-          ],
+    constraints: const BoxConstraints(maxWidth: 140),
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [Flexible(child: Text(title))],
+          ),
         ),
-      );
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [const Gap(6), ...actions, const Gap(6)],
+        ),
+        if (!DeviceRuntimeType.isMobile) const Gap(6),
+      ],
+    ),
+  );
 }
 
 class InputLetterCard extends StatelessWidget {
-  const InputLetterCard({
-    required this.letter,
-    this.onPressed,
-    super.key,
-  });
+  const InputLetterCard({required this.letter, this.onPressed, super.key});
 
   final VoidCallback? onPressed;
   final LetterModel letter;
   @override
   Widget build(final BuildContext context) => Container(
-        alignment: Alignment.center,
-        child: Text(
-          letter.title,
-          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-        ),
-      );
+    alignment: Alignment.center,
+    child: Text(
+      letter.title,
+      style: Theme.of(
+        context,
+      ).textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
+    ),
+  );
 }
 
 class GameplayEditableText extends StatelessWidget {

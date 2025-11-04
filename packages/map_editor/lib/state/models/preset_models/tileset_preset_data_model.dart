@@ -16,7 +16,7 @@ const Map<SpriteTileName, List<SpriteCode>> _nameCodes = {
 };
 
 @freezed
-class TilesetPresetDataModel with _$TilesetPresetDataModel {
+abstract class TilesetPresetDataModel with _$TilesetPresetDataModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory TilesetPresetDataModel({
     @JsonKey(
@@ -52,12 +52,12 @@ class TilesetPresetDataModel with _$TilesetPresetDataModel {
     @Default(_nameCodes)
     final Map<SpriteTileName, List<SpriteCode>> autotileRules,
     @JsonKey(
-      fromJson: LocalizedMap.fromJsonValueMap,
+      fromJson: LocalizedMap.fromJson,
       toJson: LocalizedMap.toJsonValueMap,
     )
     @Default(LocalizedMap.empty)
     final LocalizedMap name,
-    @Default(TilesetType.colourful) final TilesetType type,
+    @Default(TilesetType.whiteBlack) final TilesetType type,
     @Default(TilesetThemeModel.empty) final TilesetThemeModel theme,
   }) = _TilesetPresetDataModel;
 
@@ -68,27 +68,17 @@ class TilesetPresetDataModel with _$TilesetPresetDataModel {
 
   static Map<TileId, PresetTileModel> _tilesFromJson(
     final Map<String, dynamic> json,
-  ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          TileId.fromJson(key),
-          PresetTileModel.fromJson(value),
-        ),
-      );
+  ) => json.map(
+    (final key, final value) =>
+        MapEntry(TileId.fromJson(key), PresetTileModel.fromJson(value)),
+  );
   static Map<String, dynamic> _tilesToJson(
     final Map<TileId, PresetTileModel> json,
   ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          key.value,
-          value.toJson(),
-        ),
-      );
+      json.map((final key, final value) => MapEntry(key.value, value.toJson()));
 }
 
 enum TilesetType {
-  @JsonValue('colourful')
-  colourful,
   @JsonValue('white_black')
   whiteBlack,
   @JsonValue('evening')
@@ -96,21 +86,20 @@ enum TilesetType {
 }
 
 @Freezed(fromJson: false, toJson: false)
-class TilesetConfigModel with _$TilesetConfigModel {
+abstract class TilesetConfigModel with _$TilesetConfigModel {
   const factory TilesetConfigModel({
     /// should be a _preset_data.json
     @Default('') final String path,
   }) = _TilesetConfigModel;
   const TilesetConfigModel._();
   String get cleanPath => paths.withoutExtension(
-        path.replaceAll('assets/images/', '').replaceAll('_preset_data', ''),
-      );
+    path.replaceAll('assets/images/', '').replaceAll('_preset_data', ''),
+  );
   TilesetType get type => switch (cleanPath.split('/').last) {
-        'colourful' => TilesetType.colourful,
-        'white_black' => TilesetType.whiteBlack,
-        'evening' => TilesetType.evening,
-        _ => throw UnimplementedError()
-      };
+    'white_black' => TilesetType.whiteBlack,
+    'evening' => TilesetType.evening,
+    _ => throw UnimplementedError(),
+  };
   String get encodedAtlasPath => '$cleanPath.fa';
   String get decodedAtlasPath => '$cleanPath.json';
   String get folderPath => cleanPath;
@@ -118,7 +107,7 @@ class TilesetConfigModel with _$TilesetConfigModel {
 }
 
 @freezed
-class TilesetThemeModel with _$TilesetThemeModel {
+abstract class TilesetThemeModel with _$TilesetThemeModel {
   const factory TilesetThemeModel({
     required final String backgroundSkyColorHex,
   }) = _TilesetThemeModel;
@@ -130,11 +119,11 @@ class TilesetThemeModel with _$TilesetThemeModel {
 }
 
 @Freezed(toJson: false, fromJson: false)
-class TilesetPresetResources with _$TilesetPresetResources {
+abstract class TilesetPresetResources with _$TilesetPresetResources {
   const factory TilesetPresetResources({
     @Default(LocalizedMap.empty) final LocalizedMap name,
     @Default(TilesetThemeModel.empty) final TilesetThemeModel theme,
-    @Default(TilesetType.colourful) final TilesetType type,
+    @Default(TilesetType.whiteBlack) final TilesetType type,
     @Default({}) final Map<SpriteTileName, List<SpriteCode>> autotileRules,
     @Default({}) final Map<TileId, PresetTileResource> tiles,
     @Default({}) final Map<TileId, PresetTileResource> objects,
@@ -147,63 +136,62 @@ class TilesetPresetResources with _$TilesetPresetResources {
     required final TilesetPresetDataModel data,
     required final ResourcesLoader resourcesLoader,
     required final TilesetConfigModel tilesetConfig,
-  }) =>
-      TilesetPresetResources(
-        name: data.name,
-        type: data.type,
-        theme: data.theme,
-        autotileRules: data.autotileRules,
-        tiles: data.tiles.map(
-          (final key, final tile) => MapEntry(
-            key,
-            PresetTileResource.fromTile(
-              tilesetConfig: tilesetConfig,
-              tile: tile,
-              resourcesLoader: resourcesLoader,
-            ),
-          ),
+  }) => TilesetPresetResources(
+    name: data.name,
+    type: data.type,
+    theme: data.theme,
+    autotileRules: data.autotileRules,
+    tiles: data.tiles.map(
+      (final key, final tile) => MapEntry(
+        key,
+        PresetTileResource.fromTile(
+          tilesetConfig: tilesetConfig,
+          tile: tile,
+          resourcesLoader: resourcesLoader,
         ),
-        objects: data.objects.map(
-          (final key, final tile) => MapEntry(
-            key,
-            PresetTileResource.fromTile(
-              tilesetConfig: tilesetConfig,
-              tile: tile,
-              resourcesLoader: resourcesLoader,
-            ),
-          ),
+      ),
+    ),
+    objects: data.objects.map(
+      (final key, final tile) => MapEntry(
+        key,
+        PresetTileResource.fromTile(
+          tilesetConfig: tilesetConfig,
+          tile: tile,
+          resourcesLoader: resourcesLoader,
         ),
-        npcs: data.npcs.map(
-          (final key, final tile) => MapEntry(
-            key,
-            PresetTileResource.fromTile(
-              tilesetConfig: tilesetConfig,
-              tile: tile,
-              resourcesLoader: resourcesLoader,
-            ),
-          ),
+      ),
+    ),
+    npcs: data.npcs.map(
+      (final key, final tile) => MapEntry(
+        key,
+        PresetTileResource.fromTile(
+          tilesetConfig: tilesetConfig,
+          tile: tile,
+          resourcesLoader: resourcesLoader,
         ),
-        other: data.other.map(
-          (final key, final tile) => MapEntry(
-            key,
-            PresetTileResource.fromTile(
-              tilesetConfig: tilesetConfig,
-              tile: tile,
-              resourcesLoader: resourcesLoader,
-            ),
-          ),
+      ),
+    ),
+    other: data.other.map(
+      (final key, final tile) => MapEntry(
+        key,
+        PresetTileResource.fromTile(
+          tilesetConfig: tilesetConfig,
+          tile: tile,
+          resourcesLoader: resourcesLoader,
         ),
-        players: data.players.map(
-          (final key, final tile) => MapEntry(
-            key,
-            PresetTileResource.fromTile(
-              tilesetConfig: tilesetConfig,
-              tile: tile,
-              resourcesLoader: resourcesLoader,
-            ),
-          ),
+      ),
+    ),
+    players: data.players.map(
+      (final key, final tile) => MapEntry(
+        key,
+        PresetTileResource.fromTile(
+          tilesetConfig: tilesetConfig,
+          tile: tile,
+          resourcesLoader: resourcesLoader,
         ),
-      );
+      ),
+    ),
+  );
 
   static const empty = TilesetPresetResources();
 }

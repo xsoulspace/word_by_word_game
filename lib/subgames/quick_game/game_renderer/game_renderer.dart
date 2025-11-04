@@ -5,18 +5,19 @@ import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame/palette.dart';
 import 'package:flame_bloc/flame_bloc.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/envs.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/canvas_renderer.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/components.dart';
+import 'package:word_by_word_game/subgames/quick_game/overlays/weather_effects/weather_effect.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/utils/utils.dart';
 
 export 'canvas_renderer.dart';
@@ -35,27 +36,35 @@ class CanvasRendererGame extends FlameGame
     required final ThemeData theme,
     required final DialogController dialogController,
   }) : dto = GameRendererDiDto.use(
-          context: context,
-          theme: theme,
-          dialogController: dialogController,
-        );
+         context: context,
+         theme: theme,
+         dialogController: dialogController,
+       );
   final GameRendererDiDto dto;
+  LevelFeaturesSettingsModel get featureSettings =>
+      dto.levelBloc.featuresSettings;
 
   late CameraComponent worldCamera;
   @override
   late final World world;
   late FlameMultiBlocProvider providersComponent;
   final canvasRenderer = CanvasRenderer();
+  late final _fogWeatherLayer = FogWeatherLayer();
+  late final _snowWeatherLayer = SnowWeatherLayer();
 
   late ObstacleLevelHelper obstacleLevelHelper;
 
   bool get timePaused => dto.mechanics.worldTime.paused;
-
+  // Initialize lightning effect
+  late final _lightningEffect = LightningEffect(
+    startPosition: Vector2(0, 0),
+    endPosition: Vector2(size.x, size.y),
+  );
   @override
   Future<void> onLoad() async {
     const prefix = 'packages/map_editor/assets/images/';
     images.prefix = prefix;
-    debugMode = kDebugMode && !Envs.isMarketingMode;
+    // debugMode = kDebugMode && !Envs.isMarketingMode;
     // mouseCursor = material.SystemMouseCursors.none;
     children
       ..register<CameraComponent>()
@@ -68,10 +77,7 @@ class CanvasRendererGame extends FlameGame
 
     dto.mechanics.worldTime.addListener(_onWorldTimeChange);
     providersComponent = dto.getBlocsProviderComponent(
-      children: [
-        world,
-        worldCamera,
-      ],
+      children: [world, worldCamera],
     );
 
     await add(providersComponent);
@@ -85,8 +91,9 @@ class CanvasRendererGame extends FlameGame
       FlameBlocListener<DebugCubit, DebugCubitState>(
         onNewState: _handleDebugStateChanges,
       ),
-      // temporary enabling it
       canvasRenderer,
+      _fogWeatherLayer,
+      _snowWeatherLayer,
     ]);
     final oldOverlays = [...overlays.activeOverlays];
     overlays
@@ -112,13 +119,11 @@ class CanvasRendererGame extends FlameGame
     _removeFpsComponent();
     final style = material.TextStyle(color: BasicPalette.red.color);
     final regular = TextPaint(style: style);
-    final newComponent = _fpsComponent = FpsTextComponent(
-      textRenderer: regular,
-      priority: 100,
-    )
-      ..anchor = Anchor.topLeft
-      ..x = 32
-      ..y = 200.0;
+    final newComponent = _fpsComponent =
+        FpsTextComponent(textRenderer: regular, priority: 100)
+          ..anchor = Anchor.topLeft
+          ..x = 32
+          ..y = 200.0;
     return world.add(newComponent);
   }
 

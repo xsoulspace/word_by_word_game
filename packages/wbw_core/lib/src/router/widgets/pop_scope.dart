@@ -8,8 +8,7 @@ class RouterPopper {
     final Route<dynamic> route,
     // ignore: avoid_annotating_with_dynamic
     final dynamic result,
-  ) =>
-      route.didPop(result);
+  ) => route.didPop(result);
 }
 
 class RouterPopScope extends StatelessWidget {
@@ -21,8 +20,6 @@ class RouterPopScope extends StatelessWidget {
   final RouterPopper popper;
   final Widget child;
   @override
-  Widget build(final BuildContext context) => WillPopScope(
-        onWillPop: popper.handleWillPop,
-        child: child,
-      );
+  Widget build(final BuildContext context) =>
+      WillPopScope(onWillPop: popper.handleWillPop, child: child);
 }

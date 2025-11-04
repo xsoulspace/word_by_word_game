@@ -1,23 +1,52 @@
-// ignore_for_file: invalid_annotation_target
+// ignore_for_file: invalid_annotation_target, avoid_annotating_with_dynamic
 
 part of 'saveable_models.dart';
 
-@immutable
-@Freezed(fromJson: false, toJson: false, equal: false)
-class CanvasDataModelId with _$CanvasDataModelId, EquatableMixin {
-  const factory CanvasDataModelId({
-    required final String value,
-  }) = _CanvasDataModelId;
-  const CanvasDataModelId._();
-  factory CanvasDataModelId.fromJson(final String value) =>
-      CanvasDataModelId(value: value);
-  static const empty = CanvasDataModelId(value: '');
-  bool get isEmpty => value.isEmpty;
-  bool get isNotEmpty => value.isNotEmpty;
-  String toJson() => value;
+final kQuickGameMapId = CanvasDataModelId.fromJson(
+  '823ea880-44c3-11ee-a8e7-c3f4020ba610',
+);
+
+/// Extension type that represents a unique identifier for CanvasDataModel.
+///
+/// Provides type safety, value-object semantics, and robust JSON serialization/deserialization.
+/// Useful for referencing and managing canvas data entries across the editor and game domains.
+///
+/// {@template CanvasDataModelId}
+/// Usage:
+/// ```dart
+/// final id = CanvasDataModelId.fromJson('abc');
+/// if (id.isNotEmpty) { /* ... */ }
+/// final json = id.toJson();
+/// ```
+/// {@endtemplate}
+extension type const CanvasDataModelId._(String value) {
+  /// Creates a [CanvasDataModelId] from a JSON-compatible value.
+  factory CanvasDataModelId.fromJson(final dynamic value) =>
+      CanvasDataModelId._(jsonDecodeString(value));
+  factory CanvasDataModelId.create() => CanvasDataModelId._(IdCreator.create());
+
   static String toJsonString(final CanvasDataModelId id) => id.value;
-  @override
-  List<Object?> get props => [value];
+
+  /// Returns the string representation for JSON serialization.
+  String toJson() => value;
+
+  /// Returns the string value.
+  String get string => value;
+
+  /// Returns `true` if this ID is empty.
+  bool get isEmpty => value.isEmpty;
+
+  /// Returns `true` if this ID is not empty.
+  bool get isNotEmpty => value.isNotEmpty;
+
+  bool get isQuickGame => this == kQuickGameMapId;
+
+  /// If this ID is empty, returns [other], otherwise returns this.
+  CanvasDataModelId whenEmptyUse(final CanvasDataModelId other) =>
+      isEmpty ? other : this;
+
+  /// Default empty ID.
+  static const empty = CanvasDataModelId._('');
 }
 
 /// Canvas data is what is displayed on the screen
@@ -29,7 +58,7 @@ class CanvasDataModelId with _$CanvasDataModelId, EquatableMixin {
 /// It can be changed during the game. If this will be
 /// implemented, then it should be saved with the level.
 @freezed
-class CanvasDataModel with _$CanvasDataModel {
+abstract class CanvasDataModel with _$CanvasDataModel {
   const factory CanvasDataModel({
     @JsonKey(
       fromJson: CanvasDataModelId.fromJson,
@@ -38,7 +67,7 @@ class CanvasDataModel with _$CanvasDataModel {
     @Default(CanvasDataModelId.empty)
     final CanvasDataModelId id,
     @JsonKey(
-      fromJson: LocalizedMap.fromJsonValueMap,
+      fromJson: LocalizedMap.fromJson,
       toJson: LocalizedMap.toJsonValueMap,
     )
     @Default(LocalizedMap.empty)
@@ -52,8 +81,8 @@ class CanvasDataModel with _$CanvasDataModel {
     /// This way there will be easy way to loop all objects or change just
     /// one object.
     @JsonKey(
-      fromJson: CanvasDataModel._objectsFromJson,
-      toJson: CanvasDataModel._objectsToJson,
+      fromJson: CanvasDataModel.objectsFromJson,
+      toJson: CanvasDataModel.objectsToJson,
     )
     @Default({})
     final Map<Gid, RenderObjectModel> objects,
@@ -67,39 +96,29 @@ class CanvasDataModel with _$CanvasDataModel {
     /// can be negative and positive. Should be absolute tile index.
     @Default(GravityModel.initial) final GravityModel gravity,
     @Default([]) final List<TechnologyModel> technologies,
-    @Default(TilesetType.colourful) final TilesetType tilesetType,
+    @Default(TilesetType.whiteBlack) final TilesetType tilesetType,
   }) = _CanvasDataModel;
   const CanvasDataModel._();
-  factory CanvasDataModel.fromJson(
-    final Map<String, dynamic> json,
-  ) =>
+  factory CanvasDataModel.fromJson(final Map<String, dynamic> json) =>
       _$CanvasDataModelFromJson(json);
   factory CanvasDataModel.create() =>
-      CanvasDataModel(id: CanvasDataModelId(value: IdCreator.create()));
+      CanvasDataModel(id: CanvasDataModelId.create());
   static const empty = CanvasDataModel();
 
-  static Map<Gid, RenderObjectModel> _objectsFromJson(
+  static Map<Gid, RenderObjectModel> objectsFromJson(
     final Map<String, dynamic> json,
-  ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          Gid.fromJson(key),
-          RenderObjectModel.fromJson(value),
-        ),
-      );
-  static Map<String, dynamic> _objectsToJson(
+  ) => json.map(
+    (final key, final value) =>
+        MapEntry(Gid.fromJson(key), RenderObjectModel.fromJson(value)),
+  );
+  static Map<String, dynamic> objectsToJson(
     final Map<Gid, RenderObjectModel> json,
   ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          key.value,
-          value.toJson(),
-        ),
-      );
+      json.map((final key, final value) => MapEntry(key.value, value.toJson()));
 }
 
 @freezed
-class GravityModel with _$GravityModel {
+abstract class GravityModel with _$GravityModel {
   const factory GravityModel({
     ///absolute tile position. may be negative and positive
     required final int yTilePosition,
@@ -122,10 +141,8 @@ class GravityModel with _$GravityModel {
 
 @immutable
 @Freezed(fromJson: false, toJson: false, equal: false)
-class LayerModelId with _$LayerModelId, EquatableMixin {
-  const factory LayerModelId({
-    required final String value,
-  }) = _LayerModelId;
+abstract class LayerModelId with _$LayerModelId, EquatableMixin {
+  const factory LayerModelId({required final String value}) = _LayerModelId;
   const LayerModelId._();
   factory LayerModelId.fromJson(final String value) =>
       LayerModelId(value: value);
@@ -140,19 +157,12 @@ class LayerModelId with _$LayerModelId, EquatableMixin {
   List<Object?> get props => [value];
 }
 
-enum CollisionConsequence {
-  none,
-  win,
-  lose,
-}
+enum CollisionConsequence { none, win, lose }
 
 @freezed
-class LayerModel with _$LayerModel {
+abstract class LayerModel with _$LayerModel {
   const factory LayerModel({
-    @JsonKey(
-      fromJson: LayerModelId.fromJson,
-      toJson: LayerModelId.toJsonString,
-    )
+    @JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
     required final LayerModelId id,
     @Default('') final String title,
     @JsonKey(
@@ -173,29 +183,26 @@ class LayerModel with _$LayerModel {
   factory LayerModel.fromJson(final Map<String, dynamic> json) =>
       _$LayerModelFromJson(json);
   static const empty = LayerModel(id: LayerModelId.empty);
+  static const buildings = LayerModel(id: kDrawerBuildingsLayerId);
   static Map<CellPointModel, CellTileModel> _tilesFromJson(
     final Map<String, dynamic> json,
-  ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          CellPointModel.fromJson(jsonDecode(key)),
-          CellTileModel.fromJson(value),
-        ),
-      );
+  ) => json.map(
+    (final key, final value) => MapEntry(
+      CellPointModel.fromJson(jsonDecode(key)),
+      CellTileModel.fromJson(value),
+    ),
+  );
   static Map<String, dynamic> _tilesToJson(
     final Map<CellPointModel, CellTileModel> json,
-  ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          jsonEncode(key.toJson()),
-          value.toJson(),
-        ),
-      );
+  ) => json.map(
+    (final key, final value) =>
+        MapEntry(jsonEncode(key.toJson()), value.toJson()),
+  );
 }
 
 /// Class which keeps all information about one tile and its references
 @freezed
-class CellTileModel with _$CellTileModel {
+abstract class CellTileModel with _$CellTileModel {
   const factory CellTileModel({
     /// to remove tile just set [TileId.empty] and recalculate [tileNeighbours]
     @Default(TileId.empty) final TileId tileId,
@@ -217,7 +224,7 @@ class CellTileModel with _$CellTileModel {
 /// Used to save and restore canvas object.
 
 @freezed
-class RenderObjectModel with _$RenderObjectModel {
+abstract class RenderObjectModel with _$RenderObjectModel {
   const factory RenderObjectModel({
     /// Since tileId can be used several times
     /// It cannot be used as gid.
@@ -238,8 +245,6 @@ class RenderObjectModel with _$RenderObjectModel {
   }) = _RenderObjectModel;
   factory RenderObjectModel.fromJson(final Map<String, dynamic> json) =>
       _$RenderObjectModelFromJson(json);
-  static const empty = RenderObjectModel(
-    id: Gid.empty,
-    tileId: TileId.empty,
-  );
+  const RenderObjectModel._();
+  static const empty = RenderObjectModel(id: Gid.empty, tileId: TileId.empty);
 }

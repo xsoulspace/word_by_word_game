@@ -1,0 +1,133 @@
+---
+description: when you need to inject or use dependency
+globs: 
+alwaysApply: false
+---
+# Abstract Flutter DI & State Management: Usage Guide
+
+This guide outlines a scalable and maintainable approach to using Dependency Injection (DI) and state management in a Flutter application, primarily using the `provider` package.
+
+## Core Principles
+
+1.  **Separation of Concerns**: UI (Widgets) should be separate from business logic (Services/Notifiers).
+2.  **Explicit Dependencies**: A class's dependencies should be clearly declared, not hidden.
+3.  **Scoped Access**: Dependencies should be provided at the appropriate level in the widget tree.
+4.  **Performance**: Widgets should only rebuild when necessary.
+
+## 1. Dependency Access Patterns
+
+How different parts of your app get access to dependencies.
+
+### A. In Widgets (`StatelessWidget` / `StatefulWidget`)
+
+Use `BuildContext` extension methods from `provider`.
+
+**For one-time access (e.g., in callbacks, `initState`)**:
+Use `context.read<T>()`. This does **not** cause the widget to rebuild when `T` changes.
+
+```dart
+// ✅ Correct: One-time access for an action
+ElevatedButton(
+  onPressed: () => context.read<MyService>().doSomething(),
+  child: Text('Action'),
+);
+```
+
+**To listen for changes and rebuild**:
+Use `context.watch<T>()`. The widget will rebuild whenever the provider `T` notifies its listeners.
+
+```dart
+// ✅ Rebuilds whenever MyState changes
+final state = context.watch<MyState>();
+return Text('Value: ${state.someValue}');
+```
+
+**For performance - listen to specific changes**:
+Use `context.select<T, R>()`. This is the preferred method for listening. The widget only rebuilds if the selected value `R` changes.
+
+```dart
+// ✅ Best performance: only rebuilds when the user's name changes.
+final userName = context.select<AppState, String?>(
+  (appState) => appState.currentUser?.name,
+);
+return Text(userName ?? 'Guest');
+```
+
+### B. In Service Classes
+
+Services often depend on other services. Use mixins to declare these dependencies. This makes them explicit and testable.
+
+**1. Define a Mixin:**
+For each service, create a corresponding `Has<Service>` mixin.
+
+```dart
+// For a service `ApiService`
+mixin HasApiService {
+  // Use a DI container or Service Locator to get the instance
+  late final ApiService apiService = Di.get<ApiService>();
+}
+```
+
+**2. Use the Mixin:**
+Apply the mixin to any class that needs the dependency.
+
+```dart
+class AnotherService with HasApiService {
+  void fetchData() {
+    // `apiService` is readily available here.
+    apiService.fetch();
+  }
+}
+```
+
+### C. In Static Contexts
+
+For contexts without `BuildContext` (like static utility functions), use a static Service Locator.
+
+```dart
+class AppUtils {
+  static void triggerGlobalAction() {
+    // ✅ Direct access via Service Locator
+    final aService = Di.get<MyService>();
+    aService.doSomething();
+  }
+}
+```
+
+_Warning_: Overuse of a Service Locator can lead to less explicit dependencies. Prefer constructor or mixin-based injection where possible.
+
+## 2. Anti-Patterns (What to Avoid)
+
+- **❌ Passing `BuildContext` into services.**
+  A service should not depend on the widget layer.
+
+  ```dart
+  // ❌ WRONG
+  class MyService {
+    void doSomething(BuildContext context) {
+      // This makes the service hard to test and tightly coupled to the UI.
+    }
+  }
+
+  // ✅ RIGHT
+  class MyService with HasAnotherService {
+    void doSomething() {
+      // Get dependencies via mixin instead.
+      anotherService.performAction();
+    }
+  }
+  ```
+
+- **❌ Using `context.watch()` inside a callback.**
+  `watch` is for rebuilding. For one-time actions, `read` is correct and more efficient.
+
+  ```dart
+  // ❌ WRONG - unnecessarily subscribes the widget
+  onPressed: () => context.watch<MyService>().doSomething(),
+
+  // ✅ RIGHT
+  onPressed: () => context.read<MyService>().doSomething(),
+  ```
+
+- **❌ Providing dependencies lower than needed.**
+  Provide app-wide services (like `ApiService`, `AnalyticsService`) at the top of your widget tree (e.g., in `main.dart` above `MaterialApp`).

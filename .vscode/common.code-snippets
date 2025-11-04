@@ -62,5 +62,110 @@
   "section-end": {
     "prefix": "section end",
     "body": "/// ********************************************\n/// *      ${1:TITLE} END\n/// ********************************************"
+  },
+  "cubit": {
+    "prefix": "cubit",
+    "body": [
+      "import 'package:bloc/bloc.dart';",
+      "import 'package:freezed_annotation/freezed_annotation.dart';",
+      "import 'package:wbw_core/wbw_core.dart';",
+      "",
+      "part '${TM_FILENAME_BASE}.freezed.dart';",
+      "part '${TM_FILENAME_BASE}_events.dart';",
+      "part '${TM_FILENAME_BASE}_states.dart';",
+      "",
+      "class ${1:Name}BlocDiDto {",
+      "  ${1:Name}BlocDiDto.use(final Locator read)",
+      "      : ${2:dependency1} = read(),",
+      "        ${3:dependency2} = read();",
+      "  final ${4:Type1} ${2:dependency1};",
+      "  final ${5:Type2} ${3:dependency2};",
+      "}",
+      "",
+      "class ${1:Name}Bloc extends Cubit<${1:Name}BlocState> {",
+      "  ${1:Name}Bloc(final BuildContext context)",
+      "      : dto = ${1:Name}BlocDiDto.use(context.read),",
+      "        super(const ${1:Name}BlocState());",
+      "",
+      "  final ${1:Name}BlocDiDto dto;",
+      "",
+      "  void on${1:Name}Event(",
+      "    final ${1:Name}BlocEvent${6:EventName} event,",
+      "  ) {",
+      "    // TODO: Implement event handler",
+      "    $0",
+      "  }",
+      "}",
+      ""
+    ],
+    "description": "Generate a BLoC class structure"
+  },
+
+  "ai-bug-fix": {
+    "prefix": "aifix",
+    "body": [
+      "// AI-suggested bug fix",
+      "// Issue: ${1:Describe the bug}",
+      "// Fix: ${2:Describe the fix}",
+      "${3:// TODO: Implement the fix}",
+      "$0"
+    ],
+    "description": "Template for AI-suggested bug fixes"
+  },
+
+  "ai-feature-addition": {
+    "prefix": "aifeature",
+    "body": [
+      "// AI-suggested feature addition",
+      "// Feature: ${1:Describe the new feature}",
+      "// Implementation:",
+      "${2:// TODO: Implement the feature}",
+      "$0"
+    ],
+    "description": "Template for AI-suggested feature additions"
+  },
+
+  "ai-refactor": {
+    "prefix": "airefactor",
+    "body": [
+      "// AI-suggested refactoring",
+      "// Current implementation:",
+      "${1:// TODO: Copy the current implementation here}",
+      "",
+      "// Refactored implementation:",
+      "${2:// TODO: Implement the refactored code}",
+      "$0"
+    ],
+    "description": "Template for AI-suggested refactoring"
+  },
+
+  "ai-performance-optimization": {
+    "prefix": "aioptimize",
+    "body": [
+      "// AI-suggested performance optimization",
+      "// Issue: ${1:Describe the performance issue}",
+      "// Optimization:",
+      "${2:// TODO: Implement the optimization}",
+      "$0"
+    ],
+    "description": "Template for AI-suggested performance optimizations"
+  },
+
+  "ai-test-case": {
+    "prefix": "aitest",
+    "body": [
+      "test('${1:test description}', () {",
+      "  // Arrange",
+      "  ${2:// TODO: Set up test data and dependencies}",
+      "",
+      "  // Act",
+      "  ${3:// TODO: Perform the action being tested}",
+      "",
+      "  // Assert",
+      "  ${4:// TODO: Add assertions}",
+      "});",
+      "$0"
+    ],
+    "description": "Template for AI-suggested test cases"
   }
 }

@@ -1,4 +1,8 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'S.dart';
+
+// ignore_for_file: type=lint
 
 /// The translations for Russian (`ru`).
 class SRu extends S {
@@ -22,7 +26,8 @@ class SRu extends S {
   String get resetEnding => 'Сбросить слово';
 
   @override
-  String get congratulationsYouPassedTheLandscape => 'Поздравляем! Вы прошли этот ландшафт!';
+  String get congratulationsYouPassedTheLandscape =>
+      'Поздравляем! Вы прошли этот ландшафт!';
 
   @override
   String get congratulations => 'Поздравляем!';
@@ -46,7 +51,8 @@ class SRu extends S {
   String get toLandscapes => 'В Места';
 
   @override
-  String get youHaveLandedInTheNowhere => 'Вы приземлились где-то в неизвестность..';
+  String get youHaveLandedInTheNowhere =>
+      'Вы приземлились где-то в неизвестность..';
 
   @override
   String get profileCreator => 'Создатель профиля';
@@ -121,7 +127,8 @@ class SRu extends S {
   String get newGame => 'Новая игра';
 
   @override
-  String get sendFeedback => 'Если у вас есть идея, улучшения или ошибки, присоединяйтесь к серверу Discord.';
+  String get sendFeedback =>
+      'Если у вас есть идея, улучшения или ошибки, присоединяйтесь к серверу Discord.';
 
   @override
   String get back => 'Назад';
@@ -131,9 +138,6 @@ class SRu extends S {
 
   @override
   String get tryAnotherWord => 'Попробовать другое слово';
-
-  @override
-  String get notEnoughKnowledgeToRevealWord => 'Не хватает очков';
 
   @override
   String useCostKnowledgePoints(Object costOfWord) {
@@ -156,10 +160,12 @@ class SRu extends S {
   String get privacyPolicy => 'Политика конфиденциальности';
 
   @override
-  String get creatingGame => 'Привет! Спасибо за интерес к игре и надеюсь она понравилась:)';
+  String get creatingGame =>
+      'Привет! Спасибо за интерес к игре и надеюсь она понравилась:)';
 
   @override
-  String get supportGame => 'Создание игры можно дополнительно поддержать здесь https://boosty.to/arenukvern';
+  String get supportGame =>
+      'Создание игры можно дополнительно поддержать здесь https://boosty.to/arenukvern';
 
   @override
   String get thankYou => 'Спасибо и хорошего времяпрепровождения!';
@@ -232,31 +238,37 @@ class SRu extends S {
   String get currentPlayerName => 'Ник текущего игрока';
 
   @override
-  String get suggestWordButtonTooltip => 'Нажми, чтобы получить случайное слово на основе текущих букв.';
+  String get suggestWordButtonTooltip =>
+      'Нажми, чтобы получить случайное слово на основе текущих букв.';
 
   @override
-  String get mainMenuButtonTooltip => 'Нажми, чтобы открыть меню (текущий прогресс будет сохранен).';
+  String get mainMenuButtonTooltip =>
+      'Нажми, чтобы открыть меню (текущий прогресс будет сохранен).';
 
   @override
   String get yourCurrentHighcoreTooltip => 'Текущее кол-во очков знаний.';
 
   @override
-  String get youDontHaveEnoughPoints => 'Недостаточно очков знаний для применения.';
+  String get youDontHaveEnoughPoints =>
+      'Недостаточно очков знаний для применения.';
 
   @override
   String get applyFuelOption => 'Обменяй очки на энергию';
 
   @override
-  String get createNewPlayerTooltip => 'Нажми, чтобы создать профиль нового игрока.';
+  String get createNewPlayerTooltip =>
+      'Нажми, чтобы создать профиль нового игрока.';
 
   @override
-  String get createNewFirstPlayerTitle => 'Создай профиль игрока, чтобы начать игру.';
+  String get createNewFirstPlayerTitle =>
+      'Создай профиль игрока, чтобы начать игру.';
 
   @override
   String get createNewPlayerTitle => 'Создай профиль нового игрока.';
 
   @override
-  String get createNewPlayerBody => 'Профиль этого игрока можно будет добавить в любую новую игру.';
+  String get createNewPlayerBody =>
+      'Профиль этого игрока можно будет добавить в любую новую игру.';
 
   @override
   String get createPlayer => 'Создать игрока';

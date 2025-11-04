@@ -6,22 +6,22 @@ part of 'preset_models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PresetTileModelImpl _$$PresetTileModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PresetTileModelImpl(
+_PresetTileModel _$PresetTileModelFromJson(Map<String, dynamic> json) =>
+    _PresetTileModel(
       id: TileId.fromJson(json['id'] as String),
       type: $enumDecode(_$TileTypeEnumMap, json['type']),
       category: $enumDecode(_$DataCategoryTypeEnumMap, json['category']),
       graphics: PresetTileGraphicsModel.fromJson(
-          json['graphics'] as Map<String, dynamic>),
+        json['graphics'] as Map<String, dynamic>,
+      ),
       properties: json['properties'] == null
           ? PresetTilePropertiesModel.empty
           : PresetTilePropertiesModel.fromJson(
-              json['properties'] as Map<String, dynamic>),
+              json['properties'] as Map<String, dynamic>,
+            ),
     );
 
-Map<String, dynamic> _$$PresetTileModelImplToJson(
-        _$PresetTileModelImpl instance) =>
+Map<String, dynamic> _$PresetTileModelToJson(_PresetTileModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'type': _$TileTypeEnumMap[instance.type]!,
@@ -43,47 +43,48 @@ const _$DataCategoryTypeEnumMap = {
   DataCategoryType.plants: 'plants',
   DataCategoryType.players: 'players',
   DataCategoryType.other: 'other',
+  DataCategoryType.buildings: 'buildings',
 };
 
-_$PresetTilePropertiesModelImpl _$$PresetTilePropertiesModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PresetTilePropertiesModelImpl(
-      title: json['title'] as String? ?? '',
-      thumbnailPath: json['thumbnail_path'] as String? ?? '',
-      description: json['description'] == null
-          ? LocalizedMap.empty
-          : LocalizedMap.fromJsonValueMap(
-              json['description'] as Map<String, dynamic>),
-    );
+_PresetTilePropertiesModel _$PresetTilePropertiesModelFromJson(
+  Map<String, dynamic> json,
+) => _PresetTilePropertiesModel(
+  title: json['title'] as String? ?? '',
+  thumbnailPath: json['thumbnail_path'] as String? ?? '',
+  description: json['description'] == null
+      ? LocalizedMap.empty
+      : LocalizedMap.fromJson(json['description']),
+);
 
-Map<String, dynamic> _$$PresetTilePropertiesModelImplToJson(
-        _$PresetTilePropertiesModelImpl instance) =>
-    <String, dynamic>{
-      'title': instance.title,
-      'thumbnail_path': instance.thumbnailPath,
-      'description': LocalizedMap.toJsonValueMap(instance.description),
-    };
+Map<String, dynamic> _$PresetTilePropertiesModelToJson(
+  _PresetTilePropertiesModel instance,
+) => <String, dynamic>{
+  'title': instance.title,
+  'thumbnail_path': instance.thumbnailPath,
+  'description': LocalizedMap.toJsonValueMap(instance.description),
+};
 
-_$PresetTileGraphicsModelImpl _$$PresetTileGraphicsModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$PresetTileGraphicsModelImpl(
-      type: $enumDecode(_$TileGraphicsTypeEnumMap, json['type']),
-      animated: json['animated'] as bool? ?? false,
-      behaviours: (json['behaviours'] as List<dynamic>?)
-              ?.map((e) => $enumDecode(_$TileBehaviourTypeEnumMap, e))
-              .toList() ??
-          const [],
-    );
+_PresetTileGraphicsModel _$PresetTileGraphicsModelFromJson(
+  Map<String, dynamic> json,
+) => _PresetTileGraphicsModel(
+  type: $enumDecode(_$TileGraphicsTypeEnumMap, json['type']),
+  animated: json['animated'] as bool? ?? false,
+  behaviours:
+      (json['behaviours'] as List<dynamic>?)
+          ?.map((e) => $enumDecode(_$TileBehaviourTypeEnumMap, e))
+          .toList() ??
+      const [],
+);
 
-Map<String, dynamic> _$$PresetTileGraphicsModelImplToJson(
-        _$PresetTileGraphicsModelImpl instance) =>
-    <String, dynamic>{
-      'type': _$TileGraphicsTypeEnumMap[instance.type]!,
-      'animated': instance.animated,
-      'behaviours': instance.behaviours
-          .map((e) => _$TileBehaviourTypeEnumMap[e]!)
-          .toList(),
-    };
+Map<String, dynamic> _$PresetTileGraphicsModelToJson(
+  _PresetTileGraphicsModel instance,
+) => <String, dynamic>{
+  'type': _$TileGraphicsTypeEnumMap[instance.type]!,
+  'animated': instance.animated,
+  'behaviours': instance.behaviours
+      .map((e) => _$TileBehaviourTypeEnumMap[e]!)
+      .toList(),
+};
 
 const _$TileGraphicsTypeEnumMap = {
   TileGraphicsType.directional: 'directional',
@@ -99,58 +100,68 @@ const _$TileBehaviourTypeEnumMap = {
   TileBehaviourType.flyRight: 'fly_right',
 };
 
-_$TilesetPresetDataModelImpl _$$TilesetPresetDataModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TilesetPresetDataModelImpl(
-      tiles: json['tiles'] == null
-          ? const {}
-          : TilesetPresetDataModel._tilesFromJson(
-              json['tiles'] as Map<String, dynamic>),
-      objects: json['objects'] == null
-          ? const {}
-          : TilesetPresetDataModel._tilesFromJson(
-              json['objects'] as Map<String, dynamic>),
-      npcs: json['npcs'] == null
-          ? const {}
-          : TilesetPresetDataModel._tilesFromJson(
-              json['npcs'] as Map<String, dynamic>),
-      players: json['players'] == null
-          ? const {}
-          : TilesetPresetDataModel._tilesFromJson(
-              json['players'] as Map<String, dynamic>),
-      other: json['other'] == null
-          ? const {}
-          : TilesetPresetDataModel._tilesFromJson(
-              json['other'] as Map<String, dynamic>),
-      autotileRules: (json['autotile_rules'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry($enumDecode(_$SpriteTileNameEnumMap, k),
-                (e as List<dynamic>).map((e) => e as String).toList()),
-          ) ??
-          _nameCodes,
-      name: json['name'] == null
-          ? LocalizedMap.empty
-          : LocalizedMap.fromJsonValueMap(json['name'] as Map<String, dynamic>),
-      type: $enumDecodeNullable(_$TilesetTypeEnumMap, json['type']) ??
-          TilesetType.colourful,
-      theme: json['theme'] == null
-          ? TilesetThemeModel.empty
-          : TilesetThemeModel.fromJson(json['theme'] as Map<String, dynamic>),
-    );
+_TilesetPresetDataModel _$TilesetPresetDataModelFromJson(
+  Map<String, dynamic> json,
+) => _TilesetPresetDataModel(
+  tiles: json['tiles'] == null
+      ? const {}
+      : TilesetPresetDataModel._tilesFromJson(
+          json['tiles'] as Map<String, dynamic>,
+        ),
+  objects: json['objects'] == null
+      ? const {}
+      : TilesetPresetDataModel._tilesFromJson(
+          json['objects'] as Map<String, dynamic>,
+        ),
+  npcs: json['npcs'] == null
+      ? const {}
+      : TilesetPresetDataModel._tilesFromJson(
+          json['npcs'] as Map<String, dynamic>,
+        ),
+  players: json['players'] == null
+      ? const {}
+      : TilesetPresetDataModel._tilesFromJson(
+          json['players'] as Map<String, dynamic>,
+        ),
+  other: json['other'] == null
+      ? const {}
+      : TilesetPresetDataModel._tilesFromJson(
+          json['other'] as Map<String, dynamic>,
+        ),
+  autotileRules:
+      (json['autotile_rules'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(
+          $enumDecode(_$SpriteTileNameEnumMap, k),
+          (e as List<dynamic>).map((e) => e as String).toList(),
+        ),
+      ) ??
+      _nameCodes,
+  name: json['name'] == null
+      ? LocalizedMap.empty
+      : LocalizedMap.fromJson(json['name']),
+  type:
+      $enumDecodeNullable(_$TilesetTypeEnumMap, json['type']) ??
+      TilesetType.whiteBlack,
+  theme: json['theme'] == null
+      ? TilesetThemeModel.empty
+      : TilesetThemeModel.fromJson(json['theme'] as Map<String, dynamic>),
+);
 
-Map<String, dynamic> _$$TilesetPresetDataModelImplToJson(
-        _$TilesetPresetDataModelImpl instance) =>
-    <String, dynamic>{
-      'tiles': TilesetPresetDataModel._tilesToJson(instance.tiles),
-      'objects': TilesetPresetDataModel._tilesToJson(instance.objects),
-      'npcs': TilesetPresetDataModel._tilesToJson(instance.npcs),
-      'players': TilesetPresetDataModel._tilesToJson(instance.players),
-      'other': TilesetPresetDataModel._tilesToJson(instance.other),
-      'autotile_rules': instance.autotileRules
-          .map((k, e) => MapEntry(_$SpriteTileNameEnumMap[k]!, e)),
-      'name': LocalizedMap.toJsonValueMap(instance.name),
-      'type': _$TilesetTypeEnumMap[instance.type]!,
-      'theme': instance.theme,
-    };
+Map<String, dynamic> _$TilesetPresetDataModelToJson(
+  _TilesetPresetDataModel instance,
+) => <String, dynamic>{
+  'tiles': TilesetPresetDataModel._tilesToJson(instance.tiles),
+  'objects': TilesetPresetDataModel._tilesToJson(instance.objects),
+  'npcs': TilesetPresetDataModel._tilesToJson(instance.npcs),
+  'players': TilesetPresetDataModel._tilesToJson(instance.players),
+  'other': TilesetPresetDataModel._tilesToJson(instance.other),
+  'autotile_rules': instance.autotileRules.map(
+    (k, e) => MapEntry(_$SpriteTileNameEnumMap[k]!, e),
+  ),
+  'name': LocalizedMap.toJsonValueMap(instance.name),
+  'type': _$TilesetTypeEnumMap[instance.type]!,
+  'theme': instance.theme,
+};
 
 const _$SpriteTileNameEnumMap = {
   SpriteTileName.topLeft: 'topLeft',
@@ -169,19 +180,14 @@ const _$SpriteTileNameEnumMap = {
 };
 
 const _$TilesetTypeEnumMap = {
-  TilesetType.colourful: 'colourful',
   TilesetType.whiteBlack: 'white_black',
   TilesetType.evening: 'evening',
 };
 
-_$TilesetThemeModelImpl _$$TilesetThemeModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TilesetThemeModelImpl(
+_TilesetThemeModel _$TilesetThemeModelFromJson(Map<String, dynamic> json) =>
+    _TilesetThemeModel(
       backgroundSkyColorHex: json['backgroundSkyColorHex'] as String,
     );
 
-Map<String, dynamic> _$$TilesetThemeModelImplToJson(
-        _$TilesetThemeModelImpl instance) =>
-    <String, dynamic>{
-      'backgroundSkyColorHex': instance.backgroundSkyColorHex,
-    };
+Map<String, dynamic> _$TilesetThemeModelToJson(_TilesetThemeModel instance) =>
+    <String, dynamic>{'backgroundSkyColorHex': instance.backgroundSkyColorHex};

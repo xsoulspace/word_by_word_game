@@ -1,8 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_dictionaries/wbw_dictionaries.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
-class FakeLocalDbDataSource extends Fake implements LocalDbDataSource {}
+class FakeLocalDbI extends Fake implements LocalDbI {}
 
 class FakeWbwDictionaryRemoteSource extends Fake
     implements WbwDictionaryRemoteSource {}
@@ -13,7 +14,7 @@ void main() {
   group('DictionaryMechanics', () {
     final dictionaryMechanics = DictionaryMechanics();
     final wbwDictionary = WbwDictionary(
-      simpleLocal: FakeLocalDbDataSource(),
+      simpleLocal: FakeLocalDbI(),
       repository: WbwDictionaryRepository(
         onlineStatusService: FakeOnlineStatusService(),
         remote: FakeWbwDictionaryRemoteSource(),

@@ -6,11 +6,10 @@ import 'package:map_editor/state/models/saveable_models/saveable_models.dart';
 
 Future<void> showTilesetDirectionGenerator({
   required final BuildContext context,
-}) async =>
-    showDialog(
-      context: context,
-      builder: (final context) => const TilesetDirectionGenerator(),
-    );
+}) async => showDialog(
+  context: context,
+  builder: (final context) => const TilesetDirectionGenerator(),
+);
 
 class TilesetDirectionGenerator extends StatefulWidget {
   const TilesetDirectionGenerator({super.key});
@@ -24,11 +23,10 @@ class _TilesetDirectionGeneratorState extends State<TilesetDirectionGenerator> {
   final _items = <String>[];
   final _currentDirections = <TileNeighbourDirection>[];
   void _onConfirm() {
-    _currentDirections.sort(
-      (final a, final b) => a.index.compareTo(b.index),
-    );
-    final item =
-        _currentDirections.map((final e) => e.name.toUpperCase()).join();
+    _currentDirections.sort((final a, final b) => a.index.compareTo(b.index));
+    final item = _currentDirections
+        .map((final e) => e.name.toUpperCase())
+        .join();
     _items.add(item);
     _currentDirections.clear();
     setState(() {});
@@ -72,94 +70,87 @@ class _TilesetDirectionGeneratorState extends State<TilesetDirectionGenerator> {
 
   @override
   Widget build(final BuildContext context) => Dialog.fullscreen(
-        child: Column(
+    child: Column(
+      children: [
+        AppBar(
+          leading: const CloseButton(),
+          title: const Text('Directions generator'),
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            AppBar(
-              leading: const CloseButton(),
-              title: const Text('Directions generator'),
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 150, maxWidth: 150),
+              child: GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                ),
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(8),
+                itemBuilder: (final context, final index) {
+                  final int i = index;
+                  if (index == 4) {
+                    return const SizedBox();
+                  }
+                  final direction = switch (i) {
+                    0 => TileNeighbourDirection.h,
+                    1 => TileNeighbourDirection.a,
+                    2 => TileNeighbourDirection.b,
+                    3 => TileNeighbourDirection.g,
+                    5 => TileNeighbourDirection.c,
+                    6 => TileNeighbourDirection.f,
+                    7 => TileNeighbourDirection.e,
+                    8 => TileNeighbourDirection.d,
+                    _ => throw UnsupportedError(''),
+                  };
+                  return Row(
+                    children: [
+                      Text(direction.name),
+                      Checkbox(
+                        value: _currentDirections.contains(direction),
+                        onChanged: (final isAdded) {
+                          _onChange(direction);
+                        },
+                      ),
+                    ],
+                  );
+                },
+                itemCount: TileNeighbourDirection.values.length + 1,
+              ),
             ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxHeight: 150,
-                    maxWidth: 150,
-                  ),
-                  child: GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                    ),
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.all(8),
-                    itemBuilder: (final context, final index) {
-                      final int i = index;
-                      if (index == 4) {
-                        return const SizedBox();
-                      }
-                      final direction = switch (i) {
-                        0 => TileNeighbourDirection.h,
-                        1 => TileNeighbourDirection.a,
-                        2 => TileNeighbourDirection.b,
-                        3 => TileNeighbourDirection.g,
-                        5 => TileNeighbourDirection.c,
-                        6 => TileNeighbourDirection.f,
-                        7 => TileNeighbourDirection.e,
-                        8 => TileNeighbourDirection.d,
-                        _ => throw UnsupportedError(''),
-                      };
-                      return Row(
-                        children: [
-                          Text(direction.name),
-                          Checkbox(
-                            value: _currentDirections.contains(direction),
-                            onChanged: (final isAdded) {
-                              _onChange(direction);
-                            },
-                          ),
-                        ],
-                      );
-                    },
-                    itemCount: TileNeighbourDirection.values.length + 1,
-                  ),
-                ),
-                TextButton(
-                  onPressed: _onConfirm,
-                  child: const Text('Confirm'),
-                ),
-              ],
+            TextButton(onPressed: _onConfirm, child: const Text('Confirm')),
+          ],
+        ),
+        Row(
+          children: [
+            TextButton.icon(
+              onPressed: _onCopy,
+              icon: const Icon(Icons.copy),
+              label: const Text('Copy'),
             ),
-            Row(
-              children: [
-                TextButton.icon(
-                  onPressed: _onCopy,
-                  icon: const Icon(Icons.copy),
-                  label: const Text('Copy'),
-                ),
-                TextButton.icon(
-                  onPressed: _onClear,
-                  icon: const Icon(Icons.clear),
-                  label: const Text('Clear'),
-                ),
-              ],
-            ),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: _items.length,
-              itemBuilder: (final context, final index) {
-                final item = _items[index];
-                return ListTile(
-                  key: ValueKey(item),
-                  title: Text(item),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () => _onDeleteItem(index),
-                  ),
-                );
-              },
+            TextButton.icon(
+              onPressed: _onClear,
+              icon: const Icon(Icons.clear),
+              label: const Text('Clear'),
             ),
           ],
         ),
-      );
+        ListView.builder(
+          shrinkWrap: true,
+          itemCount: _items.length,
+          itemBuilder: (final context, final index) {
+            final item = _items[index];
+            return ListTile(
+              key: ValueKey(item),
+              title: Text(item),
+              trailing: IconButton(
+                icon: const Icon(Icons.delete),
+                onPressed: () => _onDeleteItem(index),
+              ),
+            );
+          },
+        ),
+      ],
+    ),
+  );
 }

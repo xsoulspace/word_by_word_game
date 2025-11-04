@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_advanced_frame.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_simple_frame.dart';
@@ -13,16 +12,11 @@ class UiActionFrame extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final levelCubit = context.watch<LevelBloc>();
-    final uiTheme = context.uiTheme;
-    if (levelCubit.featuresSettings.isTechnologiesEnabled) {
+    if (levelCubit.featuresSettings.isAdvancedGame) {
       return const UIActionFrameAdvanced();
     } else {
-      return Column(
-        children: [
-          uiTheme.verticalBoxes.small,
-          const UiActionFrameSimple(),
-          uiTheme.verticalBoxes.medium,
-        ],
+      return const Column(
+        children: [UiGaps.small, UiActionFrameSimple(), UiGaps.medium],
       );
     }
   }
@@ -33,12 +27,14 @@ class UiActionButton extends StatefulWidget {
     required this.onCompleted,
     required this.child,
     this.tooltipMessage = '',
+    this.padding = const EdgeInsets.all(12),
     this.constraints = const BoxConstraints(minWidth: 70),
     super.key,
   });
   final Widget child;
   final VoidCallback onCompleted;
   final String tooltipMessage;
+  final EdgeInsets padding;
   final BoxConstraints constraints;
 
   @override
@@ -60,12 +56,12 @@ class _UiActionButtonState extends State<UiActionButton>
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
-    final uiTheme = context.uiTheme;
     final colorScheme = theme.colorScheme;
     final surfaces = theme.extension<SurfaceColorScheme>()!;
+    const radius = Radius.elliptical(UiSpace.medium, UiSpace.medium);
     final borderRadius = _isOnHold
-        ? BorderRadius.all(uiTheme.circularRadius.medium)
-        : BorderRadius.all(uiTheme.circularRadius.medium);
+        ? const BorderRadius.all(radius)
+        : const BorderRadius.all(radius);
 
     return Tooltip(
       message: widget.tooltipMessage,
@@ -112,7 +108,7 @@ class _UiActionButtonState extends State<UiActionButton>
                         return 8.toDouble();
                       }(),
                     ),
-                    padding: const EdgeInsets.all(12),
+                    padding: widget.padding,
                     child: widget.child,
                   ),
                 ),

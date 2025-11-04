@@ -1,21 +1,15 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_dictionaries/wbw_dictionaries.dart';
-import 'package:wbw_locale/wbw_locale.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 
 class _DialogStateDiDto {
   _DialogStateDiDto.use(final Locator read)
-      : levelBloc = read(),
-        levelPlayersBloc = read(),
-        dialogController = read(),
-        wbwDictionary = read(),
-        mechanics = read();
+    : levelBloc = read(),
+      levelPlayersBloc = read(),
+      dialogController = read(),
+      wbwDictionary = read(),
+      mechanics = read();
   final LevelBloc levelBloc;
   final WbwDictionary wbwDictionary;
   final LevelPlayersBloc levelPlayersBloc;
@@ -63,8 +57,9 @@ class _DialogState extends ValueNotifier<bool> {
     _setCostOfWord();
     if (_isMounted) notifyListeners();
     // TODO(arenukvern): not good solution, but may work:)
-    final result =
-        await dto.wbwDictionary.getWordMeaningCheckAll(_suggestedWord);
+    final result = await dto.wbwDictionary.getWordMeaningCheckAll(
+      _suggestedWord,
+    );
     if (result != null && result.meaning.isNotEmpty) {
       _suggestedWordMeaning = result.meaning;
       if (_isMounted) notifyListeners();
@@ -84,21 +79,23 @@ class _DialogState extends ValueNotifier<bool> {
 }
 
 class LevelWordSuggestionDialog extends HookWidget {
-  const LevelWordSuggestionDialog({super.key});
+  const LevelWordSuggestionDialog({required this.onClose, super.key});
+
+  final VoidCallback onClose;
 
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
     final locale = useLocale(context);
-    final uiTheme = context.uiTheme;
-    final dialogController = context.read<DialogController>();
     final state = useStateBuilder(
       () => _DialogState(dto: _DialogStateDiDto.use(context.read)),
     );
     final currentWord = context.select<LevelBloc, CurrentWordModel>(
       (final c) => c.state.currentWord,
     );
-    final fadeColor = context.colorScheme.onPrimaryContainer.withOpacity(0.6);
+    final fadeColor = context.colorScheme.onPrimaryContainer.withValues(
+      alpha: 0.6,
+    );
     final wordMeaning = AnimatedSize(
       duration: 350.milliseconds,
       child: Column(
@@ -113,13 +110,11 @@ class LevelWordSuggestionDialog extends HookWidget {
                     Expanded(child: Divider(color: fadeColor)),
                     const Gap(16),
                     Text(
-                      const LocalizedMap(
-                        value: {
-                          Languages.en: 'Meaning',
-                          Languages.ru: 'Значение',
-                          Languages.it: 'Meaning',
-                        },
-                      ).getValue(locale),
+                      LocalizedMap({
+                        uiLanguages.en: 'Meaning',
+                        uiLanguages.ru: 'Значение',
+                        uiLanguages.it: 'Meaning',
+                      }).getValue(locale),
                       style: context.textTheme.labelMedium?.copyWith(
                         color: fadeColor,
                       ),
@@ -142,199 +137,196 @@ class LevelWordSuggestionDialog extends HookWidget {
               ],
       ),
     );
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 24),
-          child: DialogScaffold(
-            builder: (final context) {
-              if (state._suggestedWord.isEmpty) {
-                return ListView(
-                  shrinkWrap: true,
-                  padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
-                  children: [
-                    Text(
-                      S.of(context).noWordsSuggestions,
-                      style: theme.textTheme.headlineLarge,
-                      textAlign: TextAlign.center,
-                    ),
-                    uiTheme.verticalBoxes.extraLarge,
-                    Text(
-                      S.of(context).tryWithDifferentLetters,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                );
-              }
+    return DialogScaffold(
+      builder: (final context) {
+        if (state._suggestedWord.isEmpty) {
+          return ListView(
+            shrinkWrap: true,
+            padding: const EdgeInsets.all(UiSpace.extraLarge),
+            children: [
+              Text(
+                S.of(context).noWordsSuggestions,
+                style: theme.textTheme.headlineLarge,
+                textAlign: TextAlign.center,
+              ),
+              UiGaps.extraLarge,
+              Text(
+                S.of(context).tryWithDifferentLetters,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          );
+        }
 
-              if (state._isWordRevealed) {
-                return ListView(
-                  shrinkWrap: true,
-                  padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
-                  children: [
-                    Text(
-                      S.of(context).suggestedWord.toUpperCase(),
-                      style: theme.textTheme.titleSmall,
-                      textAlign: TextAlign.center,
-                    ),
-                    uiTheme.verticalBoxes.large,
-                    Text(
-                      state._suggestedWord.toUpperCase(),
-                      style: context.textThemeBold.headlineSmall,
-                      textAlign: TextAlign.center,
-                    ),
-                    uiTheme.verticalBoxes.large,
-                    wordMeaning,
-                  ],
-                );
-              }
-              return ListView(
-                shrinkWrap: true,
-                padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
-                children: [
-                  Text(
-                    S.of(context).revealSuggestedWord.toUpperCase(),
-                    style: context.textThemeBold.titleMedium,
-                    textAlign: TextAlign.center,
-                  ),
-                  uiTheme.verticalBoxes.large,
-                  DefaultTextStyle.merge(
-                    style: theme.textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                    child: Builder(
-                      builder: (final context) {
-                        final children = <Widget>[];
-                        final parts = state._suggestedWord
-                            .split(currentWord.middlePart)
-                            .map(
-                              (final e) => Padding(
-                                padding: const EdgeInsets.only(top: 5),
-                                child: Text(
-                                  e.characters.map((final e) => '*').join(),
-                                ),
-                              ),
-                            );
-                        children
-                          ..add(parts.first)
-                          ..add(
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 2),
-                              child: Text(currentWord.middlePart),
-                            ),
-                          );
-                        if (parts.length > 1) {
-                          children.add(parts.last);
-                        }
-
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: children,
-                        );
-                      },
-                    ),
-                  ),
-                  // Text(
-
-                  //       ,
-                  //   // List.generate(
-                  //   //   state._suggestedWord.length,
-                  //   //   (final index) => '*',
-                  //   // ).join(),
-
-                  //   textAlign: TextAlign.center,
-                  // ),
-                  wordMeaning,
-                  uiTheme.verticalBoxes.medium,
-                  _UsePointsButton(
-                    word: state._suggestedWord,
-                    onPressed: state.onRevealWord,
-                    isUsageAvailable: state.isUsageAvailable,
-                    costOfWord: state.costOfWord,
-                    userScore: state.userScore,
-                  ),
-                  uiTheme.verticalBoxes.large,
-                  Row(
-                    children: [
-                      Expanded(
-                        child: UiOutlinedButton(
-                          onPressed: state.isUsageAvailable
-                              ? state.onRevealWord
-                              : null,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                const LocalizedMap(
-                                  value: {
-                                    Languages.en: 'Use Score',
-                                    Languages.ru: 'Применить очки',
-                                    Languages.it: 'Usa punteggio',
-                                  },
-                                ).getValue(locale),
-                                style: context.textTheme.labelLarge,
-                              ),
-                            ],
+        if (state._isWordRevealed) {
+          return ListView(
+            shrinkWrap: true,
+            padding: const EdgeInsets.all(UiSpace.extraLarge),
+            children: [
+              Text(
+                S.of(context).suggestedWord.toUpperCase(),
+                style: theme.textTheme.titleSmall,
+                textAlign: TextAlign.center,
+              ),
+              UiGaps.large,
+              Text(
+                state._suggestedWord.toUpperCase(),
+                style: context.textThemeBold.headlineSmall,
+                textAlign: TextAlign.center,
+              ),
+              UiGaps.large,
+              wordMeaning,
+            ],
+          );
+        }
+        return ListView(
+          shrinkWrap: true,
+          padding: const EdgeInsets.all(UiSpace.extraLarge),
+          children: [
+            Text(
+              S.of(context).revealSuggestedWord.toUpperCase(),
+              style: context.textThemeBold.titleMedium,
+              textAlign: TextAlign.center,
+            ),
+            UiGaps.large,
+            DefaultTextStyle.merge(
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+              child: Builder(
+                builder: (final context) {
+                  final children = <Widget>[];
+                  final parts = state._suggestedWord
+                      .split(currentWord.middlePart)
+                      .map(
+                        (final e) => Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: Text(
+                            e.characters.map((final e) => '*').join(),
                           ),
                         ),
+                      );
+                  children
+                    ..add(parts.first)
+                    ..add(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 2),
+                        child: Text(currentWord.middlePart),
                       ),
-                      const Gap(24),
-                      Expanded(
-                        child: Container(
-                          constraints: const BoxConstraints(maxWidth: 200),
-                          child: TextButton(
-                            onPressed: state.onTryAnotherWord,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Flexible(
-                                  child: Text(
-                                    const LocalizedMap(
-                                      value: {
-                                        Languages.en: 'Roll a Chance',
-                                        Languages.ru: 'Бросить шанс',
-                                        Languages.it: 'Tira la possibilità',
-                                      },
-                                    ).getValue(locale),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              );
-            },
-          ),
-        ),
-        Positioned(
-          bottom: 6,
-          right: 0,
-          left: 0,
-          child: Center(
-            child: Card(
-              shape: const CircleBorder(),
-              elevation: 2,
-              child: IconButton.outlined(
-                onPressed: dialogController.closeDialogAndResume,
-                icon: AnimatedSwitcher(
-                  duration: 250.milliseconds,
-                  child: state._isWordRevealed
-                      ? const Icon(Icons.done)
-                      : const Icon(Icons.close),
-                ),
+                    );
+                  if (parts.length > 1) {
+                    children.add(parts.last);
+                  }
+
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: children,
+                  );
+                },
               ),
             ),
-          ),
-        ).animate().fadeIn(),
-      ],
+            // Text(
+
+            //       ,
+            //   // List.generate(
+            //   //   state._suggestedWord.length,
+            //   //   (final index) => '*',
+            //   // ).join(),
+
+            //   textAlign: TextAlign.center,
+            // ),
+            wordMeaning,
+            UiGaps.medium,
+            _UsePointsButton(
+              word: state._suggestedWord,
+              onPressed: state.onRevealWord,
+              isUsageAvailable: state.isUsageAvailable,
+              costOfWord: state.costOfWord,
+              userScore: state.userScore,
+            ),
+            UiGaps.large,
+            Row(
+              children: [
+                Expanded(
+                  child: UiOutlinedButton(
+                    onPressed: state.isUsageAvailable
+                        ? state.onRevealWord
+                        : null,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          LocalizedMap({
+                            uiLanguages.en: 'Use Score',
+                            uiLanguages.ru: 'Применить очки',
+                            uiLanguages.it: 'Usa punteggio',
+                          }).getValue(locale),
+                          style: context.textTheme.labelLarge,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Gap(24),
+                Expanded(
+                  child: Container(
+                    constraints: const BoxConstraints(maxWidth: 200),
+                    child: TextButton(
+                      onPressed: state.onTryAnotherWord,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              LocalizedMap({
+                                uiLanguages.en: 'Roll a Chance',
+                                uiLanguages.ru: 'Бросить шанс',
+                                uiLanguages.it: 'Tira la possibilità',
+                              }).getValue(locale),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+      bottomButton: UiCircleCloseButton(
+        onPressed: onClose,
+        icon: state._isWordRevealed ? Icons.done : null,
+      ),
+    );
+  }
+}
+
+class UiCircleCloseButton extends StatelessWidget {
+  const UiCircleCloseButton({required this.onPressed, this.icon, super.key});
+  final VoidCallback onPressed;
+  final IconData? icon;
+  @override
+  Widget build(final BuildContext context) {
+    final locale = useLocale(context);
+    return UiStyledButton(
+      tooltip: LocalizedMap({
+        uiLanguages.en: 'Close (X or ESC)',
+        uiLanguages.ru: 'Закрыть (X или ESC)',
+        uiLanguages.it: 'Chiudi (X o ESC)',
+      }).getValue(locale),
+      onPressed: onPressed,
+      icon: icon,
+      padding: icon != null
+          ? null
+          : const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
+      labelChild: icon != null ? null : const Text('X'),
+      focusIcon: null,
+      styleType: ButtonStyleType.outlined,
     );
   }
 }
@@ -356,23 +348,21 @@ class _UsePointsButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final wordCost = costOfWord ~/ kScoreFactor;
-    final fadeColor = context.colorScheme.onPrimaryContainer.withOpacity(0.6);
+    final fadeColor = context.colorScheme.onPrimaryContainer.withValues(
+      alpha: 0.6,
+    );
     final locale = useLocale(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(
           child: Text(
-            const LocalizedMap(
-              value: {
-                Languages.en: 'Your Score',
-                Languages.ru: 'Твои очки',
-                Languages.it: 'Punteggio',
-              },
-            ).getValue(locale),
-            style: context.textThemeBold.labelLarge?.copyWith(
-              color: fadeColor,
-            ),
+            LocalizedMap({
+              uiLanguages.en: 'Your Score',
+              uiLanguages.ru: 'Твои очки',
+              uiLanguages.it: 'Punteggio',
+            }).getValue(locale),
+            style: context.textThemeBold.labelLarge?.copyWith(color: fadeColor),
             textAlign: TextAlign.right,
           ),
         ),
@@ -382,27 +372,18 @@ class _UsePointsButton extends StatelessWidget {
           style: context.textTheme.headlineMedium?.copyWith(
             color: isUsageAvailable
                 ? context.colorScheme.primary
-                : context.colorScheme.error.withOpacity(0.8),
+                : context.colorScheme.error.withValues(alpha: 0.8),
           ),
-        )
-            .animate(
-              key: ValueKey(word),
-              autoPlay: !isUsageAvailable,
-            )
-            .shake(),
+        ).animate(key: ValueKey(word), autoPlay: !isUsageAvailable).shake(),
         const Gap(12),
         Expanded(
           child: Text(
-            const LocalizedMap(
-              value: {
-                Languages.en: 'Word Score',
-                Languages.ru: 'Очки слова',
-                Languages.it: 'Punteggio Parola',
-              },
-            ).getValue(locale),
-            style: context.textThemeBold.labelLarge?.copyWith(
-              color: fadeColor,
-            ),
+            LocalizedMap({
+              uiLanguages.en: 'Word Score',
+              uiLanguages.ru: 'Очки слова',
+              uiLanguages.it: 'Punteggio Parola',
+            }).getValue(locale),
+            style: context.textThemeBold.labelLarge?.copyWith(color: fadeColor),
           ),
         ),
       ],
@@ -421,11 +402,12 @@ class UiOutlinedButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => AnimatedOpacity(
-        duration: 250.milliseconds,
-        opacity: onPressed == null ? 0.2 : 1,
-        child: UiBaseButton(
-          onPressed: onPressed,
-          child: Card.outlined(
+    duration: 250.milliseconds,
+    opacity: onPressed == null ? 0.2 : 1,
+    child: UiBaseButton(
+      onPressed: onPressed,
+      builder: (final context, final focused, final onlyFocused) =>
+          Card.outlined(
             elevation: onPressed == null ? null : 1,
             shape: BeveledRectangleBorder(
               side: BorderSide(color: context.colorScheme.primary),
@@ -437,6 +419,6 @@ class UiOutlinedButton extends StatelessWidget {
               child: child,
             ),
           ),
-        ),
-      );
+    ),
+  );
 }

@@ -4,13 +4,10 @@ part of 'preset_models.dart';
 
 @immutable
 @Freezed(fromJson: false, toJson: false, equal: false)
-class TileId with _$TileId, EquatableMixin {
-  const factory TileId({
-    required final String value,
-  }) = _TileId;
+abstract class TileId with _$TileId, EquatableMixin {
+  const factory TileId({required final String value}) = _TileId;
   const TileId._();
   factory TileId.fromJson(final String value) => TileId(value: value);
-  factory TileId.fromIndex(final int index) => TileId(value: '$index');
   static const empty = TileId(value: '');
   bool get isEmpty => value.isEmpty;
   bool get isNotEmpty => value.isNotEmpty;
@@ -36,10 +33,11 @@ enum DataCategoryType {
   plants,
   players,
   other,
+  buildings,
 }
 
 @freezed
-class PresetTileModel with _$PresetTileModel {
+abstract class PresetTileModel with _$PresetTileModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory PresetTileModel({
     required final TileId id,
@@ -74,13 +72,13 @@ enum SpriteTileName {
 }
 
 @freezed
-class PresetTilePropertiesModel with _$PresetTilePropertiesModel {
+abstract class PresetTilePropertiesModel with _$PresetTilePropertiesModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory PresetTilePropertiesModel({
     @Default('') final String title,
     @Default('') final String thumbnailPath,
     @JsonKey(
-      fromJson: LocalizedMap.fromJsonValueMap,
+      fromJson: LocalizedMap.fromJson,
       toJson: LocalizedMap.toJsonValueMap,
     )
     @Default(LocalizedMap.empty)
@@ -92,11 +90,7 @@ class PresetTilePropertiesModel with _$PresetTilePropertiesModel {
   static const empty = PresetTilePropertiesModel();
 }
 
-enum TileGraphicsType {
-  directional,
-  character,
-  standalone,
-}
+enum TileGraphicsType { directional, character, standalone }
 
 enum TileBehaviourType {
   idle,
@@ -107,11 +101,11 @@ enum TileBehaviourType {
   @JsonValue('fly_left')
   flyLeft,
   @JsonValue('fly_right')
-  flyRight
+  flyRight,
 }
 
 @freezed
-class PresetTileGraphicsModel with _$PresetTileGraphicsModel {
+abstract class PresetTileGraphicsModel with _$PresetTileGraphicsModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory PresetTileGraphicsModel({
     required final TileGraphicsType type,

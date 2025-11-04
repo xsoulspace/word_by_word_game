@@ -5,10 +5,12 @@ import 'dart:ui';
 import 'package:equatable/equatable.dart';
 import 'package:flame/game.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:map_editor/state/models/models.dart';
-import 'package:map_editor/state/models/preset_models/preset_models.dart';
+import 'package:from_json_to_json/from_json_to_json.dart';
+import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_locale/wbw_locale.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 part 'canvas_models.dart';
 part 'game_object.dart';

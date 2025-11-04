@@ -1,9 +1,15 @@
+import 'dart:async';
+import 'dart:math' as math;
+
 import 'package:flame/extensions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:map_editor/state/models/models.dart';
+import 'package:map_editor/state/state.dart';
+import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/focus_surface_drawer.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/game_canvas_object.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_renderer.dart';
 
@@ -12,7 +18,9 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     required super.onPositionChanged,
     required this.characterModel,
     required super.data,
-  }) : super.fromRenderObject();
+  }) : super.fromRenderObject() {
+    guiFocusableObjectsNotifier.addListener(_onGuiFocusableObjectsChanged);
+  }
   factory PlayerGameCanvasObject.fromCanvasCubit({
     required final CanvasRendererGame game,
     required final CanvasCubit canvasCubit,
@@ -56,29 +64,56 @@ class PlayerGameCanvasObject extends GameCanvasObject {
       game.dto.mechanics.hotAirBalloon;
 
   final PlayerCharacterModel characterModel;
+  bool get _isFocusBorderVisible =>
+      guiFocusableObjectsNotifier.isFocusing &&
+      guiFocusableObjectsNotifier.isPlayerFocused;
 
   void _pauseGame() => game.dto.mechanics.worldTime.pause();
 
   void _showLevelLostDialog() {
     _pauseGame();
     gameRef.dto.dialogController.showLevelLostDialog(
-      EndLevelEvent(
-        isPassed: false,
-        maxDistance: maxDistance.toDouble(),
+      EndLevelEvent(isPassed: false, maxDistance: maxDistance.toDouble()),
+    );
+  }
+
+  void _onGuiFocusableObjectsChanged() {
+    if (guiFocusableObjectsNotifier.isFocusing) {
+      unawaited(
+        guiFocusableObjectsNotifier.updateNearestObjectsOfPlayer(player: this),
+      );
+    }
+  }
+
+  int get maxDistance => topLeftTileMapCell.x;
+
+  /// outside of the hitbox
+  CellPointModel? get bottomLeftTileMapCell =>
+      hitboxMapCells.length == 4 ? hitboxMapCells[3] : null;
+
+  /// hitbox with map coordinates
+  Rect? get hitboxMapRect {
+    final topLeft = gameVector2.mapVector2.toOffset();
+    final bottomRight = topLeft.translate(
+      hitboxScreenRect?.width ?? 0,
+      hitboxScreenRect?.height ?? 0,
+    );
+    return Rect.fromPoints(topLeft, bottomRight);
+  }
+
+  void _showLevelWinDialog() {
+    _pauseGame();
+    unawaited(
+      gameRef.dto.dialogController.showLevelWinDialog(
+        EndLevelEvent(isPassed: true, maxDistance: maxDistance.toDouble()),
       ),
     );
   }
 
-  int get maxDistance => absoluteCell.x;
-
-  void _showLevelWinDialog() {
-    _pauseGame();
-    gameRef.dto.dialogController.showLevelWinDialog(
-      EndLevelEvent(
-        isPassed: true,
-        maxDistance: maxDistance.toDouble(),
-      ),
-    );
+  @override
+  void onRemove() {
+    guiFocusableObjectsNotifier.removeListener(_onGuiFocusableObjectsChanged);
+    super.onRemove();
   }
 
   void _onCollision(final double dt) => _onMove(dt, isCollided: true);
@@ -88,11 +123,9 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     if (game.timePaused) {
       // do nothing
     } else {
-      final collisionConsequences =
-          game.dto.canvasCubit.checkIsCollidingWithTiles(
-        hitboxCells: hitboxCells,
-      );
-      if (collisionConsequences.isNotEmpty && hitboxCells.isNotEmpty) {
+      final collisionConsequences = game.dto.canvasCubit
+          .checkIsCollidingWithTiles(hitboxMapCells: hitboxMapCells);
+      if (collisionConsequences.isNotEmpty && hitboxMapCells.isNotEmpty) {
         /// means we have at least one collision
         for (final consequence in collisionConsequences) {
           switch (consequence) {
@@ -100,7 +133,9 @@ class PlayerGameCanvasObject extends GameCanvasObject {
               _showLevelLostDialog();
               return;
             case CollisionConsequence.win:
-              _showLevelWinDialog();
+              if (!game.featureSettings.isWindDirectionChangeEnabled) {
+                _showLevelWinDialog();
+              }
 
             case CollisionConsequence.none:
               _onCollision(dt);
@@ -133,11 +168,12 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     /// Zero - point for right will be always negative
     /// for left will be always positive
     final gravity = canvasRenderer.canvasObjectsDrawer.gravity;
-
-    final height = gravity.getHeight(distanceToOrigin);
-    final heightInTiles = gravity.getHeightInTiles(distanceToOrigin);
-    final windOffset =
-        game.dto.weatherCubit.generateWindForce(heightInTiles: heightInTiles);
+    final mapVector2 = gameVector2.mapVector2.toOffset();
+    final height = gravity.getHeight(mapVector2);
+    final heightInTiles = gravity.getHeightInTiles(mapVector2);
+    final windOffset = game.dto.weatherCubit.generateWindForce(
+      heightInTiles: heightInTiles,
+    );
     if (heightInTiles < 0 || isCollided) {
       // do not update position
       // update position if needed
@@ -148,10 +184,10 @@ class PlayerGameCanvasObject extends GameCanvasObject {
         height: 0,
       );
       if (liftForce.liftPower > 0) {
-        final newPosition = position.copyWith(
-          dy: position.dy - liftForce.liftPower,
+        final newPosition = screenVector2.copyWith(
+          dy: screenVector2.dy - liftForce.liftPower,
         );
-        setPosition(newPosition + windOffset);
+        setScreenPosition(newPosition + windOffset);
       }
     } else {
       // update position if needed
@@ -161,15 +197,66 @@ class PlayerGameCanvasObject extends GameCanvasObject {
         balloonParams: character.balloonParams,
         height: height,
       );
-      final newPosition = position.copyWith(
-        dy: position.dy - liftForce.liftPower,
+      final newPosition = screenVector2.copyWith(
+        dy: screenVector2.dy - liftForce.liftPower,
       );
-      setPosition(newPosition + windOffset);
+      setScreenPosition(newPosition + windOffset);
     }
 
     gameRef.dto.levelPlayersBloc.onChangeCharacterPosition(
-      distanceToOrigin: distanceToOrigin.toVector2(),
+      distanceToOrigin: mapVector2.toVector2(),
       liftForce: liftForce,
     );
+  }
+
+  /// this logic is similar to [BuildingSurfaceDrawer._checkAndAddObjects]
+  ///
+  /// maybe merge logic or reuse
+  Future<List<Gid>> getNearestFocusableObjectsIds() async {
+    final playerBottomLeftTileMapCell = player?.bottomLeftTileMapCell;
+
+    if (playerBottomLeftTileMapCell == null) return [];
+    final startMapVector2 = GameVector2.fromMapTileCell(
+      math.Point(playerBottomLeftTileMapCell.x, playerBottomLeftTileMapCell.y),
+    ).mapVector2;
+
+    final objectsIds = <Gid>[];
+    void checkAndVerify({required final Vector2 mapVector2}) {
+      final gameVector2 = GameVector2.fromMapVector2(mapVector2);
+      final mapCell = gameVector2.toMapTileCell().toCellPoint();
+      final focusableTiles = game.dto.canvasCubit.getFocusableTiles(
+        hitboxMapCells: [mapCell],
+      );
+
+      if (focusableTiles.isEmpty) return;
+
+      for (final (tile, _) in focusableTiles) {
+        for (final object in tile.objects) {
+          if (objectsIds.contains(object)) continue;
+          objectsIds.add(object);
+        }
+      }
+    }
+
+    for (final (i: _, :xTile) in kFocusableTilesList) {
+      final shiftedMapVector2 = startMapVector2.clone()
+        ..translate(xTile, -1 * kTileDimensionDouble);
+      checkAndVerify(mapVector2: shiftedMapVector2);
+    }
+    return objectsIds;
+  }
+
+  @override
+  void render(final Canvas canvas) {
+    super.render(canvas);
+    if (_isFocusBorderVisible) {
+      final rect = shiftedScreenHitbox;
+      if (rect != null) {
+        canvas.drawRRect(
+          RRect.fromRectAndRadius(rect, FocusedObjectComponent.kBorderRadius),
+          FocusedObjectComponent.kBorderPaint,
+        );
+      }
+    }
   }
 }

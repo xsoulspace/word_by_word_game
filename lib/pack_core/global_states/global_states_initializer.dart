@@ -1,25 +1,17 @@
-import 'dart:async';
-
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:life_hooks/life_hooks.dart';
-import 'package:map_editor/state/models/saveable_models/saveable_models.dart';
-import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_dictionaries/wbw_dictionaries.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/pack_core/di/dependency_injector.dart';
 import 'package:word_by_word_game/router.dart';
 
-class GlobalStatesInitializer implements StateInitializer {
+class GlobalStatesInitializer with HasResources implements StateInitializer {
   GlobalStatesInitializer();
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;
     final appRouterController = AppPathsController.of(context);
     final appStatusNotifier = read<AppStatusNotifier>();
-    final wbwDictionary = read<WbwDictionary>();
     final adManager = read<AdManager>();
     final dictionariesBloc = read<DictionariesBloc>();
     final globalGameBloc = read<GlobalGameBloc>();
@@ -27,19 +19,22 @@ class GlobalStatesInitializer implements StateInitializer {
     final services = read<ServicesCollection>();
     final analyticsService = read<AnalyticsService>();
     final canvasCubit = read<CanvasCubit>();
-    final appSettingsNotifier = read<AppSettingsNotifier>();
+    final appSettingsNotifier = read<AppSettingsResource>();
     final onlineStatusService = read<OnlineStatusService>();
+    final localDb = read<LocalDbI>();
+    await localDb.init();
     await Future.wait([
       onlineStatusService.onLoad(),
       appSettingsNotifier.onLoad(),
     ]);
+    await InitWindowManagerCmd(
+      appSettingsResource: appSettingsResource,
+    ).execute();
 
     final wordsType = await services.userWordsRepository.loadUserWords();
     await dictionariesBloc.onLoad(wordsType: wordsType);
     await canvasCubit.loadInitialData();
-    final initGame = await GameInitializer().loadGameModel(
-      services: services,
-    );
+    final initGame = await GameInitializer().loadGameModel(services: services);
     await dictionariesRepository.preloadWrongWordsDictionary();
     final levelId = await globalGameBloc.onInitGlobalGame(initGame);
     await analyticsService.onDelayedLoad();
@@ -59,21 +54,19 @@ class GlobalStatesInitializer implements StateInitializer {
 
 class GameInitializer {
   List<PlayerCharacterModel> get characters => [
-        PlayerCharacterModel(
-          id: const Gid(value: 'balloon 1'),
-          gid: const Gid(value: 'balloon 1'),
-          localizedName: const LocalizedMap(
-            value: {
-              Languages.en: 'Hot Air Balloon',
-              Languages.ru: 'Воздушный шар',
-              Languages.it: 'Mongolfiera',
-            },
-          ),
-          characterIcon: 'char_hot_air_baloon',
-          description: 'Moves with the wind..',
-          color: Colors.green.value,
-        ),
-      ];
+    PlayerCharacterModel(
+      id: const Gid(value: 'balloon 1'),
+      gid: const Gid(value: 'balloon 1'),
+      localizedName: LocalizedMap({
+        uiLanguages.en: 'Hot Air Balloon',
+        uiLanguages.ru: 'Воздушный шар',
+        uiLanguages.it: 'Mongolfiera',
+      }),
+      characterIcon: 'char_hot_air_baloon',
+      description: 'Moves with the wind..',
+      color: Colors.green.value,
+    ),
+  ];
 
   /// the logic is to migrate from the version to to the next version
   GameSaveModel migrateSave(final GameSaveModel savedGame) {
@@ -89,9 +82,9 @@ class GameInitializer {
     for (var i = savedGame.version.index; i < GameVersion.values.length; i++) {
       switch (savedGame.version) {
         case GameVersion.$1 ||
-              GameVersion.$2 ||
-              GameVersion.$3 ||
-              GameVersion.$4:
+            GameVersion.$2 ||
+            GameVersion.$3 ||
+            GameVersion.$4:
           game = game.copyWith(
             version: GameVersion.$5,
             currentLevelId: CanvasDataModelId.empty,

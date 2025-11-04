@@ -1,81 +1,42 @@
-import 'package:blur/blur.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/common_imports.dart';
+import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/weather_bar.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/animated_progress_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_simple_frame.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 // TODO(arenukvern): add as freezed
 class EngineCrystalModel {
-  EngineCrystalModel({
-    required this.id,
-  });
+  EngineCrystalModel({required this.id});
   final String id;
 }
 
-class HeatEngineView extends StatelessWidget {
+class HeatEngineView extends StatelessWidget with TechLevelMixin {
   const HeatEngineView({super.key});
 
   @override
   Widget build(final BuildContext context) {
-    final technologiesCubit = context.watch<TechnologiesCubit>();
-    final wordsLanguage =
-        context.select<LevelBloc, Languages>((final c) => c.wordsLanguage);
-    final isAscendingResearched =
-        technologiesCubit.checkIsTechnologyResearchedByType(
-      type: TechnologyType.ascending,
-      language: wordsLanguage,
-    );
-    final isDescendingResearched =
-        technologiesCubit.checkIsTechnologyResearchedByType(
-      type: TechnologyType.descending,
-      language: wordsLanguage,
-    );
-    return Stack(
-      children: [
-        const HeatEngineViewBody(),
-        TechnologyLockedCard(
-          isLocked: !(isDescendingResearched && isAscendingResearched),
-          children: [
-            Wrap(
-              spacing: 8,
-              children: [
-                _CompletableText(
-                  text: 'Ascending',
-                  isCompleted: isAscendingResearched,
-                ),
-                const Text('|'),
-                _CompletableText(
-                  text: 'Descending',
-                  isCompleted: isDescendingResearched,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
-    );
+    final (isUnblocked: isEngineUnblocked, isPlaying: _, isAdvancedGame: _) =
+        useTechLevelAvailable(context, TechnologyLevelIndex.takeOffAndLanding);
+    if (!isEngineUnblocked) return const SizedBox();
+    return const HeatEngineViewBody();
   }
 }
 
-class _CompletableText extends StatelessWidget {
-  const _CompletableText({
+class UiCompletableText extends StatelessWidget {
+  const UiCompletableText({
     required this.text,
     required this.isCompleted,
+    super.key,
   });
   final bool isCompleted;
   final String text;
   @override
   Widget build(final BuildContext context) => Text(
-        text,
-        style: DefaultTextStyle.of(context).style.copyWith(
-              decoration: isCompleted ? TextDecoration.lineThrough : null,
-            ),
-      );
+    text,
+    style: DefaultTextStyle.of(context).style.copyWith(
+      decoration: isCompleted ? TextDecoration.lineThrough : null,
+    ),
+  );
 }
 
 class TechnologyLockedCard extends StatelessWidget {
@@ -88,49 +49,51 @@ class TechnologyLockedCard extends StatelessWidget {
   final bool isLocked;
   @override
   Widget build(final BuildContext context) => Visibility(
-        visible: isLocked,
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: const SizedBox().blurred(
-                blurColor: context.colorScheme.tertiary,
-                colorOpacity: 0.7,
-                blur: 2,
-              ),
-            ),
-            DefaultTextStyle.merge(
-              style: context.textThemeBold.bodyLarge?.copyWith(
-                color: context.colorScheme.onTertiary,
-                decorationColor: context.colorScheme.tertiary,
-                decorationThickness: 5,
-              ),
-              child: Container(
-                alignment: Alignment.center,
-                // color: context.colorScheme.secondaryContainer.wit,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.lock_outline_rounded,
-                      color: context.colorScheme.onTertiary,
-                    ),
-                    const Gap(8),
-                    Text(
-                      'Requires technologies',
-                      style: context.textTheme.bodyMedium?.copyWith(
-                        color: context.colorScheme.onTertiary,
-                      ),
-                    ),
-                    const Gap(4),
-                    ...children,
-                  ],
-                ),
-              ),
-            ),
-          ],
+    visible: isLocked,
+    child: Stack(
+      children: [
+        Positioned.fill(
+          child: const SizedBox().blurred(
+            blurColor: context.colorScheme.tertiary,
+            colorOpacity: 0.7,
+            blur: 2,
+          ),
         ),
-      );
+        DefaultTextStyle.merge(
+          style: context.textThemeBold.bodyLarge?.copyWith(
+            color: context.colorScheme.onTertiary,
+            decorationColor: context.colorScheme.tertiary,
+            decorationThickness: 5,
+          ),
+          child: Container(
+            alignment: Alignment.center,
+            // color: context.colorScheme.secondaryContainer.wit,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.lock_outline_rounded,
+                  color: context.colorScheme.onTertiary,
+                ),
+                const Gap(8),
+                Text(
+                  'Requires technologies',
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    color: context.colorScheme.onTertiary,
+                  ),
+                ),
+                const Gap(4),
+                ...children,
+              ],
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }
+
+const kEnergyMovementMultiplier = EnergyMultiplierType.m1;
 
 class HeatEngineViewBody extends StatefulHookWidget {
   const HeatEngineViewBody({super.key});
@@ -148,8 +111,8 @@ class _HeatEngineViewBodyState extends State<HeatEngineViewBody> {
       context.read<MechanicsCollection>().engine;
 
   LevelPlayersBloc get _levelPlayerBloc => context.read<LevelPlayersBloc>();
-  WordCompositionCubit get _wordCompositionCubit =>
-      context.read<WordCompositionCubit>();
+  GuiWordCompositionCubit get _wordCompositionCubit =>
+      context.read<GuiWordCompositionCubit>();
 
   @override
   void initState() {
@@ -194,20 +157,20 @@ class _HeatEngineViewBodyState extends State<HeatEngineViewBody> {
   }
 
   void _changePower() {
-    final powerUsage = _engineMechanics
-        .convertCrystalCountToPowerUsage(_engineCrystals.nonNulls.length);
+    final powerUsage = _engineMechanics.convertCrystalCountToPowerUsage(
+      _engineCrystals.nonNulls.length,
+    );
     _levelPlayerBloc.onPowerUsageChange('$powerUsage');
     WidgetsBinding.instance.addPostFrameCallback((final _) async {
       await Future.delayed(500.milliseconds);
-      _wordCompositionCubit.onCrystalMoved(_kMovementMultiplier);
+      _wordCompositionCubit.onCrystalMoved(kEnergyMovementMultiplier);
     });
   }
 
-  static const _kMovementMultiplier = EnergyMultiplierType.m1;
   @override
   Widget build(final BuildContext context) {
     final composable = useApplyingScoreComposable(
-      type: _kMovementMultiplier,
+      type: kEnergyMovementMultiplier,
       context: context,
     );
     final movementScore = composable.applyingScore;
@@ -220,29 +183,27 @@ class _HeatEngineViewBodyState extends State<HeatEngineViewBody> {
           children: [
             const Gap(8),
             Card.outlined(
+              color: Colors.transparent,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 child: Column(
                   children: [
                     const Gap(4),
-                    ...List.generate(
-                      _cellsCrystals.length,
-                      (final index) {
-                        final crystal = _cellsCrystals[index];
-                        return _EngineCrystalCell(
-                          key: ValueKey(index),
-                          crystal: crystal,
-                          index: index,
-                          movementScore: movementScore,
-                          cellDimension: _crystalCellDimension,
-                          onCrystalPlaced: (final crystal) =>
-                              _onCrystalPlacedToStorage(
-                            index: index,
-                            crystal: crystal,
-                          ),
-                        );
-                      },
-                    ),
+                    ...List.generate(_cellsCrystals.length, (final index) {
+                      final crystal = _cellsCrystals[index];
+                      return _EngineCrystalCell(
+                        key: ValueKey(index),
+                        crystal: crystal,
+                        index: index,
+                        movementScore: movementScore,
+                        cellDimension: _crystalCellDimension,
+                        onCrystalPlaced: (final crystal) =>
+                            _onCrystalPlacedToStorage(
+                              index: index,
+                              crystal: crystal,
+                            ),
+                      );
+                    }),
                     const Gap(4),
                   ],
                 ),
@@ -255,33 +216,31 @@ class _HeatEngineViewBodyState extends State<HeatEngineViewBody> {
                   children: [
                     Column(
                       children: [
-                        ...List.generate(
-                          _engineCrystals.length,
-                          (final index) {
-                            final crystal = _engineCrystals[index];
-                            return _EngineWaveRow(
-                              key: ValueKey(index),
-                              cellDimension: _crystalCellDimension,
-                              movementScore: movementScore,
-                              crystal: crystal,
-                              index: index,
-                              onCrystalPlaced: (final crystal) =>
-                                  _onCrystalPlacedToEngine(
-                                index: index,
-                                crystal: crystal,
-                              ),
-                            );
-                          },
-                        ),
+                        ...List.generate(_engineCrystals.length, (final index) {
+                          final crystal = _engineCrystals[index];
+                          return _EngineWaveRow(
+                            key: ValueKey(index),
+                            cellDimension: _crystalCellDimension,
+                            movementScore: movementScore,
+                            crystal: crystal,
+                            index: index,
+                            onCrystalPlaced: (final crystal) =>
+                                _onCrystalPlacedToEngine(
+                                  index: index,
+                                  crystal: crystal,
+                                ),
+                          );
+                        }),
                       ],
                     ),
                     const Gap(8),
-                    const Text('Heat\npower'),
-                    const Gap(8),
                     AnimatedProgressBar(
-                      backgroundColor: Colors.green[200],
-                      color: Colors.green[600],
-                      value: _engineCrystals.nonNulls.length /
+                      backgroundColor: context.colorScheme.error.withValues(
+                        alpha: .3,
+                      ),
+                      color: context.colorScheme.error,
+                      value:
+                          _engineCrystals.nonNulls.length /
                           _cellsCrystals.length,
                       height: 70,
                       width: 12,
@@ -294,8 +253,8 @@ class _HeatEngineViewBodyState extends State<HeatEngineViewBody> {
             const Gap(8),
           ],
         ),
-        const Spacer(),
         const Text('Heat generator'),
+        const Spacer(),
         const Gap(8),
       ],
     );
@@ -312,7 +271,7 @@ class _EngineCrystalCell extends StatelessWidget {
     super.key,
   });
   final int index;
-  final int movementScore;
+  final ApplyingScoreType movementScore;
   final EngineCrystalModel? crystal;
   final ValueChanged<EngineCrystalModel> onCrystalPlaced;
   final double cellDimension;
@@ -354,7 +313,7 @@ class _CrystalCell extends StatelessWidget {
   final bool isFilled;
   final bool isForEngine;
   final EngineCrystalModel? crystal;
-  final int movementScore;
+  final ApplyingScoreType movementScore;
   final double cellDimension;
   @override
   Widget build(final BuildContext context) {
@@ -369,11 +328,10 @@ class _CrystalCell extends StatelessWidget {
     }
     return Card.outlined(
       shape: BeveledRectangleBorder(
-        borderRadius:
-            isActive ? BorderRadius.circular(4) : BorderRadius.circular(16),
-        side: BorderSide(
-          color: isActive ? activeColor : color,
-        ),
+        borderRadius: isActive
+            ? BorderRadius.circular(4)
+            : BorderRadius.circular(16),
+        side: BorderSide(color: isActive ? activeColor : color),
       ),
       margin: const EdgeInsets.all(2),
       child: SizedBox.square(
@@ -400,7 +358,7 @@ class _EngineCrystalWidget extends StatelessWidget {
   });
   final double dimension;
   final EngineCrystalModel crystal;
-  final int movementScore;
+  final ApplyingScoreType movementScore;
   final bool isActive;
 
   @override
@@ -418,7 +376,7 @@ class _EngineCrystalWidget extends StatelessWidget {
         ),
         alignment: Alignment.center,
         child: Text(
-          '${movementScore.formattedScore}',
+          '${movementScore.value.formattedScore}',
           textAlign: TextAlign.center,
           style: context.textThemeBold.titleSmall,
         ),
@@ -451,7 +409,7 @@ class _EngineWaveRow extends StatelessWidget {
   final double cellDimension;
   final EngineCrystalModel? crystal;
   final ValueChanged<EngineCrystalModel> onCrystalPlaced;
-  final int movementScore;
+  final ApplyingScoreType movementScore;
 
   @override
   Widget build(final BuildContext context) {
@@ -477,63 +435,92 @@ class _EngineWaveRow extends StatelessWidget {
   }
 }
 
-class AnimatedProgressBar extends StatelessWidget {
-  const AnimatedProgressBar({
-    required this.height,
-    required this.width,
-    required this.value,
+class UiTechnologyCircle extends StatelessWidget {
+  const UiTechnologyCircle({
+    required this.tooltipMessage,
+    required this.percentage,
+    required this.filledColor,
+    required this.textColor,
+    required this.borderColor,
     required this.backgroundColor,
-    required this.color,
-    this.border,
-    this.borderRadiusValue = 24,
+    required this.text,
+    required this.title,
+    this.onPressed,
     super.key,
   });
-  final double height;
-  final double width;
-  final Border? border;
-  final double borderRadiusValue;
-
-  /// from 0 to 1
-  final double value;
-  final Color? backgroundColor;
-  final Color? color;
+  final String text;
+  final String title;
+  final double percentage;
+  final Color filledColor;
+  final Color borderColor;
+  final Color textColor;
+  final Color backgroundColor;
+  final VoidCallback? onPressed;
+  final Map<UiLanguage, String> tooltipMessage;
 
   @override
   Widget build(final BuildContext context) {
-    final borderRadius = BorderRadius.all(
-      Radius.elliptical(borderRadiusValue, borderRadiusValue),
-    );
-    final isVertical = height > width;
-    return SizedBox(
-      width: width,
-      height: height,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: backgroundColor,
-              borderRadius: borderRadius,
-              border: border,
+    final shadows = [
+      Shadow(blurRadius: 0.2, color: borderColor),
+      Shadow(blurRadius: 0.2, color: borderColor),
+    ];
+    const dimension = 48.0;
+    final locale = useLocale(context);
+
+    return Tooltip(
+      message: LocalizedMap(tooltipMessage).getValue(locale),
+      child: UiBaseButton(
+        onPressed: onPressed,
+        builder: (final context, final focused, final onlyFocused) => Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Stack(
+              alignment: Alignment.centerRight,
+              children: [
+                AnimatedProgressBar(
+                  width: dimension,
+                  height: dimension,
+                  value: percentage,
+                  backgroundColor: backgroundColor,
+                  color: filledColor,
+                  borderRadiusValue: 52,
+                  border: Border.all(color: borderColor),
+                ),
+                Positioned.fill(
+                  child: Center(
+                    child: Text(
+                      text,
+                      style: context.textThemeBold.titleLarge!.copyWith(
+                        color: textColor,
+                        shadows: shadows,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ),
-          Positioned(
-            left: isVertical ? 0 : 0,
-            top: isVertical ? null : 0,
-            right: isVertical ? 0 : null,
-            bottom: isVertical ? 0 : 0,
-            child: AnimatedContainer(
-              duration: 250.milliseconds,
-              curve: Curves.easeInOut,
-              height: isVertical ? height * value : null,
-              width: isVertical ? null : width * value,
-              decoration: BoxDecoration(
-                color: color,
-                borderRadius: borderRadius,
+            Text(
+              title,
+              style: context.textTheme.labelMedium!.copyWith(
+                color: textColor,
+                shadows: [
+                  Shadow(
+                    blurRadius: 1,
+                    color: borderColor.withValues(alpha: 1),
+                  ),
+                  Shadow(
+                    blurRadius: 1,
+                    color: borderColor.withValues(alpha: 1),
+                  ),
+                  Shadow(
+                    blurRadius: 1,
+                    color: borderColor.withValues(alpha: 1),
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

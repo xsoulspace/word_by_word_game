@@ -1,8 +1,4 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_widgets/word_letter_button.dart';
 
 @Deprecated(
@@ -23,19 +19,14 @@ class MiddleWordPartActions extends StatelessWidget {
   final ValueChanged<int> onLetterPressed;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
-    final spacing = uiTheme.spacing;
-
     final player = context.select<LevelPlayersBloc, PlayerProfileModel>(
       (final bloc) => bloc.state.currentPlayer,
     );
 
     final mechanics = context.watch<MechanicsCollection>();
 
-    final isPlayerAbleToDecrease =
-        mechanics.score.checkPlayerAbilityToDecreaseLetters(
-      player: player,
-    );
+    final isPlayerAbleToDecrease = mechanics.score
+        .checkPlayerAbilityToDecreaseLetters(player: player);
 
     Widget child;
     if (isPlayerAbleToDecrease) {
@@ -61,7 +52,7 @@ class MiddleWordPartActions extends StatelessWidget {
     return Visibility(
       visible: middlePartOfWord.isNotEmpty,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: spacing.medium),
+        padding: const EdgeInsets.symmetric(horizontal: UiSpace.medium),
         child: child,
       ),
     );

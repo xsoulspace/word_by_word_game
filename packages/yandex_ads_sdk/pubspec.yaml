@@ -12,19 +12,19 @@ dependencies:
     sdk: flutter
   flutter_web_plugins:
     sdk: flutter
-  plugin_platform_interface: ^2.1.3
-  pointer_interceptor: ^0.9.3+3
+  plugin_platform_interface: ^2.1.8
+  pointer_interceptor: ^0.10.1+2
   # yandex_mobileads: ^1.1.0
 dev_dependencies:
-  flutter_lints: ^3.0.0
+  lints: ^6.0.0
   flutter_test:
     sdk: flutter
-  pigeon: ^4.2.3
-  xsoulspace_lints: ^0.0.10
+  pigeon: ^25.3.2
+  xsoulspace_lints: ^0.1.0
 
 dependency_overrides:
-  collection: 1.18.0
-  http: 1.0.0
+  collection: ^1.19.1
+  http: ^1.4.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.

@@ -2,8 +2,8 @@ part of 'word_composition_bar.dart';
 
 class WordCompositionTutorialEventListenerDiDto {
   WordCompositionTutorialEventListenerDiDto.use(final Locator read)
-      : mechanics = read(),
-        tutorialBloc = read();
+    : mechanics = read(),
+      tutorialBloc = read();
   final MechanicsCollection mechanics;
   final TutorialBloc tutorialBloc;
 }
@@ -42,48 +42,47 @@ class WordCompositionTutorialEventListener extends TutorialEventListener {
 
 class WordCompositionStateDiDto {
   WordCompositionStateDiDto.use(this.read)
-      : levelBloc = read(),
-        tutorialBloc = read(),
-        mechanics = read(),
-        globalGameBloc = read(),
-        dialogController = read();
+    : levelBloc = read(),
+      tutorialBloc = read(),
+      mechanics = read(),
+      globalGameBloc = read(),
+      technologiesCubit = read(),
+      dialogController = read();
   final Locator read;
   final LevelBloc levelBloc;
   final TutorialBloc tutorialBloc;
   final MechanicsCollection mechanics;
   final GlobalGameBloc globalGameBloc;
   final DialogController dialogController;
+  final TechnologiesCubit technologiesCubit;
 }
 
-@freezed
-class WordCompositionCubitState with _$WordCompositionCubitState {
-  const factory WordCompositionCubitState({
-    @Default(true) final bool isCardVisible,
-  }) = _WordCompositionCubitState;
-}
-
-class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
-  WordCompositionCubit({
-    required this.dto,
-  })  : wordController = WordFieldController(
-          currentWord: dto.levelBloc.state.currentWord,
-        ),
-        super(const WordCompositionCubitState()) {
+class GuiWordCompositionCubit extends ChangeNotifier {
+  GuiWordCompositionCubit(final BuildContext context)
+    : dto = WordCompositionStateDiDto.use(context.read) {
+    wordController = WordFieldController(
+      currentWord: dto.levelBloc.state.currentWord,
+    );
     onLoad();
   }
   late final _tutorialEventsListener = WordCompositionTutorialEventListener(
     read: dto.read,
     onRequestWordFieldFocus: onRequestTextFocus,
   );
-  String _latestWord = '';
+  late final _techAchivementVerifier = TechAchivementVerifier(
+    getCurrentLevel: () => dto.technologiesCubit.getCurrentLevel().levelIndex,
+    onTechLevelAchieved: dto.dialogController.showTechLevelAchieveDialog,
+  );
+  var _latestWord = '';
   StreamSubscription<LevelBlocState>? _levelBlocSubscription;
   final _wordUpdatesController = StreamController<CurrentWordModel>();
   final WordCompositionStateDiDto dto;
 
   void onLoad() {
     _latestWord = dto.levelBloc.state.latestWord;
-    _levelBlocSubscription =
-        dto.levelBloc.stream.distinct().listen((final newState) {
+    _levelBlocSubscription = dto.levelBloc.stream.distinct().listen((
+      final newState,
+    ) {
       if (_latestWord != newState.latestWord) {
         _latestWord = newState.latestWord;
         wordController.currentWord = newState.currentWord;
@@ -98,48 +97,36 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
     dto.tutorialBloc.notifier.addListener(_tutorialEventsListener);
     unawaited(
       _wordUpdatesController.stream
-          .sampleTime(
-            const Duration(milliseconds: 150),
-          )
+          .sampleTime(const Duration(milliseconds: 150))
           .forEach(_changeFullWord),
     );
     onRequestTextFocus();
   }
 
   final wordFocusNode = FocusNode();
-  final WordFieldController wordController;
+  late final WordFieldController wordController;
   void _selectMultiplier(final EnergyMultiplierType multiplier) =>
       dto.levelBloc.onLevelPlayerSelectActionMultiplier(
         LevelBlocEventSelectActionMultiplier(multiplier: multiplier),
       );
-  void onInvestToResearchSelected(final EnergyMultiplierType multiplier) {
-    _selectMultiplier(multiplier);
-    _onToEndTurn(EnergyApplicationType.researchingTechnology);
+
+  Future<void> onToSelectActionPhase() async {
+    _techAchivementVerifier.onStart();
+    final isAccepted = await dto.levelBloc.onAcceptNewWord();
+    if (isAccepted) _techAchivementVerifier.verify();
   }
 
-  void onCrystalMoved(final EnergyMultiplierType multiplier) {
-    _selectMultiplier(multiplier);
-    _onToEndTurn(EnergyApplicationType.crystalMove);
-  }
-
-  void onPowerSelected(final EnergyMultiplierType multiplier) {
-    _selectMultiplier(multiplier);
-    _onToEndTurn(EnergyApplicationType.refueling);
-  }
-
-  Future<void> onToSelectActionPhase() async => dto.levelBloc.onAcceptNewWord();
-
-  void changeCardVisibility() {
-    emit(state.copyWith(isCardVisible: !state.isCardVisible));
+  Future<void> onAddWordToDictionary() async {
+    await dto.levelBloc.onAddNewWordToDictionary(
+      const LevelBlocEventAddNewWordToDictionary(),
+    );
+    await onToSelectActionPhase();
   }
 
   void _onToEndTurn(final EnergyApplicationType energyApplicationType) {
     dto.levelBloc.onLevelPlayerEndTurnAction(energyApplicationType);
     onRequestTextFocus();
   }
-
-  Future<void> onAddWordToDictionary() async => dto.levelBloc
-      .onAddNewWordToDictionary(const LevelBlocEventAddNewWordToDictionary());
 
   void onRequestTextFocus() {
     WidgetsBinding.instance.addPostFrameCallback((final _) {
@@ -166,14 +153,80 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
   }
 
   @override
-  Future<void> close() async {
+  void dispose() {
     dto.tutorialBloc.notifier.removeListener(_tutorialEventsListener);
     wordController
       ..removeListener(_onPartChanged)
       ..dispose();
-    await _wordUpdatesController.close();
-    await _levelBlocSubscription?.cancel();
+    unawaited(_wordUpdatesController.close());
+    unawaited(_levelBlocSubscription?.cancel());
     wordFocusNode.dispose();
-    return super.close();
+    return super.dispose();
+  }
+}
+
+@freezed
+abstract class BottomActionsNotifierState with _$BottomActionsNotifierState {
+  const factory BottomActionsNotifierState({
+    @Default(true) final bool isCardVisible,
+  }) = _BottomActionsNotifierState;
+}
+
+extension UiGuiWordCompositionCubitCallbacksX on GuiWordCompositionCubit {
+  void onInvestToResearchSelected(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.researchingTechnology);
+  }
+
+  void onCrystalMoved(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.crystalMove);
+  }
+
+  void onPowerSelected(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.refueling);
+  }
+
+  void onBuildingBuilt(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.buildingBuilt);
+  }
+
+  void onRestAndPrepareBalloon(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.restAndPrepareBalloon);
+    unawaited(dto.globalGameBloc.onSaveCurrentLevel());
+  }
+}
+
+class BottomActionsNotifier extends ValueNotifier<BottomActionsNotifierState> {
+  // ignore: avoid_unused_constructor_parameters
+  BottomActionsNotifier(final BuildContext context)
+    : super(const BottomActionsNotifierState());
+
+  void changeCardVisiblity() {
+    value = value.copyWith(isCardVisible: !value.isCardVisible);
+  }
+}
+
+class TechAchivementVerifier {
+  TechAchivementVerifier({
+    required this.getCurrentLevel,
+    required this.onTechLevelAchieved,
+  });
+  final ValueGetter<TechnologyLevelIndex> getCurrentLevel;
+  final VoidCallback onTechLevelAchieved;
+  TechnologyLevelIndex? _currentTechLevelIndex;
+  void onStart() {
+    _currentTechLevelIndex = getCurrentLevel();
+  }
+
+  void verify() {
+    final currentTechLevelIndex = getCurrentLevel();
+    if (_currentTechLevelIndex != currentTechLevelIndex) {
+      onTechLevelAchieved();
+      _currentTechLevelIndex = null;
+    }
   }
 }

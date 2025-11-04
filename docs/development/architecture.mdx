@@ -1,0 +1,63 @@
+2024-09-24
+
+1. Core Modules:
+   - wbw_core: Central package containing data models, repositories, and core game logic.
+   - wbw_ui_kit: UI components and theming for the game.
+   - map_editor: Tools for creating and editing game maps.
+   - wbw_dictionaries: Word dictionaries and language support.
+   - wbw_locale: Localization and translations.
+2. Main Application:
+   - Entry point: lib/main_prod.dart
+   - Bootstrap process: lib/bootstrap.dart
+   - Main app widget: lib/pack_core/word_by_word_app.dart
+3. State Management:
+   - BLoC pattern is used extensively throughout the project.
+   - Key BLoCs:
+     - GlobalGameBloc: Manages overall game state.
+     - LevelBloc: Handles level-specific state and logic.
+     - LevelPlayersBloc: Manages player states within a level.
+     - TutorialBloc: Controls the tutorial flow.
+   - Other state management:
+     - Cubits: For simpler state management (e.g., DebugCubit, WeatherCubit).
+     - Notifiers: For reactive state updates (e.g., AppNotifier, LevelFeaturesNotifier).
+   - Game Renderer:
+     - CanvasRendererGame: Main game rendering class using Flame engine.
+     - Components: Player, buildings, weather effects, etc.
+4. User Interface:
+   - Screens: Pause menu, game UI, debug sidebar.
+   - Dialogs: Level start, word suggestions, etc.
+   - Custom widgets: Word composition bar, player controls, etc.
+5. Data Flow:
+   - Repositories (in wbw_core) interact with data sources.
+   - BLoCs consume repository data and emit states.
+   - UI components listen to BLoC states and update accordingly.
+6. External Services:
+   - Firebase integration (referenced in bootstrap.dart).
+   - Analytics service for tracking game events.
+7. Routing:
+   - go_router is used for navigation (referenced in lib/router.dart).
+8. Asset Management:
+   - Images, fonts, and other resources managed in pubspec.yaml.
+9. Platform-specific:
+   - Snap packaging for Linux distribution (snap/snapcraft.yaml).
+10. Development Tools:
+    - VS Code snippets for generating BLoC structures (.vscode/common.code-snippets).
+11. Diagram Relationships:
+
+    - wbw_core -> Other modules: Provides core functionality and models.
+    - Main Application -> Core Modules: Depends on and initializes core modules.
+    - BLoCs -> Repositories: Fetch and update data.
+    - UI Components -> BLoCs: Listen to states and trigger events.
+    - Game Renderer -> BLoCs: Updates game state based on player actions.
+    - External Services <-> BLoCs: Send analytics data and potentially receive configurations.
+    - Key Components to Highlight:
+
+      - WordByWordApp: Main application widget.
+      - GlobalGameBloc: Central state management for the game.
+      - CanvasRendererGame: Core game rendering logic.
+      - LevelBloc and LevelPlayersBloc: Manage level-specific states.
+      - Repositories: Handle data operations (e.g., GameRepository, LevelsRepository).
+      - UI Components: WordField, LastWordWidget, UiWordActions, etc.
+      - Firebase Services: Analytics and potentially other Firebase features.
+
+This architecture emphasizes a clear separation of concerns, with core game logic separated from UI components and state management. The use of BLoC pattern allows for reactive and testable code, while the modular structure (wbw_core, wbw_ui_kit, etc.) promotes reusability and maintainability.
