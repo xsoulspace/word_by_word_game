@@ -1,0 +1,50 @@
+name: Publish to Itch.io
+
+on:
+  release:
+    types: [created]
+  push:
+    branches:
+      - release/itch
+  workflow_dispatch:
+
+env:
+  ITCH_USERNAME: ${{ vars.ITCH_USERNAME }}
+  ITCH_GAME_ID: word-by-word-game
+
+jobs:
+  build_and_publish:
+    name: Build and Publish Web to Itch.io
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+
+      - name: Get dependencies
+        run: flutter pub get
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Build web release
+        run: flutter build web --release --dart-define-from-file=configs/itch_prod.json
+
+      - name: Create build artifact
+        run: |
+          mkdir -p build/itch
+          cp -r build/web/* build/itch/
+
+      - name: Publish to Itch.io
+        uses: KikimoraGames/itch-publish@v0.0.3
+        with:
+          butlerApiKey: ${{ secrets.ITCH_BUTLER_API_KEY }}
+          gameData: ./build/itch
+          itchUsername: ${{ env.ITCH_USERNAME }}
+          itchGameId: ${{ env.ITCH_GAME_ID }}
+          buildChannel: webgl
+          buildNumber: ${{ github.run_number }}
