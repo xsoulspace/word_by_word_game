@@ -39,7 +39,7 @@
       "flutterMode": "debug"
     },
     {
-      "program": "lib/main_prod.dart",
+      "program": "lib/main.dart",
       "name": "web restricted stores",
       "request": "launch",
       "type": "dart",

@@ -1,10 +1,11 @@
 import 'dart:async';
-import 'dart:convert';
+import 'dart:typed_data';
+import 'dart:ui';
 
-import 'package:flame/cache.dart';
-import 'package:flame/components.dart';
-import 'package:flame/extensions.dart';
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:flame/cache.dart' hide Image;
+import 'package:flame/components.dart' hide Image;
+import 'package:flutter/services.dart' show StandardMessageCodec;
+import 'package:flutter/widgets.dart' hide Image;
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/ui/renderer/editor/editor.dart';
@@ -12,6 +13,148 @@ import 'package:map_editor/ui/renderer/editor/tileset_constants.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:path/path.dart' as path;
 import 'package:recase/recase.dart';
+
+class AnimationUpdater extends Component
+    with
+        HasGameRef<EditorRendererGame>,
+        HasEditorRef,
+        HasEditorResourcesLoaderRef {
+  @override
+  void update(final double dt) {
+    final tiles = _updateTiles(
+      dt: dt,
+      orignalTiles: drawerCubit.tilesPresetResources.tiles,
+      config: game.config,
+    );
+    drawerCubit.tilesPresetResources = drawerCubit.tilesPresetResources
+        .copyWith(tiles: tiles);
+    final objects = _updateObjects(
+      dt: dt,
+      config: game.config,
+      originalObjects: drawerCubit.tilesPresetResources.objects,
+    );
+    drawerCubit.tilesPresetResources = drawerCubit.tilesPresetResources
+        .copyWith(objects: objects);
+    final npcs = _updateObjects(
+      dt: dt,
+      config: game.config,
+      originalObjects: drawerCubit.tilesPresetResources.npcs,
+    );
+    drawerCubit.tilesPresetResources = drawerCubit.tilesPresetResources
+        .copyWith(npcs: npcs);
+    final players = _updateObjects(
+      dt: dt,
+      config: game.config,
+      originalObjects: drawerCubit.tilesPresetResources.players,
+    );
+    drawerCubit.tilesPresetResources = drawerCubit.tilesPresetResources
+        .copyWith(players: players);
+    final other = _updateObjects(
+      dt: dt,
+      config: game.config,
+      originalObjects: drawerCubit.tilesPresetResources.other,
+    );
+    drawerCubit.tilesPresetResources = drawerCubit.tilesPresetResources
+        .copyWith(other: other);
+
+    super.update(dt);
+  }
+
+  static AnimationEntryModel updateAnimationFrame({
+    required final AnimationEntryModel entry,
+    required final GameRendererConfig config,
+    required final double dt,
+  }) {
+    double frameIndex = entry.frameIndex + (config.animationSpeed * dt);
+    if (frameIndex > entry.framesLength - 1) {
+      frameIndex = 0;
+    }
+    return entry.copyWith(frameIndex: frameIndex);
+  }
+
+  static Map<TileId, PresetTileResource> _updateObjects({
+    required final double dt,
+    required final Map<TileId, PresetTileResource> originalObjects,
+    required final GameRendererConfig config,
+  }) {
+    final Map<TileId, PresetTileResource> objects = {...originalObjects};
+    for (final MapEntry(key: cellPoint, value: cellTile) in objects.entries) {
+      final graphics = cellTile.tile.graphics;
+      final isAnimated = graphics.animated;
+
+      switch (graphics.type) {
+        case TileGraphicsType.character when isAnimated:
+          for (final behaviour in graphics.behaviours) {
+            final animationEntry = cellTile.behaviourPaths[behaviour];
+            if (animationEntry == null) continue;
+
+            final tile = objects[cellPoint]!;
+            objects[cellPoint] = tile.copyWith(
+              behaviourPaths: {
+                ...tile.behaviourPaths,
+                behaviour: updateAnimationFrame(
+                  config: config,
+                  dt: dt,
+                  entry: animationEntry,
+                ),
+              },
+            );
+          }
+        case TileGraphicsType.character:
+
+          /// skipping update as non animated tiles should not be updated
+          break;
+        case TileGraphicsType.directional when isAnimated:
+        case TileGraphicsType.directional || TileGraphicsType.standalone:
+          throw ArgumentError.value(
+            'objects should not have directonal animation',
+          );
+      }
+    }
+    return objects;
+  }
+
+  static Map<TileId, PresetTileResource> _updateTiles({
+    required final double dt,
+    required final Map<TileId, PresetTileResource> orignalTiles,
+    required final GameRendererConfig config,
+  }) {
+    final Map<TileId, PresetTileResource> tiles = {...orignalTiles};
+    for (final MapEntry(key: cellPoint, value: cellTile) in tiles.entries) {
+      final graphics = cellTile.tile.graphics;
+      final isAnimated = graphics.animated;
+
+      switch (graphics.type) {
+        case TileGraphicsType.character when isAnimated:
+        case TileGraphicsType.character:
+          throw ArgumentError.value(
+            'tiles should not have character animation',
+          );
+        case TileGraphicsType.directional when isAnimated:
+          for (final MapEntry(key: path, value: animationEntry)
+              in cellTile.directionalPaths.entries) {
+            final tile = tiles[cellPoint]!;
+            tiles[cellPoint] = tile.copyWith(
+              directionalPaths: {
+                ...tile.directionalPaths,
+                path: updateAnimationFrame(
+                  config: config,
+                  dt: dt,
+                  entry: animationEntry,
+                ),
+              },
+            );
+          }
+
+        case TileGraphicsType.directional || TileGraphicsType.standalone:
+
+          /// skipping update as non animated tiles should not be updated
+          break;
+      }
+    }
+    return tiles;
+  }
+}
 
 mixin HasEditorResourcesLoaderRef on Component, HasGameRef<EditorRendererGame> {
   Image getImage(final String path) => game.images.fromCache(path);
@@ -21,51 +164,22 @@ class ResourcesLoader {
   ResourcesLoader({required this.tilesetAssets});
   final AssetsCache tilesetAssets;
   TilesetConstants? _tilesetConstants;
-  TilesetConstants get tilesetConstants {
-    final consts = _tilesetConstants;
-    if (consts == null) throw ArgumentError.notNull('call loadTileset first');
-    return consts;
-  }
-
-  String get assetsPrefix => tilesetAssets.prefix;
 
   /// List of all asset files like:
   /// 'assets/images/clouds/Small Cloud 1.png'
   ///
   /// Always starts with assets keyword.
   Map<String, dynamic> _manifestMap = {};
+
   bool _isLoaded = false;
-  bool get isLoaded => _isLoaded;
+
   Images? _images;
-
-  Future<void> onLoad() async {
-    if (_isLoaded) return;
-    _isLoaded = true;
-    await _loadImagesManifest();
-  }
-
-  Future<void> onGameLoad(final Images images) async {
-    if (_images != null) return;
-    _images = images;
-  }
-
-  void loadTileset({
-    required final TilesetConfigModel tilesetConfig,
-    required final TilesetPresetResources tilesetResources,
-  }) {
-    _tilesetConstants = TilesetConstants(
-      presetData: tilesetResources,
-      tilesetConfig: tilesetConfig,
-      assets: tilesetAssets,
-    );
-  }
-
-  Future<void> _loadImagesManifest() async {
-    final manifestContent = await rootBundle.loadString('AssetManifest.json');
-    final Map<String, dynamic> rawManifestMap = jsonDecode(manifestContent);
-    _manifestMap = rawManifestMap.map(
-      (final key, final value) => MapEntry(fixAssetPath(key), value),
-    );
+  String get assetsPrefix => tilesetAssets.prefix;
+  bool get isLoaded => _isLoaded;
+  TilesetConstants get tilesetConstants {
+    final consts = _tilesetConstants;
+    if (consts == null) throw ArgumentError.notNull('call loadTileset first');
+    return consts;
   }
 
   /// removes prefixs from aset path
@@ -160,146 +274,48 @@ class ResourcesLoader {
 
     return map;
   }
-}
 
-class AnimationUpdater extends Component
-    with
-        HasGameRef<EditorRendererGame>,
-        HasEditorRef,
-        HasEditorResourcesLoaderRef {
-  static AnimationEntryModel updateAnimationFrame({
-    required final AnimationEntryModel entry,
-    required final GameRendererConfig config,
-    required final double dt,
+  void loadTileset({
+    required final TilesetConfigModel tilesetConfig,
+    required final TilesetPresetResources tilesetResources,
   }) {
-    double frameIndex = entry.frameIndex + (config.animationSpeed * dt);
-    if (frameIndex > entry.framesLength - 1) {
-      frameIndex = 0;
-    }
-    return entry.copyWith(frameIndex: frameIndex);
+    _tilesetConstants = TilesetConstants(
+      presetData: tilesetResources,
+      tilesetConfig: tilesetConfig,
+      assets: tilesetAssets,
+    );
   }
 
-  static Map<TileId, PresetTileResource> _updateTiles({
-    required final double dt,
-    required final Map<TileId, PresetTileResource> orignalTiles,
-    required final GameRendererConfig config,
-  }) {
-    final Map<TileId, PresetTileResource> tiles = {...orignalTiles};
-    for (final MapEntry(key: cellPoint, value: cellTile) in tiles.entries) {
-      final graphics = cellTile.tile.graphics;
-      final isAnimated = graphics.animated;
-
-      switch (graphics.type) {
-        case TileGraphicsType.character when isAnimated:
-        case TileGraphicsType.character:
-          throw ArgumentError.value(
-            'tiles should not have character animation',
-          );
-        case TileGraphicsType.directional when isAnimated:
-          for (final MapEntry(key: path, value: animationEntry)
-              in cellTile.directionalPaths.entries) {
-            final tile = tiles[cellPoint]!;
-            tiles[cellPoint] = tile.copyWith(
-              directionalPaths: {
-                ...tile.directionalPaths,
-                path: updateAnimationFrame(
-                  config: config,
-                  dt: dt,
-                  entry: animationEntry,
-                ),
-              },
-            );
-          }
-
-        case TileGraphicsType.directional || TileGraphicsType.standalone:
-
-          /// skipping update as non animated tiles should not be updated
-          break;
-      }
-    }
-    return tiles;
+  Future<void> onGameLoad(final Images images) async {
+    if (_images != null) return;
+    _images = images;
   }
 
-  static Map<TileId, PresetTileResource> _updateObjects({
-    required final double dt,
-    required final Map<TileId, PresetTileResource> originalObjects,
-    required final GameRendererConfig config,
-  }) {
-    final Map<TileId, PresetTileResource> objects = {...originalObjects};
-    for (final MapEntry(key: cellPoint, value: cellTile) in objects.entries) {
-      final graphics = cellTile.tile.graphics;
-      final isAnimated = graphics.animated;
-
-      switch (graphics.type) {
-        case TileGraphicsType.character when isAnimated:
-          for (final behaviour in graphics.behaviours) {
-            final animationEntry = cellTile.behaviourPaths[behaviour];
-            if (animationEntry == null) continue;
-
-            final tile = objects[cellPoint]!;
-            objects[cellPoint] = tile.copyWith(
-              behaviourPaths: {
-                ...tile.behaviourPaths,
-                behaviour: updateAnimationFrame(
-                  config: config,
-                  dt: dt,
-                  entry: animationEntry,
-                ),
-              },
-            );
-          }
-        case TileGraphicsType.character:
-
-          /// skipping update as non animated tiles should not be updated
-          break;
-        case TileGraphicsType.directional when isAnimated:
-        case TileGraphicsType.directional || TileGraphicsType.standalone:
-          throw ArgumentError.value(
-            'objects should not have directonal animation',
-          );
-      }
-    }
-    return objects;
+  Future<void> onLoad(final BuildContext context) async {
+    if (_isLoaded) return;
+    _isLoaded = true;
+    await _loadImagesManifest(context);
   }
 
-  @override
-  void update(final double dt) {
-    final tiles = _updateTiles(
-      dt: dt,
-      orignalTiles: drawerCubit.tilesPresetResources.tiles,
-      config: game.config,
-    );
-    drawerCubit.tilesPresetResources = drawerCubit.tilesPresetResources
-        .copyWith(tiles: tiles);
-    final objects = _updateObjects(
-      dt: dt,
-      config: game.config,
-      originalObjects: drawerCubit.tilesPresetResources.objects,
-    );
-    drawerCubit.tilesPresetResources = drawerCubit.tilesPresetResources
-        .copyWith(objects: objects);
-    final npcs = _updateObjects(
-      dt: dt,
-      config: game.config,
-      originalObjects: drawerCubit.tilesPresetResources.npcs,
-    );
-    drawerCubit.tilesPresetResources = drawerCubit.tilesPresetResources
-        .copyWith(npcs: npcs);
-    final players = _updateObjects(
-      dt: dt,
-      config: game.config,
-      originalObjects: drawerCubit.tilesPresetResources.players,
-    );
-    drawerCubit.tilesPresetResources = drawerCubit.tilesPresetResources
-        .copyWith(players: players);
-    final other = _updateObjects(
-      dt: dt,
-      config: game.config,
-      originalObjects: drawerCubit.tilesPresetResources.other,
-    );
-    drawerCubit.tilesPresetResources = drawerCubit.tilesPresetResources
-        .copyWith(other: other);
+  Future<void> _loadImagesManifest(final BuildContext context) async {
+    final bundle = DefaultAssetBundle.of(context);
+    final manifestData = await bundle.load('AssetManifest.bin');
 
-    super.update(dt);
+    // Decode using StandardMessageCodec instead of UTF8 JSON
+    final decoded = const StandardMessageCodec().decodeMessage(
+      ByteData.sublistView(
+        manifestData.buffer.asUint8List(
+          manifestData.offsetInBytes,
+          manifestData.lengthInBytes,
+        ),
+      ),
+    );
+
+    // The decoded result is a Map<String, dynamic> where keys are asset paths
+    final rawManifestMap = (decoded as Map<Object?, Object?>)
+        .cast<String, List<Object?>>();
+    _manifestMap = rawManifestMap.map(
+      (final key, final value) => MapEntry(fixAssetPath(key), value.first),
+    );
   }
 }

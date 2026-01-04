@@ -5,53 +5,6 @@ import 'package:word_by_word_game/pack_core/ads/states/states.dart';
 import 'package:word_by_word_game/pack_core/di/dependency_injector.dart';
 import 'package:word_by_word_game/router.dart';
 
-class GlobalStatesInitializer with HasResources implements StateInitializer {
-  GlobalStatesInitializer();
-  @override
-  Future<void> onLoad(final BuildContext context) async {
-    final read = context.read;
-    final appRouterController = AppPathsController.of(context);
-    final appStatusNotifier = read<AppStatusNotifier>();
-    final adManager = read<AdManager>();
-    final dictionariesBloc = read<DictionariesBloc>();
-    final globalGameBloc = read<GlobalGameBloc>();
-    final dictionariesRepository = read<WordsRespository>();
-    final services = read<ServicesCollection>();
-    final analyticsService = read<AnalyticsService>();
-    final canvasCubit = read<CanvasCubit>();
-    final appSettingsNotifier = read<AppSettingsResource>();
-    final onlineStatusService = read<OnlineStatusService>();
-    final localDb = read<LocalDbI>();
-    await localDb.init();
-    await Future.wait([
-      onlineStatusService.onLoad(),
-      appSettingsNotifier.onLoad(),
-    ]);
-    await InitWindowManagerCmd(
-      appSettingsResource: appSettingsResource,
-    ).execute();
-
-    final wordsType = await services.userWordsRepository.loadUserWords();
-    await dictionariesBloc.onLoad(wordsType: wordsType);
-    await canvasCubit.loadInitialData();
-    final initGame = await GameInitializer().loadGameModel(services: services);
-    await dictionariesRepository.preloadWrongWordsDictionary();
-    final levelId = await globalGameBloc.onInitGlobalGame(initGame);
-    await analyticsService.onDelayedLoad();
-    await adManager.onLoad();
-    final event = () {
-      if (kIsWeb) return AnalyticEvents.usedInWeb;
-      if (Platform.isAndroid) return AnalyticEvents.usedInAndroid;
-    }();
-    if (event != null) unawaited(analyticsService.logAnalyticEvent(event));
-
-    WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
-      appStatusNotifier.value = AppStatus.online;
-      appRouterController.toPause(id: levelId);
-    });
-  }
-}
-
 class GameInitializer {
   List<PlayerCharacterModel> get characters => [
     PlayerCharacterModel(
@@ -67,6 +20,21 @@ class GameInitializer {
       color: Colors.green.value,
     ),
   ];
+
+  Future<GameSaveModel> loadGameModel({
+    required final ServicesCollection services,
+  }) async {
+    final savedGame = await services.gameRepository.loadGame();
+    if (savedGame != null) {
+      return migrateSave(savedGame);
+    }
+
+    return GameSaveModel(
+      id: 'game',
+      playersCharacters: characters,
+      currentLevelId: CanvasDataModelId.empty,
+    );
+  }
 
   /// the logic is to migrate from the version to to the next version
   GameSaveModel migrateSave(final GameSaveModel savedGame) {
@@ -96,19 +64,51 @@ class GameInitializer {
     }
     return game;
   }
+}
 
-  Future<GameSaveModel> loadGameModel({
-    required final ServicesCollection services,
-  }) async {
-    final savedGame = await services.gameRepository.loadGame();
-    if (savedGame != null) {
-      return migrateSave(savedGame);
-    }
+class GlobalStatesInitializer with HasResources implements StateInitializer {
+  GlobalStatesInitializer();
+  @override
+  Future<void> onLoad(final BuildContext context) async {
+    final read = context.read;
+    final appRouterController = AppPathsController.of(context);
+    final appStatusNotifier = read<AppStatusNotifier>();
+    final adManager = read<AdManager>();
+    final dictionariesBloc = read<DictionariesBloc>();
+    final globalGameBloc = read<GlobalGameBloc>();
+    final dictionariesRepository = read<WordsRespository>();
+    final services = read<ServicesCollection>();
+    final analyticsService = read<AnalyticsService>();
+    final canvasCubit = read<CanvasCubit>();
+    final appSettingsNotifier = read<AppSettingsResource>();
+    final onlineStatusService = read<OnlineStatusService>();
+    final localDb = read<LocalDbI>();
+    await localDb.init();
+    await Future.wait([
+      onlineStatusService.onLoad(),
+      appSettingsNotifier.onLoad(),
+    ]);
+    await InitWindowManagerCmd(
+      appSettingsResource: appSettingsResource,
+    ).execute();
 
-    return GameSaveModel(
-      id: 'game',
-      playersCharacters: characters,
-      currentLevelId: CanvasDataModelId.empty,
-    );
+    final wordsType = await services.userWordsRepository.loadUserWords();
+    await dictionariesBloc.onLoad(wordsType: wordsType);
+    await canvasCubit.loadInitialData(context);
+    final initGame = await GameInitializer().loadGameModel(services: services);
+    await dictionariesRepository.preloadWrongWordsDictionary();
+    final levelId = await globalGameBloc.onInitGlobalGame(initGame);
+    await analyticsService.onDelayedLoad();
+    await adManager.onLoad();
+    final event = () {
+      if (kIsWeb) return AnalyticEvents.usedInWeb;
+      if (Platform.isAndroid) return AnalyticEvents.usedInAndroid;
+    }();
+    if (event != null) unawaited(analyticsService.logAnalyticEvent(event));
+
+    WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
+      appStatusNotifier.value = AppStatus.online;
+      appRouterController.toPause(id: levelId);
+    });
   }
 }

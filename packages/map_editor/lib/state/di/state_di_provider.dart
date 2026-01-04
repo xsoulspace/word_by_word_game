@@ -13,7 +13,7 @@ class EditorStateInitializer implements StateInitializer {
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;
-    await read<EditorDrawerCubit>().loadInitialData();
+    await read<EditorDrawerCubit>().loadInitialData(context);
     await read<MapEditorCubit>().load();
   }
 }
