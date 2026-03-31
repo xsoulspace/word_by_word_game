@@ -1,0 +1,11 @@
+dependency_overrides:
+  universal_storage_filesystem:
+    path: ../dart_flutter_packages/pkgs/universal_storage_filesystem
+  universal_storage_local_db:
+    path: ../dart_flutter_packages/pkgs/universal_storage_local_db
+  universal_storage_interface:
+    path: ../dart_flutter_packages/pkgs/universal_storage_interface
+  universal_storage_sync:
+    path: ../dart_flutter_packages/pkgs/universal_storage_sync
+  universal_storage_sync_utils:
+    path: ../dart_flutter_packages/pkgs/universal_storage_sync_utils

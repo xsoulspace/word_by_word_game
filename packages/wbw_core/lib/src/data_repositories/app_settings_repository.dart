@@ -7,8 +7,17 @@ import 'base_repository.dart';
 
 final class AppSettingsRepository
     extends BaseLocalRepository<AppSettingsLocalDataSource> {
-  AppSettingsRepository({required final LocalDbI localDb})
-    : super(local: AppSettingsLocalDataSourceImpl(localDb: localDb));
+  AppSettingsRepository({
+    required final LocalDbI localDb,
+    required final AppSettingsStore settingsStore,
+    final String settingsPath = 'app_settings_v1.json',
+  }) : super(
+         local: AppSettingsLocalDataSourceImpl(
+           localDb: localDb,
+           settingsStore: settingsStore,
+           settingsPath: settingsPath,
+         ),
+       );
 
   Future<BrightnessMode> getBrightness() => local.getBrightness();
   Future<void> setBrightness(final BrightnessMode brightness) =>

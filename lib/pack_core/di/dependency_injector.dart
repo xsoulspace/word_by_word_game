@@ -1,6 +1,9 @@
 import 'package:get_it/get_it.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
+import 'package:word_by_word_game/pack_core/di/kernel_app_settings_store.dart';
+import 'package:word_by_word_game/pack_core/di/kernel_game_save_store.dart';
+import 'package:word_by_word_game/pack_core/di/storage_kernel_bootstrap.dart';
 
 /// Shortcuts
 /// Should not be exposed
@@ -34,6 +37,13 @@ Future<void> _init() async {
   /// *      Layer 1: Infrastructure Services
   /// ********************************************
 
+  final storageKernelBootstrap = WordByWordStorageKernelBootstrap();
+  await storageKernelBootstrap.initialize();
+  r(storageKernelBootstrap);
+  final kernel = storageKernelBootstrap.kernel;
+  r<AppSettingsStore>(KernelAppSettingsStore(storageKernel: kernel));
+  r<GameSaveStore>(KernelGameSaveStore(storageKernel: kernel));
+
   rl<LocalDbI>(PrefsDb.new);
 
   // Analytics Service (from initializer)
@@ -46,14 +56,27 @@ Future<void> _init() async {
   /// *      Layer 2: Data Sources & Repositories
   /// ********************************************
 
-  // WbwDictionary - will be registered after dependencies are available
-  // rl<WbwDictionary>(() => WbwDictionary(simpleLocal: _g(), repository: ...), dispose: d);
+  // WbwDictionary will be registered after dependencies are available.
+  // rl<WbwDictionary>(
+  //   () => WbwDictionary(simpleLocal: _g(), repository: ...),
+  //   dispose: d,
+  // );
 
   // Repositories will be registered after LocalDbI is available
   rl(() => LevelsRepository(localDb: _g()));
-  rl(() => GameRespository(localDb: _g()));
+  rl(
+    () => GameRespository(
+      localDb: _g(),
+      saveStore: _g(),
+    ),
+  );
   // rl(() => WordsRespository(localDb: _g()));
-  rl(() => AppSettingsRepository(localDb: _g()));
+  rl(
+    () => AppSettingsRepository(
+      localDb: _g(),
+      settingsStore: _g(),
+    ),
+  );
 
   /// ********************************************
   /// *      Layer 3: Runtime Resources (No Dependencies)

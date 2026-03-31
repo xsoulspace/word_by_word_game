@@ -3,6 +3,7 @@ import 'package:universal_io/io.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
 import 'package:word_by_word_game/pack_core/di/dependency_injector.dart';
+import 'package:word_by_word_game/pack_core/di/storage_kernel_bootstrap.dart';
 import 'package:word_by_word_game/router.dart';
 
 class GlobalStatesInitializer with HasResources implements StateInitializer {
@@ -22,6 +23,8 @@ class GlobalStatesInitializer with HasResources implements StateInitializer {
     final appSettingsNotifier = read<AppSettingsResource>();
     final onlineStatusService = read<OnlineStatusService>();
     final localDb = read<LocalDbI>();
+    final storageKernelBootstrap = read<WordByWordStorageKernelBootstrap>();
+    await storageKernelBootstrap.initialize();
     await localDb.init();
     await Future.wait([
       onlineStatusService.onLoad(),
