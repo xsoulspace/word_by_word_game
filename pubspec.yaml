@@ -33,21 +33,21 @@ environment:
   sdk: ^3.9.0
 
 dependencies:
-  animate_do: ^4.2.0
+  animate_do: ^5.1.0
   animated_text_kit: ^4.3.0
-  bloc: ^9.1.0
+  bloc: ^9.2.1
   blur: ^4.0.2
   collection: ^1.19.1
-  cupertino_icons: ^1.0.8
-  equatable: ^2.0.7
-  firebase_analytics: ^12.0.3
-  firebase_analytics_web: ^0.6.0+3
-  firebase_core: ^4.2.0
-  firebase_core_web: ^3.2.0
-  firebase_crashlytics: ^5.0.3
-  flame: ^1.32.0
-  flame_bloc: ^1.12.17
-  flame_forge2d: ^0.19.2
+  cupertino_icons: ^1.0.9
+  equatable: ^2.1.0
+  firebase_analytics: ^12.4.5
+  firebase_analytics_web: ^0.6.1+11
+  firebase_core: ^4.12.1
+  firebase_core_web: ^3.9.1
+  firebase_crashlytics: ^5.2.6
+  flame: ^1.38.0
+  flame_bloc: ^1.12.24
+  flame_forge2d: ^0.19.3+7
   flutter:
     sdk: flutter
   flutter_animate: ^4.5.2
@@ -56,56 +56,56 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_portal: ^1.1.4
-  flutter_shaders: ^0.1.2
+  flutter_shaders: ^0.1.3
   # git:
   #   url: https://github.com/jonahwilliams/flutter_shaders.git
   #   ref: main
-  flutter_svg: ^2.2.1
-  form_builder_validators: ^11.2.0
+  flutter_svg: ^2.3.0
+  form_builder_validators: ^11.3.0
   freezed_annotation: ^3.1.0
-  get_it: ^8.2.0
-  go_router: ^16.2.5
-  google_fonts: ^6.3.2
-  intl: ^0.20.2
-  is_dart_empty_or_not: ^0.2.3
-  json_annotation: ^4.9.0
-  life_hooks: ^0.2.0
-  logger: ^2.6.2
+  get_it: ^9.2.1
+  go_router: ^17.3.0
+  google_fonts: ^8.2.0
+  intl: ^0.20.3
+  is_dart_empty_or_not: ^0.4.0
+  json_annotation: ^4.12.0
+  life_hooks: ^0.3.0
+  logger: ^2.7.0
   map_editor:
-  nes_ui: ^0.26.0
-  package_info_plus: ^9.0.0
+  nes_ui: ^0.30.0
+  package_info_plus: ^10.2.1
   path: ^1.9.1
-  path_provider: ^2.1.5
+  path_provider: ^2.1.6
   path_to_regexp: ^0.4.0
   provider: ^6.1.5+1
   quiver: ^3.2.2
   recase: ^4.1.0
   rxdart: ^0.28.0
-  shared_preferences: ^2.5.3
+  shared_preferences: ^2.5.5
   tiled: ^0.11.1
-  universal_storage_filesystem: ^0.1.0-dev.11
+  universal_storage_filesystem: ^0.1.0-dev.12
   universal_storage_local_db: ^0.1.0-dev.1
-  universal_storage_sync: ^0.1.0-dev.10
-  universal_io: ^2.2.2
+  universal_storage_sync: ^0.1.0-dev.12
+  universal_io: ^2.3.1
   url_launcher: ^6.3.2
   wbw_core:
   wbw_dictionaries:
   wbw_locale:
   wbw_ui_kit:
-  xsoulspace_foundation: ^0.3.0
+  xsoulspace_foundation: ^0.4.0
   xsoulspace_ui_foundation: ^0.3.1
 
 dev_dependencies:
-  analyzer: ^8.4.0
-  build_runner: ^2.9.0
-  flutter_gen: ^5.12.0
-  flutter_gen_runner: ^5.12.0
+  analyzer: ^14.1.0
+  build_runner: ^2.15.2
+  flutter_gen: ^5.15.0
+  flutter_gen_runner: ^5.15.0
   flutter_test:
     sdk: flutter
-  freezed: ^3.2.3
-  json_serializable: ^6.11.1
-  lints: ^6.0.0
-  msix: ^3.16.12
+  freezed: ^3.2.5
+  json_serializable: ^6.14.0
+  lints: ^6.1.0
+  msix: ^3.18.0
   xsoulspace_lints: ^0.1.2
 
 # flutter pub run flutter_launcher_icons:main

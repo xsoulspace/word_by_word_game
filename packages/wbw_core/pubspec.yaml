@@ -9,17 +9,17 @@ environment:
 resolution: workspace
 
 dependencies:
-  bloc: ^9.1.0
+  bloc: ^9.2.1
   collection: ^1.19.1
   english_words: ^4.0.0
-  equatable: ^2.0.7
-  firebase_analytics: ^12.0.3
-  firebase_analytics_web: ^0.6.0+3
-  firebase_core: ^4.2.0
-  firebase_core_web: ^3.2.0
-  firebase_crashlytics: ^5.0.3
-  flame: ^1.32.0
-  flame_bloc: ^1.12.17
+  equatable: ^2.1.0
+  firebase_analytics: ^12.4.5
+  firebase_analytics_web: ^0.6.1+11
+  firebase_core: ^4.12.1
+  firebase_core_web: ^3.9.1
+  firebase_crashlytics: ^5.2.6
+  flame: ^1.38.0
+  flame_bloc: ^1.12.24
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
@@ -27,40 +27,40 @@ dependencies:
   flutter_keyboard_visibility: ^6.0.0
   flutter_portal: ^1.1.4
   freezed_annotation: ^3.1.0
-  from_json_to_json: ^0.3.0
-  is_dart_empty_or_not: ^0.2.3
-  intl: ^0.20.2
-  json_annotation: ^4.9.0
-  life_hooks: ^0.2.0
-  logger: ^2.6.2
+  from_json_to_json: ^0.5.0
+  is_dart_empty_or_not: ^0.4.0
+  intl: ^0.20.3
+  json_annotation: ^4.12.0
+  life_hooks: ^0.3.0
+  logger: ^2.7.0
   map_editor:
   path_to_regexp: ^0.4.0
   path: ^1.9.1
-  path_provider: ^2.1.5
+  path_provider: ^2.1.6
   provider: ^6.1.5+1
   quiver: ^3.2.2
   russian_words: ^0.2.0
-  shared_preferences: ^2.5.3
-  universal_io: ^2.2.2
-  uuid: ^4.5.1
+  shared_preferences: ^2.5.5
+  universal_io: ^2.3.1
+  uuid: ^4.6.0
   wbw_client:
   wbw_dictionaries:
   wbw_locale:
   web: ^1.1.1
-  window_manager: ^0.4.3
-  xsoulspace_foundation: ^0.3.0
+  window_manager: ^0.5.2
+  xsoulspace_foundation: ^0.4.0
   xsoulspace_ui_foundation: ^0.3.1
 
 dev_dependencies:
-  analyzer: ^8.4.0
-  build_runner: ^2.9.0
-  flutter_gen: ^5.12.0
-  flutter_gen_runner: ^5.12.0
+  analyzer: ^14.1.0
+  build_runner: ^2.15.2
+  flutter_gen: ^5.15.0
+  flutter_gen_runner: ^5.15.0
   flutter_test:
     sdk: flutter
-  freezed: ^3.2.3
-  json_serializable: ^6.11.1
-  lints: ^6.0.0
+  freezed: ^3.2.5
+  json_serializable: ^6.14.0
+  lints: ^6.1.0
   xsoulspace_lints: ^0.1.2
 
 flutter_gen:

@@ -7,4 +7,4 @@ environment:
 resolution: workspace
 
 dependencies:
-  serverpod_client: ^2.9.1
+  serverpod_client: ^3.4.11

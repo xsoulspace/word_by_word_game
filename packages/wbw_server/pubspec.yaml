@@ -6,8 +6,8 @@ environment:
   sdk: ">=3.4.0 <4.0.0"
 
 dependencies:
-  csv: ^6.0.0
-  serverpod: ^2.9.1
+  csv: ^8.0.0
+  serverpod: ^3.4.11
 
 dev_dependencies:
-  lints: ^6.0.0
+  lints: ^6.1.0

@@ -16,15 +16,15 @@ dependencies:
   pointer_interceptor: ^0.10.1+2
   # yandex_mobileads: ^1.1.0
 dev_dependencies:
-  lints: ^6.0.0
+  lints: ^6.1.0
   flutter_test:
     sdk: flutter
-  pigeon: ^25.3.2
-  xsoulspace_lints: ^0.1.0
+  pigeon: ^27.3.0
+  xsoulspace_lints: ^0.1.2
 
 dependency_overrides:
   collection: ^1.19.1
-  http: ^1.4.0
+  http: ^1.6.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
