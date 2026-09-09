@@ -52,8 +52,10 @@ dependencies:
   xsoulspace_ui_foundation: ^0.3.1
 
 dev_dependencies:
-  analyzer: ^14.1.0
-  build_runner: ^2.15.2
+  # ^14.1.0 conflicts with freezed ^3.2.5 (needs analyzer >=9 <11) and Flutter
+  # bundles a Dart 3.13.0 beta that freezed 4.x rejects; dev-only pin.
+  analyzer: ^10.0.0
+  build_runner: ^2.15.1
   flutter_gen: ^5.15.0
   flutter_gen_runner: ^5.15.0
   flutter_test:

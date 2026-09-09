@@ -17,7 +17,9 @@ dependencies:
   collection: ^1.19.1
   cupertino_icons: ^1.0.9
   equatable: ^2.1.0
-  file_picker: ^11.0.2
+  # ^11.0.2 pins win32 ^5.9.0, conflicting with package_info_plus ^10
+  # (win32 ^6.0.1); file_picker 12.x drops the win32 pin entirely.
+  file_picker: ^12.1.0
   firebase_analytics: ^12.4.5
   firebase_analytics_web: ^0.6.1+11
   firebase_core: ^4.12.1
@@ -58,8 +60,10 @@ dependencies:
   xsoulspace_foundation: ^0.4.0
   xsoulspace_ui_foundation: ^0.3.1
 dev_dependencies:
-  analyzer: ^14.1.0
-  build_runner: ^2.15.2
+  # ^14.1.0 conflicts with freezed ^3.2.5 (needs analyzer >=9 <11) and Flutter
+  # bundles a Dart 3.13.0 beta that freezed 4.x rejects; dev-only pin.
+  analyzer: ^10.0.0
+  build_runner: ^2.15.1
   flutter_gen: ^5.15.0
   flutter_gen_runner: ^5.15.0
   flutter_test:

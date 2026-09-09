@@ -50,6 +50,20 @@
       window.yaContextCb = window.yaContextCb || [];
     </script>
     <script src="https://yandex.ru/ads/system/context.js" async></script> -->
+    <!-- oka:begin:head -->
+  <link rel="preconnect" href="https://yandex.ru/games/">
+  <link rel="preconnect" href="https://yandex.ru/ads/">
+  <script src="https://yandex.ru/games/sdk/v2"></script>
+  <script>window.yaContextCb = window.yaContextCb || [];</script>
+  <script src="https://yandex.ru/ads/system/context.js" async></script>
+  <script>window.yaContextCb.push(() => {
+  Ya.Context.AdvManager.render({
+    blockId: 'R-A-1966126-22',
+    type: 'fullscreen',
+    platform: 'desktop',
+  });
+});</script>
+    <!-- oka:end:head -->
   </head>
   <body>
     <!-- <div id="loading">

@@ -72,7 +72,9 @@ dependencies:
   life_hooks: ^0.3.0
   logger: ^2.7.0
   map_editor:
-  nes_ui: ^0.30.0
+  nes_ui: ^0.31.0
+  oka_web:
+    path: ../../oka/packages/oka_web
   package_info_plus: ^10.2.1
   path: ^1.9.1
   path_provider: ^2.1.6
@@ -96,8 +98,12 @@ dependencies:
   xsoulspace_ui_foundation: ^0.3.1
 
 dev_dependencies:
-  analyzer: ^14.1.0
-  build_runner: ^2.15.2
+  # ^14.1.0 conflicts with freezed ^3.2.5 (needs analyzer >=9 <11) and Flutter
+  # bundles a Dart 3.13.0 beta that freezed 4.x rejects; dev-only pin.
+  analyzer: ^10.0.0
+  # 2.15.2 pins analyzer >=13.3, incompatible with the freezed-3.x-driven
+  # analyzer ^10.0.0 pin; 2.15.1 allows analyzer <14 (dev-only).
+  build_runner: ^2.15.1
   flutter_gen: ^5.15.0
   flutter_gen_runner: ^5.15.0
   flutter_test:
